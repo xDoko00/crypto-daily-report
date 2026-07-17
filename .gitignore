@@ -1,6 +1,7 @@
 # Ortam değişkenleri / gizli anahtarlar — ASLA commit'lenmez
 .env
 .env.*
+!.env.example
 *.local
 
 # Python
