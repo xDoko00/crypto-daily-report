@@ -1,0 +1,56 @@
+name: Günlük Kripto Raporu
+
+# Her sabah 07:00 TSİ (04:00 UTC) otomatik çalışır + manuel tetikleme mümkün.
+on:
+  schedule:
+    - cron: "0 4 * * *"        # 04:00 UTC = 07:00 Türkiye saati
+  workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
+    inputs:
+      test:
+        description: "Test modu (rapor kanala değil, admin'e gider)"
+        type: boolean
+        default: false
+
+# Aynı anda tek çalışma yeter; üst üste binmeyi engelle.
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  rapor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Repoyu çek
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Node.js kur (Claude Code CLI için)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Python bağımlılıklarını kur
+        run: pip install -r requirements.txt
+
+      - name: Claude Code CLI kur
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Raporu üret ve gönder
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:        ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        # Manuel çalıştırmada "test" kutusu işaretliyse --test bayrağını ekle.
+        run: |
+          if [ "${{ inputs.test }}" = "true" ]; then
+            python report.py --test
+          else
+            python report.py
+          fi

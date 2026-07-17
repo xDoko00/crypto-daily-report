@@ -1,0 +1,18 @@
+# Ortam değişkenleri / gizli anahtarlar — ASLA commit'lenmez
+.env
+.env.*
+*.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Rapor çıktıları / geçici dosyalar
+rapor_*.txt
+*.tmp
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db
