@@ -12,7 +12,21 @@ Her sabah **07:00 (Türkiye saati)** otomatik olarak güncel kripto piyasa rapor
 
 ---
 
-## ⚡ Hızlı kurulum
+## 🤖 En kolay yol: kurulumu Claude Code yapsın
+
+Teknik bilgin yoksa hiç uğraşma. Şunu yap:
+
+1. Bu repoyu indir/klonla (yeşil **Code** → **Download ZIP**, veya `git clone`).
+2. Klasörde **[Claude Code](https://claude.com/claude-code)**'u aç.
+3. Şunu yaz: **"Bu repoyu kurmak istiyorum, beni baştan sona yönlendir."**
+
+Claude Code repodaki `CLAUDE.md` talimatlarını okuyup seni adım adım kurar: Telegram botu, kanal, chat_id bulma, token'lar ve GitHub'ı **senin yerine** halleder. Sana kalan sadece birkaç token'ı yapıştırmak ve bir kez tarayıcı girişi yapmak.
+
+> Aşağıdaki manuel adımlar, kendin kurmak istersen diye duruyor.
+
+---
+
+## ⚡ Hızlı kurulum (manuel)
 
 Zor ve teknik kısımları (chat_id bulma, test mesajı, GitHub reposu + secret'lar) **`setup.py` sihirbazı** senin yerine yapıyor. Sana kalan sadece hesap oluşturma ve token yapıştırma:
 
