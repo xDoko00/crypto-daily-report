@@ -1,6 +1,6 @@
 # 📊 Günlük Kripto Raporu → Telegram Botu
 
-Her sabah **07:00 (Türkiye saati)** otomatik olarak güncel kripto piyasa raporu üretip Telegram kanalına gönderen sistem. Bilgisayarın **kapalıyken de çalışır**, çünkü GitHub'ın ücretsiz sunucularında (GitHub Actions) zamanlanmış görev olarak koşar.
+Her sabah **08:00 (Türkiye saati)** otomatik olarak güncel kripto piyasa raporu üretip Telegram kanalına gönderen sistem. Bilgisayarın **kapalıyken de çalışır**, çünkü GitHub'ın ücretsiz sunucularında (GitHub Actions) zamanlanmış görev olarak koşar.
 
 ## Nasıl çalışır? (3 adım)
 
@@ -60,7 +60,7 @@ Sihirbaz senden sadece **iki token** (bot + Claude) isteyecek, **kalan her şeyi
 
 > GitHub CLI (`gh`) makinene **önceden kuruldu**; ayrıca bir şey yüklemene gerek yok.
 
-**Bitti.** Artık her sabah 07:00'de kanala otomatik rapor gelir. 🎉
+**Bitti.** Artık her sabah 08:00'de kanala otomatik rapor gelir. 🎉
 
 > **Not:** GitHub adımını atlamak istersen sihirbaz yine `.env`'i hazırlar ve yerel test (`python report.py --test`) çalışır. GitHub'ı sonra manuel kurmak istersen aşağıdaki adımlar var.
 
@@ -105,7 +105,7 @@ Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → "Te
 
 ## Sık sorulanlar
 
-**Saat neden 07:00?** Workflow `cron: "0 4 * * *"` (04:00 UTC = 07:00 TSİ). GitHub yoğun saatlerde birkaç dakika gecikebilir, normaldir.
+**Saat neden 08:00?** Workflow `cron: "0 5 * * *"` (05:00 UTC = 08:00 TSİ). GitHub yoğun saatlerde birkaç dakika gecikebilir, normaldir.
 
 **Rapor gelmedi?** Repo → **Actions** loglarına bak. Hata olduysa bot sana (admin) hata özetini de mesaj atar.
 
@@ -122,7 +122,7 @@ Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → "Te
 ├── report.py                           # Ana script (3 adım: veri → rapor → gönderim)
 ├── setup.py                            # Kurulum sihirbazı (chat_id, test, .env, GitHub)
 ├── requirements.txt                    # Python bağımlılığı (sadece requests)
-├── .github/workflows/daily-report.yml  # GitHub Actions zamanlanmış görevi (07:00 TSİ)
+├── .github/workflows/daily-report.yml  # GitHub Actions zamanlanmış görevi (08:00 TSİ)
 ├── .env.example                        # Ortam değişkeni şablonu
 ├── .gitignore
 └── README.md

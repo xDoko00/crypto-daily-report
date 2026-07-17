@@ -1,9 +1,9 @@
 name: Günlük Kripto Raporu
 
-# Her sabah 07:00 TSİ (04:00 UTC) otomatik çalışır + manuel tetikleme mümkün.
+# Her sabah 08:00 TSİ (05:00 UTC) otomatik çalışır + manuel tetikleme mümkün.
 on:
   schedule:
-    - cron: "0 4 * * *"        # 04:00 UTC = 07:00 Türkiye saati
+    - cron: "0 5 * * *"        # 05:00 UTC = 08:00 Türkiye saati
   workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
     inputs:
       test:
