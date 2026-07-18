@@ -75,7 +75,7 @@ python report.py --test
 `--test` bayrağı raporu **kanala değil, sadece sana (admin)** gönderir — kanalı kirletmeden denersin. Bayrak olmadan (`python report.py`) rapor kanala gider.
 
 **GitHub üzerinden:**
-Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → "Test modu" kutusunu işaretle → **Run**. Rapor admin chat'ine düşer.
+Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → **mode** menüsünden **test** seç → **Run**. Rapor admin chat'ine düşer. (İstersen **both** = hem sana hem kanala; **deliver_at** = belirli bir saatte gönder.)
 
 ---
 
@@ -105,7 +105,7 @@ Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → "Te
 
 ## Sık sorulanlar
 
-**Saat neden 08:00?** Workflow `cron: "0 5 * * *"` (05:00 UTC = 08:00 TSİ). GitHub yoğun saatlerde birkaç dakika gecikebilir, normaldir.
+**Rapor tam 08:00'de mi gelir?** Evet, sabit saat. GitHub cron'un tetikleme anı kayabildiği için sistem hedeften ÖNCE (07:35 TSİ) tetiklenir; `report.py` tam **08:00:00 TSİ**'ye kadar bekleyip öyle gönderir (`DELIVER_AT_TR`). Böylece teslim her gün aynı saattedir. Saati değiştirmek için workflow'daki `DELIVER_AT_TR` (ve pay için cron) değerini güncelle.
 
 **Rapor gelmedi?** Repo → **Actions** loglarına bak. Hata olduysa bot sana (admin) hata özetini de mesaj atar.
 
