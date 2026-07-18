@@ -389,6 +389,7 @@ def admin_hata_bildir(mesaj):
 
 def main():
     test_modu = "--test" in sys.argv
+    both_modu = "--both" in sys.argv    # Ayni raporu hem admin'e hem kanala gonder (on izleme)
 
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
     kanal_id = os.environ.get("TELEGRAM_CHAT_ID")
@@ -398,38 +399,41 @@ def main():
         print("HATA: TELEGRAM_BOT_TOKEN tanımlı değil.", file=sys.stderr)
         sys.exit(1)
 
-    # Test modunda rapor kanala DEĞİL, admin'e gider
-    hedef_id = admin_id if test_modu else kanal_id
-    if not hedef_id:
-        eksik = "TELEGRAM_ADMIN_CHAT_ID" if test_modu else "TELEGRAM_CHAT_ID"
-        print(f"HATA: {eksik} tanımlı değil.", file=sys.stderr)
-        sys.exit(1)
+    # Hedef listesi: (ad, chat_id). --both hem admin hem kanal; --test sadece admin.
+    if both_modu:
+        hedefler = [("admin", admin_id), ("kanal", kanal_id)]
+    elif test_modu:
+        hedefler = [("admin", admin_id)]
+    else:
+        hedefler = [("kanal", kanal_id)]
+
+    for ad, hid in hedefler:
+        if not hid:
+            degisken = "TELEGRAM_ADMIN_CHAT_ID" if ad == "admin" else "TELEGRAM_CHAT_ID"
+            print(f"HATA: {degisken} tanımlı değil.", file=sys.stderr)
+            sys.exit(1)
 
     try:
-        # Adım 1
         print("[bilgi] Adım 1: Piyasa verileri çekiliyor...", file=sys.stderr)
         market_data = piyasa_verilerini_cek()
 
-        # Adım 2
+        # Rapor BİR KEZ üretilir; tüm hedeflere aynı metin gider.
         print("[bilgi] Adım 2: Rapor üretiliyor...", file=sys.stderr)
         rapor = rapor_uret(market_data)
 
         if test_modu:
-            # Testte rapor başına küçük bir işaret koy
-            rapor = "🧪 <b>[TEST]</b>\n\n" + rapor
+            rapor = "🧪 <b>[TEST]</b>" + chr(10) * 2 + rapor
 
-        # Adım 3
         print("[bilgi] Adım 3: Telegram'a gönderiliyor...", file=sys.stderr)
-        adet = raporu_yolla(bot_token, hedef_id, rapor)
-
-        hedef_ad = "ADMIN (test)" if test_modu else "kanal"
-        print(f"[başarılı] Rapor {hedef_ad} hedefine {adet} mesaj olarak gönderildi.",
-              file=sys.stderr)
+        for ad, hid in hedefler:
+            adet = raporu_yolla(bot_token, hid, rapor)
+            print(f"[başarılı] Rapor '{ad}' hedefine {adet} mesaj olarak gönderildi.",
+                  file=sys.stderr)
 
     except Exception as e:                           # noqa: BLE001
         print(f"[HATA] {e}", file=sys.stderr)
         admin_hata_bildir(str(e))
-        sys.exit(1)                                  # Workflow'u failed düşür
+        sys.exit(1)
 
 
 if __name__ == "__main__":
