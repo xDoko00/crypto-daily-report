@@ -9,12 +9,13 @@ on:
   workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
     inputs:
       mode:
-        description: "Gönderim modu: normal (kanal) / test (admin) / both (ikisi)"
+        description: "Gönderim modu: normal (kanal) / test (admin) / both (ikisi) / onizleme (admin, etiketsiz)"
         type: choice
         options:
           - normal
           - test
           - both
+          - onizleme
         default: normal
       deliver_at:
         description: "İsteğe bağlı sabit teslim saati TSİ (HH:MM). Boşsa hemen gönderir."
@@ -71,11 +72,12 @@ jobs:
           case "${{ inputs.mode }}" in
             test) python report.py --test ;;
             both) python report.py --both ;;
+            onizleme) python report.py --onizleme ;;
             *)    python report.py ;;
           esac
 
       - name: Takip durumunu kaydet
-        if: ${{ inputs.mode != 'test' }}
+        if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |
           if [ -n "$(git status --porcelain state/takip.json 2>/dev/null)" ]; then
             git config user.name "github-actions[bot]"
