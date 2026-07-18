@@ -105,7 +105,7 @@ Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → **m
 
 ## Sık sorulanlar
 
-**Rapor tam 08:00'de mi gelir?** Evet, sabit saat. GitHub cron'un tetikleme anı kayabildiği için sistem hedeften ÖNCE (07:35 TSİ) tetiklenir; `report.py` tam **08:00:00 TSİ**'ye kadar bekleyip öyle gönderir (`DELIVER_AT_TR`). Böylece teslim her gün aynı saattedir. Saati değiştirmek için workflow'daki `DELIVER_AT_TR` (ve pay için cron) değerini güncelle.
+**Rapor ne zaman gelir?** Hedef her gün **08:00 TSİ**. Sistem bunu sabit tutmak için tasarlandı: GitHub cron hedeften önce (07:35) tetiklenir, `report.py` tam 08:00'e kadar bekleyip gönderir (`DELIVER_AT_TR`) — genelde saniyesi saniyesine 08:00. Yine de nadiren, GitHub tetiklemeyi çok geciktirirse (>~20 dk) veya rapor üretimi uzarsa birkaç dakika sapabilir; bu GitHub'ın ücretsiz zamanlayıcısının doğasıdır, kod hatası değildir. Saati değiştirmek için workflow'daki `DELIVER_AT_TR` (ve cron) değerini güncelle.
 
 **Rapor gelmedi?** Repo → **Actions** loglarına bak. Hata olduysa bot sana (admin) hata özetini de mesaj atar.
 
