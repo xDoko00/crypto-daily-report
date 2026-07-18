@@ -311,29 +311,35 @@ def rapor_uret(market_data, dun_takip_str=""):
     ]
 
     print("[bilgi] Claude Code raporu üretiyor (web araması yapılıyor)...", file=sys.stderr)
-    try:
-        sonuc = subprocess.run(
-            komut,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            timeout=CLAUDE_TIMEOUT,
-        )
-    except subprocess.TimeoutExpired:
-        raise RuntimeError(f"Claude Code {CLAUDE_TIMEOUT} saniyede yanıt vermedi.")
+    # Geçici claude hatalarına (rate/hiçkırık) karşı birkaç kez dene — 08:00 raporu
+    # tek bir aksaklıkta atlanmasın.
+    son_hata = None
+    for deneme in range(1, MAX_RETRY + 1):
+        try:
+            sonuc = subprocess.run(
+                komut, capture_output=True, text=True,
+                encoding="utf-8", timeout=CLAUDE_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired:
+            son_hata = f"{CLAUDE_TIMEOUT} sn'de yanıt yok"
+            sonuc = None
 
-    if sonuc.returncode != 0:
-        # Hata metni stderr'de yoksa stdout'a bak (claude limit/auth mesajını oraya yazabilir)
-        cikti = (sonuc.stderr.strip() or sonuc.stdout.strip() or "(çıktı boş)")[:800]
-        raise RuntimeError(
-            f"Claude Code hata verdi (kod {sonuc.returncode}): {cikti}"
-        )
+        if sonuc is not None:
+            if sonuc.returncode != 0:
+                son_hata = "kod %d: %s" % (
+                    sonuc.returncode,
+                    (sonuc.stderr.strip() or sonuc.stdout.strip() or "(çıktı boş)")[:600])
+            elif len((sonuc.stdout or "").strip()) < 200:
+                son_hata = "beklenenden kısa çıktı: %r" % (sonuc.stdout or "").strip()
+            else:
+                return sonuc.stdout.strip()
 
-    rapor = (sonuc.stdout or "").strip()
-    if len(rapor) < 200:
-        raise RuntimeError(f"Claude Code beklenenden kısa çıktı verdi: {rapor!r}")
+        print(f"[uyarı] Rapor üretimi başarısız ({deneme}/{MAX_RETRY}): {son_hata}",
+              file=sys.stderr)
+        if deneme < MAX_RETRY:
+            time.sleep(8 * deneme)
 
-    return rapor
+    raise RuntimeError(f"Claude Code {MAX_RETRY} denemede rapor üretemedi: {son_hata}")
 
 
 # --------------------------------------------------------------------------- #
