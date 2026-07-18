@@ -24,6 +24,7 @@ import os
 import sys
 import time
 import html
+import re
 import shutil
 import subprocess
 import tempfile
@@ -323,23 +324,40 @@ def mesaji_bol(metin, limit=SAFE_LIMIT):
     return parcalar
 
 
-def telegram_gonder(bot_token, chat_id, metin):
-    """Tek bir Telegram mesajı gönderir (HTML modu). Ağ hatalarında retry yapar."""
+def _html_temizle(metin):
+    """HTML etiketlerini kaldırıp düz metne çevirir (fallback için)."""
+    metin = re.sub(r"<[^>]+>", "", metin)
+    return (metin.replace("&lt;", "<").replace("&gt;", ">")
+                 .replace("&quot;", chr(34)).replace("&amp;", "&"))
+
+
+def telegram_gonder(bot_token, chat_id, metin, html_modu=True):
+    """Tek bir Telegram mesajı gönderir. HTML ayrıştırma hatasında (ör. bölme bir
+    etiketi bozmuşsa) düz metne düşer; ağ hatalarında retry yapar."""
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     payload = {
         "chat_id": chat_id,
         "text": metin,
-        "parse_mode": "HTML",
         "disable_web_page_preview": True,
     }
+    if html_modu:
+        payload["parse_mode"] = "HTML"
     last_err = None
     for deneme in range(1, MAX_RETRY + 1):
         try:
             r = requests.post(url, json=payload, timeout=HTTP_TIMEOUT)
             data = r.json()
             if not data.get("ok"):
-                # Telegram API mantıksal hatası (ör. yanlış chat_id / bozuk HTML)
-                raise RuntimeError(f"Telegram API hatası: {data.get('description')}")
+                aciklama = str(data.get("description", ""))
+                # HTML ayrıştırma hatasıysa: etiketleri temizleyip düz metin olarak
+                # TEK sefer yeniden dene (mesajın hiç gitmemesindense düz gitsin).
+                if html_modu and any(k in aciklama.lower()
+                                     for k in ("parse", "entit", "tag")):
+                    print(f"[uyarı] HTML hatası, düz metne düşülüyor: {aciklama}",
+                          file=sys.stderr)
+                    return telegram_gonder(bot_token, chat_id,
+                                           _html_temizle(metin), html_modu=False)
+                raise RuntimeError(f"Telegram API hatası: {aciklama}")
             return data
         except Exception as e:                       # noqa: BLE001
             last_err = e
@@ -388,7 +406,7 @@ def admin_hata_bildir(mesaj):
 # --------------------------------------------------------------------------- #
 
 # Rapor, teslim saatinden en fazla bu kadar önce üretilir (veri taze kalsın diye).
-GONDERIM_URETIM_BUTCESI = 240  # saniye (~4 dk)
+GONDERIM_URETIM_BUTCESI = 720  # saniye (~12 dk; Claude'un 10 dk timeout'unu aşacak pay)
 
 
 def _hedef_zaman_ist(hhmm):
