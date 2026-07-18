@@ -1,11 +1,11 @@
 name: Günlük Kripto Raporu
 
-# Her sabah ~08:00 TSİ otomatik çalışır + manuel tetikleme mümkün.
-# Not: GitHub zamanlanmış görevleri "en iyi çaba"dır; tam saat başı (:00) yoğunluğunda
-# gecikir/atlanabilir. Bu yüzden 04:55 UTC (yuvarlak olmayan dakika) seçildi ki rapor ~08:00'de gelsin.
+# Rapor HER GÜN tam 08:00 TSİ'de gider (SABİT saat, alışkanlık için).
+# GitHub cron tetikleme saati kayabildiğinden hedeften ÖNCE (07:35 TSİ) tetikleriz;
+# report.py tam 08:00'e kadar bekleyip öyle gönderir (DELIVER_AT_TR). Böylece teslim sabittir.
 on:
   schedule:
-    - cron: "55 4 * * *"       # 04:55 UTC ≈ 07:55 TSİ (GitHub gecikmesiyle ~08:00)
+    - cron: "35 4 * * *"       # 04:35 UTC = 07:35 TSİ tetikleme; teslim tam 08:00 (~25 dk pay)
   workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
     inputs:
       mode:
@@ -16,6 +16,10 @@ on:
           - test
           - both
         default: normal
+      deliver_at:
+        description: "İsteğe bağlı sabit teslim saati TSİ (HH:MM). Boşsa hemen gönderir."
+        type: string
+        default: ""
 
 # Aynı anda tek çalışma yeter; üst üste binmeyi engelle.
 concurrency:
@@ -25,7 +29,7 @@ concurrency:
 jobs:
   rapor:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40   # tam saate kadar bekleme payını da kapsar
 
     steps:
       - name: Repoyu çek
@@ -53,7 +57,9 @@ jobs:
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:        ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
-        # Manuel çalıştırmada "test" kutusu işaretliyse --test bayrağını ekle.
+          # Zamanlanmış çalışmada sabit teslim 08:00 TSİ; manuel çalışmada kullanıcı
+          # saat girdiyse o, girmediyse boş (hemen gönderir).
+          DELIVER_AT_TR: ${{ github.event_name == 'schedule' && '08:00' || inputs.deliver_at }}
         run: |
           case "${{ inputs.mode }}" in
             test) python report.py --test ;;
