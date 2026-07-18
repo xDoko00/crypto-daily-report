@@ -1,9 +1,11 @@
 name: Günlük Kripto Raporu
 
-# Her sabah 08:00 TSİ (05:00 UTC) otomatik çalışır + manuel tetikleme mümkün.
+# Her sabah ~08:00 TSİ otomatik çalışır + manuel tetikleme mümkün.
+# Not: GitHub zamanlanmış görevleri "en iyi çaba"dır; tam saat başı (:00) yoğunluğunda
+# gecikir/atlanabilir. Bu yüzden 04:55 UTC (yuvarlak olmayan dakika) seçildi ki rapor ~08:00'de gelsin.
 on:
   schedule:
-    - cron: "0 5 * * *"        # 05:00 UTC = 08:00 Türkiye saati
+    - cron: "55 4 * * *"       # 04:55 UTC ≈ 07:55 TSİ (GitHub gecikmesiyle ~08:00)
   workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
     inputs:
       test:
