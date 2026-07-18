@@ -12,6 +12,7 @@ Günlük Kripto Raporu → Telegram Botu
 Kullanım:
   python report.py            → Raporu kanala (TELEGRAM_CHAT_ID) gönderir.
   python report.py --test     → Raporu SADECE admin'e (TELEGRAM_ADMIN_CHAT_ID) gönderir.
+  python report.py --onizleme → Sadece admin'e; [TEST] etiketi yok, gerçek rapor görünümü.
 
 Kimlik doğrulama ve gizli anahtarlar ortam değişkenlerinden okunur (koda gömülmez):
   CLAUDE_CODE_OAUTH_TOKEN     → Claude aboneliği token'ı (claude setup-token çıktısı)
@@ -599,6 +600,7 @@ def ses_gonder(bot_token, chat_id, ogg_bytes):
 
 def main():
     test_modu = "--test" in sys.argv
+    onizleme = "--onizleme" in sys.argv  # sadece admin, etiketsiz (önizleme)
     both_modu = "--both" in sys.argv    # Ayni raporu hem admin'e hem kanala gonder
 
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -611,7 +613,7 @@ def main():
 
     if both_modu:
         hedefler = [("admin", admin_id), ("kanal", kanal_id)]
-    elif test_modu:
+    elif test_modu or onizleme:
         hedefler = [("admin", admin_id)]
     else:
         hedefler = [("kanal", kanal_id)]
@@ -694,7 +696,7 @@ def main():
             print(f"[başarılı] '{ad}' hedefine gönderildi (kart + brief + ses + detay).", file=sys.stderr)
 
         # Bugünün takip listesini yarın için kaydet (test modunda kaydetme)
-        if not test_modu and bugun_takip:
+        if not test_modu and not onizleme and bugun_takip:
             try:
                 takip_yaz(bugun_takip)
                 print(f"[bilgi] {len(bugun_takip)} takip maddesi kaydedildi.", file=sys.stderr)
