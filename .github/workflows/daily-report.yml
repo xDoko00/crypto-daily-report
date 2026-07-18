@@ -8,10 +8,14 @@ on:
     - cron: "55 4 * * *"       # 04:55 UTC ≈ 07:55 TSİ (GitHub gecikmesiyle ~08:00)
   workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
     inputs:
-      test:
-        description: "Test modu (rapor kanala değil, admin'e gider)"
-        type: boolean
-        default: false
+      mode:
+        description: "Gönderim modu: normal (kanal) / test (admin) / both (ikisi)"
+        type: choice
+        options:
+          - normal
+          - test
+          - both
+        default: normal
 
 # Aynı anda tek çalışma yeter; üst üste binmeyi engelle.
 concurrency:
@@ -51,8 +55,8 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
         # Manuel çalıştırmada "test" kutusu işaretliyse --test bayrağını ekle.
         run: |
-          if [ "${{ inputs.test }}" = "true" ]; then
-            python report.py --test
-          else
-            python report.py
-          fi
+          case "${{ inputs.mode }}" in
+            test) python report.py --test ;;
+            both) python report.py --both ;;
+            *)    python report.py ;;
+          esac
