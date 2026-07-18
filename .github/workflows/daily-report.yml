@@ -29,11 +29,15 @@ concurrency:
 jobs:
   rapor:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 40   # tam saate kadar bekleme payını da kapsar
 
     steps:
       - name: Repoyu çek
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Python 3.11 kur
         uses: actions/setup-python@v5
@@ -69,3 +73,17 @@ jobs:
             both) python report.py --both ;;
             *)    python report.py ;;
           esac
+
+      - name: Takip durumunu kaydet
+        if: ${{ inputs.mode != 'test' }}
+        run: |
+          if [ -n "$(git status --porcelain state/takip.json 2>/dev/null)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state/takip.json
+            git commit -m "chore: gunluk takip durumu"
+            git pull --rebase --autostash origin main || true
+            git push || echo "push basarisiz (best-effort; rapor gonderildi)"
+          else
+            echo "takip degismedi"
+          fi
