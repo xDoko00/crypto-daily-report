@@ -543,19 +543,28 @@ def _brief_ayikla(rapor):
     return hava, risk
 
 
-def foto_gonder(bot_token, chat_id, png_bytes, caption=""):
-    """Telegram'a fotoğraf (kart) gönderir; ağ hatasında retry yapar."""
+def foto_gonder(bot_token, chat_id, png_bytes, caption="", html_modu=True):
+    """Telegram'a fotoğraf (kart) gönderir. Altyazı HTML ayrıştırma hatası verirse düz
+    metne düşer; ağ hatasında retry yapar."""
     url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+    veri = {"chat_id": chat_id, "caption": caption}
+    if caption and html_modu:
+        veri["parse_mode"] = "HTML"
     last_err = None
     for deneme in range(1, MAX_RETRY + 1):
         try:
-            r = requests.post(url, data={"chat_id": chat_id, "caption": caption},
+            r = requests.post(url, data=veri,
                               files={"photo": ("kart.png", png_bytes, "image/png")},
                               timeout=HTTP_TIMEOUT)
-            data = r.json()
-            if not data.get("ok"):
-                raise RuntimeError(f"sendPhoto hatası: {data.get('description')}")
-            return data
+            cevap = r.json()
+            if not cevap.get("ok"):
+                aciklama = str(cevap.get("description", ""))
+                if caption and html_modu and any(k in aciklama.lower()
+                                                 for k in ("parse", "entit", "tag")):
+                    return foto_gonder(bot_token, chat_id, png_bytes,
+                                       _html_temizle(caption), html_modu=False)
+                raise RuntimeError(f"sendPhoto hatası: {aciklama}")
+            return cevap
         except Exception as e:                       # noqa: BLE001
             last_err = e
             print(f"[uyarı] Kart gönderimi başarısız ({deneme}/{MAX_RETRY}): {e}",
@@ -620,22 +629,34 @@ def main():
             _bekle_kadar(hedef_dt, f"Teslim saati {teslim} TSİ'ye")
 
         print("[bilgi] Adım 3: Telegram'a gönderiliyor...", file=sys.stderr)
-        for ad, hid in hedefler:
-            adet = raporu_yolla(bot_token, hid, rapor)
-            print(f"[başarılı] Rapor '{ad}' hedefine {adet} mesaj olarak gönderildi.",
-                  file=sys.stderr)
 
-        # Paylaşılabilir sabah kartı (best-effort — hata olsa rapor yine gitti)
+        # Rapor bölümleri: brief (60 SANİYE) + detay(lar)
+        bolumler = [b.strip() for b in rapor.split("---DETAY---") if b.strip()]
+        brief = bolumler[0] if bolumler else rapor
+        detaylar = bolumler[1:]
+
+        # Kartı bir kez üret (best-effort — hata olsa rapor yine gider)
+        png = None
         try:
             import kart
             hava, risk = _brief_ayikla(rapor)
             png = kart.kart_olustur(veri, hava, risk, tarih_basligi())
-            for ad, hid in hedefler:
-                foto_gonder(bot_token, hid, png)
-                print(f"[başarılı] Kart '{ad}' hedefine gönderildi.", file=sys.stderr)
         except Exception as kart_hata:               # noqa: BLE001
-            print(f"[uyarı] Kart atlanıyor (rapor gönderildi): {kart_hata}",
-                  file=sys.stderr)
+            print(f"[uyarı] Kart oluşturulamadı: {kart_hata}", file=sys.stderr)
+
+        for ad, hid in hedefler:
+            # İLK MESAJ = kart + brief (görsel ilk mesaja bağlı). Kart yoksa brief metin.
+            if png is not None and len(brief) <= 1024:
+                foto_gonder(bot_token, hid, png, caption=brief)
+            else:
+                raporu_yolla(bot_token, hid, brief)
+                if png is not None:
+                    foto_gonder(bot_token, hid, png)
+            # Sonra detay mesaj(lar)ı
+            for detay in detaylar:
+                time.sleep(1)
+                raporu_yolla(bot_token, hid, detay)
+            print(f"[başarılı] '{ad}' hedefine gönderildi (kart + rapor).", file=sys.stderr)
 
         # Bugünün takip listesini yarın için kaydet (test modunda kaydetme)
         if not test_modu and bugun_takip:
