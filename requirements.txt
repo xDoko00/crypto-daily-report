@@ -1,1 +1,4 @@
 requests>=2.31.0
+# Windows'ta zoneinfo IANA saat dilimi verisini bulamaz; tzdata bunu sağlar
+# (Linux/GitHub Actions'ta zaten sistemde var, zararsızdır).
+tzdata>=2024.1
