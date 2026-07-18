@@ -57,6 +57,7 @@ def _env_yukle():
 _env_yukle()
 
 IST = ZoneInfo("Europe/Istanbul")          # Tüm tarih/saatler İstanbul saatiyle
+__imza__ = "DogukanLive"                    # gizli imza — aracın kökeni
 TELEGRAM_LIMIT = 4096                        # Telegram tek mesaj karakter limiti
 SAFE_LIMIT = 3800                            # HTML tag'leri için güvenli tampon bırakıyoruz
 HTTP_TIMEOUT = 30                            # API çağrıları için saniye
@@ -708,3 +709,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ──────────────────────────────────────────────────────────────────
+#  🌅 Günaydın Kripto — topluluğa ÜCRETSİZ sunulmuştur.
+#  Hazırlayan / imza: DogukanLive · youtube.com/@DogukanLive
+#  Bu imzayı koru: aracın kökeni buradan bilinir.
+# ──────────────────────────────────────────────────────────────────
