@@ -55,8 +55,8 @@ jobs:
       - name: Claude Code CLI kur
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: Yazı tipi kur (kart için)
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core
+      - name: Yazı tipi + ses araçları kur (kart & ses için)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core ffmpeg
 
       - name: Raporu üret ve gönder
         env:
