@@ -1,117 +1,112 @@
-# 📊 Günlük Kripto Raporu → Telegram Botu
+# 🌅 Günaydın Kripto — Telegram Sabah Botu
 
-Her sabah **08:00 (Türkiye saati)** otomatik olarak güncel kripto piyasa raporu üretip Telegram kanalına gönderen sistem. Bilgisayarın **kapalıyken de çalışır**, çünkü GitHub'ın ücretsiz sunucularında (GitHub Actions) zamanlanmış görev olarak koşar.
+> Her sabah **08:00'de**, sen uyanmadan, piyasayı **1 dakikada** anlatan arkadaşın.
 
-## Nasıl çalışır? (3 adım)
+Bu bir "otomatik rapor" değil. Uyandığında tam ihtiyacın olan bilgiyi — gereksiz hiçbir şey olmadan — Telegram kanalına koyan bir sabah rutini. Bilgisayarın **kapalıyken de çalışır** (GitHub'ın ücretsiz sunucularında koşar).
 
-1. **Sabit veriler** — BTC, ETH, SOL, BNB, XRP fiyatları, piyasa değeri, hacim, dominans ve Fear & Greed endeksi doğrudan ücretsiz API'lerden çekilir. Bu sayılar yapay zekâya **uydurtulmaz**, olduğu gibi rapora girer.
-2. **Haber & analiz** — Headless Claude Code web araması yaparak son 24 saatin gelişmelerini araştırır ve Türkçe raporu yazar. (Claude aboneliğinden düşer, **ek API ücreti yok**.)
-3. **Gönderim** — Rapor Telegram'a HTML formatında, 4096 karakter limitine uyacak şekilde bölünerek gönderilir.
-
-> ⚠️ **Yatırım tavsiyesi değildir.** Bu bot bilgilendirme amaçlıdır; al/sat önerisi vermez.
+> ⚠️ **Yatırım tavsiyesi değildir.** Bilgilendirme amaçlıdır; al/sat önerisi vermez.
 
 ---
 
-## 🤖 En kolay yol: kurulumu Claude Code yapsın
+## ✨ Her sabah kanalına ne düşer?
 
-Teknik bilgin yoksa hiç uğraşma. Şunu yap:
+- 📊 **Kart + 60 saniyelik brief** (tek mesaj) — piyasa havası, BTC/ETH, **"piyasa neden hareket etti"**, günün kritik saatleri ve ana risk. Bir bakışta, bir dakikada okunur. Kartı **Instagram/WhatsApp'ta paylaşabilirsin**.
+- 🎙️ **~45 saniyelik sesli özet** — yolda ya da hazırlanırken dinle. Ücretsiz Türkçe doğal ses.
+- ⏮️ **Dünden hesap** — dün "dikkat" dediğimiz olayların bugünkü **sonucunu** gösterir. Sistem dünü hatırlar.
+- 📄 **Detay** — piyasa tablosu, günün en önemli 3 gelişmesi (kaynak linkli), Türkiye mevzuatı, bugünün ekonomik takvimi (TSİ), riskler.
 
-1. Bu repoyu indir/klonla (yeşil **Code** → **Download ZIP**, veya `git clone`).
+**Sayılar uydurma değildir:** Fiyat, dominans, hacim ve Fear & Greed doğrudan ücretsiz API'lerden gelir — yapay zekâya asla uydurtulmaz. Yalnızca haber/analiz kısmını Claude, canlı web araması yaparak yazar.
+
+---
+
+## 🔧 Perde arkası (3 adım)
+
+1. **Sabit veriler** — CoinGecko + Alternative.me'den fiyatlar, dominans, hacim, Fear & Greed (LLM yok → halüsinasyon yok).
+2. **Haber & analiz** — Headless Claude Code web araması yaparak son 24 saati Türkçe yazar. (Claude aboneliğinden düşer, **ek API ücreti yok**.)
+3. **Gönderim** — Telegram'a kart + brief + ses + detay olarak, saniyesi saniyesine **08:00'de**.
+
+Kart görseli (Pillow) ve sesli özet (edge-tts) de dahil **her şey ücretsiz** — hiçbir ödemeli servis yok.
+
+---
+
+## 🤖 En kolay kurulum: bırak Claude Code yapsın
+
+Teknik bilgin yoksa hiç uğraşma:
+
+1. Bu repoyu indir (yeşil **Code → Download ZIP**) veya klonla.
 2. Klasörde **[Claude Code](https://claude.com/claude-code)**'u aç.
 3. Şunu yaz: **"Bu repoyu kurmak istiyorum, beni baştan sona yönlendir."**
 
-Claude Code repodaki `CLAUDE.md` talimatlarını okuyup seni adım adım kurar: Telegram botu, kanal, chat_id bulma, token'lar ve GitHub'ı **senin yerine** halleder. Sana kalan sadece birkaç token'ı yapıştırmak ve bir kez tarayıcı girişi yapmak.
-
-> Aşağıdaki manuel adımlar, kendin kurmak istersen diye duruyor.
+Claude Code, repodaki `CLAUDE.md` talimatlarını okuyup seni adım adım kurar: Telegram botu, kanal, chat_id bulma, token'lar ve GitHub'ı **senin yerine** halleder. Sana kalan sadece birkaç token yapıştırmak ve bir kez tarayıcı girişi.
 
 ---
 
 ## ⚡ Hızlı kurulum (manuel)
 
-Zor ve teknik kısımları (chat_id bulma, test mesajı, GitHub reposu + secret'lar) **`setup.py` sihirbazı** senin yerine yapıyor. Sana kalan sadece hesap oluşturma ve token yapıştırma:
+Zor kısımları (chat_id bulma, test, GitHub reposu + secret'lar) **`setup.py` sihirbazı** yapıyor. Sana kalan:
 
 ### 1) Telegram botu oluştur
-Telegram'da **@BotFather** → `/newbot` → bota isim ver → çıkan **token'ı kopyala** (`123456:ABC-...`).
+**@BotFather** → `/newbot` → isim ver → **token'ı kopyala** (`123456:ABC-...`).
 
 ### 2) Kanalı hazırla
-- Raporun gideceği **kanalı** oluştur (yoksa).
-- Kanal → **Yöneticiler** → **Yönetici Ekle** → botunu ekle ("Mesaj Gönderme" yetkisi yeterli).
-- Kanala **herhangi bir mesaj at** (botun kanalı "görebilmesi" için gerekli).
-- Ayrıca Telegram'da **kendi botuna** bir kez **/start** yaz (botun sana özel mesaj atabilmesi için).
+- Raporun gideceği **kanalı** oluştur.
+- Kanal → **Yöneticiler → Yönetici Ekle** → botunu ekle ("Mesaj Gönderme" yetkisi yeter).
+- Kanala **bir mesaj at** (bot kanalı görebilsin) ve **kendi botuna** bir kez **/start** yaz.
 
 ### 3) Claude token'ı üret
-Terminalde:
 ```bash
 claude setup-token
 ```
-Çıkan token'ı kopyala. (Pro/Max aboneliği yeterli, ek ücret yok; günde 1 rapor limiti zorlamaz. Token ~1 yıl geçerli.)
+Çıkan token'ı kopyala. (Pro/Max aboneliği yeter, ek ücret yok. Token ~1 yıl geçerli.)
 
-### 4) Sihirbazı çalıştır — gerisi TEK KOMUTLA otomatik
+### 4) Sihirbazı çalıştır — gerisi otomatik
 ```bash
 pip install -r requirements.txt
 python setup.py
 ```
-Sihirbaz senden sadece **iki token** (bot + Claude) isteyecek, **kalan her şeyi kendi yapacak**:
-- ✅ Kanalın ve senin chat_id'ni **otomatik bulur** (JSON okuman gerekmez)
-- ✅ Her ikisine **test mesajı** atıp çalıştığını kanıtlar
+Sihirbaz senden **iki token** (bot + Claude) ister, kalan her şeyi kendi yapar:
+- ✅ Kanalın ve senin chat_id'ni **otomatik bulur**
+- ✅ **Test mesajı** atıp çalıştığını kanıtlar
 - ✅ `.env` dosyasını yazar
-- ✅ **GitHub girişini kendisi başlatır** — tarayıcı açılır, tek kullanımlık kodu girersin (GitHub hesabın yoksa önce [github.com](https://github.com)'dan ücretsiz aç)
-- ✅ **GitHub reposunu oluşturur, dosyaları yükler ve 4 secret'ı senin yerine ekler**
+- ✅ **GitHub girişini başlatır** + repoyu oluşturur + dosyaları yükler + **4 secret'ı ekler**
 
-> GitHub CLI (`gh`) makinene **önceden kuruldu**; ayrıca bir şey yüklemene gerek yok.
-
-**Bitti.** Artık her sabah 08:00'de kanala otomatik rapor gelir. 🎉
-
-> **Not:** GitHub adımını atlamak istersen sihirbaz yine `.env`'i hazırlar ve yerel test (`python report.py --test`) çalışır. GitHub'ı sonra manuel kurmak istersen aşağıdaki adımlar var.
+**Bitti.** Artık her sabah 08:00'de kanala tam rapor gelir. 🎉
 
 ---
 
 ## Test etme
 
-**Yerel (bilgisayarında):**
+**Yerel:**
 ```bash
-python report.py --test
+python report.py --test    # rapor kanala DEĞİL, sadece sana (admin) gider
 ```
-`--test` bayrağı raporu **kanala değil, sadece sana (admin)** gönderir — kanalı kirletmeden denersin. Bayrak olmadan (`python report.py`) rapor kanala gider.
 
-**GitHub üzerinden:**
-Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → **mode** menüsünden **test** seç → **Run**. Rapor admin chat'ine düşer. (İstersen **both** = hem sana hem kanala; **deliver_at** = belirli bir saatte gönder.)
+**GitHub üzerinden:** Repo → **Actions → Günlük Kripto Raporu → Run workflow** → **mode**: `test` (sadece sana), `both` (sana + kanala) ya da `normal` (kanala). `deliver_at` ile belirli bir saate de gönderebilirsin.
 
 ---
 
 ## Manuel GitHub kurulumu (sihirbaz kullanmazsan)
 
-1. [github.com](https://github.com)'da yeni repo oluştur (private olabilir).
-2. Dosyaları yükle:
-   ```bash
-   git add .
-   git commit -m "İlk kurulum"
-   git branch -M main
-   git remote add origin https://github.com/KULLANICI/REPO.git
-   git push -u origin main
-   ```
-3. Repo → **Settings → Secrets and variables → Actions → New repository secret**. Şu 4 secret'ı ekle (isimler birebir):
+1. [github.com](https://github.com)'da yeni repo oluştur.
+2. Dosyaları yükle (`git add . && git commit -m "kurulum" && git push`).
+3. Repo → **Settings → Secrets and variables → Actions**. Şu 4 secret'ı ekle:
 
-   | Secret adı | Değeri |
+   | Secret | Değer |
    |---|---|
    | `CLAUDE_CODE_OAUTH_TOKEN` | `claude setup-token` çıktısı |
    | `TELEGRAM_BOT_TOKEN` | BotFather token'ı |
    | `TELEGRAM_CHAT_ID` | Kanal id (`@kanal` veya `-100...`) |
    | `TELEGRAM_ADMIN_CHAT_ID` | Senin özel chat id'in |
 
-   > chat_id'leri elle bulman gerekirse: `.env` dosyasında sihirbazın yazdığı değerler zaten var. Ya da `https://api.telegram.org/bot<TOKEN>/getUpdates` adresini tarayıcıda açıp `"chat":{"id":...}` satırına bak.
-
 ---
 
 ## Sık sorulanlar
 
-**Rapor ne zaman gelir?** Hedef her gün **08:00 TSİ**. Sistem bunu sabit tutmak için tasarlandı: GitHub cron hedeften önce (07:35) tetiklenir, `report.py` tam 08:00'e kadar bekleyip gönderir (`DELIVER_AT_TR`) — genelde saniyesi saniyesine 08:00. Yine de nadiren, GitHub tetiklemeyi çok geciktirirse (>~20 dk) veya rapor üretimi uzarsa birkaç dakika sapabilir; bu GitHub'ın ücretsiz zamanlayıcısının doğasıdır, kod hatası değildir. Saati değiştirmek için workflow'daki `DELIVER_AT_TR` (ve cron) değerini güncelle.
+**Rapor tam 08:00'de mi gelir?** Evet, sabit saat. GitHub cron hedeften önce (07:35) tetiklenir; `report.py` tam 08:00'e kadar bekleyip gönderir (`DELIVER_AT_TR`). Nadiren GitHub'ın gecikmesiyle birkaç dakika sapabilir — bu ücretsiz zamanlayıcının doğası, kod hatası değil. Saati değiştirmek için workflow'daki `DELIVER_AT_TR` değerini güncelle.
 
-**Rapor gelmedi?** Repo → **Actions** loglarına bak. Hata olduysa bot sana (admin) hata özetini de mesaj atar.
+**Kart/ses gelmezse?** İkisi de "best-effort"; biri üretilemezse rapor yine gider. Rapor üretimi hata verirse sistem birkaç kez dener, yine olmazsa sana hata bildirimi gelir.
 
-**Ücret?** Yok. GitHub Actions ücretsiz katmanı, kripto API'leri ücretsiz, rapor Claude aboneliğinden düşer.
-
-**Token süresi doldu?** `claude setup-token`'ı tekrar çalıştır, GitHub'da `CLAUDE_CODE_OAUTH_TOKEN` secret'ını güncelle (ya da `python setup.py`'ı tekrar çalıştır).
+**Ücret?** Yok. GitHub Actions ücretsiz katmanı, kripto API'leri ücretsiz, kart/ses ücretsiz kütüphaneler, rapor Claude aboneliğinden düşer.
 
 ---
 
@@ -119,11 +114,23 @@ Repo → **Actions** → **Günlük Kripto Raporu** → **Run workflow** → **m
 
 ```
 .
-├── report.py                           # Ana script (3 adım: veri → rapor → gönderim)
-├── setup.py                            # Kurulum sihirbazı (chat_id, test, .env, GitHub)
-├── requirements.txt                    # Python bağımlılığı (sadece requests)
-├── .github/workflows/daily-report.yml  # GitHub Actions zamanlanmış görevi (08:00 TSİ)
-├── .env.example                        # Ortam değişkeni şablonu
-├── .gitignore
-└── README.md
+├── report.py            # Ana akış: veri → rapor → kart + brief + ses + detay gönderimi
+├── kart.py              # Paylaşılabilir sabah kartı (Pillow)
+├── ses.py               # 45 sn sesli özet (edge-tts + ffmpeg)
+├── setup.py             # Kurulum sihirbazı (chat_id, test, .env, GitHub)
+├── requirements.txt     # requests, Pillow, edge-tts, tzdata
+├── state/takip.json     # "Dünden hesap" hafızası (otomatik oluşur)
+├── .github/workflows/   # daily-report.yml (08:00 TSİ) + tests.yml
+├── CLAUDE.md            # Claude Code'un otomatik kurulum rehberi
+├── test_report.py       # Birim testler
+├── LICENSE              # MIT
+└── .env.example
 ```
+
+---
+
+## 🎁 Ücretsiz & topluluk için
+
+Bu araç **DogukanLive** tarafından hazırlanıp topluluğa **ücretsiz** sunulmuştur. Satılık değildir — dilediğin gibi kur, kullan, kendine göre değiştir. Beğendiysen paylaş, bir arkadaşının sabahını da güzelleştir. ☕
+
+<sub>Made with ❤️ by <b>DogukanLive</b> · <a href="https://youtube.com/@DogukanLive">youtube.com/@DogukanLive</a> · MIT License</sub>
