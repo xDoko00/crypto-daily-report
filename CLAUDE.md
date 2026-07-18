@@ -43,7 +43,7 @@ Kullanıcı kendi terminalinde `claude setup-token` çalıştırsın (tarayıcı
 - 4 secret'ı ekle: `gh secret set <AD> --body "<deger>"` (koda gömme; Secrets şifrelidir).
 
 ### 7. Bulut testi
-`gh workflow run daily-report.yml -f test=true` ile Actions'ı test modunda tetikle, `gh run watch <id> --exit-status` ile bitişini izle. Yeşilse: token bulutta çalışıyor + Telegram gönderimi tamam demektir. Kullanıcıya "her sabah 08:00'de hazır" de.
+`gh workflow run daily-report.yml -f mode=test` ile Actions'ı test modunda tetikle, `gh run watch <id> --exit-status` ile bitişini izle. Yeşilse: token bulutta çalışıyor + Telegram gönderimi tamam demektir. Kullanıcıya "her sabah 08:00'de hazır" de.
 
 ## Kritik kurallar
 - **Gizli anahtarları asla koda/commite yazma.** Sadece `.env` (gitignore) ve GitHub Secrets.
