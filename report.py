@@ -227,7 +227,34 @@ def piyasa_verilerini_cek():
     satirlar.append("")
     satirlar.append(f"Fear & Greed — bugün: {fng_bugun} | dün: {fng_dun} | 7 gün önce: {fng_7gun}")
 
-    return "\n".join(satirlar)
+    # --- Kart için yapılandırılmış ham veri ---
+    def _coin(cg_id):
+        cd = fiyatlar.get(cg_id, {})
+        return {"fiyat": cd.get("usd"), "degisim": cd.get("usd_24h_change")}
+
+    _ETIKET_TR = {"Extreme Fear": "Aşırı Korku", "Fear": "Korku", "Neutral": "Nötr",
+                  "Greed": "Açgözlülük", "Extreme Greed": "Aşırı Açgözlülük"}
+
+    def _iint(v):
+        try:
+            return int(v)
+        except (TypeError, ValueError):
+            return None
+
+    _f0 = fng_veri[0] if fng_veri else {}
+    _f1 = fng_veri[1] if len(fng_veri) > 1 else {}
+    veri = {
+        "btc": _coin("bitcoin"), "eth": _coin("ethereum"), "sol": _coin("solana"),
+        "bnb": _coin("binancecoin"), "xrp": _coin("ripple"),
+        "btc_dom": btc_dom, "eth_dom": eth_dom,
+        "hacim": toplam_hacim, "mcap": toplam_mcap,
+        "fng_deger": _iint(_f0.get("value")),
+        "fng_etiket": _ETIKET_TR.get(_f0.get("value_classification"),
+                                     _f0.get("value_classification") or ""),
+        "fng_dun": _iint(_f1.get("value")),
+    }
+
+    return "\n".join(satirlar), veri
 
 
 # --------------------------------------------------------------------------- #
@@ -441,6 +468,44 @@ def _bekle_kadar(hedef_dt, aciklama):
         time.sleep(kalan)
 
 
+def _brief_ayikla(rapor):
+    """Brief'ten Hava (mood) ve Risk satırlarını ayıklar (kart için)."""
+    duz = _html_temizle(rapor)
+    hava, risk = "—", ""
+    for satir in duz.splitlines():
+        s = satir.strip()
+        if hava == "—" and "Hava:" in s:
+            sonra = s.split("Hava:", 1)[1]
+            hava = sonra.split("·")[0].split("F&G")[0].strip() or "—"
+        if not risk and "Risk:" in s:
+            risk = s.split("Risk:", 1)[1].strip()
+    if not risk:
+        risk = "Bugün belirgin tek risk öne çıkmıyor."
+    return hava, risk
+
+
+def foto_gonder(bot_token, chat_id, png_bytes, caption=""):
+    """Telegram'a fotoğraf (kart) gönderir; ağ hatasında retry yapar."""
+    url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+    last_err = None
+    for deneme in range(1, MAX_RETRY + 1):
+        try:
+            r = requests.post(url, data={"chat_id": chat_id, "caption": caption},
+                              files={"photo": ("kart.png", png_bytes, "image/png")},
+                              timeout=HTTP_TIMEOUT)
+            data = r.json()
+            if not data.get("ok"):
+                raise RuntimeError(f"sendPhoto hatası: {data.get('description')}")
+            return data
+        except Exception as e:                       # noqa: BLE001
+            last_err = e
+            print(f"[uyarı] Kart gönderimi başarısız ({deneme}/{MAX_RETRY}): {e}",
+                  file=sys.stderr)
+            if deneme < MAX_RETRY:
+                time.sleep(2 * deneme)
+    raise RuntimeError(f"Kart gönderimi {MAX_RETRY} denemede başarısız: {last_err}")
+
+
 def main():
     test_modu = "--test" in sys.argv
     both_modu = "--both" in sys.argv    # Ayni raporu hem admin'e hem kanala gonder
@@ -481,7 +546,7 @@ def main():
             _bekle_kadar(uret_penceresi, "Üretim penceresine")
 
         print("[bilgi] Adım 1: Piyasa verileri çekiliyor...", file=sys.stderr)
-        market_data = piyasa_verilerini_cek()
+        market_data, veri = piyasa_verilerini_cek()
 
         print("[bilgi] Adım 2: Rapor üretiliyor...", file=sys.stderr)
         rapor = rapor_uret(market_data)
@@ -497,6 +562,18 @@ def main():
         for ad, hid in hedefler:
             adet = raporu_yolla(bot_token, hid, rapor)
             print(f"[başarılı] Rapor '{ad}' hedefine {adet} mesaj olarak gönderildi.",
+                  file=sys.stderr)
+
+        # Paylaşılabilir sabah kartı (best-effort — hata olsa rapor yine gitti)
+        try:
+            import kart
+            hava, risk = _brief_ayikla(rapor)
+            png = kart.kart_olustur(veri, hava, risk, tarih_basligi())
+            for ad, hid in hedefler:
+                foto_gonder(bot_token, hid, png)
+                print(f"[başarılı] Kart '{ad}' hedefine gönderildi.", file=sys.stderr)
+        except Exception as kart_hata:               # noqa: BLE001
+            print(f"[uyarı] Kart atlanıyor (rapor gönderildi): {kart_hata}",
                   file=sys.stderr)
 
     except Exception as e:                           # noqa: BLE001
