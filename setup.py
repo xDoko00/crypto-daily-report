@@ -294,7 +294,7 @@ def github_kur(bot_token, kanal_id, admin_id, claude_token):
     # Repo oluştur + push
     print("\nRepo oluşturuluyor ve push'lanıyor...")
     r = subprocess.run(
-        ["gh", "repo", "create", repo_adi, gorunurluk, "--source=.", "--push"],
+        [gh, "repo", "create", repo_adi, gorunurluk, "--source=.", "--push"],
         capture_output=True, text=True,
     )
     if r.returncode != 0:
@@ -314,7 +314,7 @@ def github_kur(bot_token, kanal_id, admin_id, claude_token):
         if not deger:
             print(f"  ⚠ {ad} boş, atlandı (sonra ekle).")
             continue
-        rr = subprocess.run(["gh", "secret", "set", ad, "--body", deger],
+        rr = subprocess.run([gh, "secret", "set", ad, "--body", deger],
                             capture_output=True, text=True)
         print(f"  {'✓' if rr.returncode == 0 else '✗'} {ad}")
 
@@ -332,14 +332,19 @@ def main():
 
     bot_token, bot_username = token_al_ve_dogrula()
     kanal_id, admin_id = chat_idleri_bul(bot_token, bot_username)
-    test_mesaji_at(bot_token, kanal_id, admin_id)
+    if not test_mesaji_at(bot_token, kanal_id, admin_id):
+        cevap = sor("Test mesajı başarısız. Yine de devam edeyim mi? (e/h): ")
+        if cevap.lower() not in ("e", "evet", "y", "yes"):
+            print("Durduruldu. Botun kanalda ADMIN olduğundan ve botuna /start "
+                  "yazdığından emin ol, sonra tekrar çalıştır.")
+            sys.exit(1)
     claude_token = claude_token_al()
     env_yaz(bot_token, kanal_id, admin_id, claude_token)
     github_kur(bot_token, kanal_id, admin_id, claude_token)
 
     baslik("BİTTİ 🎉")
     print("Yerel test için:  python report.py --test")
-    print("Otomatik yayın:   her sabah 07:00'de GitHub Actions çalışır.")
+    print("Otomatik yayın:   her sabah 08:00'de GitHub Actions çalışır.")
     if not claude_token:
         print("\n⚠ Claude token'ını boş bıraktın. `claude setup-token` çalıştırıp")
         print("  .env'e ve GitHub secret'a eklemeyi unutma.")
