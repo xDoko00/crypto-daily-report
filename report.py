@@ -323,8 +323,10 @@ def rapor_uret(market_data, dun_takip_str=""):
         raise RuntimeError(f"Claude Code {CLAUDE_TIMEOUT} saniyede yanıt vermedi.")
 
     if sonuc.returncode != 0:
+        # Hata metni stderr'de yoksa stdout'a bak (claude limit/auth mesajını oraya yazabilir)
+        cikti = (sonuc.stderr.strip() or sonuc.stdout.strip() or "(çıktı boş)")[:800]
         raise RuntimeError(
-            f"Claude Code hata verdi (kod {sonuc.returncode}): {sonuc.stderr.strip()[:500]}"
+            f"Claude Code hata verdi (kod {sonuc.returncode}): {cikti}"
         )
 
     rapor = (sonuc.stdout or "").strip()
