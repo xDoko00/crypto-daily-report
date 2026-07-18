@@ -81,37 +81,51 @@ TR_GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi
 
 # RAPOR PROMPTU — Adım 2'de headless Claude Code'a verilir.
 # {market_data} ve {tarih} çalışma anında doldurulur.
-RAPOR_PROMPTU = """Sen günlük kripto piyasa raporu hazırlayan titiz bir analistsin. Web araması yaparak SON 24 SAATİN gelişmelerini araştır ve aşağıdaki formatta Türkçe rapor yaz.
+RAPOR_PROMPTU = """Sen günlük kripto piyasa raporu hazırlayan, sabahları işe çıkmadan piyasayı 1 dakikada özetleyen bir analistsin. Web araması yaparak SON 24 SAATİN gelişmelerini araştır ve aşağıdaki formatta Türkçe rapor yaz.
 
 SANA VERİLEN PİYASA VERİLERİ:
 {market_data}
 Fiyat, dominans, hacim ve Fear & Greed değerlerini YALNIZCA buradan kullan; bu sayıları kendin arama, değiştirme, uydurma.
 
-FORMAT — Telegram HTML (<b>, <i>, <a href="">); markdown ve tablo KULLANMA:
+ÇIKTI — Telegram HTML (<b>, <i>, <a href="">); markdown ve tablo KULLANMA. Rapor İKİ bölümdür; aralarına TAM olarak şu satırı koy: ---DETAY---
 
-📊 <b>GÜNAYDIN KRİPTO RAPORU — {tarih}</b>
+Önce BÖLÜM 1'i (60 SANİYE — kendi içinde tam, bir dakikada okunur, KISA tut) tam bu iskeletle yaz:
 
-1) <b>ÖZET</b> — Günün tablosunu 4-5 kısa maddeyle ver (en önemliler önce)
+📊 <b>GÜNAYDIN — {tarih}</b>
 
-2) <b>PİYASA</b> — Verilen sayılarla kompakt fiyat bloğu (coin başına tek satır: fiyat + 24s değişim), altına toplam piyasa değeri, dominans, Fear & Greed (dün ve geçen haftayla kıyasla)
+⚡ <b>60 SANİYE</b>
+🌡️ Hava: [tek kelime: Temkinli / İyimser / Kararsız / Riskli] · F&amp;G [bugünkü değer] (dün [dünkü değer])
+₿ BTC [fiyat] ([24s %]) · Ξ ETH [fiyat] ([24s %])
+🔑 <b>Neden:</b> [Piyasa son 24 saatte NEDEN böyle hareket etti — en önemli sebep, 1-2 cümle]
+⏰ <b>Kritik:</b> [bugünün en önemli 2-3 olayı/saati, TSİ, çok kısa]
+⚠️ <b>Risk:</b> [günün ana riski, tek cümle]
 
-3) <b>EN ÖNEMLİ 5 GELİŞME</b> — Her biri: başlık + 2-3 cümle + neden önemli + kaynak linki. Önem etiketi: 🔴 kritik / 🟡 önemli / 🟢 bilgi. Makro (Fed, TÜFE, jeopolitik) gelişmeler kriptoyu etkiliyorsa dahil et.
+Sonra ayrı bir satıra ---DETAY--- koy. Sonra BÖLÜM 2'yi (DETAY, isteyen için) yaz:
 
-4) <b>TÜRKİYE</b> — SPK, MKK, TCMB, BDDK veya mevzuatta kriptoyu ilgilendiren YENİ gelişme varsa yaz; yoksa tek satır "Yeni gelişme yok" de. Asla gelişme uydurma.
+📈 <b>PİYASA</b>
+[her coin tek satır: sembol — fiyat ([24s %])]
+Dominans: BTC %.. · ETH %.. — Hacim: ..
 
-5) <b>BUGÜN TAKİPTE</b> — Bugün ve yarın açıklanacak önemli veriler/olaylar, saatleriyle (TSİ)
+📰 <b>GÜNDEM</b> — en önemli 3 gelişme. Her biri: [🔴 kritik / 🟡 önemli / 🟢 bilgi] <b>başlık</b> — 1-2 cümle + neden önemli — <a href="URL">kaynak</a>
 
-6) <b>RİSKLER</b> — 2-3 madde, kısa
+⏰ <b>BUGÜN TAKİPTE</b>
+[zaman sıralı, her olay tek satır: "14:00 — ..." (TSİ)]
+
+🇹🇷 <b>TÜRKİYE</b> — SPK, MKK, TCMB, BDDK veya mevzuatta YENİ gelişme varsa yaz; yoksa "Yeni gelişme yok". Asla uydurma.
+
+⚠️ <b>RİSKLER</b> — en fazla 2 madde, kısa.
+
+<i>Yatırım tavsiyesi değildir.</i>
 
 KURALLAR:
+- 60 SANİYE bölümündeki her satır bir bakışta okunmalı; kısa ve yoğun tut.
+- "Neden" satırı en kritik kısımdır: hareketin gerçek sebebini araştır; net sebep yoksa "belirgin tek sebep yok" de.
 - Doğrulayamadığın hiçbir sayıyı yazma; gerekiyorsa "doğrulanamadı" de. Boş/okunamayan veriyi sıfır sayma.
-- 100 üzerinden etki puanı, güven skoru gibi uydurma metrikler KULLANMA. Önem için sadece 🔴🟡🟢 etiketi.
-- Al/sat/tut önerisi verme. Fiyat hedefi verme.
-- Her gelişmede en az bir birincil veya kurumsal kaynak linki olsun; link URL'lerindeki utm parametrelerini temizle.
-- Toplam uzunluk 3.000-6.000 karakter. Kısa ve yoğun yaz; tekrar eden uyarılar ekleme.
-- En sona tek satır ekle: <i>Yatırım tavsiyesi değildir.</i>
-
-ÖNEMLİ: Çıktı olarak SADECE raporun kendisini ver. Baştan/sona açıklama, "işte rapor" gibi ekleme yapma. İlk satır doğrudan "📊 <b>GÜNAYDIN KRİPTO RAPORU" ile başlasın."""
+- Uydurma metrik (100 üzerinden puan, güven skoru) YOK. Önem için sadece 🔴🟡🟢.
+- Al/sat/tut önerisi ve fiyat hedefi verme.
+- Her gelişmede en az bir birincil/kurumsal kaynak linki; URL'lerdeki utm parametrelerini temizle.
+- Tekrar eden uyarı ekleme. DETAY bölümü toplam 1500-3500 karakter olsun.
+- Çıktı olarak SADECE raporu ver; "işte rapor" ya da "BÖLÜM 1/2" gibi ifade yazma. İlk satır doğrudan "📊 <b>GÜNAYDIN" ile başlasın."""
 
 
 # --------------------------------------------------------------------------- #
@@ -370,7 +384,10 @@ def telegram_gonder(bot_token, chat_id, metin, html_modu=True):
 
 def raporu_yolla(bot_token, chat_id, rapor):
     """Raporu parçalara bölüp sırayla gönderir (mesajlar arası 1 sn bekler)."""
-    parcalar = mesaji_bol(rapor)
+    bolumler = [b.strip() for b in rapor.split("---DETAY---") if b.strip()] or [rapor]
+    parcalar = []
+    for bolum in bolumler:
+        parcalar.extend(mesaji_bol(bolum))
     toplam = len(parcalar)
     for i, parca in enumerate(parcalar, 1):
         # Birden fazla parça varsa küçük bir sayfa göstergesi ekle
