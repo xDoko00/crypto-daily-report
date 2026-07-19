@@ -5,7 +5,14 @@ name: Günlük Kripto Raporu
 # report.py tam 08:00'e kadar bekleyip öyle gönderir (DELIVER_AT_TR). Böylece teslim sabittir.
 on:
   schedule:
-    - cron: "35 4 * * *"       # 04:35 UTC = 07:35 TSİ tetikleme; teslim tam 08:00 (~25 dk pay)
+    # NÖBETÇİLER — GitHub cron'u saatlerce geciktirebiliyor, bu yüzden birden fazla
+    # uyandırma noktası var. Hangisi vaktinde uyanırsa tam 08:00'e kadar bekleyip
+    # gönderir; geç kalanlar "bugün gönderilmiş" görüp saniyeler içinde çıkar.
+    - cron: "7 1 * * *"        # 04:07 TSİ — erken nöbetçi (yalnız public repo)
+    - cron: "10 4 * * *"       # 07:10 TSİ
+    - cron: "25 4 * * *"       # 07:25 TSİ
+    - cron: "40 4 * * *"       # 07:40 TSİ
+    - cron: "55 4 * * *"       # 07:55 TSİ
   workflow_dispatch:            # GitHub arayüzünden elle çalıştırma
     inputs:
       mode:
@@ -29,10 +36,14 @@ concurrency:
 
 jobs:
   rapor:
+    # Erken nöbetçi 08:00'e kadar ~4 saat bekler. Public repoda Actions süresi
+    # ücretsiz/sınırsız olduğu için bu bedava; private repoda kotayı yiyeceğinden
+    # atlanır (o repolarda 07:10-07:55 nöbetçileri devrede kalır).
+    if: ${{ !(github.event.schedule == '7 1 * * *' && github.event.repository.private) }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    timeout-minutes: 40   # tam saate kadar bekleme payını da kapsar
+    timeout-minutes: 300  # erken nöbetçinin 08:00'e kadar beklemesini kapsar
 
     steps:
       - name: Repoyu çek
