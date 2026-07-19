@@ -69,6 +69,7 @@ Sihirbaz senden **iki token** (bot + Claude) ister, kalan her şeyi kendi yapar:
 - ✅ **Test mesajı** atıp çalıştığını kanıtlar
 - ✅ `.env` dosyasını yazar
 - ✅ **GitHub girişini başlatır** + repoyu oluşturur + dosyaları yükler + **4 secret'ı ekler**
+- ✅ **Sızıntı taraması** yapıp repoyu **public** oluşturur — saatinde teslim için gerekli (aşağıda anlatılıyor). Tarama temiz değilse otomatik **private**'a düşer ve seni uyarır.
 
 **Bitti.** Artık her sabah 08:00'de kanala tam rapor gelir. 🎉
 
@@ -102,7 +103,18 @@ python report.py --test    # rapor kanala DEĞİL, sadece sana (admin) gider
 
 ## Sık sorulanlar
 
-**Rapor tam 08:00'de mi gelir?** Evet, sabit saat. GitHub cron hedeften önce (07:35) tetiklenir; `report.py` tam 08:00'e kadar bekleyip gönderir (`DELIVER_AT_TR`). Nadiren GitHub'ın gecikmesiyle birkaç dakika sapabilir — bu ücretsiz zamanlayıcının doğası, kod hatası değil. Saati değiştirmek için workflow'daki `DELIVER_AT_TR` değerini güncelle.
+**Rapor tam 08:00'de mi gelir?** Evet — ve bunun için özel bir düzenek var.
+
+GitHub'ın ücretsiz zamanlayıcısı "best-effort"tur: alarmı bazen dakikalarca, nadiren **saatlerce** geç çalar. Tek alarma güvenmek bu yüzden yetmiyor. Çözüm iki katmanlı:
+
+1. **Beş nöbetçi.** Workflow 04:07 / 07:10 / 07:25 / 07:40 / 07:55 TSİ'de ayrı ayrı uyanmayı dener. Hangisi vaktinde uyanırsa **tam 08:00'e kadar bekler**, öyle gönderir (`DELIVER_AT_TR`).
+2. **Çift rapor koruması.** Rapor gidince `state/takip.json`'a günün tarihi yazılır. Geç uyanan nöbetçiler bunu görüp saniyeler içinde çıkar — ikinci rapor gitmez.
+
+**Repo neden public?** Public repolarda GitHub Actions süresi ücretsiz ve sınırsızdır. Bu sayede en erken nöbetçi 04:07'de uyanıp saati bekleyebiliyor — yani GitHub **4 saat** geç kalsa bile rapor yine 08:00'de gider. Private repoda aylık 2.000 dakika sınırı olduğu için bu kadar bekleyemeyiz; orada erken nöbetçi otomatik atlanır ve pay ~50 dakikaya iner.
+
+**Public olması güvenli mi?** Evet. Token'ların **kodda durmaz** — GitHub Secrets'ta şifreli tutulur ve Actions loglarında maskelenir. `.env` dosyası `.gitignore`'dadır, hiç yüklenmez. Ayrıca `setup.py` repoyu public yapmadan önce **sızıntı taraması** çalıştırır: `.env` takip ediliyor mu, dosyalarda veya **git geçmişinde** gerçek token kalıbı var mı diye bakar. En ufak şüphede repoyu public yapmaz, private oluşturur ve neyi bulduğunu sana söyler.
+
+Saati değiştirmek için workflow'daki `DELIVER_AT_TR` değerini (ve istersen cron satırlarını) güncelle.
 
 **Kart/ses gelmezse?** İkisi de "best-effort"; biri üretilemezse rapor yine gider. Rapor üretimi hata verirse sistem birkaç kez dener, yine olmazsa sana hata bildirimi gelir.
 
