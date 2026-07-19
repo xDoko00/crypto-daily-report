@@ -251,6 +251,78 @@ def gh_girisli_mi(gh):
     return subprocess.run([gh, "auth", "status"], capture_output=True).returncode == 0
 
 
+# --------------------------------------------------------------------------- #
+# Güvenlik taraması — repo herkese açılmadan önce sızıntı kontrolü
+# --------------------------------------------------------------------------- #
+
+# Gerçek token'ları yakalar; .env.example ve dokümanlardaki yer tutucuları
+# ("123456:ABC-DEF...", "sk-ant-oat...") kasıtlı olarak yakalamaz.
+GIZLI_KALIPLAR = [
+    ("Telegram bot token", r"[0-9]{8,10}:AA[A-Za-z0-9_\-]{30,}"),
+    ("Claude OAuth token", r"sk-ant-[A-Za-z0-9_\-]{20,}"),
+    ("GitHub token", r"gh[pousr]_[A-Za-z0-9]{36,}"),
+    ("GitHub fine-grained token", r"github_pat_[A-Za-z0-9_]{40,}"),
+]
+
+
+def _taranacak_dosyalar():
+    """Repoya gidecek dosyalar (gitignore'lananlar hariç)."""
+    r = subprocess.run(["git", "ls-files", "-co", "--exclude-standard"],
+                       capture_output=True, text=True)
+    if r.returncode == 0 and r.stdout.strip():
+        return [d for d in r.stdout.splitlines() if d.strip()]
+    atla = {".git", "__pycache__", ".venv", "venv", "node_modules"}
+    bulunan = []
+    for kok, klasorler, dosyalar in os.walk("."):
+        klasorler[:] = [k for k in klasorler if k not in atla]
+        bulunan.extend(os.path.join(kok, d) for d in dosyalar)
+    return bulunan
+
+
+def guvenlik_taramasi():
+    """Repo public yapılmadan ÖNCE sızıntı kontrolü.
+
+    Dört şeye bakar: (1) .env takip ediliyor mu, (2) .gitignore onu kapsıyor mu,
+    (3) gönderilecek dosyalarda gerçek token var mı, (4) git geçmişinde var mı
+    (silinmiş olsa bile geçmişte kalır ve public olunca herkes görebilir).
+
+    (temiz_mi, [bulgular]) döndürür.
+    """
+    bulgular = []
+
+    r = subprocess.run(["git", "ls-files", ".env"], capture_output=True, text=True)
+    if r.stdout.strip():
+        bulgular.append(".env dosyası git tarafından TAKİP EDİLİYOR (asla olmamalı)")
+
+    try:
+        with open(".gitignore", encoding="utf-8") as f:
+            if ".env" not in f.read():
+                bulgular.append(".gitignore içinde .env satırı yok")
+    except OSError:
+        bulgular.append(".gitignore bulunamadı")
+
+    for yol in _taranacak_dosyalar():
+        try:
+            with open(yol, encoding="utf-8", errors="ignore") as f:
+                icerik = f.read()
+        except OSError:
+            continue
+        for ad, kalip in GIZLI_KALIPLAR:
+            if re.search(kalip, icerik):
+                bulgular.append("%s dosyasinda %s benzeri bir dize var" % (yol, ad))
+
+    birlesik = "|".join(k for _, k in GIZLI_KALIPLAR)
+    r = subprocess.run(["git", "rev-list", "--all"], capture_output=True, text=True)
+    for commit in [c for c in r.stdout.split() if c][:100]:
+        g = subprocess.run(["git", "grep", "-I", "-E", birlesik, commit],
+                           capture_output=True, text=True)
+        if g.stdout.strip():
+            bulgular.append("git gecmisinde (%s) token benzeri bir dize var" % commit[:7])
+            break
+
+    return (not bulgular), bulgular
+
+
 def github_kur(bot_token, kanal_id, admin_id, claude_token):
     baslik("ADIM 5 — GitHub (repo + secret'lar OTOMATİK)")
 
@@ -278,8 +350,6 @@ def github_kur(bot_token, kanal_id, admin_id, claude_token):
         return
 
     repo_adi = sor("Repo adı (ör. crypto-daily-report): ") or "crypto-daily-report"
-    gizli = sor("Repo private olsun mu? (e/h, öneri e): ").lower() in ("", "e", "evet", "y", "yes")
-    gorunurluk = "--private" if gizli else "--public"
 
     # git identity yoksa ayarla (commit için gerekli)
     if not subprocess.run(["git", "config", "user.email"], capture_output=True).stdout.strip():
@@ -290,6 +360,24 @@ def github_kur(bot_token, kanal_id, admin_id, claude_token):
     subprocess.run(["git", "add", "-A"])
     subprocess.run(["git", "commit", "-m", "Günlük kripto raporu botu kurulumu"],
                    capture_output=True)
+
+    # Repo PUBLIC oluşturulur: public repolarda GitHub Actions süresi ücretsizdir,
+    # böylece bot sabah erkenden uyanıp teslim saatini bekleyebilir (sabit 08:00).
+    # Ama önce sızıntı taraması — temiz değilse otomatik private'a düşeriz.
+    print("\nGüvenlik taraması yapılıyor (repo herkese açık olacak)...")
+    temiz, bulgular = guvenlik_taramasi()
+    if temiz:
+        gorunurluk = "--public"
+        print("✓ Tarama temiz — repo PUBLIC oluşturulacak.")
+        print("  Sebep: public repoda Actions süresi sınırsız; rapor tam saatinde gider.")
+        print("  Token'ların yine de gizli kalır — GitHub Secrets şifrelidir, kodda durmaz.")
+    else:
+        gorunurluk = "--private"
+        print("⚠ GÜVENLİK UYARISI — repo PRIVATE oluşturulacak. Bulunanlar:")
+        for b in bulgular:
+            print("   • %s" % b)
+        print("  Bunları temizlemeden repoyu public YAPMA.")
+        print("  Private repoda rapor bazen birkaç saat kayabilir (Actions kotası yüzünden).")
 
     # Repo oluştur + push
     print("\nRepo oluşturuluyor ve push'lanıyor...")
