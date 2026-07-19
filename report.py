@@ -395,6 +395,22 @@ def _html_temizle(metin):
                  .replace("&quot;", chr(34)).replace("&amp;", "&"))
 
 
+def _gizle(metin):
+    """Log'a yazılacak metinden Telegram bot token'ını siler.
+
+    Telegram uç noktası token'ı URL'in içinde taşır (…/bot<TOKEN>/sendMessage).
+    Ağ hatasında `requests` bu URL'i hata mesajına gömer; mesaj da Actions
+    loguna düşer. Repo public olduğu için o log herkese açıktır. GitHub zaten
+    secret'ları maskeler, bu ikinci savunma katmanı: maskeleme yalnız birebir
+    eşleşmeyi yakalar, burada kaynağında temizliyoruz.
+    """
+    s = str(metin)
+    tok = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    if tok:
+        s = s.replace(tok, "***")
+    return re.sub(r"bot\d{6,12}:[A-Za-z0-9_-]{10,}", "bot***", s)
+
+
 def telegram_gonder(bot_token, chat_id, metin, html_modu=True):
     """Tek bir Telegram mesajı gönderir. HTML ayrıştırma hatasında (ör. bölme bir
     etiketi bozmuşsa) düz metne düşer; ağ hatalarında retry yapar."""
@@ -425,11 +441,11 @@ def telegram_gonder(bot_token, chat_id, metin, html_modu=True):
             return data
         except Exception as e:                       # noqa: BLE001
             last_err = e
-            print(f"[uyarı] Telegram gönderimi başarısız ({deneme}/{MAX_RETRY}): {e}",
+            print(f"[uyarı] Telegram gönderimi başarısız ({deneme}/{MAX_RETRY}): {_gizle(e)}",
                   file=sys.stderr)
             if deneme < MAX_RETRY:
                 time.sleep(2 * deneme)
-    raise RuntimeError(f"Telegram gönderimi {MAX_RETRY} denemede başarısız: {last_err}")
+    raise RuntimeError(f"Telegram gönderimi {MAX_RETRY} denemede başarısız: {_gizle(last_err)}")
 
 
 def raporu_yolla(bot_token, chat_id, rapor):
@@ -465,7 +481,7 @@ def admin_hata_bildir(mesaj):
     try:
         telegram_gonder(bot_token, admin_id, metin)
     except Exception as e:                           # noqa: BLE001
-        print(f"[uyarı] Admin'e hata bildirimi de gönderilemedi: {e}", file=sys.stderr)
+        print(f"[uyarı] Admin'e hata bildirimi de gönderilemedi: {_gizle(e)}", file=sys.stderr)
 
 
 # --------------------------------------------------------------------------- #
@@ -585,11 +601,11 @@ def foto_gonder(bot_token, chat_id, png_bytes, caption="", html_modu=True):
             return cevap
         except Exception as e:                       # noqa: BLE001
             last_err = e
-            print(f"[uyarı] Kart gönderimi başarısız ({deneme}/{MAX_RETRY}): {e}",
+            print(f"[uyarı] Kart gönderimi başarısız ({deneme}/{MAX_RETRY}): {_gizle(e)}",
                   file=sys.stderr)
             if deneme < MAX_RETRY:
                 time.sleep(2 * deneme)
-    raise RuntimeError(f"Kart gönderimi {MAX_RETRY} denemede başarısız: {last_err}")
+    raise RuntimeError(f"Kart gönderimi {MAX_RETRY} denemede başarısız: {_gizle(last_err)}")
 
 
 def ses_gonder(bot_token, chat_id, ogg_bytes):
@@ -607,11 +623,11 @@ def ses_gonder(bot_token, chat_id, ogg_bytes):
             return cevap
         except Exception as e:                       # noqa: BLE001
             last_err = e
-            print(f"[uyarı] Ses gönderimi başarısız ({deneme}/{MAX_RETRY}): {e}",
+            print(f"[uyarı] Ses gönderimi başarısız ({deneme}/{MAX_RETRY}): {_gizle(e)}",
                   file=sys.stderr)
             if deneme < MAX_RETRY:
                 time.sleep(2 * deneme)
-    raise RuntimeError(f"Ses gönderimi {MAX_RETRY} denemede başarısız: {last_err}")
+    raise RuntimeError(f"Ses gönderimi {MAX_RETRY} denemede başarısız: {_gizle(last_err)}")
 
 
 def main():
@@ -725,8 +741,8 @@ def main():
                 print(f"[uyarı] Takip kaydedilemedi: {se}", file=sys.stderr)
 
     except Exception as e:                           # noqa: BLE001
-        print(f"[HATA] {e}", file=sys.stderr)
-        admin_hata_bildir(str(e))
+        print(f"[HATA] {_gizle(e)}", file=sys.stderr)
+        admin_hata_bildir(_gizle(e))
         sys.exit(1)
 
 
