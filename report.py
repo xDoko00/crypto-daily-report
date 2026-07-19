@@ -529,6 +529,22 @@ def takip_yaz(takip):
                   f, ensure_ascii=False, indent=2)
 
 
+def bugun_gonderildi_mi():
+    """Bugünün raporu gönderildi mi? (nöbetçi koruması)
+
+    GitHub cron'u saatlerce geciktirebildiği için gün içinde birden fazla
+    "nöbetçi" tetiklemesi var. İlk uyanan raporu gönderir ve takip.json'a
+    bugünün tarihini yazar; geç uyanan nöbetçiler burayı görüp hiç
+    çalışmadan çıkar. Böylece teslim saati sabit kalır, çift rapor gitmez.
+    """
+    try:
+        with open(STATE_YOL, encoding="utf-8") as f:
+            veri = json.load(f)
+    except (FileNotFoundError, ValueError, OSError):
+        return False
+    return veri.get("tarih") == datetime.now(IST).strftime("%Y-%m-%d")
+
+
 def _brief_ayikla(rapor):
     """Brief'ten Hava (mood) ve Risk satırlarını ayıklar (kart için)."""
     duz = _html_temizle(rapor)
@@ -624,6 +640,11 @@ def main():
             print(f"HATA: {degisken} tanımlı değil.", file=sys.stderr)
             sys.exit(1)
 
+    # Nöbetçi koruması: rapor bugün zaten gönderildiyse boşuna çalışma.
+    if not test_modu and not onizleme and bugun_gonderildi_mi():
+        print("[bilgi] Rapor bugün zaten gönderilmiş — nöbetçi çıkıyor.", file=sys.stderr)
+        return
+
     # SABİT TESLİM SAATİ: DELIVER_AT_TR (ör. "08:00") tanımlıysa rapor HER GÜN tam bu
     # saatte gider. GitHub cron erken tetikler; biz tam saate kadar bekleriz. Böylece
     # tetikleme kaysa bile teslim saati sabit kalır (alışkanlık için).
@@ -696,7 +717,7 @@ def main():
             print(f"[başarılı] '{ad}' hedefine gönderildi (kart + brief + ses + detay).", file=sys.stderr)
 
         # Bugünün takip listesini yarın için kaydet (test modunda kaydetme)
-        if not test_modu and not onizleme and bugun_takip:
+        if not test_modu and not onizleme:
             try:
                 takip_yaz(bugun_takip)
                 print(f"[bilgi] {len(bugun_takip)} takip maddesi kaydedildi.", file=sys.stderr)
