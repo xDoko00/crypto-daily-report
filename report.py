@@ -561,6 +561,40 @@ def bugun_gonderildi_mi():
     return veri.get("tarih") == datetime.now(IST).strftime("%Y-%m-%d")
 
 
+def _on_metni_kirp(rapor):
+    """claude -p bazen raporun ÖNÜNE kendi meta yorumunu ekliyor
+    ("Karakter sayımı için bash izni alınamadı…", "İşte rapor:" gibi). Rapor
+    iskeleti her zaman '📊' ile başladığından ilk '📊'den öncesini atarız.
+    '📊' bulunamazsa (beklenmedik biçim) dokunmayız — rapor yine de gider."""
+    i = rapor.find("📊")
+    return rapor[i:].strip() if i > 0 else rapor
+
+
+def _uzaktan_gonderilmis_mi():
+    """Göndermeden HEMEN önce uzak (remote) state'i tazeleyip bugünün raporunun
+    başka bir nöbetçi tarafından zaten gönderilip gönderilmediğine bakar.
+
+    `bugun_gonderildi_mi()` yalnız checkout ANINDAKİ dosyayı görür; başka bir
+    nöbetçi bu arada gönderip push etmiş ama o push henüz bu runner'ın gördüğü
+    kopyaya yayılmamış olabilir — 2026-08-17'de rapor tam bu yüzden 2 kez gitti.
+    Bu kontrol gönderimden hemen önce remote'u çekerek yarışı kapatır. Sadece
+    GitHub Actions'ta anlamlıdır; ağ/git hatası olursa False döner (gönderimi
+    asla engellemez, teslim garantide kalır)."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return False
+    try:
+        subprocess.run(["git", "fetch", "--quiet", "origin", "main"],
+                       capture_output=True, timeout=30)
+        r = subprocess.run(["git", "show", "origin/main:state/takip.json"],
+                           capture_output=True, text=True, timeout=15)
+        if r.returncode == 0 and r.stdout.strip():
+            veri = json.loads(r.stdout)
+            return veri.get("tarih") == datetime.now(IST).strftime("%Y-%m-%d")
+    except Exception:                                # noqa: BLE001
+        pass
+    return False
+
+
 def _brief_ayikla(rapor):
     """Brief'ten Hava (mood) ve Risk satırlarını ayıklar (kart için)."""
     duz = _html_temizle(rapor)
@@ -681,6 +715,7 @@ def main():
         print("[bilgi] Adım 2: Rapor üretiliyor...", file=sys.stderr)
         dun_takip = dunku_takip_oku()
         rapor = rapor_uret(market_data, "; ".join(dun_takip))
+        rapor = _on_metni_kirp(rapor)      # olası meta ön-metni ("…bash…") temizle
         rapor, bugun_takip = takip_ayikla(rapor)
 
         if test_modu:
@@ -713,6 +748,13 @@ def main():
             ogg = ses.ses_uret(brief, tarih_basligi())
         except Exception as ses_hata:                # noqa: BLE001
             print(f"[uyarı] Sesli özet oluşturulamadı: {ses_hata}", file=sys.stderr)
+
+        # SON KONTROL (yarışa karşı): kart/ses üretilirken başka bir nöbetçi
+        # göndermiş olabilir. Göndermeden hemen önce remote'u tazeleyip bak.
+        if not test_modu and not onizleme and _uzaktan_gonderilmis_mi():
+            print("[bilgi] Başka nöbetçi bu sabah zaten göndermiş (uzak kontrol) — çıkılıyor.",
+                  file=sys.stderr)
+            return
 
         for ad, hid in hedefler:
             # 1) İLK MESAJ = kart + brief (görsel ilk mesaja bağlı). Kart yoksa brief metin.
