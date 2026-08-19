@@ -94,13 +94,17 @@ jobs:
       - name: Raporu ve takip durumunu kaydet
         if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |
-          if [ -n "$(git status --porcelain state/takip.json reports 2>/dev/null)" ]; then
+          # reports/ yazılamamış olabilir (diske yazma best-effort). O durumda
+          # takip.json'ı yine de commit'lemeliyiz: yoksa nöbetçi kilidi kaydedilmez
+          # ve ertesi gün ikinci rapor gider.
+          git add state/takip.json || true
+          [ -d reports ] && git add reports || true
+          if git diff --cached --quiet; then
+            echo "degisiklik yok"
+          else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state/takip.json reports
             git commit -m "chore: gunluk rapor + takip durumu"
             git pull --rebase --autostash origin main || true
             git push || echo "push basarisiz (best-effort; rapor gonderildi)"
-          else
-            echo "degisiklik yok"
           fi
