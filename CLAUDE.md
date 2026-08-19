@@ -4,10 +4,13 @@ Bu dosya, bu repoyu **Claude Code**'da açan yeni bir kullanıcıyı sıfırdan 
 
 ## Bu proje nedir?
 
-Her sabah GitHub Actions cron ile çalışan bir bot. `report.py` üç adımda çalışır:
+Her sabah GitHub Actions cron ile çalışan bir bot. `report.py` dört adımda çalışır:
 1. **Sabit veriler** — CoinGecko + Alternative.me ücretsiz API'lerinden fiyat/dominans/Fear&Greed (LLM yok, halüsinasyon yok).
-2. **Haber & analiz** — headless `claude -p` web araması yaparak raporu yazar (Anthropic API key YOK; `CLAUDE_CODE_OAUTH_TOKEN` ile abonelikten).
-3. **Gönderim** — Telegram'a HTML formatında, 4096 karakter bölünerek.
+2. **Haber & analiz** — headless `claude -p` web araması yaparak **şemalı JSON** üretir (Anthropic API key YOK; `CLAUDE_CODE_OAUTH_TOKEN` ile abonelikten).
+3. **Kanonik rapor** — İkisi `sema.py`'de birleşip doğrulanır ve `reports/latest.json` + `reports/YYYY/MM/` altına yazılır. Web sitesi bu dosyayı okur.
+4. **Gönderim** — `render.py` aynı JSON'dan Telegram HTML'i, kart verisini ve sesli özet metnini üretir; Telegram'a 4096 karakter bölünerek gider.
+
+**Mimari kural (bozma):** sayısal piyasa verileri yalnız API'den gelir, model onlara dokunmaz; her gündem maddesinde kaynak URL'i zorunludur. İkisini de `sema.py` şeması zorlar. Yeni bir alan eklerken önce şemayı, sonra prompt'u, sonra `render.py`'yi güncelle — ve `test_report.py`'ye testini ekle.
 
 Bilgisayar kapalıyken de çalışsın diye zamanlama buluttadır (GitHub Actions), yerel değil.
 
