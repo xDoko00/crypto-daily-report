@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-08-19",
+  "language": "tr",
+  "title": "19 Ağustos 2026, Çarşamba",
+  "publishedAt": "2026-08-19T15:44:25+03:00",
+  "updatedAt": "2026-08-19T15:44:25+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-08-19T15:44:27+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 64805,
+        "change24h": 0.935737243067899
+      },
+      "ETH": {
+        "priceUsd": 1928.01,
+        "change24h": 1.5637059256521708
+      },
+      "SOL": {
+        "priceUsd": 77.86,
+        "change24h": 2.166736624820797
+      },
+      "BNB": {
+        "priceUsd": 603.72,
+        "change24h": 0.48434692762861825
+      },
+      "XRP": {
+        "priceUsd": 1.008,
+        "change24h": 1.0790936749965325
+      }
+    },
+    "btcDominance": 56.524364271554205,
+    "ethDominance": 10.124706746177035,
+    "totalMarketCapUsd": 2294436068851.215,
+    "volume24hUsd": 45216303388.16777,
+    "fearGreed": {
+      "value": 46,
+      "label": "Korku",
+      "previousValue": 41,
+      "weekAgoValue": 27
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Piyasayı yukarı taşıyan ana etken spot ETF talebinin geri dönmesi oldu: 17-18 Ağustos'ta ABD spot Bitcoin ETF'lerine iki günde yaklaşık 487 milyon dolar net giriş geldi ve 12-14 Ağustos'taki çıkış serisi tersine döndü. Ancak yükseliş sınırlı kaldı, çünkü yatırımcılar bugünkü Fed tutanakları ve Beyaz Saray kripto toplantısı öncesi pozisyon büyütmekten kaçındı.",
+    "criticalEvents": [
+      {
+        "timeTr": "21:00",
+        "title": "Fed temmuz toplantı tutanakları"
+      },
+      {
+        "timeTr": "21:30",
+        "title": "Beyaz Saray kripto toplantısı"
+      },
+      {
+        "timeTr": null,
+        "title": "Kalshi Washington geofence son günü"
+      }
+    ],
+    "mainRisk": "Temmuz tutanaklarında şahin ton beklenenden yaygın çıkarsa risk iştahı hızla geri çekilebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Beyaz Saray kripto zirvesinden somut politika sinyali çıktı mı",
+        "outcome": "Iska: toplantı dün değil bugün 21:30 TSİ'de yapılıyor, dolayısıyla henüz hiçbir politika çıktısı yok. Katılımcı listesi Trump, SEC Başkanı Atkins ve CFTC Başkanı Selig olarak doğrulandı."
+      },
+      {
+        "item": "SEC Reg Crypto oylaması için yeni tarih açıklandı mı",
+        "outcome": "Iska: 14 Ağustos'ta 'öngörülemeyen takvim sorunu' gerekçesiyle iptal edilen oylama için hâlâ yeni bir tarih duyurulmadı."
+      },
+      {
+        "item": "CLARITY Act için Kongre'de hareket sinyali güçlendi mi",
+        "outcome": "Değişmedi: yeni bir hareket yok, Senato'daki usul oylaması 15 Eylül'de takvimde duruyor. Ara seçim takvimi nedeniyle 2026 içinde yasalaşma ihtimalinin düşük olduğu görüşü korunuyor."
+      },
+      {
+        "item": "BTC 64.000 dolar desteğini korudu mu, 65.000 dolar direncini test etti mi",
+        "outcome": "İsabet: destek korundu ve fiyat 64.000 doların üzerinde tutundu, ancak 65.000 dolar direnci kırılamadı, satıcılar 64.500-65.000 bandını savunmayı sürdürdü."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Spot Bitcoin ETF'lerine giriş serisi güçlendi",
+        "summary": "ABD spot Bitcoin ETF'lerine 18 Ağustos'ta 189,3 milyon dolar net giriş geldi, ağustos toplamı yaklaşık 951 milyon dolara ulaştı. Ether ETF'leri de aynı gün 71,5 milyon dolar çekti; bu, kurumsal talebin ağustos ortasındaki çıkış dalgasından sonra geri döndüğünü gösteriyor.",
+        "source": {
+          "url": "https://cointelegraph.com/markets/bitcoin-etf-august-net-inflows-approach-1b",
+          "title": "Bitcoin ETFs Add $189M as August Net Inflows Near $1B",
+          "publisher": "Cointelegraph"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Beyaz Saray bugün kripto ve tahmin piyasası yöneticilerini ağırlıyor",
+        "summary": "Trump, SEC Başkanı Atkins ve CFTC Başkanı Selig'in katılımıyla Coinbase, Ripple, Chainlink, a16z, Kalshi ve Paradigm yöneticileri bugün Beyaz Saray'da bir araya geliyor. Toplantı, CLARITY Act Kongre'de takılıyken idarenin yasama yolunu beklemeden düzenleyici adım atabileceği yorumlarını güçlendiriyor.",
+        "source": {
+          "url": "https://www.theblock.co/news/regulation/2026-08-15-trump-cftc-chair-selig-expected-at-wednesday-white-house-meeting-with-crypto-and-prediction-market-executives-411919",
+          "title": "Trump, CFTC Chair Selig expected at Wednesday White House meeting with crypto and prediction market executives",
+          "publisher": "The Block"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "ABD Hazinesi stablecoin taslak kuralları Federal Register'da yayımlandı",
+        "summary": "GENIUS Act uygulama taslağı 18 Ağustos'ta resmen yayımlandı ve 60 günlük görüş süreci başladı. Taslak, yalnızca yetkili ihraççıların ABD pazarına stablecoin sürmesine izin veriyor, yurt dışı ihraççıları da kapsıyor ve borsalar ile hizmet sağlayıcılara yetkisiz stablecoin dağıtımından sorumluluk yüklüyor.",
+        "source": {
+          "url": "https://www.americanbanker.com/news/treasury-stablecoin-proposal-casts-broad-compliance-net",
+          "title": "Treasury stablecoin proposal casts broad compliance net",
+          "publisher": "American Banker"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "21:00",
+        "title": "Fed'in 28-29 temmuz toplantısına ait FOMC tutanakları yayımlanıyor"
+      },
+      {
+        "timeTr": "21:30",
+        "title": "Beyaz Saray'da kripto ve tahmin piyasası yöneticileriyle toplantı"
+      },
+      {
+        "timeTr": null,
+        "title": "Kalshi'nin Washington eyaleti için IP tabanlı geofence uygulama son günü"
+      },
+      {
+        "timeTr": null,
+        "title": "Hazine'nin stablecoin taslağına ilişkin sektör tepkileri ve görüş süreci"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Temmuz tutanaklarında faiz artırımı yanlısı görüşün üç muhalif isimden daha geniş bir kesime yayıldığının görülmesi",
+      "Beyaz Saray toplantısından somut bir düzenleme adımı çıkmaması ve düzenleyici belirsizliğin sürmesi",
+      "SEC'in Reg Crypto oylamasına tarih vermemesi ile CLARITY Act'in eylüle sarkmasının birleşerek kurumsal iştahı geciktirmesi"
+    ]
+  },
+  "followUps": [
+    "Fed tutanakları şahin mi yorumlandı, 21:00 sonrası BTC yönünü değiştirdi mi",
+    "Beyaz Saray toplantısından somut bir politika veya idari adım duyurusu çıktı mı",
+    "Spot Bitcoin ETF girişleri üst üste dördüncü güne uzadı mı, ağustos toplamı 1 milyar doları aştı mı",
+    "BTC 65.000 dolar direncini günlük kapanışta aşabildi mi"
+  ],
+  "sources": [
+    {
+      "url": "https://cointelegraph.com/markets/bitcoin-etf-august-net-inflows-approach-1b",
+      "title": "Bitcoin ETFs Add $189M as August Net Inflows Near $1B",
+      "publisher": "Cointelegraph"
+    },
+    {
+      "url": "https://www.theblock.co/news/regulation/2026-08-15-trump-cftc-chair-selig-expected-at-wednesday-white-house-meeting-with-crypto-and-prediction-market-executives-411919",
+      "title": "Trump, CFTC Chair Selig expected at Wednesday White House meeting with crypto and prediction market executives",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://www.americanbanker.com/news/treasury-stablecoin-proposal-casts-broad-compliance-net",
+      "title": "Treasury stablecoin proposal casts broad compliance net",
+      "publisher": "American Banker"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
