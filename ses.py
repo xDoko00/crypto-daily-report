@@ -63,9 +63,13 @@ async def _mp3_uret(metin, ses):
     return bytes(buf)
 
 
-def ses_uret(brief, tarih="", ses=VARSAYILAN_SES):
-    """Brief'ten Telegram sesli mesajı (OGG/Opus) bytes üretir."""
-    metin = seslendirme_metni(brief, tarih)
+def ses_uret_metin(metin, ses=VARSAYILAN_SES):
+    """Hazır konuşma metninden Telegram sesli mesajı (OGG/Opus) bytes üretir.
+
+    Asıl giriş noktası budur: metni artık render.seslendirme_metni() kanonik
+    rapordan kuruyor, yani HTML ayrıştırmaya gerek kalmıyor."""
+    metin = _EMOJI.sub("", metin)
+    metin = re.sub(r"\s+", " ", metin).strip()
     if len(metin) < 20:
         raise RuntimeError("Seslendirme metni çok kısa")
     mp3 = asyncio.run(_mp3_uret(metin, ses))
@@ -81,6 +85,11 @@ def ses_uret(brief, tarih="", ses=VARSAYILAN_SES):
         )
         with open(oggp, "rb") as f:
             return f.read()
+
+
+def ses_uret(brief, tarih="", ses=VARSAYILAN_SES):
+    """Telegram HTML brief'inden ses üretir (eski yol — geriye dönük uyumluluk)."""
+    return ses_uret_metin(seslendirme_metni(brief, tarih), ses)
 
 
 if __name__ == "__main__":

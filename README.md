@@ -19,13 +19,42 @@ Bu bir "otomatik rapor" değil. Uyandığında tam ihtiyacın olan bilgiyi — g
 
 ---
 
-## 🔧 Perde arkası (3 adım)
+## 🔧 Perde arkası (4 adım)
 
 1. **Sabit veriler** — CoinGecko + Alternative.me'den fiyatlar, dominans, hacim, Fear & Greed (LLM yok → halüsinasyon yok).
-2. **Haber & analiz** — Headless Claude Code web araması yaparak son 24 saati Türkçe yazar. (Claude aboneliğinden düşer, **ek API ücreti yok**.)
-3. **Gönderim** — Telegram'a kart + brief + ses + detay olarak, saniyesi saniyesine **08:00'de**.
+2. **Haber & analiz** — Headless Claude Code web araması yaparak son 24 saati **şemalı JSON** olarak üretir. (Claude aboneliğinden düşer, **ek API ücreti yok**.)
+3. **Kanonik rapor** — İkisi birleşip `reports/` altına tek bir doğrulanmış JSON olarak yazılır.
+4. **Gönderim** — Telegram mesajı, kart ve sesli özet **hep aynı JSON'dan** üretilir; saniyesi saniyesine **08:00'de** gider.
 
 Kart görseli (Pillow) ve sesli özet (edge-tts) de dahil **her şey ücretsiz** — hiçbir ödemeli servis yok.
+
+---
+
+## 📦 Kanonik rapor: `reports/`
+
+Rapor artık yalnızca Telegram'a gidip kaybolmuyor. Her gün şemaya uyan tek bir JSON üretiliyor ve repoda kalıyor:
+
+```
+reports/latest.json              # en son rapor — web sitesinin okuduğu dosya
+reports/2026/08/2026-08-19.json  # tarihli arşiv (kalıcı)
+```
+
+Telegram mesajı, paylaşım kartı ve sesli özet bu dosyadan **türetilir** — yani dört kanal arasında tutarsızlık olamaz. Şemanın kendisi `schema/daily-report.schema.json` dosyasında; web tarafı da aynı şemayla doğrulama yapabilir.
+
+**Şemanın dayattığı kurallar:**
+
+| Kural | Nasıl zorlanıyor |
+|---|---|
+| Fiyat/dominans/hacim/F&G'yi LLM üretemez | Bu alanlar şemada modelin çıktısında **yok**; Python API'den doldurur |
+| Her gündem maddesinde kaynak zorunlu | `source` alanı `required`; kaynaksız madde doğrulamadan geçmez |
+| Kaynak `https://` olmalı | URL deseni; `http`/`javascript:` reddedilir |
+| İzleme parametreleri yayınlanmaz | `utm_*`, `fbclid` vb. yazmadan önce temizlenir |
+| Aynı gün iki kez üretim ikinci kayıt açmaz | Aynı `id`, `publishedAt` korunur, yalnız `updatedAt` tazelenir |
+| "Türkiye'de gelişme var" deyip madde vermemek | Çelişki doğrulamada yakalanır |
+
+Model şemayı tutturamazsa hata mesajı kendisine geri verilir ve düzeltmesi istenir; üç denemede olmazsa rapor gönderilmez ve admin'e bildirim gider. **Bozuk rapor asla diske yazılmaz.**
+
+> Görsel ve ses dosyaları (PNG/OGG) bilerek repoda tutulmuyor — depo şişmesin diye yalnız Telegram'a gidiyorlar. JSON'daki `assets.cardUrl` / `assets.audioUrl` alanları, ileride obje depolama eklendiğinde dolacak.
 
 ---
 
@@ -126,12 +155,16 @@ Saati değiştirmek için workflow'daki `DELIVER_AT_TR` değerini (ve istersen c
 
 ```
 .
-├── report.py            # Ana akış: veri → rapor → kart + brief + ses + detay gönderimi
+├── report.py            # Ana akış: veri → JSON rapor → kart + brief + ses + detay gönderimi
+├── sema.py              # Kanonik rapor şeması, doğrulama, reports/ yazma
+├── render.py            # JSON → Telegram HTML / sesli özet metni / kart verisi
 ├── kart.py              # Paylaşılabilir sabah kartı (Pillow)
 ├── ses.py               # 45 sn sesli özet (edge-tts + ffmpeg)
 ├── setup.py             # Kurulum sihirbazı (chat_id, test, .env, GitHub)
-├── requirements.txt     # requests, Pillow, edge-tts, tzdata
-├── state/takip.json     # "Dünden hesap" hafızası (otomatik oluşur)
+├── requirements.txt     # requests, Pillow, edge-tts, tzdata, jsonschema
+├── reports/             # Kanonik raporlar: latest.json + YYYY/MM/ arşivi
+├── schema/              # daily-report.schema.json (web tarafı da kullanabilir)
+├── state/takip.json     # Nöbetçi kilidi + "dünden hesap" yedeği
 ├── .github/workflows/   # daily-report.yml (08:00 TSİ) + tests.yml
 ├── CLAUDE.md            # Claude Code'un otomatik kurulum rehberi
 ├── test_report.py       # Birim testler

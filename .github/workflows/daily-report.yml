@@ -87,16 +87,20 @@ jobs:
             *)    python report.py ;;
           esac
 
-      - name: Takip durumunu kaydet
+      # Kanonik rapor (reports/) ve nöbetçi kilidi (state/) repoya işlenir.
+      # reports/latest.json web sitesinin okuyacağı dosyadır; reports/YYYY/MM/
+      # altındaki kopya tarihli arşivdir. PNG/OGG bilerek commit'lenmez —
+      # depo şişmesin diye ikisi de yalnız Telegram'a gider (brief §6.4).
+      - name: Raporu ve takip durumunu kaydet
         if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |
-          if [ -n "$(git status --porcelain state/takip.json 2>/dev/null)" ]; then
+          if [ -n "$(git status --porcelain state/takip.json reports 2>/dev/null)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state/takip.json
-            git commit -m "chore: gunluk takip durumu"
+            git add state/takip.json reports
+            git commit -m "chore: gunluk rapor + takip durumu"
             git pull --rebase --autostash origin main || true
             git push || echo "push basarisiz (best-effort; rapor gonderildi)"
           else
-            echo "takip degismedi"
+            echo "degisiklik yok"
           fi

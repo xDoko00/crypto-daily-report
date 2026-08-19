@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Günlük Kripto Raporu → Telegram Botu
-=====================================
+Günlük Kripto Raporu → kanonik JSON → Telegram + web sitesi
+============================================================
 
-Üç adımda çalışır:
+Dört adımda çalışır:
   Adım 1  Sabit piyasa verilerini ücretsiz API'lerden çeker (LLM YOK).
-  Adım 2  Headless Claude Code (claude -p) ile haber/analiz bölümünü üretir.
-  Adım 3  Raporu Telegram'a HTML formatında, 4096 karakter limitine uyarak gönderir.
+  Adım 2  Headless Claude Code (claude -p) ile haber/analiz bölümünü
+          ŞEMALI JSON olarak üretir; şema doğrulamasından geçmeyen çıktı
+          düzeltme isteğiyle yeniden istenir.
+  Adım 3  İkisini tek kanonik rapora birleştirip şemaya göre doğrular.
+  Adım 4  Aynı JSON'dan Telegram mesajını, kartı ve sesli özeti üretir;
+          raporu reports/ altına yazar ve gönderir.
+
+Kritik tasarım kuralı: fiyat/dominans/hacim/Fear&Greed gibi sayılar YALNIZCA
+API'den gelir ve JSON'a Python tarafından yazılır — model bu alanlara hiç
+dokunmaz. Model yalnız metin/analiz üretir ve her gündem maddesinde kaynak
+URL'i vermek zorundadır (şema kaynaksızını reddeder).
 
 Kullanım:
   python report.py            → Raporu kanala (TELEGRAM_CHAT_ID) gönderir.
@@ -34,6 +43,9 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import requests
+
+import render
+import sema
 
 # --------------------------------------------------------------------------- #
 # Sabitler
@@ -83,60 +95,61 @@ TR_GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi
 
 
 # RAPOR PROMPTU — Adım 2'de headless Claude Code'a verilir.
-# {market_data} ve {tarih} çalışma anında doldurulur.
-RAPOR_PROMPTU = """Sen günlük kripto piyasa raporu hazırlayan, sabahları işe çıkmadan piyasayı 1 dakikada özetleyen bir analistsin. Web araması yaparak SON 24 SAATİN gelişmelerini araştır ve aşağıdaki formatta Türkçe rapor yaz.
+# {market_data} çalışma anında doldurulur.
+#
+# Model artık Telegram HTML'i değil, YAPILANDIRILMIŞ JSON üretiyor. Biçim
+# (emoji, <b>, satır düzeni) render.py'nin işi; modelin işi yalnız içerik.
+RAPOR_PROMPTU = """Sen günlük kripto piyasa raporu hazırlayan, sabahları işe çıkmadan piyasayı 1 dakikada özetleyen bir analistsin. Web araması yaparak SON 24 SAATİN gelişmelerini araştır ve sonucu TEK BİR JSON nesnesi olarak ver.
 
-SANA VERİLEN PİYASA VERİLERİ:
+SANA VERİLEN PİYASA VERİLERİ (yorumlarken kullan, JSON'a YAZMA — sistemde zaten var):
 {market_data}
-Fiyat, dominans, hacim ve Fear & Greed değerlerini YALNIZCA buradan kullan; bu sayıları kendin arama, değiştirme, uydurma.
+Bu sayıları kendin arama, değiştirme, uydurma. JSON çıktısında hiçbir fiyat/dominans/hacim/Fear&Greed alanı OLMAYACAK.
 
-ÇIKTI — Telegram HTML (<b>, <i>, <a href="">); markdown ve tablo KULLANMA. Rapor İKİ bölümdür; aralarına TAM olarak şu satırı koy: ---DETAY---
+ÇIKTI BİÇİMİ — çok önemli:
+Yanıtın SADECE geçerli bir JSON nesnesi olsun. Açıklama cümlesi, başlık, markdown kod bloğu işareti YAZMA. İlk karakter { olsun, son karakter } olsun.
 
-Önce BÖLÜM 1'i (60 SANİYE — kendi içinde tam, bir dakikada okunur, KISA tut) tam bu iskeletle yaz:
+Şu yapıya harfiyen uy:
 
-📊 <b>GÜNAYDIN — {tarih}</b>
+{
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Piyasa son 24 saatte NEDEN böyle hareket etti — en önemli sebep, 1-2 cümle",
+    "criticalEvents": [{"timeTr": "15:30", "title": "ABD TÜFE verisi"}],
+    "mainRisk": "Günün ana riski, tek cümle"
+  },
+  "sections": {
+    "yesterday": [{"item": "dünkü takip maddesi", "outcome": "bugünkü sonucu — isabet mi ıska mı belli olsun"}],
+    "agenda": [
+      {"importance": "kritik",
+       "title": "Gelişmenin kısa başlığı",
+       "summary": "1-2 cümle: ne oldu ve neden önemli",
+       "source": {"url": "https://...", "title": "Haberin başlığı", "publisher": "Reuters"}}
+    ],
+    "today": [{"timeTr": "14:00", "title": "Takip edilecek olay"}],
+    "turkey": {"hasNews": false, "items": []},
+    "risks": ["Kısa risk maddesi"]
+  },
+  "followUps": ["Yarın sonucuna bakılacak ölçülebilir madde"]
+}
 
-⚡ <b>60 SANİYE</b>
-🌡️ Hava: [tek kelime: Temkinli / İyimser / Kararsız / Riskli] · F&amp;G [bugünkü değer] (dün [dünkü değer])
-₿ BTC [fiyat] ([24s %]) · Ξ ETH [fiyat] ([24s %])
-🔑 <b>Neden:</b> [Piyasa son 24 saatte NEDEN böyle hareket etti — en önemli sebep, 1-2 cümle]
-⏰ <b>Kritik:</b> [bugünün en önemli 2-3 olayı/saati, TSİ, çok kısa]
-⚠️ <b>Risk:</b> [günün ana riski, tek cümle]
+ALAN KURALLARI:
+- "mood": tam olarak şu dörtten biri — Temkinli, İyimser, Kararsız, Riskli.
+- "why": en kritik alan. Hareketin gerçek sebebini araştır; net tek sebep yoksa "belirgin tek sebep yok" diye başla.
+- "criticalEvents": bugünün en önemli 2-3 olayı. Bunlar tek satırda yan yana dizilecek, o yüzden "title" ÇOK KISA olmalı — en fazla 60 karakter, parantez içi açıklama yok (ör. "Fed tutanakları", "Beyaz Saray kripto zirvesi"). "timeTr" TSİ ve HH:MM biçiminde; saat belli değilse null yaz.
+- "yesterday": aşağıda "dünkü takip maddeleri" verildiyse her biri için bir kayıt. Verilmediyse boş dizi [].
+- "agenda": son 24 saatin en önemli 3 gelişmesi (en az 1, en fazla 5). "importance" yalnız şu üçünden biri: kritik, onemli, bilgi.
+- "source": HER gündem maddesinde ZORUNLU. Gerçekten okuduğun, https ile başlayan, erişilebilir bir sayfa olmalı; tercihen birincil/kurumsal kaynak. URL'deki utm_ parametrelerini temizle. Kaynağını doğrulayamadığın gelişmeyi HİÇ YAZMA — eksik madde, uydurma kaynaktan iyidir.
+- "today": gün içinde takip edilecek olaylar, zaman sıralı, en fazla 8.
+- "turkey": SPK, MKK, TCMB, BDDK veya mevzuatta YENİ gelişme varsa "hasNews": true ve maddeleri kaynaklarıyla yaz. Yoksa "hasNews": false ve "items": []. Asla uydurma.
+- "risks": en fazla 2-3 kısa madde.
+- "followUps": bugün öne çıkan, YARIN sonucuna bakılacak 2-4 madde. Her biri kısa ve sonucu ölçülebilir olsun (ör. "ABD TÜFE verisi beklentiyi aştı mı").
 
-Sonra ayrı bir satıra ---DETAY--- koy. Sonra BÖLÜM 2'yi (DETAY, isteyen için) yaz:
-
-📈 <b>PİYASA</b>
-[her coin tek satır: sembol — fiyat ([24s %])]
-Dominans: BTC %.. · ETH %.. — Hacim: ..
-
-⏮️ <b>DÜNDEN</b> — Aşağıda "dünkü takip maddeleri" verildiyse, her birinin bugünkü SONUCUNU tek cümleyle yaz (isabet mi ıskaladık mı belli olsun). Madde verilmediyse bu bölümü TAMAMEN atla.
-
-📰 <b>GÜNDEM</b> — en önemli 3 gelişme. Her biri: [🔴 kritik / 🟡 önemli / 🟢 bilgi] <b>başlık</b> — 1-2 cümle + neden önemli — <a href="URL">kaynak</a>
-
-⏰ <b>BUGÜN TAKİPTE</b>
-[zaman sıralı, her olay tek satır: "14:00 — ..." (TSİ)]
-
-🇹🇷 <b>TÜRKİYE</b> — SPK, MKK, TCMB, BDDK veya mevzuatta YENİ gelişme varsa yaz; yoksa "Yeni gelişme yok". Asla uydurma.
-
-⚠️ <b>RİSKLER</b> — en fazla 2 madde, kısa.
-
-<i>Yatırım tavsiyesi değildir.</i>
-
-KURALLAR:
-- 60 SANİYE bölümündeki her satır bir bakışta okunmalı; kısa ve yoğun tut.
-- "Neden" satırı en kritik kısımdır: hareketin gerçek sebebini araştır; net sebep yoksa "belirgin tek sebep yok" de.
-- Doğrulayamadığın hiçbir sayıyı yazma; gerekiyorsa "doğrulanamadı" de. Boş/okunamayan veriyi sıfır sayma.
-- Uydurma metrik (100 üzerinden puan, güven skoru) YOK. Önem için sadece 🔴🟡🟢.
-- Al/sat/tut önerisi ve fiyat hedefi verme.
-- Her gelişmede en az bir birincil/kurumsal kaynak linki; URL'lerdeki utm parametrelerini temizle.
-- Tekrar eden uyarı ekleme. DETAY bölümü toplam 1500-3500 karakter olsun.
-- Çıktı olarak SADECE raporu ver; "işte rapor" ya da "BÖLÜM 1/2" gibi ifade yazma. İlk satır doğrudan "📊 <b>GÜNAYDIN" ile başlasın.
-
-RAPORUN EN SONUNA — Telegram'a GİTMEYECEK — bugün öne çıkan, YARIN sonucuna bakılacak 2-4 maddeyi tam bu formatta ekle:
-===TAKIP===
-["kısa madde 1", "kısa madde 2"]
-===TAKIP-SON===
-Geçerli JSON dizisi olsun; her madde kısa ve sonucu ölçülebilir olsun (ör. "ABD TÜFE verisi 15:30")."""
+İÇERİK KURALLARI:
+- Al/sat/tut önerisi, fiyat hedefi, garanti veya kesin tahmin verme.
+- Uydurma metrik (100 üzerinden puan, güven skoru) kullanma.
+- Doğrulayamadığın hiçbir bilgiyi yazma.
+- Metin alanlarında HTML etiketi, markdown veya emoji KULLANMA — düz Türkçe metin yaz. Biçimlendirmeyi sistem yapıyor.
+- Metinler kısa ve yoğun olsun; "summary" 1-2 cümleyi geçmesin."""
 
 
 # --------------------------------------------------------------------------- #
@@ -238,11 +251,9 @@ def piyasa_verilerini_cek():
     satirlar.append("")
     satirlar.append(f"Fear & Greed — bugün: {fng_bugun} | dün: {fng_dun} | 7 gün önce: {fng_7gun}")
 
-    # --- Kart için yapılandırılmış ham veri ---
-    def _coin(cg_id):
-        cd = fiyatlar.get(cg_id, {})
-        return {"fiyat": cd.get("usd"), "degisim": cd.get("usd_24h_change")}
-
+    # --- Kanonik rapordaki "market" bloğu ---
+    # Bu blok doğrudan JSON'a gider; modelin eline hiç geçmez. Web sitesi,
+    # kart ve Telegram aynı sayıları buradan okur.
     _ETIKET_TR = {"Extreme Fear": "Aşırı Korku", "Fear": "Korku", "Neutral": "Nötr",
                   "Greed": "Açgözlülük", "Extreme Greed": "Aşırı Açgözlülük"}
 
@@ -252,20 +263,31 @@ def piyasa_verilerini_cek():
         except (TypeError, ValueError):
             return None
 
+    def _coin(cg_id):
+        cd = fiyatlar.get(cg_id, {})
+        return {"priceUsd": cd.get("usd"), "change24h": cd.get("usd_24h_change")}
+
     _f0 = fng_veri[0] if fng_veri else {}
     _f1 = fng_veri[1] if len(fng_veri) > 1 else {}
-    veri = {
-        "btc": _coin("bitcoin"), "eth": _coin("ethereum"), "sol": _coin("solana"),
-        "bnb": _coin("binancecoin"), "xrp": _coin("ripple"),
-        "btc_dom": btc_dom, "eth_dom": eth_dom,
-        "hacim": toplam_hacim, "mcap": toplam_mcap,
-        "fng_deger": _iint(_f0.get("value")),
-        "fng_etiket": _ETIKET_TR.get(_f0.get("value_classification"),
-                                     _f0.get("value_classification") or ""),
-        "fng_dun": _iint(_f1.get("value")),
+    _f7 = fng_veri[7] if len(fng_veri) > 7 else {}
+
+    market = {
+        "asOf": sema.simdi_iso(datetime.now(IST)),
+        "coins": {sembol: _coin(cg_id) for cg_id, sembol in COINS.items()},
+        "btcDominance": btc_dom,
+        "ethDominance": eth_dom,
+        "totalMarketCapUsd": toplam_mcap,
+        "volume24hUsd": toplam_hacim,
+        "fearGreed": {
+            "value": _iint(_f0.get("value")),
+            "label": _ETIKET_TR.get(_f0.get("value_classification"),
+                                    _f0.get("value_classification")) or None,
+            "previousValue": _iint(_f1.get("value")),
+            "weekAgoValue": _iint(_f7.get("value")),
+        },
     }
 
-    return "\n".join(satirlar), veri
+    return "\n".join(satirlar), market
 
 
 # --------------------------------------------------------------------------- #
@@ -278,12 +300,11 @@ def tarih_basligi():
     return f"{now.day} {TR_AYLAR[now.month - 1]} {now.year}, {TR_GUNLER[now.weekday()]}"
 
 
-def rapor_uret(market_data, dun_takip_str=""):
-    """
-    Headless Claude Code'u (claude -p) çağırır. Anthropic API KEY kullanmaz;
-    kimlik doğrulama CLAUDE_CODE_OAUTH_TOKEN ile abonelikten yapılır.
-    Sadece WebSearch/WebFetch araçlarına izin verilir.
-    """
+def _claude_calistir(prompt):
+    """Headless Claude Code'u (claude -p) bir kez çağırıp düz metin çıktısını döndürür.
+
+    Anthropic API KEY kullanmaz; kimlik doğrulama CLAUDE_CODE_OAUTH_TOKEN ile
+    abonelikten yapılır. Sadece WebSearch/WebFetch araçlarına izin verilir."""
     # Windows'ta npm 'claude' (bash script) + 'claude.cmd' üretir; subprocess ancak
     # .cmd/.exe çalıştırabilir. Bu yüzden platforma göre uygun olanı seç.
     adaylar = ["claude.cmd", "claude.exe", "claude"] if os.name == "nt" else ["claude"]
@@ -292,60 +313,93 @@ def rapor_uret(market_data, dun_takip_str=""):
         raise RuntimeError(
             "'claude' komutu bulunamadı. Kurulum: npm install -g @anthropic-ai/claude-code"
         )
-    # CI'da kimlik CLAUDE_CODE_OAUTH_TOKEN ile gelir. Yerelde bu değişken yoksa,
-    # makinede zaten giriş yapılmış claude oturumu kullanılır (uyarı verip devam et).
-    if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"):
-        print("[uyarı] CLAUDE_CODE_OAUTH_TOKEN yok; mevcut yerel claude oturumu "
-              "kullanılacak (CI'da secret gereklidir).", file=sys.stderr)
-
-    prompt = RAPOR_PROMPTU.format(market_data=market_data, tarih=tarih_basligi())
-    if dun_takip_str:
-        prompt += chr(10) * 2 + "DÜNKÜ TAKİP MADDELERİ (⏮️ DÜNDEN için sonuçlarını araştır): " + dun_takip_str
-    else:
-        prompt += chr(10) * 2 + "DÜNKÜ TAKİP MADDELERİ: yok (⏮️ DÜNDEN bölümünü atla)."
-
-    # Çıktıyı düz metin olarak alıyoruz. --allowedTools ile sadece web araçlarına izin.
     komut = [
         claude_bin,
         "-p", prompt,
         "--allowedTools", "WebSearch", "WebFetch",
         "--output-format", "text",
     ]
+    try:
+        sonuc = subprocess.run(
+            komut, capture_output=True, text=True,
+            encoding="utf-8", timeout=CLAUDE_TIMEOUT,
+        )
+    except subprocess.TimeoutExpired:
+        raise RuntimeError(f"{CLAUDE_TIMEOUT} sn'de yanıt yok") from None
+
+    if sonuc.returncode != 0:
+        raise RuntimeError("kod %d: %s" % (
+            sonuc.returncode,
+            (sonuc.stderr.strip() or sonuc.stdout.strip() or "(çıktı boş)")[:600]))
+    cikti = (sonuc.stdout or "").strip()
+    if len(cikti) < 200:
+        raise RuntimeError("beklenenden kısa çıktı: %r" % cikti)
+    return cikti
+
+
+def json_ayikla(cikti):
+    """Model çıktısındaki JSON nesnesini ayıklar.
+
+    `claude -p` bazen JSON'un önüne bir cümle ya da ```json çiti koyabiliyor.
+    İlk '{' ile son '}' arasını alıp ayrıştırıyoruz; böylece çevresindeki
+    gürültü raporu düşürmüyor."""
+    metin = cikti.strip()
+    if "```" in metin:
+        # ```json ... ``` çitinin içini al
+        m = re.search(r"```(?:json)?\s*(.*?)```", metin, re.S)
+        if m:
+            metin = m.group(1).strip()
+    bas, son = metin.find("{"), metin.rfind("}")
+    if bas == -1 or son <= bas:
+        raise ValueError("çıktıda JSON nesnesi bulunamadı: %r" % cikti[:200])
+    return json.loads(metin[bas:son + 1])
+
+
+def llm_ciktisi_uret(market_data, dun_takip):
+    """Modelden şemaya uyan JSON alır; uymazsa hatayı söyleyip düzeltmesini ister.
+
+    08:00 raporu tek şansa çalıştığı için üç katmanlı savunma var:
+      1) Ağ/CLI hatasında yeniden dene (kademeli bekleme).
+      2) JSON ayrıştırılamazsa veya şema tutmazsa, hatayı prompt'a ekleyip
+         modelin kendi çıktısını düzeltmesini iste.
+      3) Hepsi tükenirse RuntimeError — main() admin'e bildirir."""
+    if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"):
+        print("[uyarı] CLAUDE_CODE_OAUTH_TOKEN yok; mevcut yerel claude oturumu "
+              "kullanılacak (CI'da secret gereklidir).", file=sys.stderr)
+
+    temel = RAPOR_PROMPTU.replace("{market_data}", market_data)
+    if dun_takip:
+        temel += chr(10) * 2 + ("DÜNKÜ TAKİP MADDELERİ (sections.yesterday için "
+                                "sonuçlarını araştır): ") + "; ".join(dun_takip)
+    else:
+        temel += chr(10) * 2 + 'DÜNKÜ TAKİP MADDELERİ: yok (sections.yesterday boş dizi olsun).'
 
     print("[bilgi] Claude Code raporu üretiyor (web araması yapılıyor)...", file=sys.stderr)
-    # Geçici claude hatalarına (rate/hiçkırık) karşı birkaç kez dene — 08:00 raporu
-    # tek bir aksaklıkta atlanmasın.
+    prompt = temel
     son_hata = None
     for deneme in range(1, MAX_RETRY + 1):
         try:
-            sonuc = subprocess.run(
-                komut, capture_output=True, text=True,
-                encoding="utf-8", timeout=CLAUDE_TIMEOUT,
-            )
-        except subprocess.TimeoutExpired:
-            son_hata = f"{CLAUDE_TIMEOUT} sn'de yanıt yok"
-            sonuc = None
+            cikti = _claude_calistir(prompt)
+            veri = json_ayikla(cikti)
+            sema.dogrula_llm_ciktisi(veri)
+            return veri
+        except (RuntimeError, ValueError, sema.RaporSemaHatasi) as e:
+            son_hata = str(e)
+            print(f"[uyarı] Rapor üretimi başarısız ({deneme}/{MAX_RETRY}): {son_hata[:300]}",
+                  file=sys.stderr)
+            # Biçim/şema hatasıysa modele ne yanlış yaptığını söyleyip tekrar sor.
+            if isinstance(e, (ValueError, sema.RaporSemaHatasi)):
+                prompt = (temel + chr(10) * 2
+                          + "ÖNCEKİ DENEMEN GEÇERSİZDİ. Hata: " + son_hata[:500]
+                          + chr(10) + "Bu hatayı düzelt ve SADECE geçerli JSON döndür.")
+            if deneme < MAX_RETRY:
+                time.sleep(8 * deneme)
 
-        if sonuc is not None:
-            if sonuc.returncode != 0:
-                son_hata = "kod %d: %s" % (
-                    sonuc.returncode,
-                    (sonuc.stderr.strip() or sonuc.stdout.strip() or "(çıktı boş)")[:600])
-            elif len((sonuc.stdout or "").strip()) < 200:
-                son_hata = "beklenenden kısa çıktı: %r" % (sonuc.stdout or "").strip()
-            else:
-                return sonuc.stdout.strip()
-
-        print(f"[uyarı] Rapor üretimi başarısız ({deneme}/{MAX_RETRY}): {son_hata}",
-              file=sys.stderr)
-        if deneme < MAX_RETRY:
-            time.sleep(8 * deneme)
-
-    raise RuntimeError(f"Claude Code {MAX_RETRY} denemede rapor üretemedi: {son_hata}")
+    raise RuntimeError(f"Claude Code {MAX_RETRY} denemede geçerli rapor üretemedi: {son_hata}")
 
 
 # --------------------------------------------------------------------------- #
-# Adım 3 — Telegram'a gönderim
+# Adım 4 — Telegram'a gönderim
 # --------------------------------------------------------------------------- #
 
 def mesaji_bol(metin, limit=SAFE_LIMIT):
@@ -511,7 +565,18 @@ STATE_YOL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "state", "t
 
 
 def dunku_takip_oku():
-    """state/takip.json varsa dünkü takip maddelerini (liste) döndürür; yoksa []."""
+    """Dünkü takip maddelerini döndürür (yoksa []).
+
+    Asıl kaynak artık kanonik raporun kendisidir (reports/latest.json →
+    followUps). state/takip.json yalnız geçiş dönemi için yedek: reports/
+    henüz oluşmamışsa oradan okunur."""
+    try:
+        with open(os.path.join(sema.RAPORLAR_DIZINI, "latest.json"), encoding="utf-8") as f:
+            t = json.load(f).get("followUps", [])
+        if isinstance(t, list) and t:
+            return [str(x) for x in t]
+    except (FileNotFoundError, ValueError, OSError):
+        pass
     try:
         with open(STATE_YOL, encoding="utf-8") as f:
             t = json.load(f).get("takip", [])
@@ -520,25 +585,12 @@ def dunku_takip_oku():
         return []
 
 
-def takip_ayikla(rapor):
-    """Rapordan ===TAKIP===...===TAKIP-SON=== bloğunu ayıklar (Telegram'a gitmez).
-    (temiz_rapor, liste) döndürür."""
-    import re as _re
-    m = _re.search(r"===TAKIP===\s*(.*?)\s*===TAKIP-SON===", rapor, _re.S)
-    takip = []
-    if m:
-        try:
-            v = json.loads(m.group(1).strip())
-            if isinstance(v, list):
-                takip = [str(x).strip() for x in v if str(x).strip()]
-        except ValueError:
-            takip = []
-    temiz = _re.split(r"===TAKIP===", rapor, maxsplit=1)[0].strip()
-    return temiz, takip
-
-
 def takip_yaz(takip):
-    """Bugünün takip listesini state/takip.json'a yazar (yarın 'DÜNDEN' için)."""
+    """Nöbetçi kilidini ve takip listesini state/takip.json'a yazar.
+
+    Takip maddeleri artık kanonik raporda da var; bu dosya asıl olarak
+    'bugünün raporu gönderildi mi' kilidini taşıyor (bugun_gonderildi_mi ve
+    _uzaktan_gonderilmis_mi buraya bakar)."""
     os.makedirs(os.path.dirname(STATE_YOL), exist_ok=True)
     with open(STATE_YOL, "w", encoding="utf-8") as f:
         json.dump({"tarih": datetime.now(IST).strftime("%Y-%m-%d"), "takip": takip},
@@ -559,15 +611,6 @@ def bugun_gonderildi_mi():
     except (FileNotFoundError, ValueError, OSError):
         return False
     return veri.get("tarih") == datetime.now(IST).strftime("%Y-%m-%d")
-
-
-def _on_metni_kirp(rapor):
-    """claude -p bazen raporun ÖNÜNE kendi meta yorumunu ekliyor
-    ("Karakter sayımı için bash izni alınamadı…", "İşte rapor:" gibi). Rapor
-    iskeleti her zaman '📊' ile başladığından ilk '📊'den öncesini atarız.
-    '📊' bulunamazsa (beklenmedik biçim) dokunmayız — rapor yine de gider."""
-    i = rapor.find("📊")
-    return rapor[i:].strip() if i > 0 else rapor
 
 
 def _uzaktan_gonderilmis_mi():
@@ -593,22 +636,6 @@ def _uzaktan_gonderilmis_mi():
     except Exception:                                # noqa: BLE001
         pass
     return False
-
-
-def _brief_ayikla(rapor):
-    """Brief'ten Hava (mood) ve Risk satırlarını ayıklar (kart için)."""
-    duz = _html_temizle(rapor)
-    hava, risk = "—", ""
-    for satir in duz.splitlines():
-        s = satir.strip()
-        if hava == "—" and "Hava:" in s:
-            sonra = s.split("Hava:", 1)[1]
-            hava = sonra.split("·")[0].split("F&G")[0].strip() or "—"
-        if not risk and "Risk:" in s:
-            risk = s.split("Risk:", 1)[1].strip()
-    if not risk:
-        risk = "Bugün belirgin tek risk öne çıkmıyor."
-    return hava, risk
 
 
 def foto_gonder(bot_token, chat_id, png_bytes, caption="", html_modu=True):
@@ -710,34 +737,46 @@ def main():
             _bekle_kadar(uret_penceresi, "Üretim penceresine")
 
         print("[bilgi] Adım 1: Piyasa verileri çekiliyor...", file=sys.stderr)
-        market_data, veri = piyasa_verilerini_cek()
+        market_data, market = piyasa_verilerini_cek()
 
         print("[bilgi] Adım 2: Rapor üretiliyor...", file=sys.stderr)
         dun_takip = dunku_takip_oku()
-        rapor = rapor_uret(market_data, "; ".join(dun_takip))
-        rapor = _on_metni_kirp(rapor)      # olası meta ön-metni ("…bash…") temizle
-        rapor, bugun_takip = takip_ayikla(rapor)
+        llm_ciktisi = llm_ciktisi_uret(market_data, dun_takip)
 
+        print("[bilgi] Adım 3: Kanonik rapor kuruluyor ve doğrulanıyor...", file=sys.stderr)
+        tarih_id = datetime.now(IST).strftime("%Y-%m-%d")
+        rapor = sema.rapor_kur(
+            market=market,
+            llm_ciktisi=llm_ciktisi,
+            tarih_id=tarih_id,
+            baslik=tarih_basligi(),
+            simdi_iso=sema.simdi_iso(datetime.now(IST)),
+            # Aynı gün ikinci üretim yeni kayıt açmasın: publishedAt korunur.
+            onceki_rapor=sema.rapor_oku(tarih_id),
+        )
+        sema.dogrula(rapor)
+        bugun_takip = rapor["followUps"]
+
+        # --- Adım 4: aynı JSON'dan Telegram / kart / ses üret ---
+        brief = render.brief_html(rapor)
+        detaylar = [render.detay_html(rapor)]
         if test_modu:
-            rapor = "🧪 <b>[TEST]</b>" + chr(10) * 2 + rapor
+            brief = "🧪 <b>[TEST]</b>" + chr(10) * 2 + brief
 
         # Tam teslim saatine kadar bekle (dakikası dakikasına gönderim)
         if zamanli:
             _bekle_kadar(hedef_dt, f"Teslim saati {teslim} TSİ'ye")
 
-        print("[bilgi] Adım 3: Telegram'a gönderiliyor...", file=sys.stderr)
-
-        # Rapor bölümleri: brief (60 SANİYE) + detay(lar)
-        bolumler = [b.strip() for b in rapor.split("---DETAY---") if b.strip()]
-        brief = bolumler[0] if bolumler else rapor
-        detaylar = bolumler[1:]
+        print("[bilgi] Adım 4: Telegram'a gönderiliyor...", file=sys.stderr)
 
         # Kartı bir kez üret (best-effort — hata olsa rapor yine gider)
         png = None
         try:
             import kart
-            hava, risk = _brief_ayikla(rapor)
-            png = kart.kart_olustur(veri, hava, risk, tarih_basligi())
+            png = kart.kart_olustur(render.kart_verisi(rapor),
+                                    rapor["brief"]["mood"],
+                                    rapor["brief"]["mainRisk"],
+                                    rapor["title"])
         except Exception as kart_hata:               # noqa: BLE001
             print(f"[uyarı] Kart oluşturulamadı: {kart_hata}", file=sys.stderr)
 
@@ -745,7 +784,7 @@ def main():
         ogg = None
         try:
             import ses
-            ogg = ses.ses_uret(brief, tarih_basligi())
+            ogg = ses.ses_uret_metin(render.seslendirme_metni(rapor))
         except Exception as ses_hata:                # noqa: BLE001
             print(f"[uyarı] Sesli özet oluşturulamadı: {ses_hata}", file=sys.stderr)
 
@@ -755,6 +794,21 @@ def main():
             print("[bilgi] Başka nöbetçi bu sabah zaten göndermiş (uzak kontrol) — çıkılıyor.",
                   file=sys.stderr)
             return
+
+        # --- Kanonik raporu diske yaz (web sitesinin veri kaynağı) ---
+        # Uzak kontrolden SONRA yazıyoruz: erken çıkan nöbetçi, gönderen
+        # nöbetçinin raporunun üzerine kendi sürümünü commit'lemesin.
+        # Test/önizlemede arşivi hiç kirletmiyoruz.
+        if not test_modu and not onizleme:
+            try:
+                arsiv, _latest = sema.rapor_yaz(rapor)
+                print(f"[bilgi] Rapor yazıldı → "
+                      f"{os.path.relpath(arsiv, sema.KOK)} + reports/latest.json",
+                      file=sys.stderr)
+            except Exception as yaz_hata:            # noqa: BLE001
+                # Web çıktısı yazılamasa bile Telegram gönderimi durmamalı
+                # (iki hedef birbirinden bağımsız).
+                print(f"[uyarı] Rapor dosyaya yazılamadı: {yaz_hata}", file=sys.stderr)
 
         for ad, hid in hedefler:
             # 1) İLK MESAJ = kart + brief (görsel ilk mesaja bağlı). Kart yoksa brief metin.

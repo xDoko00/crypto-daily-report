@@ -6,3 +6,6 @@ tzdata>=2024.1
 Pillow>=10.0.0
 # 45 saniyelik sesli özet (ücretsiz Türkçe TTS)
 edge-tts>=6.1.0
+# Kanonik rapor JSON'unu şemaya göre doğrulamak için (sema.py). Kurulu değilse
+# sema.py yerleşik doğrulayıcıya düşer; rapor yine de üretilir.
+jsonschema>=4.0.0
