@@ -4,6 +4,7 @@ import copy
 import json
 import unittest
 
+import eposta
 import render
 import report
 import sema
@@ -304,6 +305,48 @@ class SesVeKart(unittest.TestCase):
 # --------------------------------------------------------------------------- #
 # LLM çıktısını ayıklama
 # --------------------------------------------------------------------------- #
+
+class EpostaRender(unittest.TestCase):
+    def setUp(self):
+        self.rapor = ornek_rapor()
+
+    def test_konu_hava_ve_btc_icerir(self):
+        k = eposta.konu(self.rapor)
+        self.assertIn("19 Ağustos 2026", k)
+        self.assertIn("Temkinli", k)
+        self.assertIn("$64,335", k)
+
+    def test_govde_bolumleri(self):
+        g = eposta.govde(self.rapor)
+        for b in ("## 60 saniye", "## Piyasa", "## Dünden hesap",
+                  "## Günün öne çıkan gelişmeleri", "## Bugün takipte",
+                  "## Türkiye", "## Riskler", "## Yarın bunlara bakacağız"):
+            self.assertIn(b, g)
+
+    def test_govde_kaynak_baglantisi_verir(self):
+        g = eposta.govde(self.rapor)
+        self.assertIn("(https://www.sec.gov/news/press-release/2026-118)", g)
+
+    def test_govde_fiyatlari_market_verisinden_alir(self):
+        g = eposta.govde(self.rapor)
+        self.assertIn("| BTC | $64,335 | +0.80% |".replace("+0.80", "-0.80"), g)
+
+    def test_govde_rapor_sayfasina_baglar(self):
+        self.assertIn("/gunluk-raporlar/2026-08-19/", eposta.govde(self.rapor))
+
+    def test_govde_uyari_icerir(self):
+        self.assertIn("yatırım tavsiyesi değildir",
+                      eposta.govde(self.rapor).lower())
+
+    def test_turkiye_haberi_yoksa_sabit_metin(self):
+        self.assertIn("yeni bir gelişme yok", eposta.govde(self.rapor))
+
+    def test_anahtar_yoksa_sessizce_atlar(self):
+        """E-posta gönderilemezse rapor akışı durmamalı."""
+        ok, mesaj = eposta.gonder(self.rapor, anahtar="")
+        self.assertFalse(ok)
+        self.assertIn("BUTTONDOWN_API_KEY", mesaj)
+
 
 class JsonAyikla(unittest.TestCase):
     def test_duz_json(self):

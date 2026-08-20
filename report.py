@@ -28,6 +28,7 @@ Kimlik doğrulama ve gizli anahtarlar ortam değişkenlerinden okunur (koda göm
   TELEGRAM_BOT_TOKEN          → BotFather'dan alınan bot token'ı
   TELEGRAM_CHAT_ID            → Raporun gideceği kanal
   TELEGRAM_ADMIN_CHAT_ID      → Senin özel chat'in (hata bildirimleri + test)
+  BUTTONDOWN_API_KEY          → E-posta bülteni (isteğe bağlı; yoksa e-posta atlanır)
 """
 
 import os
@@ -827,6 +828,17 @@ def main():
                 time.sleep(1)
                 raporu_yolla(bot_token, hid, detay)
             print(f"[başarılı] '{ad}' hedefine gönderildi (kart + brief + ses + detay).", file=sys.stderr)
+
+        # --- E-posta bülteni (best-effort) ---
+        # Telegram gönderimi bittikten SONRA çalışır: e-posta servisi düşse
+        # bile kanal raporu almış olur (brief §6.6 — hedefler bağımsız).
+        if not test_modu and not onizleme:
+            try:
+                import eposta
+                ok, mesaj = eposta.gonder(rapor)
+                print(f"[{'başarılı' if ok else 'uyarı'}] E-posta: {mesaj}", file=sys.stderr)
+            except Exception as e_hata:               # noqa: BLE001
+                print(f"[uyarı] E-posta gönderilemedi: {e_hata}", file=sys.stderr)
 
         # Bugünün takip listesini yarın için kaydet (test modunda kaydetme)
         if not test_modu and not onizleme:
