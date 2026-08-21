@@ -166,10 +166,16 @@ def gonder(rapor, anahtar=None, taslak=False):
         "status": "draft" if taslak else "about_to_send",
     }).encode("utf-8")
 
-    istek = urllib.request.Request(
-        API, data=veri,
-        headers={"Authorization": f"Token {anahtar}",
-                 "Content-Type": "application/json"})
+    basliklar = {"Authorization": f"Token {anahtar}",
+                 "Content-Type": "application/json"}
+    if not taslak:
+        # Buttondown, bir API anahtarıyla İLK gerçek gönderimde bu başlığı ister:
+        # test ederken yanlışlıkla tüm listeye mail atılmasını engelleyen bir
+        # emniyet kilidi. Bir kez onaylandıktan sonra da zararsız, göndermeye
+        # devam ediyoruz — akış her sabah aynı yoldan geçiyor.
+        basliklar["X-Buttondown-Live-Dangerously"] = "true"
+
+    istek = urllib.request.Request(API, data=veri, headers=basliklar)
     try:
         with urllib.request.urlopen(istek, timeout=45) as c:
             d = json.load(c)
