@@ -17,3 +17,6 @@ rapor_*.txt
 # İşletim sistemi
 .DS_Store
 Thumbs.db
+
+# Video (yerel deneme çıktıları)
+video/cikti/

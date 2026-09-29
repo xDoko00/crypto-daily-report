@@ -29,6 +29,7 @@ Kimlik doğrulama ve gizli anahtarlar ortam değişkenlerinden okunur (koda göm
   TELEGRAM_CHAT_ID            → Raporun gideceği kanal
   TELEGRAM_ADMIN_CHAT_ID      → Senin özel chat'in (hata bildirimleri + test)
   BUTTONDOWN_API_KEY          → E-posta bülteni (isteğe bağlı; yoksa e-posta atlanır)
+  VIDEO_OZET=1 / VIDEO_HEDEF  → Günlük video (video/), en sonda; şimdilik yalnız admin'e
 """
 
 import os
@@ -970,6 +971,15 @@ def main():
                 print(f"[bilgi] {len(bugun_takip)} takip maddesi kaydedildi.", file=sys.stderr)
             except Exception as se:                   # noqa: BLE001
                 print(f"[uyarı] Takip kaydedilemedi: {se}", file=sys.stderr)
+
+        # --- Video önizleme (VIDEO_OZET=1; best-effort, EN SONDA) ---
+        # Rapor + sesli özet gönderildikten sonra ayrı alt süreçte, üst süre
+        # sınırıyla çalışır; hata/zaman aşımı yalnız loglanır, rapor etkilenmez.
+        try:
+            from video import calistir as video_adimi
+            video_adimi.izole_calistir(rapor)
+        except Exception as v_hata:               # noqa: BLE001
+            print(f"[uyarı] Video adımı atlandı: {_gizle(v_hata)}", file=sys.stderr)
 
     except Exception as e:                           # noqa: BLE001
         print(f"[HATA] {_gizle(e)}", file=sys.stderr)

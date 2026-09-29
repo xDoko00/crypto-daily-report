@@ -82,6 +82,10 @@ jobs:
           # Klon sesli özet (ElevenLabs). Hata olursa ses atlanır, rapor yine gider.
           ELEVENLABS_API_KEY:      ${{ secrets.ELEVENLABS_API_KEY }}
           SESLI_OZET_ELEVENLABS:   "1"
+          # Dikey video (video/): rapor + ses gönderildikten SONRA, en fazla 8 dk.
+          # Şimdilik yalnız admin'e gider; hata olursa atlanır, rapor etkilenmez.
+          VIDEO_OZET:              "1"
+          VIDEO_HEDEF:             "admin"
           # Zamanlanmış çalışmada sabit teslim 08:00 TSİ; manuel çalışmada kullanıcı
           # saat girdiyse o, girmediyse boş (hemen gönderir).
           DELIVER_AT_TR: ${{ github.event_name == 'schedule' && '08:00' || inputs.deliver_at }}
@@ -95,7 +99,8 @@ jobs:
 
       # Kanonik rapor (reports/) ve nöbetçi kilidi (state/) repoya işlenir.
       # reports/latest.json web sitesinin okuyacağı dosyadır; reports/YYYY/MM/
-      # altındaki kopya tarihli arşivdir. PNG/OGG bilerek commit'lenmez —
+      # altındaki kopya tarihli arşivdir. state/video-son-kullanim.json b-roll
+      # döndürme durumudur. PNG/OGG/MP4 bilerek commit'lenmez —
       # depo şişmesin diye ikisi de yalnız Telegram'a gider (brief §6.4).
       - name: Raporu ve takip durumunu kaydet
         if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
@@ -104,6 +109,7 @@ jobs:
           # takip.json'ı yine de commit'lemeliyiz: yoksa nöbetçi kilidi kaydedilmez
           # ve ertesi gün ikinci rapor gider.
           git add state/takip.json || true
+          [ -f state/video-son-kullanim.json ] && git add state/video-son-kullanim.json || true
           [ -d reports ] && git add reports || true
           if git diff --cached --quiet; then
             echo "degisiklik yok"
