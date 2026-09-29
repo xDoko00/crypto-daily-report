@@ -157,34 +157,62 @@ ALAN KURALLARI:
 # Yardımcı: ağ isteği için retry sarmalayıcı
 # --------------------------------------------------------------------------- #
 
-def _get_json(url, params=None):
-    """Verilen URL'den JSON çeker; ağ hatalarında MAX_RETRY kez dener."""
+def _get_json(url, params=None, headers=None, deneme_sayisi=MAX_RETRY):
+    """Verilen URL'den JSON çeker; ağ hatalarında `deneme_sayisi` kez dener."""
+    basliklar = {"User-Agent": "crypto-daily-report/1.0"}
+    basliklar.update(headers or {})
     last_err = None
-    for deneme in range(1, MAX_RETRY + 1):
+    for deneme in range(1, deneme_sayisi + 1):
         try:
             r = requests.get(url, params=params, timeout=HTTP_TIMEOUT,
-                             headers={"User-Agent": "crypto-daily-report/1.0"})
+                             headers=basliklar)
             r.raise_for_status()
             return r.json()
         except Exception as e:                       # noqa: BLE001 (her ağ hatasını yakala)
             last_err = e
-            print(f"[uyarı] İstek başarısız ({deneme}/{MAX_RETRY}): {url} -> {e}",
+            print(f"[uyarı] İstek başarısız ({deneme}/{deneme_sayisi}): {url} -> {e}",
                   file=sys.stderr)
-            if deneme < MAX_RETRY:
+            if deneme < deneme_sayisi:
                 time.sleep(2 * deneme)               # kademeli bekleme
-    raise RuntimeError(f"API çağrısı {MAX_RETRY} denemede başarısız: {url} ({last_err})")
+    raise RuntimeError(f"API çağrısı {deneme_sayisi} denemede başarısız: {url} ({last_err})")
 
 
 # --------------------------------------------------------------------------- #
 # Adım 1 — Sabit piyasa verileri (LLM KULLANMADAN)
 # --------------------------------------------------------------------------- #
 
-def piyasa_verilerini_cek():
-    """
-    CoinGecko + Alternative.me'den ham sayıları çeker ve LLM'e verilecek
-    okunabilir bir metin bloğu üretir. LLM bu sayıları asla değiştirmez.
-    """
-    # 1a) Coin fiyatları + 24s değişim
+# Yedek kaynak: CoinGecko id -> Binance USDT çifti / CoinPaprika id.
+# NOT: Binance fiyatları USDT cinsindendir; USDT ≈ 1 USD kabul edilir
+# (sapma genelde binde birin altında, rapor hassasiyeti için yeterli).
+BINANCE_CIFTLERI = {
+    "bitcoin":     "BTCUSDT",
+    "ethereum":    "ETHUSDT",
+    "solana":      "SOLUSDT",
+    "binancecoin": "BNBUSDT",
+    "ripple":      "XRPUSDT",
+}
+# api.binance.com ABD IP'lerini (GitHub runner'ları) 451 ile engelleyebiliyor;
+# data-api.binance.vision aynı public market verisinin resmi yansısı.
+BINANCE_HOSTLARI = ("https://api.binance.com", "https://data-api.binance.vision")
+COINPAPRIKA = "https://api.coinpaprika.com/v1"
+
+
+def _sayi(v):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def _coingecko_cek():
+    """CoinGecko'dan fiyat + global veriyi çeker.
+
+    COINGECKO_DEMO_API_KEY tanımlıysa x-cg-demo-api-key başlığıyla gider
+    (anahtarsız IP engellerini aşmak için); yoksa eski anahtarsız davranış.
+    Döner: (coins {sembol: {priceUsd, change24h}}, global dict, kaynak adı)."""
+    anahtar = os.environ.get("COINGECKO_DEMO_API_KEY", "").strip()
+    basliklar = {"x-cg-demo-api-key": anahtar} if anahtar else None
+
     fiyatlar = _get_json(
         "https://api.coingecko.com/api/v3/simple/price",
         params={
@@ -192,15 +220,101 @@ def piyasa_verilerini_cek():
             "vs_currencies": "usd",
             "include_24hr_change": "true",
         },
+        headers=basliklar,
     )
-
-    # 1b) Global piyasa: toplam market cap, hacim, dominans
-    glob = _get_json("https://api.coingecko.com/api/v3/global").get("data", {})
-    toplam_mcap = glob.get("total_market_cap", {}).get("usd")
-    toplam_hacim = glob.get("total_volume", {}).get("usd")
+    glob = _get_json("https://api.coingecko.com/api/v3/global",
+                     headers=basliklar).get("data", {})
     dom = glob.get("market_cap_percentage", {})
-    btc_dom = dom.get("btc")
-    eth_dom = dom.get("eth")
+
+    coins = {}
+    for cg_id, sembol in COINS.items():
+        d = fiyatlar.get(cg_id, {})
+        coins[sembol] = {"priceUsd": d.get("usd"), "change24h": d.get("usd_24h_change")}
+    return coins, {
+        "totalMarketCapUsd": glob.get("total_market_cap", {}).get("usd"),
+        "volume24hUsd": glob.get("total_volume", {}).get("usd"),
+        "btcDominance": dom.get("btc"),
+        "ethDominance": dom.get("eth"),
+    }, "CoinGecko"
+
+
+def _binance_ticker_cek():
+    """Binance 24s ticker'ını önce ana hosttan, olmazsa yansıdan çeker."""
+    semboller = json.dumps(list(BINANCE_CIFTLERI.values()), separators=(",", ":"))
+    son_hata = None
+    for i, host in enumerate(BINANCE_HOSTLARI):
+        try:
+            # Ana host coğrafi engelde (451/403) tekrar denemeye değmez; yansı tam dener.
+            return _get_json(f"{host}/api/v3/ticker/24hr",
+                             params={"symbols": semboller},
+                             deneme_sayisi=1 if i == 0 else MAX_RETRY)
+        except Exception as e:                       # noqa: BLE001
+            son_hata = e
+    raise RuntimeError(f"Binance ticker alınamadı: {son_hata}")
+
+
+def _yedek_piyasa_cek():
+    """CoinGecko düşünce aynı alanları anahtarsız kaynaklardan doldurur.
+
+    Fiyat + 24s % değişim → Binance USDT çiftleri (USDT ≈ USD).
+    Toplam piyasa değeri, 24s hacim, BTC dominansı → CoinPaprika /global.
+    ETH dominansı → CoinPaprika ETH piyasa değeri / toplam piyasa değeri."""
+    ticker = _binance_ticker_cek()
+    cift_veri = {t.get("symbol"): t for t in ticker if isinstance(t, dict)}
+    coins = {}
+    for cg_id, sembol in COINS.items():
+        t = cift_veri.get(BINANCE_CIFTLERI[cg_id], {})
+        coins[sembol] = {"priceUsd": _sayi(t.get("lastPrice")),
+                         "change24h": _sayi(t.get("priceChangePercent"))}
+    if all(c["priceUsd"] is None for c in coins.values()):
+        raise RuntimeError("Binance yanıtında hiçbir coin fiyatı yok")
+
+    glob = _get_json(f"{COINPAPRIKA}/global")
+    toplam_mcap = _sayi(glob.get("market_cap_usd"))
+    eth_dom = None
+    try:
+        eth = _get_json(f"{COINPAPRIKA}/tickers/eth-ethereum")
+        eth_mcap = _sayi(eth.get("quotes", {}).get("USD", {}).get("market_cap"))
+        if eth_mcap and toplam_mcap:
+            eth_dom = eth_mcap / toplam_mcap * 100
+    except Exception as e:                           # noqa: BLE001 (ETH dom. opsiyonel)
+        print(f"[uyarı] CoinPaprika ETH verisi alınamadı, ETH dominansı boş: {e}",
+              file=sys.stderr)
+
+    return coins, {
+        "totalMarketCapUsd": toplam_mcap,
+        "volume24hUsd": _sayi(glob.get("volume_24h_usd")),
+        "btcDominance": _sayi(glob.get("bitcoin_dominance_percentage")),
+        "ethDominance": eth_dom,
+    }, "Binance (USDT≈USD) + CoinPaprika"
+
+
+def piyasa_verilerini_cek():
+    """
+    CoinGecko (düşerse Binance + CoinPaprika) + Alternative.me'den ham sayıları çeker ve LLM'e verilecek
+    okunabilir bir metin bloğu üretir. LLM bu sayıları asla değiştirmez.
+    """
+    # 1a+1b) Fiyatlar + global piyasa: önce CoinGecko, düşerse yedek kaynaklar.
+    try:
+        coins, glob, veri_kaynagi = _coingecko_cek()
+    except Exception as cg_hata:                     # noqa: BLE001 (403/429/5xx/zaman aşımı)
+        print(f"[uyarı] CoinGecko başarısız, yedek kaynağa geçiliyor "
+              f"(Binance + CoinPaprika): {cg_hata}", file=sys.stderr)
+        try:
+            coins, glob, veri_kaynagi = _yedek_piyasa_cek()
+        except Exception as yedek_hata:              # noqa: BLE001
+            print(f"[HATA] Piyasa verisi alınamadı — CoinGecko: {cg_hata} | "
+                  f"yedek (Binance + CoinPaprika): {yedek_hata}", file=sys.stderr)
+            raise RuntimeError(
+                f"Piyasa verisi alınamadı; CoinGecko ve yedek kaynaklar başarısız "
+                f"(CoinGecko: {cg_hata}; yedek: {yedek_hata})"
+            ) from yedek_hata
+        print(f"[bilgi] Piyasa verisi yedek kaynaktan alındı: {veri_kaynagi}",
+              file=sys.stderr)
+    toplam_mcap = glob.get("totalMarketCapUsd")
+    toplam_hacim = glob.get("volume24hUsd")
+    btc_dom = glob.get("btcDominance")
+    eth_dom = glob.get("ethDominance")
 
     # 1c) Fear & Greed endeksi (bugün, dün, 7 gün önce)
     fng_veri = _get_json("https://api.alternative.me/fng/", params={"limit": 8}).get("data", [])
@@ -217,10 +331,10 @@ def piyasa_verilerini_cek():
 
     # --- LLM'e verilecek okunabilir metin bloğunu kur ---
     satirlar = ["Coin fiyatları (USD, 24s değişim):"]
-    for cg_id, sembol in COINS.items():
-        d = fiyatlar.get(cg_id, {})
-        fiyat = d.get("usd")
-        degisim = d.get("usd_24h_change")
+    for sembol in COINS.values():
+        d = coins.get(sembol, {})
+        fiyat = d.get("priceUsd")
+        degisim = d.get("change24h")
         if fiyat is None:
             satirlar.append(f"  {sembol}: doğrulanamadı")
         else:
@@ -251,6 +365,7 @@ def piyasa_verilerini_cek():
     )
     satirlar.append("")
     satirlar.append(f"Fear & Greed — bugün: {fng_bugun} | dün: {fng_dun} | 7 gün önce: {fng_7gun}")
+    satirlar.append(f"Veri kaynağı: {veri_kaynagi} + Alternative.me")
 
     # --- Kanonik rapordaki "market" bloğu ---
     # Bu blok doğrudan JSON'a gider; modelin eline hiç geçmez. Web sitesi,
@@ -264,9 +379,9 @@ def piyasa_verilerini_cek():
         except (TypeError, ValueError):
             return None
 
-    def _coin(cg_id):
-        cd = fiyatlar.get(cg_id, {})
-        return {"priceUsd": cd.get("usd"), "change24h": cd.get("usd_24h_change")}
+    def _coin(sembol):
+        cd = coins.get(sembol, {})
+        return {"priceUsd": cd.get("priceUsd"), "change24h": cd.get("change24h")}
 
     _f0 = fng_veri[0] if fng_veri else {}
     _f1 = fng_veri[1] if len(fng_veri) > 1 else {}
@@ -274,11 +389,13 @@ def piyasa_verilerini_cek():
 
     market = {
         "asOf": sema.simdi_iso(datetime.now(IST)),
-        "coins": {sembol: _coin(cg_id) for cg_id, sembol in COINS.items()},
+        "coins": {sembol: _coin(sembol) for sembol in COINS.values()},
         "btcDominance": btc_dom,
         "ethDominance": eth_dom,
         "totalMarketCapUsd": toplam_mcap,
         "volume24hUsd": toplam_hacim,
+        # Sayıların gerçek kaynağı (yedek devreye girdiyse site/rapor bunu göstersin).
+        "dataSource": f"{veri_kaynagi} + Alternative.me",
         "fearGreed": {
             "value": _iint(_f0.get("value")),
             "label": _ETIKET_TR.get(_f0.get("value_classification"),

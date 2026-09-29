@@ -2,7 +2,9 @@
 """report/sema/render için birim testleri (ağ veya secret GEREKTİRMEZ)."""
 import copy
 import json
+import os
 import unittest
+from unittest import mock
 
 import eposta
 import render
@@ -379,6 +381,122 @@ class RaporYollari(unittest.TestCase):
 
     def test_sema_json_serilestirilebilir(self):
         json.dumps(sema.RAPOR_SEMASI)
+
+
+# --------------------------------------------------------------------------- #
+# Piyasa verisi: CoinGecko → yedek (Binance + CoinPaprika) — ağ sahte istemcide
+# --------------------------------------------------------------------------- #
+
+class _Yanit:
+    def __init__(self, durum, veri=None):
+        self.status_code, self._veri = durum, veri
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise report.requests.HTTPError(f"{self.status_code} Client Error")
+
+    def json(self):
+        return self._veri
+
+
+_CG_FIYAT = {cid: {"usd": 1000.0 + i, "usd_24h_change": 1.5}
+             for i, cid in enumerate(report.COINS)}
+_CG_GLOBAL = {"data": {"total_market_cap": {"usd": 3.0e12}, "total_volume": {"usd": 1.5e11},
+                       "market_cap_percentage": {"btc": 56.1, "eth": 11.2}}}
+_BINANCE = [{"symbol": c, "lastPrice": "83212.01", "priceChangePercent": "-0.756"}
+            for c in report.BINANCE_CIFTLERI.values()]
+_PAPRIKA_GLOBAL = {"market_cap_usd": 2989466734336, "volume_24h_usd": 149390535874,
+                   "bitcoin_dominance_percentage": 55.93}
+_PAPRIKA_ETH = {"quotes": {"USD": {"market_cap": 327445870822}}}
+_FNG = {"data": [{"value": "40", "value_classification": "Fear"}] * 8}
+
+
+class _SahteIstemci:
+    """URL'e göre yanıt verir; `engelli` içindeki alt dizgeyi içeren URL'ler hata döner."""
+
+    def __init__(self, engelli=(), durum=403):
+        self.engelli, self.durum, self.cagrilar = engelli, durum, []
+
+    def __call__(self, url, params=None, timeout=None, headers=None):
+        self.cagrilar.append((url, params, headers))
+        if any(e in url for e in self.engelli):
+            return _Yanit(self.durum)
+        if "coingecko.com/api/v3/simple/price" in url:
+            return _Yanit(200, _CG_FIYAT)
+        if "coingecko.com/api/v3/global" in url:
+            return _Yanit(200, _CG_GLOBAL)
+        if "/api/v3/ticker/24hr" in url:
+            return _Yanit(200, _BINANCE)
+        if url.endswith("coinpaprika.com/v1/global"):
+            return _Yanit(200, _PAPRIKA_GLOBAL)
+        if "coinpaprika.com/v1/tickers/eth-ethereum" in url:
+            return _Yanit(200, _PAPRIKA_ETH)
+        if "alternative.me/fng" in url:
+            return _Yanit(200, _FNG)
+        return _Yanit(404)
+
+
+def _market_ile_rapor(market):
+    return sema.rapor_kur(market=market, llm_ciktisi=copy.deepcopy(LLM_CIKTISI),
+                          tarih_id="2026-08-19", baslik="19 Ağustos 2026, Çarşamba",
+                          simdi_iso="2026-08-19T08:00:00+03:00")
+
+
+@mock.patch.object(report.time, "sleep", lambda *_: None)
+class PiyasaYedek(unittest.TestCase):
+    def _cek(self, istemci, ortam=None):
+        with mock.patch.object(report.requests, "get", istemci), \
+                mock.patch.dict(os.environ, ortam or {}, clear=False):
+            if not ortam:
+                os.environ.pop("COINGECKO_DEMO_API_KEY", None)
+            return report.piyasa_verilerini_cek()
+
+    def test_coingecko_calisinca_kaynak_coingecko(self):
+        metin, market = self._cek(_SahteIstemci())
+        self.assertEqual(market["dataSource"], "CoinGecko + Alternative.me")
+        self.assertEqual(market["coins"]["BTC"]["priceUsd"], 1000.0)
+        self.assertEqual(market["ethDominance"], 11.2)
+        sema.dogrula(_market_ile_rapor(market))
+
+    def test_coingecko_403_yedek_kullanilir_ve_sema_gecer(self):
+        istemci = _SahteIstemci(engelli=("coingecko.com",))
+        metin, market = self._cek(istemci)
+        self.assertIn("Binance", market["dataSource"])
+        self.assertIn("CoinPaprika", market["dataSource"])
+        self.assertIn("Binance", metin)
+        self.assertAlmostEqual(market["coins"]["BTC"]["priceUsd"], 83212.01)
+        self.assertAlmostEqual(market["coins"]["XRP"]["change24h"], -0.756)
+        self.assertEqual(market["totalMarketCapUsd"], 2989466734336)
+        self.assertEqual(market["btcDominance"], 55.93)
+        self.assertAlmostEqual(market["ethDominance"], 10.953, places=2)
+        self.assertEqual(market["fearGreed"]["value"], 40)
+        sema.dogrula(_market_ile_rapor(market))
+
+    def test_binance_ana_host_engelliyse_yansi_kullanilir(self):
+        istemci = _SahteIstemci(engelli=("coingecko.com", "api.binance.com"), durum=451)
+        _, market = self._cek(istemci)
+        self.assertAlmostEqual(market["coins"]["ETH"]["priceUsd"], 83212.01)
+        self.assertTrue(any("data-api.binance.vision" in u for u, _, _ in istemci.cagrilar))
+
+    def test_ikisi_de_duserse_hata(self):
+        istemci = _SahteIstemci(engelli=("coingecko.com", "binance", "coinpaprika.com"))
+        with self.assertRaises(RuntimeError) as bag:
+            self._cek(istemci)
+        self.assertIn("yedek", str(bag.exception))
+
+    def test_demo_anahtar_basligi(self):
+        istemci = _SahteIstemci()
+        self._cek(istemci, {"COINGECKO_DEMO_API_KEY": "CG-test"})
+        cg = [h for u, _, h in istemci.cagrilar if "coingecko.com" in u]
+        self.assertEqual(len(cg), 2)
+        for h in cg:
+            self.assertEqual(h.get("x-cg-demo-api-key"), "CG-test")
+
+    def test_anahtar_yoksa_baslik_yok(self):
+        istemci = _SahteIstemci()
+        self._cek(istemci)
+        for u, _, h in istemci.cagrilar:
+            self.assertNotIn("x-cg-demo-api-key", h)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ Telegram mesajı, web sitesi sayfası, paylaşım kartı ve sesli özet — heps
 o JSON'dan türetilir. Böylece dört kanal arasında tutarsızlık olamaz.
 
 İş bölümü nettir ve bilerek katıdır:
-  * SAYISAL PİYASA VERİSİ  → yalnızca CoinGecko/Alternative.me'den, Python
+  * SAYISAL PİYASA VERİSİ  → yalnızca CoinGecko (yedek: Binance/CoinPaprika)/Alternative.me'den, Python
     tarafından doldurulur. LLM bu alanlara hiç dokunmaz (uydurma riski sıfır).
   * METİN/ANALİZ           → LLM üretir, ama her gündem maddesi kaynak URL'i
     zorunludur; şema kaynaksız maddeyi geçirmez.
@@ -228,6 +228,9 @@ RAPOR_SEMASI = {
                 "ethDominance": _SAYI_YA_DA_BOS,
                 "totalMarketCapUsd": _SAYI_YA_DA_BOS,
                 "volume24hUsd": _SAYI_YA_DA_BOS,
+                # Sayıların gerçek kaynağı, ör. "CoinGecko + Alternative.me" ya da
+                # CoinGecko düşünce "Binance (USDT≈USD) + CoinPaprika + Alternative.me".
+                "dataSource": {"type": ["string", "null"], "maxLength": 120},
                 "fearGreed": {
                     "type": "object",
                     "required": ["value", "label"],

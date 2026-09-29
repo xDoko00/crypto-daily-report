@@ -132,6 +132,13 @@
             "null"
           ]
         },
+        "dataSource": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
         "fearGreed": {
           "type": "object",
           "required": [

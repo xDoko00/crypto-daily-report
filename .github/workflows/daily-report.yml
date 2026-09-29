@@ -76,6 +76,7 @@ jobs:
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:        ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          COINGECKO_DEMO_API_KEY: ${{ secrets.COINGECKO_DEMO_API_KEY }}
           # E-posta bülteni. Tanımlı değilse rapor yine gider, e-posta atlanır.
           BUTTONDOWN_API_KEY:      ${{ secrets.BUTTONDOWN_API_KEY }}
           # Klon sesli özet (ElevenLabs). Hata olursa ses atlanır, rapor yine gider.
