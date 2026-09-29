@@ -784,8 +784,14 @@ def main():
         # Sesli özeti bir kez üret (best-effort — hata olsa rapor yine gider)
         ogg = None
         try:
-            import ses
-            ogg = ses.ses_uret_metin(render.seslendirme_metni(rapor))
+            import ses_klon
+            if ses_klon.aktif_mi():
+                # Klon ses (ElevenLabs) — VARSAYILAN KAPALI (SESLI_OZET_ELEVENLABS=1).
+                # Hata olursa None döner, sebebi loglanır; ses adımı atlanır.
+                ogg = ses_klon.ozet_ogg(rapor)
+            else:
+                import ses
+                ogg = ses.ses_uret_metin(render.seslendirme_metni(rapor))
         except Exception as ses_hata:                # noqa: BLE001
             print(f"[uyarı] Sesli özet oluşturulamadı: {ses_hata}", file=sys.stderr)
 

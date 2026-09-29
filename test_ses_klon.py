@@ -1,0 +1,247 @@
+# -*- coding: utf-8 -*-
+"""ses_klon (ElevenLabs klon sesli özet) birim testleri — ağ/anahtar GEREKTİRMEZ."""
+import copy
+import os
+import tempfile
+import unittest
+
+import ses_klon as sk
+
+RAPOR = {
+    "id": "2026-09-29",
+    "title": "29 Eylül 2026, Salı",
+    "market": {
+        "coins": {
+            "BTC": {"priceUsd": 83589, "change24h": 0.458},
+            "ETH": {"priceUsd": 2681.71, "change24h": 1.0198},
+        },
+        "fearGreed": {"value": 73, "label": "Açgözlülük", "previousValue": 74},
+    },
+    "brief": {
+        "mood": "Temkinli",
+        "why": ("Fiyatlar dar bir bantta yatay seyrediyor; piyasa Bitget'teki 387,5 milyon "
+                "dolarlık hackin ardından THORChain'in saldırgana ait fonları engellemeyi "
+                "reddetmesinin güven üzerindeki etkisini ve yarınki ABD PCE enflasyon verisini bekliyor."),
+        "criticalEvents": [
+            {"timeTr": "11:00", "title": "Bitget ETH çekimleri açılışı"},
+            {"timeTr": "17:00", "title": "ABD JOLTS verisi"},
+            {"timeTr": None, "title": "HYPE token kilidi açılışı"},
+            {"timeTr": "21:00", "title": "Dördüncü olay"},
+        ],
+        "mainRisk": ("THORChain üzerinden nakde çevrilen çalıntı fonlar ve HYPE unlock kaynaklı "
+                     "olası satış baskısı kısa vadeli oynaklığı artırabilir."),
+    },
+    "sections": {"today": []},
+}
+
+
+def rapor():
+    return copy.deepcopy(RAPOR)
+
+
+class Bicimler(unittest.TestCase):
+    def test_usd_konusma(self):
+        self.assertEqual(sk.usd_konusma(83589), "83 bin 600")
+        self.assertEqual(sk.usd_konusma(2681.71), "2 bin 680")
+        self.assertEqual(sk.usd_konusma(105432), "105 bin")
+        self.assertEqual(sk.usd_konusma(1234), "bin 230")
+        self.assertEqual(sk.usd_konusma(387.5e6), "387 milyon")
+        self.assertEqual(sk.usd_konusma(2.87e12), "2870 milyar")
+        self.assertEqual(sk.usd_konusma(118.51), "119")
+
+    def test_yuzde_konusma(self):
+        self.assertEqual(sk.yuzde_konusma(1.0198), "bir")
+        self.assertEqual(sk.yuzde_konusma(-2.345), "2,3")
+        self.assertEqual(sk.yuzde_konusma(12.04), "12")
+
+    def test_saat_konusma(self):
+        self.assertEqual(sk.saat_konusma("11:00"), "saat on birde")
+        self.assertEqual(sk.saat_konusma("17:00"), "saat on yedide")
+        self.assertEqual(sk.saat_konusma("15:30"), "saat on beş otuzda")
+        self.assertEqual(sk.saat_konusma("14:00"), "saat on dörtte")
+        self.assertEqual(sk.saat_konusma("10:00"), "saat onda")
+        self.assertEqual(sk.saat_konusma("09:05"), "saat dokuz sıfır beşte")
+        self.assertEqual(sk.saat_konusma("20:40"), "saat yirmi kırkta")
+        self.assertIsNone(sk.saat_konusma("25:00"))
+        self.assertIsNone(sk.saat_konusma(""))
+
+
+class Telaffuz(unittest.TestCase):
+    def test_borsa_kesmesi(self):
+        self.assertEqual(sk.telaffuz_duzelt("Bitget'teki hack"), "Bitget borsasındaki hack")
+        self.assertEqual(sk.telaffuz_duzelt("Binance'ten çıkış"), "Binance borsasından çıkış")
+        self.assertEqual(sk.telaffuz_duzelt("Coinbase'in hissesi"), "Coinbase borsasının hissesi")
+
+    def test_ag_kesmesi(self):
+        self.assertEqual(sk.telaffuz_duzelt("THORChain'in kararı"), "THORChain ağının kararı")
+
+    def test_bilinmeyen_ad_ve_kisaltma(self):
+        self.assertEqual(sk.telaffuz_duzelt("Bitcoin'in"), "Bitcoinin")
+        self.assertEqual(sk.telaffuz_duzelt("ABD'nin verisi"), "ABD'nin verisi")
+
+    def test_sayilar_ve_yuzde(self):
+        self.assertEqual(sk.telaffuz_duzelt("387,5 milyon dolarlık"), "387 milyon dolarlık")
+        self.assertEqual(sk.telaffuz_duzelt("$387,5 milyon"), "387 milyon dolar")
+        self.assertEqual(sk.telaffuz_duzelt("1,5 milyar"), "1,5 milyar")
+        self.assertEqual(sk.telaffuz_duzelt("$83,600"), "83 bin 600 dolar")
+        self.assertEqual(sk.telaffuz_duzelt("83.600 dolar"), "83 bin 600 dolar")
+        self.assertEqual(sk.telaffuz_duzelt("%2,5 arttı"), "yüzde 2,5 arttı")
+        self.assertEqual(sk.telaffuz_duzelt("2.5% arttı"), "yüzde 2,5 arttı")
+
+    def test_saat_metin_icinde(self):
+        self.assertEqual(sk.telaffuz_duzelt("TÜFE saat 15:30'da (TSİ)."), "TÜFE saat on beş otuzda.")
+        self.assertEqual(sk.telaffuz_duzelt("11:00 açılış"), "saat on birde açılış")
+
+    def test_btc_eth_acilir_html_emoji_temizlenir(self):
+        self.assertEqual(sk.telaffuz_duzelt("<b>BTC</b> ⚡ ve ETH"), "Bitcoin ve Ethereum")
+
+
+class KonusmaMetni(unittest.TestCase):
+    def test_sablon_sirasi_ve_icerik(self):
+        m = sk.konusma_metni(rapor())
+        self.assertTrue(m.startswith("[cheerful] Günaydın, 29 Eylül Salı."))
+        self.assertIn("[calm] Piyasanın havası bugün temkinli.", m)
+        self.assertIn("Bitcoin 83 bin 600 dolar civarında, dar bir bantta yatay gidiyor.", m)
+        self.assertIn("Ethereum yüzde bir artıyla 2 bin 680 dolarda.", m)
+        self.assertIn("[curious] Neden bu sessizlik?", m)
+        self.assertIn("Bitget borsasındaki 387 milyon dolarlık", m)
+        self.assertIn("saat on birde", m)
+        self.assertIn("[serious] Ana risk şu: [short pause]", m)
+        self.assertIn("Korku ve açgözlülük endeksi 73, yani piyasa hâlâ açgözlü.", m)
+        self.assertIn("Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir.", m)
+        sira = [m.index(x) for x in ("Günaydın", "havası", "Bitcoin 83", "Ethereum yüzde",
+                                     "Neden", "takip edeceklerimiz", "Ana risk", "Korku", "Bilgilendirme")]
+        self.assertEqual(sira, sorted(sira))
+
+    def test_kapanis_bay_bay(self):
+        self.assertTrue(sk.konusma_metni(rapor()).endswith("[warm] Bay bay."))
+
+    def test_en_fazla_uc_takip(self):
+        m = sk.konusma_metni(rapor(), maks=5000)
+        self.assertNotIn("Dördüncü olay", m)
+        self.assertIn("ABD JOLTS verisi ve HYPE token kilidi açılışı.", m)
+
+    def test_fiyat_tekrari_neden_kismindan_atilir(self):
+        self.assertNotIn("Fiyatlar dar bir bantta", sk.konusma_metni(rapor()))
+
+    def test_dusus_ve_yukselis_ifadesi(self):
+        r = rapor()
+        r["market"]["coins"]["BTC"]["change24h"] = -2.34
+        m = sk.konusma_metni(r)
+        self.assertIn("Bitcoin yüzde 2,3 düşüşle 83 bin 600 dolarda.", m)
+        self.assertIn("Peki bu düşüş neden?", m)
+
+    def test_uzunluk_siniri_kisaltir_kesmez(self):
+        r = rapor()
+        r["brief"]["why"] = " ".join(["Uzun bir gerekçe cümlesi burada yer alıyor ve devam ediyor."] * 12)
+        r["brief"]["mainRisk"] = "Risk cümlesi çok uzun. " * 20
+        r["brief"]["criticalEvents"] = [{"timeTr": "12:00", "title": "Çok uzun olay başlığı " * 8}] * 3
+        m = sk.konusma_metni(r)
+        self.assertLessEqual(len(m), sk.MAKS_KARAKTER)
+        self.assertTrue(m.endswith("[warm] Bay bay."))
+        self.assertIn("Bitcoin 83 bin 600", m)
+
+    def test_bugunku_rapor_sinirda(self):
+        self.assertLessEqual(len(sk.konusma_metni(rapor())), sk.MAKS_KARAKTER)
+
+    def test_eksik_fiyat_ve_fng(self):
+        r = rapor()
+        r["market"]["coins"]["BTC"] = {"priceUsd": None, "change24h": None}
+        r["market"]["fearGreed"] = None
+        m = sk.konusma_metni(r)
+        self.assertNotIn("Bitcoin 83", m)
+        self.assertNotIn("Korku ve", m)
+        self.assertTrue(m.endswith("[warm] Bay bay."))
+
+
+class SahteYanit:
+    def __init__(self, kod, icerik=b"", metin="", basliklar=None):
+        self.status_code, self.content, self.text = kod, icerik, metin
+        self.headers = basliklar or {}
+
+
+class SahteHttp:
+    def __init__(self, yanitlar):
+        self.yanitlar, self.cagrilar = list(yanitlar), []
+
+    def post(self, url, **kw):
+        self.cagrilar.append((url, kw))
+        y = self.yanitlar.pop(0)
+        if isinstance(y, Exception):
+            raise y
+        return y
+
+
+class ApiKatmani(unittest.TestCase):
+    def test_istek_bicimi(self):
+        http = SahteHttp([SahteYanit(200, b"MP3", basliklar={"character-cost": "812"})])
+        ses, maliyet = sk.ElevenLabsIstemci("gizli-anahtar", http=http).seslendir("Merhaba dünya")
+        self.assertEqual((ses, maliyet), (b"MP3", 812))
+        url, kw = http.cagrilar[0]
+        self.assertTrue(url.endswith("/v1/text-to-speech/l4Ygbni4CmTFHmTYdyhD"))
+        self.assertEqual(kw["params"], {"output_format": "mp3_44100_128"})
+        self.assertEqual(kw["json"], {"text": "Merhaba dünya", "model_id": "eleven_v4",
+                                      "language_code": "tr"})
+        self.assertEqual(kw["headers"]["xi-api-key"], "gizli-anahtar")
+
+    def test_4xx_tekrar_denemez_anahtar_sizmaz(self):
+        http = SahteHttp([SahteYanit(401, metin="quota_exceeded")])
+        ist = sk.ElevenLabsIstemci("gizli-anahtar", http=http)
+        with self.assertRaises(sk.SesHatasi) as h:
+            ist.seslendir("x")
+        self.assertEqual(len(http.cagrilar), 1)
+        self.assertNotIn("gizli-anahtar", str(h.exception))
+        self.assertNotIn("gizli-anahtar", repr(ist))
+
+    def test_ag_hatasinda_tekrar_dener(self):
+        http = SahteHttp([ConnectionError("x"), SahteYanit(200, b"OK")])
+        ses, maliyet = sk.ElevenLabsIstemci("k", http=http).seslendir("abc")
+        self.assertEqual((ses, maliyet), (b"OK", 3))
+
+    def test_anahtar_yoksa_hata(self):
+        with self.assertRaises(sk.SesHatasi):
+            sk.ElevenLabsIstemci("")
+
+    def test_anahtar_dosyadan(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".env", delete=False) as f:
+            f.write("# yorum\nexport ELEVENLABS_API_KEY=\"dosyadaki\"\n")
+        try:
+            self.assertEqual(sk.anahtar_al({}, f.name), "dosyadaki")
+            self.assertEqual(sk.anahtar_al({"ELEVENLABS_API_KEY": "ortam"}, f.name), "ortam")
+            self.assertEqual(sk.anahtar_al({}, "/yok/boyle/dosya"), "")
+        finally:
+            os.unlink(f.name)
+
+
+class AkisDurmaz(unittest.TestCase):
+    def test_bayrak_varsayilan_kapali(self):
+        self.assertFalse(sk.aktif_mi({}))
+        self.assertFalse(sk.aktif_mi({"SESLI_OZET_ELEVENLABS": "0"}))
+        self.assertTrue(sk.aktif_mi({"SESLI_OZET_ELEVENLABS": "1"}))
+
+    def test_api_hatasi_none_doner_ve_loglar(self):
+        loglar = []
+        http = SahteHttp([SahteYanit(429, metin="quota"), SahteYanit(500, metin="err")])
+        ist = sk.ElevenLabsIstemci("gizli", http=http)
+        self.assertIsNone(sk.ozet_ogg(rapor(), istemci=ist, log=loglar.append))
+        self.assertIn("atlandı", loglar[0])
+        self.assertNotIn("gizli", loglar[0])
+
+    def test_donusum_hatasi_none(self):
+        http = SahteHttp([SahteYanit(200, b"MP3")])
+
+        def bozuk(_):
+            raise OSError("ffmpeg yok")
+        self.assertIsNone(sk.ozet_ogg(rapor(), istemci=sk.ElevenLabsIstemci("k", http=http),
+                                      donustur=bozuk, log=lambda m: None))
+
+    def test_basarili_akis(self):
+        http = SahteHttp([SahteYanit(200, b"MP3")])
+        ogg = sk.ozet_ogg(rapor(), istemci=sk.ElevenLabsIstemci("k", http=http),
+                          donustur=lambda b: b"OGG:" + b, log=lambda m: None)
+        self.assertEqual(ogg, b"OGG:MP3")
+        self.assertTrue(http.cagrilar[0][1]["json"]["text"].endswith("[warm] Bay bay."))
+
+
+if __name__ == "__main__":
+    unittest.main()

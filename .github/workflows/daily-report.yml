@@ -78,6 +78,9 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           # E-posta bülteni. Tanımlı değilse rapor yine gider, e-posta atlanır.
           BUTTONDOWN_API_KEY:      ${{ secrets.BUTTONDOWN_API_KEY }}
+          # Klon sesli özet (ElevenLabs). Hata olursa ses atlanır, rapor yine gider.
+          ELEVENLABS_API_KEY:      ${{ secrets.ELEVENLABS_API_KEY }}
+          SESLI_OZET_ELEVENLABS:   "1"
           # Zamanlanmış çalışmada sabit teslim 08:00 TSİ; manuel çalışmada kullanıcı
           # saat girdiyse o, girmediyse boş (hemen gönderir).
           DELIVER_AT_TR: ${{ github.event_name == 'schedule' && '08:00' || inputs.deliver_at }}
