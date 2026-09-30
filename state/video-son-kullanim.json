@@ -1,0 +1,46 @@
+{
+ "kanca-sabah": {
+  "gun": "2026-09-30",
+  "onceki": null,
+  "secilen": [
+   "sabah-sehir/sabah-sehir-01.mp4"
+  ]
+ },
+ "piyasa-dusus": {
+  "gun": "2026-09-30",
+  "onceki": null,
+  "secilen": [
+   "piyasa-dusus/piyasa-dusus-01.mp4",
+   "piyasa-dusus/piyasa-dusus-02.mp4",
+   "piyasa-dusus/piyasa-dusus-03.mp4"
+  ]
+ },
+ "hack-guvenlik": {
+  "gun": "2026-09-30",
+  "onceki": null,
+  "secilen": [
+   "hack-guvenlik/hack-guvenlik-01.mp4"
+  ]
+ },
+ "borsa-islem-masasi": {
+  "gun": "2026-09-30",
+  "onceki": null,
+  "secilen": [
+   "borsa-islem-masasi/borsa-islem-masasi-01.mp4"
+  ]
+ },
+ "takvim-veri": {
+  "gun": "2026-09-30",
+  "onceki": null,
+  "secilen": [
+   "takvim-veri/takvim-veri-01.mp4"
+  ]
+ },
+ "kapanis": {
+  "gun": "2026-09-30",
+  "onceki": null,
+  "secilen": [
+   "kapanis/kapanis-01.mp4"
+  ]
+ }
+}
