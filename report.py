@@ -901,12 +901,13 @@ def main():
 
         # Sesli özeti bir kez üret (best-effort — hata olsa rapor yine gider)
         ogg = None
+        ham_mp3 = None   # klon sesin ham MP3'ü: web sürümü (reports/ses/) bundan
         try:
             import ses_klon
             if ses_klon.aktif_mi():
                 # Klon ses (ElevenLabs) — VARSAYILAN KAPALI (SESLI_OZET_ELEVENLABS=1).
                 # Hata olursa None döner, sebebi loglanır; ses adımı atlanır.
-                ogg = ses_klon.ozet_ogg(rapor)
+                ogg, ham_mp3 = ses_klon.ozet_sesleri(rapor)
             else:
                 import ses
                 ogg = ses.ses_uret_metin(render.seslendirme_metni(rapor))
@@ -934,6 +935,15 @@ def main():
                 # Web çıktısı yazılamasa bile Telegram gönderimi durmamalı
                 # (iki hedef birbirinden bağımsız).
                 print(f"[uyarı] Rapor dosyaya yazılamadı: {yaz_hata}", file=sys.stderr)
+
+            # Web sesli özeti (site /bugun/ oynatıcısı). Yalnız klon ses
+            # üretildiyse; hata/boyut aşımında dosya yazılmaz, akış sürer.
+            if ham_mp3:
+                try:
+                    import ses_klon
+                    ses_klon.web_ses_yaz(rapor["id"], ham_mp3)
+                except Exception as web_hata:         # noqa: BLE001
+                    print(f"[uyarı] Web sesli özet yazılamadı: {web_hata}", file=sys.stderr)
 
         for ad, hid in hedefler:
             # 1) İLK MESAJ = kart + brief (görsel ilk mesaja bağlı). Kart yoksa brief metin.

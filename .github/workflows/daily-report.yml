@@ -102,6 +102,9 @@ jobs:
       # altındaki kopya tarihli arşivdir. state/video-son-kullanim.json b-roll
       # döndürme durumudur. PNG/OGG/MP4 bilerek commit'lenmez —
       # depo şişmesin diye ikisi de yalnız Telegram'a gider (brief §6.4).
+      # TEK İSTİSNA: reports/ses/ altındaki web sesli özeti (mono 64 kbps MP3,
+      # ≤1 MB, son 14 gün; ses_klon.web_ses_yaz). Site /bugun/ oynatıcısı onu
+      # okuyor. `git add reports` 14 günden eski dosyaların silinmesini de işler.
       - name: Raporu ve takip durumunu kaydet
         if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |

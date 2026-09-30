@@ -2,6 +2,8 @@
 """ses_klon (ElevenLabs klon sesli özet) birim testleri — ağ/anahtar GEREKTİRMEZ."""
 import copy
 import os
+import shutil
+import subprocess
 import tempfile
 import unittest
 
@@ -241,6 +243,85 @@ class AkisDurmaz(unittest.TestCase):
                           donustur=lambda b: b"OGG:" + b, log=lambda m: None)
         self.assertEqual(ogg, b"OGG:MP3")
         self.assertTrue(http.cagrilar[0][1]["json"]["text"].endswith("[warm] Bay bay."))
+
+
+class WebSes(unittest.TestCase):
+    """reports/ses/ web MP3'ü: yazılır, eskisi silinir, hata akışı durdurmaz."""
+
+    def setUp(self):
+        self._d = tempfile.TemporaryDirectory()
+        self.dizin = os.path.join(self._d.name, "ses")
+
+    def tearDown(self):
+        self._d.cleanup()
+
+    def dosyalar(self):
+        return sorted(os.listdir(self.dizin)) if os.path.isdir(self.dizin) else []
+
+    def test_ozet_sesleri_ogg_ve_ham_mp3_doner(self):
+        http = SahteHttp([SahteYanit(200, b"MP3")])
+        ogg, mp3 = sk.ozet_sesleri(rapor(), istemci=sk.ElevenLabsIstemci("k", http=http),
+                                   donustur=lambda b: b"OGG:" + b, log=lambda m: None)
+        self.assertEqual((ogg, mp3), (b"OGG:MP3", b"MP3"))
+        self.assertEqual(len(http.cagrilar), 1)          # tek API çağrısı
+
+    def test_ozet_sesleri_hata_none_none(self):
+        http = SahteHttp([SahteYanit(401, metin="x")])
+        self.assertEqual(sk.ozet_sesleri(rapor(), istemci=sk.ElevenLabsIstemci("k", http=http),
+                                         log=lambda m: None), (None, None))
+
+    def test_yazar_latest_ve_14_gunden_eskiyi_siler(self):
+        os.makedirs(self.dizin)
+        for g in ("2026-09-16", "2026-09-17", "2026-09-29"):
+            with open(os.path.join(self.dizin, f"{g}.mp3"), "wb") as f:
+                f.write(b"eski")
+        with open(os.path.join(self.dizin, "notlar.txt"), "w") as f:
+            f.write("dokunma")
+        yol = sk.web_ses_yaz("2026-09-30", b"HAM", dizin=self.dizin,
+                             donustur=lambda b: b"WEB:" + b, log=lambda m: None)
+        self.assertEqual(yol, os.path.join(self.dizin, "2026-09-30.mp3"))
+        # 30 Eylül dahil son 14 gün: 17 Eylül kalır, 16 Eylül silinir.
+        self.assertEqual(self.dosyalar(), ["2026-09-17.mp3", "2026-09-29.mp3",
+                                           "2026-09-30.mp3", "latest.mp3", "notlar.txt"])
+        for ad in ("2026-09-30.mp3", "latest.mp3"):
+            with open(os.path.join(self.dizin, ad), "rb") as f:
+                self.assertEqual(f.read(), b"WEB:HAM")
+
+    def test_buyuk_dosya_yazilmaz(self):
+        loglar = []
+        yol = sk.web_ses_yaz("2026-09-30", b"HAM", dizin=self.dizin,
+                             donustur=lambda b: b"x" * (sk.WEB_MAKS_BAYT + 1), log=loglar.append)
+        self.assertIsNone(yol)
+        self.assertEqual(self.dosyalar(), [])
+        self.assertIn("yazılmadı", loglar[0])
+
+    def test_donusum_hatasi_dosya_yazmaz_firlatmaz(self):
+        def bozuk(_):
+            raise OSError("ffmpeg yok")
+        self.assertIsNone(sk.web_ses_yaz("2026-09-30", b"HAM", dizin=self.dizin,
+                                         donustur=bozuk, log=lambda m: None))
+        self.assertEqual(self.dosyalar(), [])
+
+    def test_bos_ses_ya_da_bozuk_tarih(self):
+        self.assertIsNone(sk.web_ses_yaz("2026-09-30", None, dizin=self.dizin, log=lambda m: None))
+        self.assertIsNone(sk.web_ses_yaz("../x", b"HAM", dizin=self.dizin,
+                                         donustur=lambda b: b, log=lambda m: None))
+        self.assertEqual(self.dosyalar(), [])
+
+    @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg yok")
+    def test_gercek_donusum_mono_ve_kucuk(self):
+        with tempfile.TemporaryDirectory() as d:
+            kaynak = os.path.join(d, "k.mp3")
+            subprocess.run(["ffmpeg", "-y", "-f", "lavfi", "-i", "sine=frequency=440:duration=60",
+                            "-ac", "2", "-b:a", "128k", kaynak], capture_output=True, check=True)
+            with open(kaynak, "rb") as f:
+                ham = f.read()
+        web = sk.mp3_web(ham)
+        self.assertLess(len(web), sk.WEB_MAKS_BAYT)
+        self.assertLess(len(web), len(ham))
+        bilgi = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=channels",
+                                "-of", "csv=p=0", "-"], input=web, capture_output=True).stdout
+        self.assertEqual(bilgi.strip(), b"1")
 
 
 if __name__ == "__main__":

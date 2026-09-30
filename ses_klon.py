@@ -434,8 +434,9 @@ def mp3_ogg(mp3):
             return f.read()
 
 
-def ozet_ogg(rapor, istemci=None, donustur=mp3_ogg, log=None):
-    """Rapordan OGG/Opus sesli özet. HİÇBİR hatada exception fırlatmaz → None."""
+def ozet_sesleri(rapor, istemci=None, donustur=mp3_ogg, log=None):
+    """Rapordan (OGG/Opus, ham MP3). OGG Telegram'a, MP3 web sürümüne kaynak.
+    HİÇBİR hatada exception fırlatmaz → (None, None). Tek API çağrısı."""
     log = log or (lambda m: print(m, file=sys.stderr))
     try:
         metin = konusma_metni(rapor)
@@ -443,7 +444,88 @@ def ozet_ogg(rapor, istemci=None, donustur=mp3_ogg, log=None):
         mp3, maliyet = istemci.seslendir(metin)
         ogg = donustur(mp3)
         log(f"[bilgi] Klon sesli özet hazır ({len(metin)} karakter, maliyet {maliyet}).")
-        return ogg
+        return ogg, mp3
     except Exception as e:                    # noqa: BLE001
         log(f"[uyarı] Klon sesli özet atlandı: {type(e).__name__}: {e}")
+        return None, None
+
+
+def ozet_ogg(rapor, istemci=None, donustur=mp3_ogg, log=None):
+    """Rapordan OGG/Opus sesli özet. HİÇBİR hatada exception fırlatmaz → None."""
+    return ozet_sesleri(rapor, istemci=istemci, donustur=donustur, log=log)[0]
+
+
+# --------------------------------------------------------------------------- #
+# Web sürümü: reports/ses/YYYY-MM-DD.mp3 (+ latest.mp3)
+# --------------------------------------------------------------------------- #
+# Site (dogukanlive.com/bugun/) raporla birlikte bu dosyayı da çekip kendi
+# alanından sunuyor. Repo şişmesin diye: mono, düşük bit hızı (~0,5 MB/dk),
+# 1 MB üstü yazılmaz, 14 günden eskisi silinir. Hata olursa dosya yazılmaz,
+# rapor ve Telegram akışı etkilenmez.
+
+WEB_SES_DIZINI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports", "ses")
+WEB_BIT_HIZI = "64k"
+WEB_MAKS_BAYT = 1_000_000
+WEB_TUT_GUN = 14
+_WEB_DOSYA = re.compile(r"^(\d{4}-\d{2}-\d{2})\.mp3$")
+
+
+def mp3_web(mp3):
+    """Ham MP3 -> web için mono 64 kbps MP3 — ffmpeg gerekir."""
+    with tempfile.TemporaryDirectory() as d:
+        g, c = os.path.join(d, "g.mp3"), os.path.join(d, "c.mp3")
+        with open(g, "wb") as f:
+            f.write(mp3)
+        subprocess.run(["ffmpeg", "-y", "-i", g, "-vn", "-map_metadata", "-1",
+                        "-c:a", "libmp3lame", "-b:a", WEB_BIT_HIZI, "-ac", "1", c],
+                       capture_output=True, check=True)
+        with open(c, "rb") as f:
+            return f.read()
+
+
+def eski_web_sesleri_sil(tarih_id, dizin=WEB_SES_DIZINI, tut_gun=WEB_TUT_GUN):
+    """tarih_id dahil son `tut_gun` günden eski YYYY-MM-DD.mp3'leri siler.
+    Silinen dosya adlarını döner. Tanımadığı dosyalara dokunmaz."""
+    sinir = date.fromisoformat(tarih_id).toordinal() - (tut_gun - 1)
+    silinen = []
+    for ad in sorted(os.listdir(dizin)):
+        m = _WEB_DOSYA.match(ad)
+        if not m:
+            continue
+        try:
+            gun = date.fromisoformat(m.group(1)).toordinal()
+        except ValueError:
+            continue
+        if gun < sinir:
+            os.remove(os.path.join(dizin, ad))
+            silinen.append(ad)
+    return silinen
+
+
+def web_ses_yaz(tarih_id, mp3, dizin=WEB_SES_DIZINI, donustur=mp3_web, log=None,
+                maks=WEB_MAKS_BAYT, tut_gun=WEB_TUT_GUN):
+    """Web MP3'ünü <dizin>/<tarih_id>.mp3 ve latest.mp3 olarak yazar, eskileri
+    siler. Yazılan dosyanın yolunu ya da None döner. ASLA exception fırlatmaz."""
+    log = log or (lambda m: print(m, file=sys.stderr))
+    try:
+        date.fromisoformat(tarih_id)
+        if not mp3:
+            return None
+        web = donustur(mp3)
+        if not web or len(web) > maks:
+            log(f"[uyarı] Web sesli özet yazılmadı: boyut uygun değil ({len(web or b'')} B).")
+            return None
+        os.makedirs(dizin, exist_ok=True)
+        hedef = os.path.join(dizin, f"{tarih_id}.mp3")
+        for yol in (hedef, os.path.join(dizin, "latest.mp3")):
+            gecici = yol + ".tmp"
+            with open(gecici, "wb") as f:
+                f.write(web)
+            os.replace(gecici, yol)
+        silinen = eski_web_sesleri_sil(tarih_id, dizin, tut_gun)
+        log(f"[bilgi] Web sesli özet yazıldı ({len(web)} B)"
+            + (f", {len(silinen)} eski dosya silindi." if silinen else "."))
+        return hedef
+    except Exception as e:                    # noqa: BLE001
+        log(f"[uyarı] Web sesli özet yazılmadı: {type(e).__name__}: {e}")
         return None
