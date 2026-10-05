@@ -1,0 +1,35 @@
+name: Bülteni elle gönder
+
+# Kayıtlı bir günün raporunu yalnız e-posta bültenine gönderir (Buttondown).
+# Rapor ÜRETMEZ, Telegram'a GÖNDERMEZ, commit ATMAZ.
+on:
+  workflow_dispatch:
+    inputs:
+      tarih:
+        description: "Rapor tarihi (YYYY-MM-DD). Boşsa bugün (TSİ)."
+        type: string
+        default: ""
+      taslak:
+        description: "Yalnız taslak oluştur (gönderme)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  bulten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Bülteni gönder
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          TARIH: ${{ inputs.tarih }}
+          TASLAK: ${{ inputs.taslak && '--taslak' || '' }}
+        run: python bulten_gonder.py "$TARIH" $TASLAK

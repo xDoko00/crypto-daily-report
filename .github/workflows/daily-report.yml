@@ -82,10 +82,9 @@ jobs:
           # Klon sesli özet (ElevenLabs). Hata olursa ses atlanır, rapor yine gider.
           ELEVENLABS_API_KEY:      ${{ secrets.ELEVENLABS_API_KEY }}
           SESLI_OZET_ELEVENLABS:   "1"
-          # Dikey video (video/): rapor + ses gönderildikten SONRA, en fazla 8 dk.
-          # Şimdilik yalnız admin'e gider; hata olursa atlanır, rapor etkilenmez.
-          VIDEO_OZET:              "1"
-          VIDEO_HEDEF:             "admin"
+          # Dikey video burada ÜRETİLMEZ: report.py raporu bu dosyaya yazar,
+          # video aşağıdaki ayrı adımda rapor commit'inden SONRA çalışır.
+          VIDEO_RAPOR_DOSYASI:     ${{ runner.temp }}/video-rapor.json
           # Zamanlanmış çalışmada sabit teslim 08:00 TSİ; manuel çalışmada kullanıcı
           # saat girdiyse o, girmediyse boş (hemen gönderir).
           DELIVER_AT_TR: ${{ github.event_name == 'schedule' && '08:00' || inputs.deliver_at }}
@@ -122,4 +121,38 @@ jobs:
             git commit -m "chore: gunluk rapor + takip durumu"
             git pull --rebase --autostash origin main || true
             git push || echo "push basarisiz (best-effort; rapor gonderildi)"
+          fi
+
+      # Dikey video (video/): rapor gönderilip commit'lendikten SONRA, en fazla 8 dk.
+      # Şimdilik yalnız admin'e gider; hata/zaman aşımı yalnız loglanır, adım
+      # kırmızıya dönmez. Rapor bu çalışmada gönderilmediyse (nöbetçi erken
+      # çıktıysa) dosya yoktur, adım bir şey yapmaz.
+      - name: Video önizlemesini üret ve gönder
+        env:
+          TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:        ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          VIDEO_OZET:              "1"
+          VIDEO_HEDEF:             "admin"
+          VIDEO_RAPOR:             ${{ runner.temp }}/video-rapor.json
+        run: |
+          if [ -f "$VIDEO_RAPOR" ]; then
+            python -c "import json, os; from video import calistir; calistir.izole_calistir(json.load(open(os.environ['VIDEO_RAPOR'], encoding='utf-8')))" || true
+          else
+            echo "bu calismada rapor gonderilmedi, video atlandi"
+          fi
+
+      # Video b-roll döndürme durumu (state/video-son-kullanim.json) ayrı commit.
+      - name: Video durumunu kaydet
+        if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        run: |
+          [ -f state/video-son-kullanim.json ] && git add state/video-son-kullanim.json || true
+          if git diff --cached --quiet; then
+            echo "degisiklik yok"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: video durumu"
+            git pull --rebase --autostash origin main || true
+            git push || echo "push basarisiz (best-effort)"
           fi

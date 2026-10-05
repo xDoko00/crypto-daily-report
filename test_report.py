@@ -350,6 +350,134 @@ class EpostaRender(unittest.TestCase):
         self.assertIn("BUTTONDOWN_API_KEY", mesaj)
 
 
+class EpostaYasakliKelime(unittest.TestCase):
+    def setUp(self):
+        self.k = eposta.yasakli_kelimeler(ek="")
+
+    def test_turkce_ek_korunur(self):
+        self.assertEqual(eposta.temizle("Bitget'in rezervleri", self.k), "B*tget'in rezervleri")
+
+    def test_buyuk_kucuk_harf_duyarsiz(self):
+        t = eposta.temizle("BITGET ve bitget ve BitGet", self.k)
+        self.assertNotIn("bitget", t.lower())
+        self.assertEqual(t.count("B*tget"), 3)
+
+    def test_link_icinde_gecerse_link_kaldirilir(self):
+        t = eposta.temizle("[Bitget Blog](https://www.bitget.com/news/x) · "
+                           "[CoinDesk](https://coindesk.com/a)", self.k)
+        self.assertNotIn("bitget", t.lower())
+        self.assertNotIn("](https://www.b", t)
+        self.assertIn("B*tget Blog", t)
+        self.assertIn("[CoinDesk](https://coindesk.com/a)", t)
+
+    def test_ortamdan_ek_kelime(self):
+        with mock.patch.dict(os.environ, {"EPOSTA_YASAKLI_EK": "kumar, Bahis"}):
+            k = eposta.yasakli_kelimeler()
+        self.assertIn("bitget", k)
+        self.assertEqual(eposta.temizle("Kumar ve bahis", k), "K*mar ve b*his")
+
+    def test_yanittan_kelime_ayiklanir(self):
+        y = '{"code": "email_invalid", "detail": "Contains prohibited keyword: bitget"}'
+        self.assertEqual(eposta.yasakli_kelime_ayikla(y), "bitget")
+        self.assertIsNone(eposta.yasakli_kelime_ayikla('{"detail": "başka"}'))
+
+    def test_gonderilen_metin_filtreli(self):
+        rapor = ornek_rapor()
+        rapor["sections"]["agenda"][0]["summary"] = "Bitget'in rezervleri arttı."
+        rapor["sections"]["agenda"][0]["source"]["url"] = "https://www.bitget.com/x"
+        giden = []
+        with mock.patch.object(eposta, "_istek",
+                               lambda v, b: giden.append(v) or (True, 200, {"id": "1"})), \
+                mock.patch.dict(os.environ, {"EPOSTA_YASAKLI_EK": ""}):
+            ok, _ = eposta.gonder(rapor, anahtar="x")
+        self.assertTrue(ok)
+        self.assertNotIn("bitget", (giden[0]["subject"] + giden[0]["body"]).lower())
+
+    def test_400_sonrasi_kelime_maskelenip_bir_kez_denenir(self):
+        rapor = ornek_rapor()
+        rapor["sections"]["agenda"][0]["summary"] = "Kumarhane haberi."
+        yanitlar = [(False, 400, '{"code":"email_invalid","detail":"Contains prohibited keyword: kumar"}'),
+                    (True, 200, {"id": "e1"})]
+        giden = []
+
+        def sahte(v, b):
+            giden.append(v)
+            return yanitlar.pop(0)
+
+        with mock.patch.object(eposta, "_istek", sahte), \
+                mock.patch.dict(os.environ, {"EPOSTA_YASAKLI_EK": ""}):
+            ok, mesaj = eposta.gonder(rapor, anahtar="x")
+        self.assertTrue(ok)
+        self.assertEqual(len(giden), 2)
+        self.assertIn("Kumarhane", giden[0]["body"])
+        self.assertNotIn("kumar", giden[1]["body"].lower())
+        self.assertIn("yeniden denendi", mesaj)
+
+    def test_ikinci_ret_hata_doner_ucuncu_deneme_yok(self):
+        ret = (False, 400, '{"detail":"Contains prohibited keyword: kumar"}')
+        sayac = []
+        with mock.patch.object(eposta, "_istek", lambda v, b: sayac.append(1) or ret), \
+                mock.patch.dict(os.environ, {"EPOSTA_YASAKLI_EK": ""}):
+            ok, mesaj = eposta.gonder(ornek_rapor(), anahtar="x")
+        self.assertFalse(ok)
+        self.assertEqual(len(sayac), 2)
+        self.assertIn("HTTP 400", mesaj)
+
+    def test_baska_400_yeniden_denenmez(self):
+        sayac = []
+        with mock.patch.object(eposta, "_istek",
+                               lambda v, b: sayac.append(1) or (False, 400, '{"detail":"x"}')):
+            ok, _ = eposta.gonder(ornek_rapor(), anahtar="x")
+        self.assertFalse(ok)
+        self.assertEqual(len(sayac), 1)
+
+
+class EpostaHataUyarisi(unittest.TestCase):
+    def test_actions_uyarisi_ve_admin_bildirimi(self):
+        import io
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            ozet = os.path.join(d, "ozet.md")
+            cikti = io.StringIO()
+            with mock.patch.object(report, "admin_hata_bildir") as admin, \
+                    mock.patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": ozet}), \
+                    mock.patch("sys.stdout", cikti):
+                report.eposta_hatasi_bildir("Buttondown reddetti (HTTP 400): x\ny")
+            admin.assert_called_once()
+            self.assertIn("HTTP 400", admin.call_args[0][0])
+            self.assertIn("::warning title=E-posta bülteni gönderilemedi::"
+                          "Buttondown reddetti (HTTP 400): x%0Ay", cikti.getvalue())
+            with open(ozet, encoding="utf-8") as f:
+                self.assertIn("HTTP 400", f.read())
+
+
+class BultenGonder(unittest.TestCase):
+    def test_rapor_yolu(self):
+        import bulten_gonder
+        self.assertEqual(bulten_gonder.rapor_yolu("2026-10-05", "/k"),
+                         os.path.join("/k", "reports", "2026", "10", "2026-10-05.json"))
+        with self.assertRaises(ValueError):
+            bulten_gonder.rapor_yolu("05.10.2026", "/k")
+
+    def test_json_okunur_ve_gonderilir(self):
+        import bulten_gonder
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            os.makedirs(os.path.join(d, "reports", "2026", "10"))
+            with open(os.path.join(d, "reports", "2026", "10", "2026-10-05.json"), "w",
+                      encoding="utf-8") as f:
+                json.dump({"id": "2026-10-05"}, f)
+            cagri = []
+            kod = bulten_gonder.main(["2026-10-05", "--taslak"], kok=d,
+                                     gonder=lambda r, taslak: cagri.append((r, taslak)) or (True, "ok"))
+            self.assertEqual(kod, 0)
+            self.assertEqual(cagri, [({"id": "2026-10-05"}, True)])
+            self.assertEqual(bulten_gonder.main(["2026-10-05"], kok=d,
+                                                gonder=lambda r, taslak: (False, "ret")), 1)
+            self.assertEqual(bulten_gonder.main(["2026-10-04"], kok=d,
+                                                gonder=lambda r, taslak: (True, "ok")), 1)
+
+
 class JsonAyikla(unittest.TestCase):
     def test_duz_json(self):
         self.assertEqual(report.json_ayikla('{"a": 1}'), {"a": 1})

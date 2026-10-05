@@ -17,6 +17,7 @@ e-posta yüzünden engellenmemeli (brief §6.6).
 
 import json
 import os
+import re
 import urllib.error
 import urllib.request
 
@@ -24,6 +25,16 @@ API = "https://api.buttondown.com/v1/emails"
 SITE = "https://dogukanlive.com"
 
 ONEM_ISARETI = {"kritik": "🔴", "onemli": "🟡", "bilgi": "🟢"}
+
+# Buttondown'ın yasaklı kelime filtresine takılan kelimeler → yerine yazılacak
+# maskeli hâli. Eşleşme büyük/küçük harf duyarsız ve kelime içidir, yalnız
+# eşleşen parça değişir ("Bitget'in" → "B*tget'in", ekler korunur). Ek kelime:
+# EPOSTA_YASAKLI_EK="kelime1,kelime2" (maskesi otomatik üretilir).
+YASAKLI_KELIMELER = {"bitget": "B*tget"}
+YASAKLI_EK_DEGISKENI = "EPOSTA_YASAKLI_EK"
+
+_MD_LINK = re.compile(r"\[([^\]]*)\]\(([^)\s]+)\)")
+_YASAK_YANITI = re.compile(r"prohibited keyword:?\s*[\"'`]?([^\s\"'`.,;:)]+)", re.IGNORECASE)
 
 
 def _para(v):
@@ -152,19 +163,73 @@ def govde(rapor):
     return "\n".join(satir)
 
 
+def otomatik_maske(kelime):
+    """'kelime' → 'k*lime'. Maske kelimenin kendisini içermesin diye 2. harf yıldız."""
+    if len(kelime) <= 2:
+        return "*" * len(kelime)
+    return kelime[0] + "*" + kelime[2:]
+
+
+def yasakli_kelimeler(ek=None):
+    """Sabit liste + ortamdaki ek kelimeler. -> {küçük harf kelime: maske ya da None}"""
+    sozluk = {k.lower(): v for k, v in YASAKLI_KELIMELER.items()}
+    ek = os.environ.get(YASAKLI_EK_DEGISKENI, "") if ek is None else ek
+    kelimeler = ek.split(",") if isinstance(ek, str) else list(ek)
+    for k in kelimeler:
+        k = k.strip()
+        if k and k.lower() not in sozluk:
+            sozluk[k.lower()] = None          # maske eşleşen metinden (harf hâli korunur)
+    return sozluk
+
+
+def temizle(metin, kelimeler=None):
+    """Yasaklı kelimeleri maskeler. Adresinde yasaklı kelime geçen Markdown
+    bağlantısı düz metne çevrilir (Buttondown linki de tarıyor; maskeli URL
+    kırık olacağı için linki tamamen bırakmak en temizi)."""
+    kelimeler = yasakli_kelimeler() if kelimeler is None else kelimeler
+    if not kelimeler or not metin:
+        return metin
+    desen = re.compile("|".join(re.escape(k) for k in
+                                sorted(kelimeler, key=len, reverse=True)), re.IGNORECASE)
+
+    def link(m):
+        return m.group(1) if desen.search(m.group(2)) else m.group(0)
+
+    metin = _MD_LINK.sub(link, metin)
+    return desen.sub(lambda m: kelimeler.get(m.group(0).lower()) or otomatik_maske(m.group(0)),
+                     metin)
+
+
+def yasakli_kelime_ayikla(yanit):
+    """Buttondown hata yanıtından 'prohibited keyword: X' kelimesini çıkarır."""
+    m = _YASAK_YANITI.search(yanit or "")
+    return m.group(1).lower() if m else None
+
+
+def _istek(veri, basliklar):
+    """-> (basarili, HTTP kodu ya da None, gövde/mesaj)"""
+    istek = urllib.request.Request(API, data=json.dumps(veri).encode("utf-8"), headers=basliklar)
+    try:
+        with urllib.request.urlopen(istek, timeout=45) as c:
+            return True, 200, json.load(c)
+    except urllib.error.HTTPError as e:
+        return False, e.code, e.read()[:500].decode(errors="replace")
+    except Exception as e:                            # noqa: BLE001
+        return False, None, str(e)
+
+
 def gonder(rapor, anahtar=None, taslak=False):
     """Raporu bültene gönderir. (basarili, mesaj) döndürür.
 
-    taslak=True ise e-posta oluşturulur ama gönderilmez — test için."""
+    taslak=True ise e-posta oluşturulur ama gönderilmez — test için.
+    Konu ve gövde yasaklı kelime filtresinden geçer; Buttondown yine de
+    'prohibited keyword: X' ile reddederse X maskelenip BİR KEZ yeniden denenir."""
     anahtar = anahtar or os.environ.get("BUTTONDOWN_API_KEY", "")
     if not anahtar:
         return False, "BUTTONDOWN_API_KEY tanımlı değil, e-posta atlandı"
 
-    veri = json.dumps({
-        "subject": konu(rapor),
-        "body": govde(rapor),
-        "status": "draft" if taslak else "about_to_send",
-    }).encode("utf-8")
+    kelimeler = yasakli_kelimeler()
+    ham_konu, ham_govde = konu(rapor), govde(rapor)
 
     basliklar = {"Authorization": f"Token {anahtar}",
                  "Content-Type": "application/json"}
@@ -175,15 +240,25 @@ def gonder(rapor, anahtar=None, taslak=False):
         # devam ediyoruz — akış her sabah aynı yoldan geçiyor.
         basliklar["X-Buttondown-Live-Dangerously"] = "true"
 
-    istek = urllib.request.Request(API, data=veri, headers=basliklar)
-    try:
-        with urllib.request.urlopen(istek, timeout=45) as c:
-            d = json.load(c)
-        return True, f"e-posta {'taslak' if taslak else 'gönderildi'} (id {d.get('id')})"
-    except urllib.error.HTTPError as e:
-        return False, f"Buttondown reddetti (HTTP {e.code}): {e.read()[:200].decode(errors='replace')}"
-    except Exception as e:                            # noqa: BLE001
-        return False, f"Buttondown'a ulaşılamadı: {e}"
+    durum = "draft" if taslak else "about_to_send"
+    ek_not = ""
+    for deneme in range(2):
+        veri = {"subject": temizle(ham_konu, kelimeler),
+                "body": temizle(ham_govde, kelimeler),
+                "status": durum}
+        ok, kod, yanit = _istek(veri, basliklar)
+        if ok:
+            return True, (f"e-posta {'taslak' if taslak else 'gönderildi'} "
+                          f"(id {yanit.get('id')}){ek_not}")
+        if kod is None:
+            return False, f"Buttondown'a ulaşılamadı: {yanit}"
+        yeni = yasakli_kelime_ayikla(yanit) if kod == 400 else None
+        if deneme == 0 and yeni and yeni not in kelimeler:
+            kelimeler[yeni] = None
+            ek_not = f" — '{otomatik_maske(yeni)}' maskelenip yeniden denendi"
+            continue
+        break
+    return False, f"Buttondown reddetti (HTTP {kod}): {yanit[:200]}{ek_not}"
 
 
 if __name__ == "__main__":
@@ -192,6 +267,6 @@ if __name__ == "__main__":
     if "--gonder" in sys.argv:
         print(gonder(r, taslak="--taslak" in sys.argv))
     else:
-        print("KONU:", konu(r))
+        print("KONU:", temizle(konu(r)))
         print()
-        print(govde(r))
+        print(temizle(govde(r)))

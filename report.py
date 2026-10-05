@@ -30,6 +30,8 @@ Kimlik doğrulama ve gizli anahtarlar ortam değişkenlerinden okunur (koda göm
   TELEGRAM_ADMIN_CHAT_ID      → Senin özel chat'in (hata bildirimleri + test)
   BUTTONDOWN_API_KEY          → E-posta bülteni (isteğe bağlı; yoksa e-posta atlanır)
   VIDEO_OZET=1 / VIDEO_HEDEF  → Günlük video (video/), en sonda; şimdilik yalnız admin'e
+  VIDEO_RAPOR_DOSYASI=yol     → Video burada üretilmez, rapor bu dosyaya yazılır (ayrı adım)
+  EPOSTA_YASAKLI_EK=a,b       → Bültende maskelenecek ek kelimeler (eposta.py)
 """
 
 import os
@@ -657,6 +659,28 @@ def admin_hata_bildir(mesaj):
         print(f"[uyarı] Admin'e hata bildirimi de gönderilemedi: {_gizle(e)}", file=sys.stderr)
 
 
+def _actions_uyari(baslik, mesaj):
+    """GitHub Actions'ta görünür uyarı: ::warning:: satırı + iş özeti.
+    Actions dışında yalnız stdout'a bir satır düşer; asla fırlatmaz."""
+    try:
+        tek = (mesaj.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A"))
+        print(f"::warning title={baslik}::{tek}", flush=True)
+        ozet = os.environ.get("GITHUB_STEP_SUMMARY")
+        if ozet:
+            with open(ozet, "a", encoding="utf-8") as f:
+                f.write(f"### ⚠️ {baslik}\n\n```\n{mesaj}\n```\n")
+    except Exception as e:                           # noqa: BLE001
+        print(f"[uyarı] Actions uyarısı yazılamadı: {e}", file=sys.stderr)
+
+
+def eposta_hatasi_bildir(mesaj):
+    """E-posta bülteni gitmediğinde admin'e Telegram + Actions uyarısı.
+    Rapor akışını ETKİLEMEZ (iş akışı yeşil kalır, commit adımı çalışır)."""
+    mesaj = _gizle(mesaj)
+    _actions_uyari("E-posta bülteni gönderilemedi", mesaj)
+    admin_hata_bildir(f"E-posta bülteni gönderilemedi (rapor Telegram'a gitti): {mesaj}")
+
+
 # --------------------------------------------------------------------------- #
 # Ana akış
 # --------------------------------------------------------------------------- #
@@ -971,8 +995,11 @@ def main():
                 import eposta
                 ok, mesaj = eposta.gonder(rapor)
                 print(f"[{'başarılı' if ok else 'uyarı'}] E-posta: {mesaj}", file=sys.stderr)
+                if not ok:
+                    eposta_hatasi_bildir(mesaj)
             except Exception as e_hata:               # noqa: BLE001
                 print(f"[uyarı] E-posta gönderilemedi: {e_hata}", file=sys.stderr)
+                eposta_hatasi_bildir(str(e_hata))
 
         # Bugünün takip listesini yarın için kaydet (test modunda kaydetme)
         if not test_modu and not onizleme:
@@ -985,11 +1012,23 @@ def main():
         # --- Video önizleme (VIDEO_OZET=1; best-effort, EN SONDA) ---
         # Rapor + sesli özet gönderildikten sonra ayrı alt süreçte, üst süre
         # sınırıyla çalışır; hata/zaman aşımı yalnız loglanır, rapor etkilenmez.
-        try:
-            from video import calistir as video_adimi
-            video_adimi.izole_calistir(rapor)
-        except Exception as v_hata:               # noqa: BLE001
-            print(f"[uyarı] Video adımı atlandı: {_gizle(v_hata)}", file=sys.stderr)
+        # VIDEO_RAPOR_DOSYASI tanımlıysa (Actions) video burada ÜRETİLMEZ: rapor
+        # o dosyaya yazılır, video ayrı iş akışı adımında rapor commit'inden
+        # SONRA çalışır — rapor JSON'u videoyu beklemesin diye.
+        video_dosyasi = os.environ.get("VIDEO_RAPOR_DOSYASI", "").strip()
+        if video_dosyasi:
+            try:
+                with open(video_dosyasi, "w", encoding="utf-8") as f:
+                    json.dump(rapor, f, ensure_ascii=False)
+                print("[bilgi] Video ayrı adımda üretilecek.", file=sys.stderr)
+            except Exception as v_hata:           # noqa: BLE001
+                print(f"[uyarı] Video için rapor yazılamadı: {v_hata}", file=sys.stderr)
+        else:
+            try:
+                from video import calistir as video_adimi
+                video_adimi.izole_calistir(rapor)
+            except Exception as v_hata:           # noqa: BLE001
+                print(f"[uyarı] Video adımı atlandı: {_gizle(v_hata)}", file=sys.stderr)
 
     except Exception as e:                           # noqa: BLE001
         print(f"[HATA] {_gizle(e)}", file=sys.stderr)
