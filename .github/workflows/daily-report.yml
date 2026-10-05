@@ -132,6 +132,9 @@ jobs:
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:        ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          # Video seslendirmesi klon sesle (video/servisler.py) — rapor adımıyla aynı.
+          ELEVENLABS_API_KEY:      ${{ secrets.ELEVENLABS_API_KEY }}
+          SESLI_OZET_ELEVENLABS:   "1"
           VIDEO_OZET:              "1"
           VIDEO_HEDEF:             "admin"
           VIDEO_RAPOR:             ${{ runner.temp }}/video-rapor.json
@@ -152,7 +155,11 @@ jobs:
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "chore: video durumu"
-            git pull --rebase --autostash origin main || true
+            git commit -m "chore: video durumu" || true
+            if ! git pull --rebase --autostash origin main; then
+              git rebase --abort || true
+              echo "::warning::video durumu rebase cakismasi, kaydedilmedi (best-effort)"
+              exit 0
+            fi
             git push || echo "push basarisiz (best-effort)"
           fi

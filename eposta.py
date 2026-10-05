@@ -27,10 +27,12 @@ SITE = "https://dogukanlive.com"
 ONEM_ISARETI = {"kritik": "🔴", "onemli": "🟡", "bilgi": "🟢"}
 
 # Buttondown'ın yasaklı kelime filtresine takılan kelimeler → yerine yazılacak
-# maskeli hâli. Eşleşme büyük/küçük harf duyarsız ve kelime içidir, yalnız
-# eşleşen parça değişir ("Bitget'in" → "B*tget'in", ekler korunur). Ek kelime:
+# maskeli hâli. Eşleşme büyük/küçük harf duyarsız (Türkçe İ/ı dahil: "BİTGET")
+# ve kelime içidir, yalnız eşleşen parça değişir ("Bitget'in" → "B·tget'in",
+# ekler korunur). Ek kelime:
 # EPOSTA_YASAKLI_EK="kelime1,kelime2" (maskesi otomatik üretilir).
-YASAKLI_KELIMELER = {"bitget": "B*tget"}
+YASAKLI_KELIMELER = {"bitget": "B·tget"}
+MASKE = "·"   # orta nokta: "*" / "_" Markdown'da italik açar
 YASAKLI_EK_DEGISKENI = "EPOSTA_YASAKLI_EK"
 
 _MD_LINK = re.compile(r"\[([^\]]*)\]\(([^)\s]+)\)")
@@ -164,21 +166,34 @@ def govde(rapor):
 
 
 def otomatik_maske(kelime):
-    """'kelime' → 'k*lime'. Maske kelimenin kendisini içermesin diye 2. harf yıldız."""
+    """'kelime' → 'k·lime'. Maske kelimenin kendisini içermesin diye 2. harf nokta."""
     if len(kelime) <= 2:
-        return "*" * len(kelime)
-    return kelime[0] + "*" + kelime[2:]
+        return MASKE * len(kelime)
+    return kelime[0] + MASKE + kelime[2:]
+
+
+_I_SINIFI = "[iIİı]"
+
+
+def _anahtar(metin):
+    """Karşılaştırma anahtarı: Türkçe İ/ı/I → i, sonra küçük harf."""
+    return metin.translate(str.maketrans("İıI", "iii")).lower()
+
+
+def _desen_parcasi(kelime):
+    """Kelimedeki her i/ı/İ/I harfi dört biçimin hepsiyle eşleşir."""
+    return "".join(_I_SINIFI if ch in "iIİı" else re.escape(ch) for ch in kelime)
 
 
 def yasakli_kelimeler(ek=None):
     """Sabit liste + ortamdaki ek kelimeler. -> {küçük harf kelime: maske ya da None}"""
-    sozluk = {k.lower(): v for k, v in YASAKLI_KELIMELER.items()}
+    sozluk = {_anahtar(k): v for k, v in YASAKLI_KELIMELER.items()}
     ek = os.environ.get(YASAKLI_EK_DEGISKENI, "") if ek is None else ek
     kelimeler = ek.split(",") if isinstance(ek, str) else list(ek)
     for k in kelimeler:
         k = k.strip()
-        if k and k.lower() not in sozluk:
-            sozluk[k.lower()] = None          # maske eşleşen metinden (harf hâli korunur)
+        if k and _anahtar(k) not in sozluk:
+            sozluk[_anahtar(k)] = None          # maske eşleşen metinden (harf hâli korunur)
     return sozluk
 
 
@@ -189,21 +204,21 @@ def temizle(metin, kelimeler=None):
     kelimeler = yasakli_kelimeler() if kelimeler is None else kelimeler
     if not kelimeler or not metin:
         return metin
-    desen = re.compile("|".join(re.escape(k) for k in
+    desen = re.compile("|".join(_desen_parcasi(k) for k in
                                 sorted(kelimeler, key=len, reverse=True)), re.IGNORECASE)
 
     def link(m):
         return m.group(1) if desen.search(m.group(2)) else m.group(0)
 
     metin = _MD_LINK.sub(link, metin)
-    return desen.sub(lambda m: kelimeler.get(m.group(0).lower()) or otomatik_maske(m.group(0)),
+    return desen.sub(lambda m: kelimeler.get(_anahtar(m.group(0))) or otomatik_maske(m.group(0)),
                      metin)
 
 
 def yasakli_kelime_ayikla(yanit):
     """Buttondown hata yanıtından 'prohibited keyword: X' kelimesini çıkarır."""
     m = _YASAK_YANITI.search(yanit or "")
-    return m.group(1).lower() if m else None
+    return _anahtar(m.group(1)) if m else None
 
 
 def _istek(veri, basliklar):

@@ -355,26 +355,33 @@ class EpostaYasakliKelime(unittest.TestCase):
         self.k = eposta.yasakli_kelimeler(ek="")
 
     def test_turkce_ek_korunur(self):
-        self.assertEqual(eposta.temizle("Bitget'in rezervleri", self.k), "B*tget'in rezervleri")
+        self.assertEqual(eposta.temizle("Bitget'in rezervleri", self.k), "B·tget'in rezervleri")
 
     def test_buyuk_kucuk_harf_duyarsiz(self):
         t = eposta.temizle("BITGET ve bitget ve BitGet", self.k)
         self.assertNotIn("bitget", t.lower())
-        self.assertEqual(t.count("B*tget"), 3)
+        self.assertEqual(t.count("B·tget"), 3)
+
+    def test_turkce_buyuk_i_ve_markdown_guvenli_maske(self):
+        t = eposta.temizle("BİTGET, Bıtget ve BITGET'TEN", self.k)
+        self.assertEqual(t, "B·tget, B·tget ve B·tget'TEN")
+        self.assertNotIn("*", t)
+        self.assertNotIn("_", t)
+        self.assertEqual(eposta.yasakli_kelime_ayikla("prohibited keyword: BİTGET"), "bitget")
 
     def test_link_icinde_gecerse_link_kaldirilir(self):
         t = eposta.temizle("[Bitget Blog](https://www.bitget.com/news/x) · "
                            "[CoinDesk](https://coindesk.com/a)", self.k)
         self.assertNotIn("bitget", t.lower())
         self.assertNotIn("](https://www.b", t)
-        self.assertIn("B*tget Blog", t)
+        self.assertIn("B·tget Blog", t)
         self.assertIn("[CoinDesk](https://coindesk.com/a)", t)
 
     def test_ortamdan_ek_kelime(self):
         with mock.patch.dict(os.environ, {"EPOSTA_YASAKLI_EK": "kumar, Bahis"}):
             k = eposta.yasakli_kelimeler()
         self.assertIn("bitget", k)
-        self.assertEqual(eposta.temizle("Kumar ve bahis", k), "K*mar ve b*his")
+        self.assertEqual(eposta.temizle("Kumar ve bahis", k), "K·mar ve b·his")
 
     def test_yanittan_kelime_ayiklanir(self):
         y = '{"code": "email_invalid", "detail": "Contains prohibited keyword: bitget"}'

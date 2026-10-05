@@ -31,5 +31,7 @@ jobs:
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
           TARIH: ${{ inputs.tarih }}
-          TASLAK: ${{ inputs.taslak && '--taslak' || '' }}
-        run: python bulten_gonder.py "$TARIH" $TASLAK
+          TASLAK: ${{ inputs.taslak }}
+        run: |
+          if [ "$TASLAK" = "true" ]; then set -- --taslak; else set --; fi
+          python bulten_gonder.py "$TARIH" "$@"
