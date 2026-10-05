@@ -40,7 +40,7 @@ class Test(unittest.TestCase):
         self.assertEqual(s.buyuk_usd_tr(2869656860666), "$2,87 trilyon")
 
     def test_konusma_turkcelestirme(self):
-        self.assertEqual(s.konusma("HYPE'ta kilit açılışı", RAPOR), "Hype tokeninde kilit açılımı")
+        self.assertEqual(s.konusma("HYPE'ta kilit açılışı", RAPOR), "Hayp tokeninde kilit açılımı")
         self.assertIn("açık iş pozisyonları", s.konusma("ABD JOLTS verisi", RAPOR))
         self.assertIn("bugün", s.konusma("ETH ağları 29 Eylül'de devreye girdi", RAPOR))
         self.assertIn("yarın", s.konusma("30 Eylül'de açıklanacak", RAPOR))
@@ -142,6 +142,45 @@ class Test(unittest.TestCase):
         kel = [[("için:", 1.0, 1.2), ("Doğukan", 1.3, 1.6), ("Live", 1.6, 1.8), ("nokta", 1.8, 2.0),
                 ("com.", 2.0, 2.3), ("Bay", 2.5, 2.7)]]
         self.assertEqual(g.adres_birlestir(kel)[0][1], ("dogukanlive.com.", 1.3, 2.3))
+
+
+    def test_altyazi_orijinal_yazim(self):
+        from video import gunaydin as g
+        rapor = dict(RAPOR, brief={"mood": "Temkinli", "mainRisk": "SEC'in Coinbase davası ve AI."})
+        sahne = next(x for x in s.sahneler(rapor) if x["tur"] == "risk")
+        konusulan = s.etiketsiz(sahne["konusma"])
+        self.assertIn("Es-İ-Si'nin Koinbeys", konusulan)
+        harfler = list(konusulan)
+        tts = {"alignment": {"characters": harfler,
+                             "character_start_times_seconds": [i * 0.05 for i in range(len(harfler))],
+                             "character_end_times_seconds": [(i + 1) * 0.05 for i in range(len(harfler))]}}
+        kel = g.kelime_zamanlari([sahne], tts, None)[0]
+        yazi = [k[0] for k in kel]
+        self.assertEqual(yazi[yazi.index("SEC'in") + 1], "Coinbase")
+        self.assertIn("AI.", yazi)
+        self.assertNotIn("Koinbeys", " ".join(yazi))
+        for (_, a1, b1), (_, a2, b2) in zip(kel, kel[1:]):
+            self.assertLess(a1, b1)
+            self.assertLessEqual(b1, a2)
+            self.assertLessEqual(a2 - b1, 0.05 + 1e-9)
+
+    def test_orijinal_yazim_art_arda_kelimeler(self):
+        from video import gunaydin as g
+        import telaffuz
+        konusulan, es = telaffuz.donustur_eslemeli("SEC ve ABD, AI. Binance'te ETH")
+        kel = [(k, i * 1.0, i * 1.0 + 0.8) for i, k in enumerate(konusulan.split())]
+        sonuc = g.orijinal_yazim(kel, es)
+        self.assertEqual([k[0] for k in sonuc], ["SEC", "ve", "ABD,", "AI.", "Binance'te", "ETH"])
+        self.assertEqual(sonuc[2], ("ABD,", 2.0, 2.8))
+        self.assertEqual(sonuc[3], ("AI.", 3.0, 4.8))
+        self.assertEqual(sonuc[4], ("Binance'te", 5.0, 5.8))
+
+    def test_orijinal_yazim_bas_harf_ve_coklu_kelime(self):
+        from video import gunaydin as g
+        kel = [("Steyking", 0.0, 0.5), ("ve", 0.5, 0.6), ("yapay", 0.6, 0.9), ("zekâ,", 0.9, 1.3)]
+        es = [(("steyking",), ("staking",)), (("yapay", "zekâ"), ("AI",))]
+        self.assertEqual(g.orijinal_yazim(kel, es),
+                         [("Staking", 0.0, 0.5), ("ve", 0.5, 0.6), ("AI,", 0.6, 1.3)])
 
 
 class _Yanit:

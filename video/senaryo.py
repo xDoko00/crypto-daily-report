@@ -15,6 +15,7 @@ DEPO_KOKU = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if DEPO_KOKU not in sys.path:
     sys.path.insert(0, DEPO_KOKU)
 import ses_klon as sk                    # noqa: E402
+import telaffuz                          # noqa: E402
 
 # --------------------------------------------------------------------------- #
 # Kolay değiştirilebilir metinler
@@ -155,12 +156,9 @@ SES_TERIMLERI = [
 ]
 # Ekranda da Türkçeleştirilecekler (kısa, tanıdık "hack" ekranda kalır)
 EKRAN_TERIMLERI = [(r"unlock", "kilit açılımı")]
-# Büyük harfli token adlarının okunuşu (harf harf okunmasın)
-SES_ADLARI = {"HYPE": "Hype"}
-
 # Kesme işaretli adlar: ses_klon'un baş isim yöntemine token ekle
-# (HYPE'ta -> HYPE tokeninde). Yalnız video alt sürecinde etkili; rapor süreci
-# bu modülü içe aktarmaz (sesli özet metni değişmez).
+# (HYPE'ta -> HYPE tokeninde). Global sözlüğü değiştirir: rapor süreci bu modülü
+# içe aktarmaz, ama aynı süreçte içe aktaran her şeyde (ör. testler) sesli özet de etkilenir.
 sk._BAS_ISIM.setdefault("token", {
     "yalin": "tokeni", "bulunma": "tokeninde", "ayrilma": "tokeninden", "ilgi": "tokeninin",
     "yonelme": "tokenine", "belirtme": "tokenini", "vasita": "tokeniyle", "ki": "tokenindeki"})
@@ -246,13 +244,17 @@ def _terimler(metin, tablo):
     return metin
 
 
+# konusma() çağrılarının okunuş eşlemeleri; sahneler() her sahneye "telaffuz" olarak dağıtır
+_ESLEMELER = []
+
+
 def konusma(metin, rapor):
     """Rapor metnini sesli okumaya uygun, Türkçeleştirilmiş cümleye çevirir."""
     t = _goreli_tarih(metin or "", rapor)
-    t = sk.telaffuz_duzelt(t)
+    t = sk.telaffuz_duzelt(t, fonetik=False)
     t = _terimler(t, SES_TERIMLERI)
-    for ad, okunus in SES_ADLARI.items():
-        t = re.sub(rf"\b{ad}\b", okunus, t)
+    t, eslemeler = telaffuz.donustur_eslemeli(t)
+    _ESLEMELER.extend(eslemeler)
     return t
 
 
@@ -342,14 +344,20 @@ def sahneler(rapor):
     mood = b.get("mood") or "Kararsız"
     temalar = baslik_temalari(rapor)
     s = []
+    _ESLEMELER.clear()
+
+    def ekle(sahne):
+        sahne["telaffuz"] = list(_ESLEMELER)
+        _ESLEMELER.clear()
+        s.append(sahne)
 
     # 1) Kanca: tarih + günün başlığı
     gundem = (" ve ".join(temalar)) if temalar else ""
     k = f"[cheerful] Günaydın! Bugün {sk._tarih(rapor)}. [calm] Piyasa {sk.tr_kucuk(mood)}"
     k += f"; gündemde {konusma(gundem, rapor)}." if gundem else "."
-    s.append({"tur": "kanca", "tema": SABAH_TEMA, "konusma": k,
-              "tarih": tarih_ekran(rapor), "mood": mood,
-              "alt": sk.tr_buyuk_bas(", ".join(temalar)) if temalar else ""})
+    ekle({"tur": "kanca", "tema": SABAH_TEMA, "konusma": k,
+          "tarih": tarih_ekran(rapor), "mood": mood,
+          "alt": sk.tr_buyuk_bas(", ".join(temalar)) if temalar else ""})
 
     # 2) Fiyat kartı
     satirlar = []
@@ -361,16 +369,16 @@ def sahneler(rapor):
     fk = " ".join(x for x in (
         _coin_konusma("Bitcoin", coins.get("BTC"), "yatay seyrediyor"),
         _coin_konusma("Ethereum", coins.get("ETH"), "o da yatay")) if x)
-    s.append({"tur": "fiyat", "tema": piyasa_temasi(rapor), "konusma": fk, "satirlar": satirlar,
-              "toplam": buyuk_usd_tr(m["totalMarketCapUsd"]) if m.get("totalMarketCapUsd") else "",
-              "dominans": ("%" + f"{m['btcDominance']:.1f}".replace(".", ",")) if m.get("btcDominance") else ""})
+    ekle({"tur": "fiyat", "tema": piyasa_temasi(rapor), "konusma": fk, "satirlar": satirlar,
+          "toplam": buyuk_usd_tr(m["totalMarketCapUsd"]) if m.get("totalMarketCapUsd") else "",
+          "dominans": ("%" + f"{m['btcDominance']:.1f}".replace(".", ",")) if m.get("btcDominance") else ""})
 
     # 3) Korku-açgözlülük
     fg = m.get("fearGreed") or {}
     if fg.get("value") is not None:
-        s.append({"tur": "duygu", "tema": piyasa_temasi(rapor), "konusma": sk._fng_cumlesi(fg),
-                  "deger": int(fg["value"]), "etiket": fg.get("label") or "",
-                  "dun": fg.get("previousValue"), "hafta": fg.get("weekAgoValue")})
+        ekle({"tur": "duygu", "tema": piyasa_temasi(rapor), "konusma": sk._fng_cumlesi(fg),
+              "deger": int(fg["value"]), "etiket": fg.get("label") or "",
+              "dun": fg.get("previousValue"), "hafta": fg.get("weekAgoValue")})
 
     # 4-5) Haberler
     for i, h in enumerate(haber_sec(rapor)):
@@ -380,31 +388,31 @@ def sahneler(rapor):
         if ek:
             metin += " " + _cumle(konusma(ek, rapor))
         onem = h.get("importance") or ""
-        s.append({"tur": "haber", "tema": tema_bul(h.get("title", "") + " " + h.get("summary", "")),
-                  "konusma": metin, "onem": onem, "baslik": ekran(h.get("title", "")),
-                  "kaynak": ((h.get("source") or {}).get("publisher") or ""),
-                  "vurgu": _para_vurgusu(h.get("summary", "")) if not _para_vurgusu(h.get("title", "")) else ""})
+        ekle({"tur": "haber", "tema": tema_bul(h.get("title", "") + " " + h.get("summary", "")),
+              "konusma": metin, "onem": onem, "baslik": ekran(h.get("title", "")),
+              "kaynak": ((h.get("source") or {}).get("publisher") or ""),
+              "vurgu": _para_vurgusu(h.get("summary", "")) if not _para_vurgusu(h.get("title", "")) else ""})
 
     # 6) Ana risk
     if b.get("mainRisk"):
-        s.append({"tur": "risk", "tema": RISK_TEMA,
-                  "konusma": "[serious] Ana risk şu: " + _cumle(konusma(b["mainRisk"], rapor)),
-                  "metin": ekran(b["mainRisk"])})
+        ekle({"tur": "risk", "tema": RISK_TEMA,
+              "konusma": "[serious] Ana risk şu: " + _cumle(konusma(b["mainRisk"], rapor)),
+              "metin": ekran(b["mainRisk"])})
 
     # 7) Bugün takip et
     olaylar = (b.get("criticalEvents") or (rapor.get("sections") or {}).get("today") or [])[:TAKIP_ADET]
     if olaylar:
         ifadeler = [_takip_ifadesi(o, rapor) for o in olaylar]
-        s.append({"tur": "takip", "tema": TAKIP_TEMA,
-                  "konusma": "[calm] Bugün takip et: " + " ".join(_cumle(x) for x in ifadeler),
-                  "maddeler": [{"saat": o.get("timeTr"), "baslik": ekran(o.get("title", ""))}
-                               for o in olaylar]})
+        ekle({"tur": "takip", "tema": TAKIP_TEMA,
+              "konusma": "[calm] Bugün takip et: " + " ".join(_cumle(x) for x in ifadeler),
+              "maddeler": [{"saat": o.get("timeTr"), "baslik": ekran(o.get("title", ""))}
+                           for o in olaylar]})
 
     # 8) Kapanış
     uyari = rapor.get("disclaimer") or VARSAYILAN_UYARI
-    s.append({"tur": "kapanis", "tema": KAPANIS_TEMA,
-              "konusma": f"[calm] {uyari} {AKADEMI_KONUSMA} {KAPANIS_KONUSMA}",
-              "uyari": uyari, "site": SITE, "akademi": AKADEMI_CAGRISI, "not": SEFFAFLIK_NOTU})
+    ekle({"tur": "kapanis", "tema": KAPANIS_TEMA,
+          "konusma": f"[calm] {uyari} {AKADEMI_KONUSMA} {KAPANIS_KONUSMA}",
+          "uyari": uyari, "site": SITE, "akademi": AKADEMI_CAGRISI, "not": SEFFAFLIK_NOTU})
     for x in s:
         x["konusma"] = re.sub(r"\s+", " ", x["konusma"]).strip()
     return s

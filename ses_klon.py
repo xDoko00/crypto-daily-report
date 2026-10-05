@@ -17,6 +17,8 @@ import subprocess
 import tempfile
 from datetime import date
 
+import telaffuz
+
 # --------------------------------------------------------------------------- #
 # Ayarlar
 # --------------------------------------------------------------------------- #
@@ -159,7 +161,6 @@ OZEL_ADLAR = {
     "THORChain": "ag", "Osmosis": "ag", "Hyperliquid": "ag", "Arbitrum": "ag",
     "Optimism": "ag", "Polygon": "ag", "Avalanche": "ag", "Cardano": "ag",
 }
-KISALTMALAR = {"BTC": "Bitcoin", "ETH": "Ethereum"}
 
 
 def _hal(ek):
@@ -197,8 +198,9 @@ def _usd_nokta(m):
     return usd_konusma(float(m.group(1).replace(",", ""))) + " dolar"
 
 
-def telaffuz_duzelt(metin):
-    """LLM'in yazdığı serbest metni sesli okumaya uygun hale getirir."""
+def telaffuz_duzelt(metin, fonetik=True):
+    """LLM'in yazdığı serbest metni sesli okumaya uygun hale getirir.
+    fonetik=False: telaffuz.py sözlüğü uygulanmaz (çağıran sonra kendisi uygular)."""
     t = re.sub(r"<[^>]+>", "", metin or "")
     t = _EMOJI.sub("", t)
     t = t.replace("’", "'").replace("‘", "'")
@@ -220,9 +222,8 @@ def telaffuz_duzelt(metin):
     t = re.sub(r"(\d+(?:[.,]\d+)?)\s?%", lambda m: "yüzde " + m.group(1).replace(".", ","), t)
     # Kesme + ek
     t = re.sub(r"\b([A-Za-zÇĞİÖŞÜçğıöşü][\w.]*?)'([a-zçğıöşü]+)\b", _kesme_duzelt, t)
-    # Tek başına kısaltmalar
-    for k, v in KISALTMALAR.items():
-        t = re.sub(rf"\b{k}\b(?!')", v, t)
+    if fonetik:
+        t = telaffuz.donustur(t)
     t = re.sub(r"\s+([,.;:])", r"\1", t)
     return re.sub(r"\s+", " ", t).strip()
 

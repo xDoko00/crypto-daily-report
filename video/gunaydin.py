@@ -107,7 +107,7 @@ def kelime_zamanlari(sahneler, tts, mp3):
                 kel.append((m.group(0), zaman(a, bas_t), zaman(b, son_t)))
             sonuc.append(kel)
             taban += len(seg) + 1
-        return sonuc
+        return _orijinal_yazimlar(sahneler, sonuc)
     # Yedek: Scribe STT kelime zamanları, sırayla eşlenir
     log("[ses] hizalama yok, Scribe STT yedeği")
     stt = sv.scribe_kelimeler(mp3)
@@ -119,7 +119,42 @@ def kelime_zamanlari(sahneler, tts, mp3):
             kel.append((k, w[1], w[2]))
             i += 1
         sonuc.append(kel)
-    return sonuc
+    return _orijinal_yazimlar(sahneler, sonuc)
+
+
+def _orijinal_yazimlar(sahneler, sonuc):
+    return [orijinal_yazim(kel, s.get("telaffuz") or []) for kel, s in zip(sonuc, sahneler)]
+
+
+def _cekirdek_esit(kelime, okunus):
+    c = re.sub(r"^\W+|[^\w']+$", "", kelime)
+    return c == okunus or c == sn.sk.tr_buyuk_bas(okunus)
+
+
+def orijinal_yazim(kel, eslemeler):
+    """Okunuş kelimelerini (Es-İ-Si'nin) altyazıda orijinal yazımına (SEC'in) çevirir;
+    zaman okunuş kelimelerinden gelir. eslemeler: telaffuz.donustur_eslemeli çıktısı, sırayla."""
+    kel, i = list(kel), 0
+    for okunus, orijinal in eslemeler:
+        n = len(okunus)
+        j = next((j for j in range(i, len(kel) - n + 1)
+                  if all(_cekirdek_esit(w[0], o) for w, o in zip(kel[j:j + n], okunus))), None)
+        if j is None or not orijinal:
+            continue
+        parca = kel[j:j + n]
+        yazi = list(orijinal)
+        if parca[0][0].lstrip("\"'(“‘")[:1].isupper():
+            yazi[0] = sn.sk.tr_buyuk_bas(yazi[0])
+        yazi[0] = re.match(r"^\W*", parca[0][0]).group(0) + yazi[0]
+        yazi[-1] += re.search(r"[^\w']*$", parca[-1][0]).group(0)
+        if len(yazi) == n:
+            zamanlar = [(w[1], w[2]) for w in parca]
+        else:
+            bas, adim = parca[0][1], (parca[-1][2] - parca[0][1]) / len(yazi)
+            zamanlar = [(bas + k * adim, bas + (k + 1) * adim) for k in range(len(yazi))]
+        kel[j:j + n] = [(y, a, b) for y, (a, b) in zip(yazi, zamanlar)]
+        i = j + len(yazi)
+    return kel
 
 
 # --------------------------------------------------------------------------- #

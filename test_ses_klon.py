@@ -8,6 +8,7 @@ import tempfile
 import unittest
 
 import ses_klon as sk
+import telaffuz
 
 RAPOR = {
     "id": "2026-09-29",
@@ -71,15 +72,15 @@ class Bicimler(unittest.TestCase):
 class Telaffuz(unittest.TestCase):
     def test_borsa_kesmesi(self):
         self.assertEqual(sk.telaffuz_duzelt("Bitget'teki hack"), "Bitget borsasındaki hack")
-        self.assertEqual(sk.telaffuz_duzelt("Binance'ten çıkış"), "Binance borsasından çıkış")
-        self.assertEqual(sk.telaffuz_duzelt("Coinbase'in hissesi"), "Coinbase borsasının hissesi")
+        self.assertEqual(sk.telaffuz_duzelt("Binance'ten çıkış"), "Baynens borsasından çıkış")
+        self.assertEqual(sk.telaffuz_duzelt("Coinbase'in hissesi"), "Koinbeys borsasının hissesi")
 
     def test_ag_kesmesi(self):
         self.assertEqual(sk.telaffuz_duzelt("THORChain'in kararı"), "THORChain ağının kararı")
 
     def test_bilinmeyen_ad_ve_kisaltma(self):
         self.assertEqual(sk.telaffuz_duzelt("Bitcoin'in"), "Bitcoinin")
-        self.assertEqual(sk.telaffuz_duzelt("ABD'nin verisi"), "ABD'nin verisi")
+        self.assertEqual(sk.telaffuz_duzelt("ABD'nin verisi"), "A-Be-De'nin verisi")
 
     def test_sayilar_ve_yuzde(self):
         self.assertEqual(sk.telaffuz_duzelt("387,5 milyon dolarlık"), "387 milyon dolarlık")
@@ -96,6 +97,56 @@ class Telaffuz(unittest.TestCase):
 
     def test_btc_eth_acilir_html_emoji_temizlenir(self):
         self.assertEqual(sk.telaffuz_duzelt("<b>BTC</b> ⚡ ve ETH"), "Bitcoin ve Ethereum")
+
+
+class TelaffuzSozlugu(unittest.TestCase):
+    def d(self, metin):
+        return sk.telaffuz_duzelt(metin)
+
+    def test_harf_harf_kisaltmalar_ve_ek_uyumu(self):
+        self.assertEqual(self.d("SEC'in kararı"), "Es-İ-Si'nin kararı")
+        self.assertEqual(self.d("spot ETF'leri"), "spot E-Te-Ef'leri")
+        self.assertEqual(self.d("ETF'in akışı"), "E-Te-Ef'in akışı")
+        self.assertEqual(self.d("FOMC'nin toplantısı"), "Ef-O-Em-Si'nin toplantısı")
+        self.assertEqual(self.d("ISM hizmet sektörü PMI"), "Ay-Es-Em hizmet sektörü Piemay")
+        self.assertEqual(self.d("PMI'ı bekliyor"), "Piemay'ı bekliyor")
+        self.assertEqual(self.d("CPI ve PCE verisi"), "Si-Pi-Ay ve Pi-Si-İ verisi")
+        self.assertEqual(self.d("DCA yap, OTC'den al"), "Decea yap, Otisi'den al")
+        self.assertEqual(self.d("NFT, TVL, ATH, KYC"), "Enefti, Ti-Vi-El, Atehaş, Key-Vay-Si")
+        self.assertEqual(self.d("ATH'a yaklaştı"), "Atehaş'a yaklaştı")
+        self.assertEqual(self.d("ABD'de"), "A-Be-De'de")
+        self.assertEqual(self.d("AI'ın etkisi"), "yapay zekânın etkisi")
+
+    def test_coin_sembolleri_ve_ek_uyumu(self):
+        self.assertEqual(self.d("ENA'nın arzı"), "Ena'nın arzı")
+        self.assertEqual(self.d("SOL'ü aldı"), "Solana'yı aldı")
+        self.assertEqual(self.d("HYPE'lık"), "Hayp'lık")
+        self.assertEqual(self.d("ETF'ten çıkış"), "E-Te-Ef'ten çıkış")
+        self.assertEqual(self.d("XRP, ADA, AVAX, DOGE, BNB"),
+                         "Ripıl, Kardano, Avaks, Doge, Bi-En-Bi")
+
+    def test_ingilizce_terimler_ekleriyle(self):
+        self.assertEqual(self.d("Stakingde altcoinler"), "Steykingde altkoinler")
+        self.assertEqual(self.d("airdrop ve stablecoin"), "erdrop ve steybılkoin")
+        self.assertEqual(self.d("DeFi'de layer 2"), "difayde layer 2")
+        self.assertEqual(self.d("Hyperliquid'in hacmi"), "Hayperlikuid ağının hacmi")
+        self.assertEqual(self.d("BlackRock ve Binance"), "BlackRock ve Baynens")
+        self.assertEqual(telaffuz.donustur("Binance'te Coinbase'e"), "Baynens'te Koinbeys'e")
+
+    def test_yanlis_eslesme_yok(self):
+        self.assertEqual(self.d("Bitcoin ve link"), "Bitcoin ve link")
+        self.assertEqual(self.d("LINK yükseldi"), "Çeynlink yükseldi")
+        self.assertEqual(self.d("defin ve sol kanat"), "defin ve sol kanat")
+        self.assertEqual(self.d("Fed ve Nasdaq"), "Fed ve Nasdaq")
+        self.assertEqual(self.d("OpenAI ve ETFS"), "OpenAI ve ETFS")
+
+    def test_ek_uyumla(self):
+        self.assertEqual(telaffuz.ek_uyumla("Es-İ-Si", "in"), "nin")
+        self.assertEqual(telaffuz.ek_uyumla("Solana", "ü"), "yı")
+        self.assertEqual(telaffuz.ek_uyumla("Hayp", "de"), "ta")
+        self.assertEqual(telaffuz.ek_uyumla("E-Te-Ef", "le"), "le")
+        self.assertEqual(telaffuz.ek_uyumla("Ena", "nın"), "nın")
+        self.assertEqual(telaffuz.ek_uyumla("Kardano", "dan"), "dan")
 
 
 class KonusmaMetni(unittest.TestCase):
@@ -121,7 +172,7 @@ class KonusmaMetni(unittest.TestCase):
     def test_en_fazla_uc_takip(self):
         m = sk.konusma_metni(rapor(), maks=5000)
         self.assertNotIn("Dördüncü olay", m)
-        self.assertIn("ABD JOLTS verisi ve HYPE token kilidi açılışı.", m)
+        self.assertIn("A-Be-De JOLTS verisi ve Hayp token kilidi açılışı.", m)
 
     def test_fiyat_tekrari_neden_kismindan_atilir(self):
         self.assertNotIn("Fiyatlar dar bir bantta", sk.konusma_metni(rapor()))
