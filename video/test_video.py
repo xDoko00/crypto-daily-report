@@ -164,6 +164,49 @@ class Test(unittest.TestCase):
             self.assertLessEqual(b1, a2)
             self.assertLessEqual(a2 - b1, 0.05 + 1e-9)
 
+    def _altyazi(self, sahne):
+        from video import gunaydin as g
+        h = list(s.etiketsiz(sahne["konusma"]))
+        tts = {"alignment": {"characters": h,
+                             "character_start_times_seconds": [i * 0.05 for i in range(len(h))],
+                             "character_end_times_seconds": [(i + 1) * 0.05 for i in range(len(h))]}}
+        return g.kelime_zamanlari([sahne], tts, None)[0]
+
+    def test_altyazi_saat_ve_yuzde_rakamla(self):
+        rapor = dict(RAPOR, brief=dict(RAPOR["brief"], criticalEvents=[
+            {"timeTr": "15:30", "title": "ABD PCE verisi, beklenti %2,4"},
+            {"timeTr": "20:05", "title": "Fed konuşması"}]))
+        sahne = next(x for x in s.sahneler(rapor) if x["tur"] == "takip")
+        self.assertIn("Saat on beş otuzda", sahne["konusma"])
+        self.assertIn("yüzde 2,4", sahne["konusma"])
+        kel = self._altyazi(sahne)
+        yazi = " ".join(k[0] for k in kel)
+        self.assertIn("Saat 15:30'da ABD PCE verisi, beklenti", yazi)
+        self.assertIn("%2,4.", yazi)
+        self.assertIn("Saat 20:05'te Fed", yazi)
+        self.assertNotIn("otuz", yazi)
+        # çok kelimelik okunuş tek belirteç: süre "on beş otuzda" boyunca
+        konusulan = s.etiketsiz(sahne["konusma"])
+        bas = konusulan.index("on beş otuzda") * 0.05
+        son = (konusulan.index("on beş otuzda") + len("on beş otuzda")) * 0.05
+        k = next(k for k in kel if k[0] == "15:30'da")
+        self.assertAlmostEqual(k[1], bas)
+        self.assertAlmostEqual(k[2], son)
+
+    def test_altyazi_fiyat_rakamla(self):
+        sahne = next(x for x in s.sahneler(RAPOR) if x["tur"] == "fiyat")
+        self.assertIn("83 bin 600 dolar", sahne["konusma"])
+        yazi = " ".join(k[0] for k in self._altyazi(sahne))
+        self.assertIn("Bitcoin 83.600 dolar", yazi)
+        self.assertIn("Ethereum %1 artıyla 2.680 dolarda.", yazi)
+
+    def test_altyazi_cftc_ekli(self):
+        rapor = dict(RAPOR, brief={"mood": "Temkinli", "mainRisk": "CFTC'nin kural teklifi."})
+        sahne = next(x for x in s.sahneler(rapor) if x["tur"] == "risk")
+        self.assertIn("Si-Ef-Ti-Si'nin kural", sahne["konusma"])
+        yazi = [k[0] for k in self._altyazi(sahne)]
+        self.assertIn("CFTC'nin", yazi)
+
     def test_orijinal_yazim_art_arda_kelimeler(self):
         from video import gunaydin as g
         import telaffuz

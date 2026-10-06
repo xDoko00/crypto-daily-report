@@ -122,9 +122,27 @@ class TelaffuzSozlugu(unittest.TestCase):
         self.assertEqual(self.d("SOL'ü aldı"), "Solana'yı aldı")
         self.assertEqual(self.d("HYPE'lık"), "Hayp'lık")
         self.assertEqual(self.d("ETF'ten çıkış"), "İtief'ten çıkış")
-        self.assertEqual(self.d("CFTC'nin raporu"), "Sieftisi'nin raporu")
+        self.assertEqual(self.d("CFTC'nin raporu"), "Si-Ef-Ti-Si'nin raporu")
         self.assertEqual(self.d("XRP, ADA, AVAX, DOGE, BNB"),
                          "Ripıl, Kardano, Avaks, Doge, Bi-En-Bi")
+
+    def test_cftc_ekli_ve_bagimsiz(self):
+        self.assertEqual(telaffuz.donustur("CFTC'ye başvurdu"), "Si-Ef-Ti-Si'ye başvurdu")
+        self.assertEqual(self.d("ABD CFTC kural teklifi"), "A-Be-De Si-Ef-Ti-Si kural teklifi")
+        self.assertEqual(self.d("Komisyonu (CFTC), kural"), "Komisyonu (Si-Ef-Ti-Si), kural")
+        self.assertNotIn("Si-Ef", self.d("cftc küçük harf"))
+
+    def test_sayi_eslemeleri_altyazi_icin(self):
+        es = []
+        sonuc = sk.telaffuz_duzelt("Saat 15:30'da CPI %2,4 bekleniyor, BTC 83.600 dolar.", eslemeler=es)
+        self.assertEqual(sonuc, "Saat saat on beş otuzda Si-Pi-Ay yüzde 2,4 bekleniyor, Bitcoin 83 bin 600 dolar.")
+        self.assertEqual(es, [(("saat", "on", "beş", "otuzda"), ("15:30'da",)),
+                              (("yüzde", "2,4"), ("%2,4",)),
+                              (("83", "bin", "600"), ("83.600",))])
+        es = []
+        sk.telaffuz_duzelt("$387,5 milyon ve 2.5% ile 2025 yılı", eslemeler=es)
+        self.assertEqual(es, [(("387", "milyon", "dolar"), ("$387,5", "milyon")),
+                              (("yüzde", "2,5"), ("2.5%",))])
 
     def test_ingilizce_terimler_ekleriyle(self):
         self.assertEqual(self.d("Stakingde altcoinler"), "Steykingde altkoinler")

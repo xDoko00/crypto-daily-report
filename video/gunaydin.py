@@ -123,7 +123,9 @@ def kelime_zamanlari(sahneler, tts, mp3):
 
 
 def _orijinal_yazimlar(sahneler, sonuc):
-    return [orijinal_yazim(kel, s.get("telaffuz") or []) for kel, s in zip(sonuc, sahneler)]
+    # iki geçiş: her eşleme listesi kendi içinde metin sırasıyla aranır
+    return [orijinal_yazim(orijinal_yazim(kel, s.get("telaffuz") or []), s.get("rakam") or [])
+            for kel, s in zip(sonuc, sahneler)]
 
 
 def _cekirdek_esit(kelime, okunus):

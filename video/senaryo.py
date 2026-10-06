@@ -246,12 +246,38 @@ def _terimler(metin, tablo):
 
 # konusma() çağrılarının okunuş eşlemeleri; sahneler() her sahneye "telaffuz" olarak dağıtır
 _ESLEMELER = []
+# Sayı okunuşu eşlemeleri ("on beş otuzda" -> "15:30'da"); sahneye "rakam" olarak, metin sırasıyla
+_RAKAMLAR = []
+
+
+def _rakam(okunus, orijinal):
+    """Sesteki yazıyla sayıyı altyazı için rakam yazımına eşler; okunuşu döndürür."""
+    if okunus and orijinal and okunus != orijinal:
+        _RAKAMLAR.append((tuple(okunus.split()), tuple(orijinal.split())))
+    return okunus
+
+
+def _usd_rakam(tutar):
+    """usd_konusma çıktısının rakam yazımı: '85 bin 600' -> '85.600', 'bin' -> '1.000'."""
+    m = re.fullmatch(r"(?:(\d+) )?bin(?: (\d+))?", tutar)
+    return _binlik(int(m.group(1) or 1) * 1000 + int(m.group(2) or 0)) if m else tutar
+
+
+def _yuzde_rakam(ch):
+    a = round(abs(float(ch)), 1)
+    return "%" + (str(int(a)) if a == int(a) else f"{a:.1f}".replace(".", ","))
+
+
+def _saat_rakam(hhmm, okunus):
+    """('15:30', 'saat on beş otuzda') -> "15:30'da" (ek okunuştan)."""
+    s, d = re.fullmatch(r"\s*(\d{1,2})[:.](\d{2})\s*", hhmm).groups()
+    return f"{int(s)}:{d}'{okunus[-2:]}"
 
 
 def konusma(metin, rapor):
     """Rapor metnini sesli okumaya uygun, Türkçeleştirilmiş cümleye çevirir."""
     t = _goreli_tarih(metin or "", rapor)
-    t = sk.telaffuz_duzelt(t, fonetik=False)
+    t = sk.telaffuz_duzelt(t, fonetik=False, eslemeler=_RAKAMLAR)
     t = _terimler(t, SES_TERIMLERI)
     t, eslemeler = telaffuz.donustur_eslemeli(t)
     _ESLEMELER.extend(eslemeler)
@@ -320,14 +346,17 @@ def _coin_konusma(ad, coin, yatay_ek):
     tutar = sk.usd_konusma(fiyat)
     ch = coin.get("change24h")
     if ch is None or abs(ch) < YATAY_ESIGI:
-        return f"{ad} {tutar} dolar civarında, {yatay_ek}."
+        return f"{ad} {_rakam(tutar, _usd_rakam(tutar))} dolar civarında, {yatay_ek}."
     yon = "artıyla" if ch > 0 else "düşüşle"
-    return f"{ad} yüzde {sk.yuzde_konusma(ch)} {yon} {tutar} dolarda."
+    yuzde = _rakam("yüzde " + sk.yuzde_konusma(ch), _yuzde_rakam(ch))
+    return f"{ad} {yuzde} {yon} {_rakam(tutar, _usd_rakam(tutar))} dolarda."
 
 
 def _takip_ifadesi(olay, rapor):
-    baslik = konusma(olay.get("title", ""), rapor).rstrip(".")
     saat = sk.saat_konusma(olay.get("timeTr") or "")
+    if saat:      # önce saat: eşlemeler metin sırasıyla tutulur
+        _rakam(saat.split(" ", 1)[1], _saat_rakam(olay["timeTr"], saat))
+    baslik = konusma(olay.get("title", ""), rapor).rstrip(".")
     return (sk.tr_buyuk_bas(saat) + " " + baslik) if saat else ("Gün içinde de " + baslik)
 
 
@@ -345,10 +374,13 @@ def sahneler(rapor):
     temalar = baslik_temalari(rapor)
     s = []
     _ESLEMELER.clear()
+    _RAKAMLAR.clear()
 
     def ekle(sahne):
         sahne["telaffuz"] = list(_ESLEMELER)
+        sahne["rakam"] = list(_RAKAMLAR)
         _ESLEMELER.clear()
+        _RAKAMLAR.clear()
         s.append(sahne)
 
     # 1) Kanca: tarih + günün başlığı

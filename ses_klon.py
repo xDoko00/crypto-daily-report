@@ -198,14 +198,52 @@ def _usd_nokta(m):
     return usd_konusma(float(m.group(1).replace(",", ""))) + " dolar"
 
 
-def telaffuz_duzelt(metin, fonetik=True):
+# Sayı içeren ifade (saat, $/% önekli, binlik, milyon/milyar, dolar, % sonekli): _sayilar()
+# zinciri yalnız bu kalıbın içinde iş görür; kalıp zincirin tükettiği her bağlamı kapsamalı.
+_SAYI_IFADESI = re.compile(r"(?:\bsaat\s+)?(?:[$%]\s?)?\b\d(?:[\d.,:]*\d)?"
+                           r"(?:\s*'?(?:de|da|te|ta)\b)?(?:\s*(?:milyon|milyar)\b)?"
+                           r"(?:\s*dolar)?(?:\s?%)?")
+
+
+def _sayi_eslemesi(okunus, orijinal):
+    """Ortak baş/son kelimeler atılmış (okunuş, orijinal) kelime demetleri; fark yoksa None."""
+    o, g = okunus.split(), orijinal.split()
+    while o and g and o[0] == g[0]:
+        o, g = o[1:], g[1:]
+    while o and g and o[-1] == g[-1]:
+        o, g = o[:-1], g[:-1]
+    return (tuple(o), tuple(g)) if o and g else None
+
+
+def telaffuz_duzelt(metin, fonetik=True, eslemeler=None):
     """LLM'in yazdığı serbest metni sesli okumaya uygun hale getirir.
-    fonetik=False: telaffuz.py sözlüğü uygulanmaz (çağıran sonra kendisi uygular)."""
+    fonetik=False: telaffuz.py sözlüğü uygulanmaz (çağıran sonra kendisi uygular).
+    eslemeler (liste): sayı dönüşümlerinin (okunuş, orijinal) kelime eşlemeleri metin sırasıyla
+    eklenir (altyazıda "on beş otuzda" yerine "15:30'da" yazmak için)."""
     t = re.sub(r"<[^>]+>", "", metin or "")
     t = _EMOJI.sub("", t)
     t = t.replace("’", "'").replace("‘", "'")
     t = t.replace("F&amp;G", "korku açgözlülük endeksi").replace("F&G", "korku açgözlülük endeksi")
     t = re.sub(r"\(\s*TSİ\s*\)|\bTSİ\b", "", t)
+
+    def ifade(m):
+        okunus = _sayilar(m.group(0))
+        es = _sayi_eslemesi(okunus, m.group(0))
+        if es and eslemeler is not None:
+            eslemeler.append(es)
+        return okunus
+
+    t = _SAYI_IFADESI.sub(ifade, t)
+    # Kesme + ek
+    t = re.sub(r"\b([A-Za-zÇĞİÖŞÜçğıöşü][\w.]*?)'([a-zçğıöşü]+)\b", _kesme_duzelt, t)
+    if fonetik:
+        t = telaffuz.donustur(t)
+    t = re.sub(r"\s+([,.;:])", r"\1", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def _sayilar(t):
+    """Saat, dolar ve yüzde yazımlarını konuşma diline çevirir (tek ifade üzerinde)."""
     # Saatler: "saat 11:00'de", "15:30" -> "saat on birde" / "saat on beş otuzda"
     t = re.sub(r"(?:\bsaat\s+)?\b(\d{1,2}:\d{2})(?:\s*'?(?:de|da|te|ta)\b)?",
                lambda m: saat_konusma(m.group(1)) or m.group(0), t)
@@ -220,12 +258,7 @@ def telaffuz_duzelt(metin, fonetik=True):
     # Yüzdeler: "%2,5" / "2.5%" -> "yüzde 2,5"
     t = re.sub(r"%\s?(\d+(?:[.,]\d+)?)", lambda m: "yüzde " + m.group(1).replace(".", ","), t)
     t = re.sub(r"(\d+(?:[.,]\d+)?)\s?%", lambda m: "yüzde " + m.group(1).replace(".", ","), t)
-    # Kesme + ek
-    t = re.sub(r"\b([A-Za-zÇĞİÖŞÜçğıöşü][\w.]*?)'([a-zçğıöşü]+)\b", _kesme_duzelt, t)
-    if fonetik:
-        t = telaffuz.donustur(t)
-    t = re.sub(r"\s+([,.;:])", r"\1", t)
-    return re.sub(r"\s+", " ", t).strip()
+    return t
 
 
 # --------------------------------------------------------------------------- #

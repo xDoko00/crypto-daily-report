@@ -11,7 +11,7 @@ import re
 # tam kelime eşleşir. Küçük harfle başlayan okunuş (ör. "yapay zekâ") cins isimdir, kesme işareti almaz.
 HARF_HARF = {
     "ETF": "İtief",
-    "CFTC": "Sieftisi",
+    "CFTC": "Si-Ef-Ti-Si",        # "Sieftisi" ElevenLabs'te "Siftisi" okundu (6 Eki)
     "SEC": "Es-İ-Si",
     "FOMC": "Ef-O-Em-Si",
     "CPI": "Si-Pi-Ay",
