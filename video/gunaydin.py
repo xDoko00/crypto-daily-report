@@ -28,6 +28,7 @@ from . import senaryo as sn      # noqa: E402
 from . import servisler as sv    # noqa: E402
 from . import cizim as cz        # noqa: E402
 from . import kutuphane as ku    # noqa: E402
+from . import dogan as dg        # noqa: E402
 
 KOK = os.path.dirname(os.path.abspath(__file__))
 VARSAYILAN_RAPOR = "https://raw.githubusercontent.com/xDoko00/crypto-daily-report/main/reports/latest.json"
@@ -360,7 +361,7 @@ def sahne_ogeleri(s, sira_haber):
     return cz.sahne_kapanis(s), None
 
 
-def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma):
+def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma, kose=None):
     toplam_kare = int(round(top * FPS))
     kodlayici = subprocess.Popen(
         ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{cz.W}x{cz.H}",
@@ -431,6 +432,8 @@ def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma
                     break
             d = ImageDraw.Draw(im)
             cz.ilerleme(d, araliklar, t)
+            if kose is not None and not kose.bindir(im, kare + i):
+                kose = None
             rgb = im.convert("RGB")
             if kare_klasoru and i == orta:
                 rgb.save(os.path.join(kare_klasoru, f"{si + 1:02d}-{s['tur']}.jpg"), quality=88)
@@ -470,7 +473,8 @@ def uret(rapor, calisma, cikti, kare_klasoru=None, durum=ku.DURUM):
     parcalar = altyazi_parcalari(ks, araliklar)
     broll_hazirla(sahneler, gun, durum)
     miks = ses_miksaji(mp3, top, calisma)
-    render(sahneler, araliklar, parcalar, top, miks, cikti, kare_klasoru, calisma)
+    kose = dg.hazirla(ks, top, FPS)
+    render(sahneler, araliklar, parcalar, top, miks, cikti, kare_klasoru, calisma, kose)
 
     with open(os.path.join(calisma, "metin.txt"), "w", encoding="utf-8") as f:
         f.write(f"# Günaydın Kripto — {gun} — konuşma metni (ElevenLabs'e giden, etiketli)\n\n")

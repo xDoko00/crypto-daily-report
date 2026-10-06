@@ -388,5 +388,84 @@ class TestCalistir(unittest.TestCase):
             self.assertEqual(vc.main(["--rapor", "/yok/r.json", "--gonderme"]), 1)
 
 
+class TestDoganKose(unittest.TestCase):
+    KS = [[("Günaydın!", 0.2, 0.9), ("Bugün", 1.0, 1.4), ("Salı.", 2.0, 2.6)],
+          [("Bay", 10.0, 10.1), ("bay.", 10.2, 10.8)]]
+
+    def _sahte_kareler(self):
+        import numpy as np
+        from video import dogan as dg
+        F = lambda n, v: np.full((n, dg.IC, dg.IC, 3), v, np.uint8)  # noqa: E731
+        return F(58, 200), F(69, 100), F(121, 50)
+
+    def test_konusma_araliklari_birlesir(self):
+        from video import dogan as dg
+        # 0.9→1.0 (0.1 sn) birleşir; 1.4→2.0 (0.6 sn) ayrı; 10.1→10.2 birleşir
+        self.assertEqual(dg.konusma_araliklari(self.KS), [[0.2, 1.4], [2.0, 2.6], [10.0, 10.8]])
+
+    def test_kapanis_bay_bay_oncesi(self):
+        from video import dogan as dg
+        self.assertAlmostEqual(dg.kapanis_zamani(self.KS), 10.0 - dg.KAPANIS_ONDE)
+        self.assertAlmostEqual(dg.kapanis_zamani([[("Hoşça", 3.0, 3.4), ("kalın.", 3.5, 4.0)]]),
+                               3.5 - dg.KAPANIS_ONDE)
+        self.assertIsNone(dg.kapanis_zamani([[]]))
+
+    def test_agirliklar_gecis_ve_kapanis(self):
+        from video import dogan as dg
+        fps = 30
+        wa, wb, wc = dg.agirliklar(360, fps, dg.konusma_araliklari(self.KS), dg.kapanis_zamani(self.KS))
+        for i in range(360):
+            self.assertAlmostEqual(wa[i] + wb[i] + wc[i], 1.0)
+        self.assertEqual(wa[int(0.6 * fps)], 1.0)              # konuşma
+        self.assertEqual(wb[int(5.0 * fps)], 1.0)              # bekleme
+        self.assertEqual(wc[int(11.0 * fps)], 1.0)             # el sallama
+        self.assertEqual(wc[int(9.4 * fps)], 0.0)
+        k = 287                                                 # ilk t >= 9.55 karesi
+        self.assertTrue(0 < wc[k] < 1)                          # yumuşak geçiş
+        self.assertGreater(wc[k - 2], 0)
+        self.assertEqual(wc[k - 3], 0)
+
+    def test_kare_ve_bindirme(self):
+        from PIL import Image
+        from video import dogan as dg
+        k = dg.Kose(self.KS, 12.0, 30, kareler=self._sahte_kareler())
+        b = k.kare(int(0.6 * 30))
+        self.assertEqual(b.size, (dg.D, dg.D))
+        self.assertEqual(b.getpixel((dg.D // 2, dg.D // 2)), (200, 200, 200, 255))   # konuşma klibi
+        self.assertEqual(b.getpixel((0, 0))[3], 0)                                    # daire dışı saydam
+        self.assertEqual(b.getpixel((dg.D // 2, 2))[:3], (242, 183, 5))               # sarı kenar
+        self.assertEqual(k.kare(int(11 * 30)).getpixel((dg.D // 2, dg.D // 2))[:3], (50, 50, 50))
+        im = Image.new("RGBA", (1080, 1920), (0, 0, 0, 255))
+        self.assertTrue(k.bindir(im, 10 ** 6))                 # taşan indis kırpılır
+        self.assertEqual(im.getpixel((dg.X + dg.D // 2, dg.Y + dg.D // 2))[:3], (50, 50, 50))
+
+    def test_hata_halinde_dogansiz_devam(self):
+        from video import dogan as dg
+        with mock.patch.object(dg, "log"), \
+                mock.patch.object(dg, "_kareler", side_effect=FileNotFoundError("yok")):
+            self.assertIsNone(dg.hazirla(self.KS, 12.0, 30, ortam={}))
+        k = dg.Kose(self.KS, 12.0, 30, kareler=self._sahte_kareler())
+        with mock.patch.object(dg, "log"), mock.patch.object(k, "kare", side_effect=ValueError("bozuk")):
+            self.assertFalse(k.bindir(object(), 0))
+
+    def test_kapatma_degiskeni(self):
+        from video import dogan as dg
+        self.assertTrue(dg.aktif_mi({}))
+        for v in ("kapali", "KAPALI", "0", "false"):
+            self.assertFalse(dg.aktif_mi({"DOGAN_KOSE": v}))
+        with mock.patch.object(dg, "log"), mock.patch.object(dg, "_kareler") as kar:
+            self.assertIsNone(dg.hazirla(self.KS, 12.0, 30, ortam={"DOGAN_KOSE": "kapali"}))
+            kar.assert_not_called()
+
+    def test_varliklar_depoda_ve_kucuk(self):
+        from video import dogan as dg
+        top = 0
+        for ad in ("konusma", "bekleme", "kapanis"):
+            yol = os.path.join(dg.KLASOR, ad + ".mp4")
+            self.assertTrue(os.path.isfile(yol), yol)
+            top += os.path.getsize(yol)
+        self.assertLess(top, 3 * 1024 * 1024)
+
+
 if __name__ == "__main__":
     unittest.main()
