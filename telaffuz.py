@@ -7,10 +7,11 @@ Yeni girdi = ilgili sözlüğe tek satır. Anlam çevirisi burada YAPILMAZ
 import difflib
 import re
 
-# Kısaltmalar: Doğukan'ın kulakla seçtiği okunuşlar (İngilizce harf adları, tireli). Büyük harfli
+# Kısaltmalar: Doğukan'ın kulakla seçtiği okunuşlar (İngilizce harf adları). Büyük harfli
 # tam kelime eşleşir. Küçük harfle başlayan okunuş (ör. "yapay zekâ") cins isimdir, kesme işareti almaz.
 HARF_HARF = {
-    "ETF": "E-Te-Ef",
+    "ETF": "İtief",
+    "CFTC": "Sieftisi",
     "SEC": "Es-İ-Si",
     "FOMC": "Ef-O-Em-Si",
     "CPI": "Si-Pi-Ay",

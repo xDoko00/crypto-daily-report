@@ -105,8 +105,8 @@ class TelaffuzSozlugu(unittest.TestCase):
 
     def test_harf_harf_kisaltmalar_ve_ek_uyumu(self):
         self.assertEqual(self.d("SEC'in kararı"), "Es-İ-Si'nin kararı")
-        self.assertEqual(self.d("spot ETF'leri"), "spot E-Te-Ef'leri")
-        self.assertEqual(self.d("ETF'in akışı"), "E-Te-Ef'in akışı")
+        self.assertEqual(self.d("spot ETF'leri"), "spot İtief'leri")
+        self.assertEqual(self.d("ETF'in akışı"), "İtief'in akışı")
         self.assertEqual(self.d("FOMC'nin toplantısı"), "Ef-O-Em-Si'nin toplantısı")
         self.assertEqual(self.d("ISM hizmet sektörü PMI"), "Ay-Es-Em hizmet sektörü Piemay")
         self.assertEqual(self.d("PMI'ı bekliyor"), "Piemay'ı bekliyor")
@@ -121,7 +121,8 @@ class TelaffuzSozlugu(unittest.TestCase):
         self.assertEqual(self.d("ENA'nın arzı"), "Ena'nın arzı")
         self.assertEqual(self.d("SOL'ü aldı"), "Solana'yı aldı")
         self.assertEqual(self.d("HYPE'lık"), "Hayp'lık")
-        self.assertEqual(self.d("ETF'ten çıkış"), "E-Te-Ef'ten çıkış")
+        self.assertEqual(self.d("ETF'ten çıkış"), "İtief'ten çıkış")
+        self.assertEqual(self.d("CFTC'nin raporu"), "Sieftisi'nin raporu")
         self.assertEqual(self.d("XRP, ADA, AVAX, DOGE, BNB"),
                          "Ripıl, Kardano, Avaks, Doge, Bi-En-Bi")
 
@@ -144,7 +145,7 @@ class TelaffuzSozlugu(unittest.TestCase):
         self.assertEqual(telaffuz.ek_uyumla("Es-İ-Si", "in"), "nin")
         self.assertEqual(telaffuz.ek_uyumla("Solana", "ü"), "yı")
         self.assertEqual(telaffuz.ek_uyumla("Hayp", "de"), "ta")
-        self.assertEqual(telaffuz.ek_uyumla("E-Te-Ef", "le"), "le")
+        self.assertEqual(telaffuz.ek_uyumla("İtief", "le"), "le")
         self.assertEqual(telaffuz.ek_uyumla("Ena", "nın"), "nın")
         self.assertEqual(telaffuz.ek_uyumla("Kardano", "dan"), "dan")
 
