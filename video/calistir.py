@@ -12,10 +12,12 @@ Bayraklar (ortam):
   VIDEO_OZET=1         açık (varsayılan kapalı)
   VIDEO_HEDEF=admin    varsayılan; TELEGRAM_ADMIN_CHAT_ID'ye gider.
                        "kanal" kod yolu hazır ama KANAL_ACIK=False iken gönderilmez.
+  VIDEO_KOPYA=yol      üretilen videonun bir kopyası buraya yazılır (sosyal.py adımı için)
 """
 import json
 import os
 import re
+import shutil
 import signal
 import subprocess
 import sys
@@ -191,6 +193,12 @@ def main(argv=None):
         cikti = os.path.join(calisma, f"gunaydin-{rapor['id']}.mp4")
         ozet = gunaydin.uret(rapor, os.path.join(calisma, "is"), cikti)
         yol = boyut_sigdir(cikti)
+        kopya = (os.environ.get("VIDEO_KOPYA") or "").strip()
+        if kopya:
+            try:
+                shutil.copyfile(yol, kopya)
+            except Exception as e:            # noqa: BLE001
+                log(f"[uyarı] Video kopyası yazılamadı: {_gizle(e)}")
         if a.gonderme:
             log(f"[video] üretildi (gönderilmedi): {yol}")
             return 0
