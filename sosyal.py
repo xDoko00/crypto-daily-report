@@ -464,36 +464,65 @@ def url_erisilebilir(url, http=None):
 
 
 # --------------------------------------------------------------------------- #
-# Instagram varyantı: son ~3 sn'ye "DM'den BUGÜN yaz" çağrısı
+# Instagram varyantı: video boyunca küçük "DM'den BUGÜN yaz" hapı (her ~5 sn
+# kısa nabız) + son ~3 sn'de büyük çağrı. X ve TikTok'a orijinal gider.
 # --------------------------------------------------------------------------- #
 
 IG_CAGRI_SN = 3.0
-IG_CAGRI_Y = 1560                 # altyazı merkezi 1430 (cizim.ALTYAZI_Y), Doğan balonu y 1096-1328
-IG_CAGRI_YUKSEKLIK = 112          # 1560-1672: IG hikâye alt güvenli alanının (son ~250 px) üstünde
 IG_CAGRI_METIN = "DM'den BUGÜN yaz"
+# Yerleşim (1080x1920): kartlar/altyazı (merkez cizim.ALTYAZI_Y=1430, iki satırda
+# alt kenar ~1500), Doğan balonu (y 1096-1328) ve ilerleme çubuğu (üst) dışında
+# kalan boş bant y≈1540-1700. IG hikâye arayüzü üst ~250 px ve alt ~200 px'i
+# (y>1720) kapattığı için ikisi de bu bandın içinde.
+IG_CAGRI_Y = 1560                 # büyük çağrı: y 1560-1672, yatay ortalı
+IG_CAGRI_YUKSEKLIK = 112
+IG_HAP_MERKEZ = (540, 1610)       # küçük hap: ~494x76 (gölgesiz), x≈293-787, y≈1572-1648
+IG_HAP_YUKSEKLIK = 76
+IG_NABIZ_ARALIK = 5.0             # sn
+IG_NABIZ_SURE = 0.5               # sn
+IG_NABIZ_GENLIK = 0.12            # %12 büyüyüp küçülür
+
+
+def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True):
+    """Kırpılmış RGBA hap: sarı zemin, siyah yazı + çizilmiş aşağı ok (emoji fontuna güvenmez)."""
+    from PIL import Image, ImageDraw
+    from video import cizim as cz
+    f = cz.font(yazi_boyut, 800)
+    yazi_gen = f.getlength(IG_CAGRI_METIN)
+    bosluk = int(ok_gen * 0.55)
+    gen = int(ic + yazi_gen + bosluk + ok_gen + ic)
+    pay = 8 if golge else 0
+    im = Image.new("RGBA", (gen + pay, yukseklik + pay), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    r = yukseklik // 2
+    if golge:
+        d.rounded_rectangle((4, 6, gen + 3, yukseklik + 5), radius=r, fill=(0, 0, 0, 110))
+    d.rounded_rectangle((0, 0, gen - 1, yukseklik - 1), radius=r, fill=cz.ACCENT + (255,))
+    orta = yukseklik // 2
+    d.text((ic, orta), IG_CAGRI_METIN, font=f, fill=(0, 0, 0, 255), anchor="lm")
+    ox = ic + yazi_gen + bosluk
+    sap = max(ok_gen * 0.3, 4)
+    u = ok_gen * 0.8
+    d.rectangle((ox + ok_gen / 2 - sap / 2, orta - u * 0.95, ox + ok_gen / 2 + sap / 2, orta + u * 0.15),
+                fill=(0, 0, 0, 255))
+    d.polygon([(ox, orta + u * 0.05), (ox + ok_gen, orta + u * 0.05), (ox + ok_gen / 2, orta + u * 0.8)],
+              fill=(0, 0, 0, 255))
+    return im
 
 
 def cagri_katmani(yol, w=1080, h=1920):
-    """Saydam 1080x1920 PNG: sarı hap içinde siyah yazı + çizilmiş aşağı ok (emoji fontuna güvenmez)."""
-    from PIL import Image, ImageDraw
-    from video import cizim as cz
+    """Son saniyelerin büyük çağrısı: saydam 1080x1920 PNG."""
+    from PIL import Image
+    hap = hap_ciz(IG_CAGRI_YUKSEKLIK, 58, 44, 40)
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    f = cz.font(58, 800)
-    yazi_gen = f.getlength(IG_CAGRI_METIN)
-    ok_gen, bosluk, ic = 40, 22, 44
-    gen = int(ic + yazi_gen + bosluk + ok_gen + ic)
-    x0 = (w - gen) // 2
-    y0, y1 = IG_CAGRI_Y, IG_CAGRI_Y + IG_CAGRI_YUKSEKLIK
-    d.rounded_rectangle((x0 + 4, y0 + 6, x0 + gen + 4, y1 + 6), radius=(y1 - y0) // 2, fill=(0, 0, 0, 110))
-    d.rounded_rectangle((x0, y0, x0 + gen, y1), radius=(y1 - y0) // 2, fill=cz.ACCENT + (255,))
-    orta = (y0 + y1) // 2
-    d.text((x0 + ic, orta), IG_CAGRI_METIN, font=f, fill=(0, 0, 0, 255), anchor="lm")
-    ox = x0 + ic + yazi_gen + bosluk
-    sap = 12
-    d.rectangle((ox + ok_gen / 2 - sap / 2, orta - 30, ox + ok_gen / 2 + sap / 2, orta + 6), fill=(0, 0, 0, 255))
-    d.polygon([(ox, orta + 2), (ox + ok_gen, orta + 2), (ox + ok_gen / 2, orta + 32)], fill=(0, 0, 0, 255))
+    im.alpha_composite(hap, ((w - hap.width) // 2, IG_CAGRI_Y))
     im.save(yol)
+    return yol
+
+
+def kucuk_hap(yol):
+    """Video boyunca duran küçük hap (kırpılmış PNG)."""
+    hap_ciz(IG_HAP_YUKSEKLIK, 40, 30, 28).save(yol)
     return yol
 
 
@@ -503,19 +532,48 @@ def _sure(yol):
     return float(p.stdout.strip())
 
 
-def ig_varyant_komutu(girdi, katman, cikti, sure, cagri_sn=IG_CAGRI_SN):
+def nabiz_olcegi(t, aralik=IG_NABIZ_ARALIK, sure=IG_NABIZ_SURE, genlik=IG_NABIZ_GENLIK):
+    """Python karşılığı (test için): her `aralik` sn'de bir `sure` sn'lik yumuşak büyüme."""
+    import math
+    m = t % aralik
+    return 1 + genlik * math.sin(math.pi * m / sure) if (t >= aralik and m < sure) else 1.0
+
+
+def _nabiz_ifadesi():
+    a, s_, g = IG_NABIZ_ARALIK, IG_NABIZ_SURE, IG_NABIZ_GENLIK
+    return f"(1+{g}*sin(PI*mod(t,{a})/{s_})*lt(mod(t,{a}),{s_})*gte(t,{a}))"
+
+
+def ig_varyant_komutu(girdi, kucuk, buyuk, cikti, sure, cagri_sn=IG_CAGRI_SN, nabiz=True):
     bas = max(sure - cagri_sn, 0.0)
-    filtre = (f"[1:v]format=rgba,fade=t=in:st={bas:.2f}:d=0.3:alpha=1[c];"
-              f"[0:v][c]overlay=0:0:enable='gte(t,{bas:.2f})'[v]")
-    return ["ffmpeg", "-y", "-v", "error", "-i", girdi, "-framerate", "30", "-loop", "1",
-            "-t", f"{sure:.2f}", "-i", katman, "-filter_complex", filtre, "-map", "[v]", "-map", "0:a?",
+    cx, cy = IG_HAP_MERKEZ
+    if nabiz:
+        olcek = _nabiz_ifadesi()
+        hap = f"[1:v]format=rgba,scale=w='trunc(iw*{olcek}/2)*2':h='trunc(ih*{olcek}/2)*2':eval=frame[h];"
+    else:
+        hap = "[1:v]format=rgba[h];"
+    filtre = (hap
+              + f"[2:v]format=rgba,fade=t=in:st={bas:.2f}:d=0.3:alpha=1[c];"
+              + f"[0:v][h]overlay=x='{cx}-w/2':y='{cy}-h/2':enable='lt(t,{bas:.2f})'[a];"
+              + f"[a][c]overlay=0:0:enable='gte(t,{bas:.2f})'[v]")
+    return ["ffmpeg", "-y", "-v", "error", "-i", girdi,
+            "-framerate", "30", "-loop", "1", "-t", f"{sure:.2f}", "-i", kucuk,
+            "-framerate", "30", "-loop", "1", "-t", f"{sure:.2f}", "-i", buyuk,
+            "-filter_complex", filtre, "-map", "[v]", "-map", "0:a?",
             "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
             "-profile:v", "high", "-level", "4.1", "-c:a", "copy", "-movflags", "+faststart", cikti]
 
 
 def ig_varyant_uret(girdi, cikti, calisma):
-    katman = cagri_katmani(os.path.join(calisma, "ig-cagri.png"))
-    subprocess.run(ig_varyant_komutu(girdi, katman, cikti, _sure(girdi)), check=True)
+    kucuk = kucuk_hap(os.path.join(calisma, "ig-hap.png"))
+    buyuk = cagri_katmani(os.path.join(calisma, "ig-cagri.png"))
+    sure = _sure(girdi)
+    try:
+        subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, cikti, sure), check=True)
+    except subprocess.CalledProcessError:
+        # Eski ffmpeg'de scale `t` değişkeni yok: nabızsız (sabit hap) üret.
+        log("[sosyal] nabızlı IG varyantı üretilemedi, sabit hapla deneniyor")
+        subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, cikti, sure, nabiz=False), check=True)
     return cikti
 
 

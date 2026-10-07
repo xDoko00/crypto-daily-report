@@ -260,10 +260,29 @@ class ReleaseTestleri(unittest.TestCase):
         self.assertIn("--prerelease", komutlar[1])
 
     def test_ig_varyant_komutu(self):
-        k = s.ig_varyant_komutu("in.mp4", "k.png", "out.mp4", 50.0)
+        k = s.ig_varyant_komutu("in.mp4", "hap.png", "cagri.png", "out.mp4", 50.0)
         filtre = k[k.index("-filter_complex") + 1]
-        self.assertIn("gte(t,47.00)", filtre)
+        self.assertIn("enable='lt(t,47.00)'", filtre)           # küçük hap son 3 sn'ye kadar
+        self.assertIn("enable='gte(t,47.00)'", filtre)          # büyük çağrı son 3 sn
+        self.assertIn("eval=frame", filtre)                     # nabız
+        self.assertIn("x='540-w/2':y='1610-h/2'", filtre)       # nabızda merkez sabit
+        self.assertEqual([k[i + 1] for i, v in enumerate(k) if v == "-i"], ["in.mp4", "hap.png", "cagri.png"])
         self.assertEqual(k[-1], "out.mp4")
+        sabit = s.ig_varyant_komutu("in.mp4", "hap.png", "cagri.png", "out.mp4", 50.0, nabiz=False)
+        self.assertNotIn("eval=frame", sabit[sabit.index("-filter_complex") + 1])
+
+    def test_nabiz_zamanlamasi(self):
+        self.assertEqual(s.nabiz_olcegi(2.0), 1.0)              # ilk 5 sn nabız yok
+        self.assertAlmostEqual(s.nabiz_olcegi(5.25), 1.12)      # 5. sn tepe
+        self.assertEqual(s.nabiz_olcegi(5.6), 1.0)              # 0,5 sn sonra biter
+        self.assertAlmostEqual(s.nabiz_olcegi(10.25), 1.12)     # her 5 sn
+
+    def test_hap_guvenli_bantta(self):
+        y0 = s.IG_HAP_MERKEZ[1] - s.IG_HAP_YUKSEKLIK * (1 + s.IG_NABIZ_GENLIK) / 2
+        y1 = s.IG_HAP_MERKEZ[1] + s.IG_HAP_YUKSEKLIK * (1 + s.IG_NABIZ_GENLIK) / 2
+        self.assertGreater(y0, 1500)                            # altyazı altı
+        self.assertLess(y1, 1920 - 200)                         # IG yanıt kutusu üstü
+        self.assertLess(s.IG_CAGRI_Y + s.IG_CAGRI_YUKSEKLIK, 1920 - 200)
 
 
 class PaylasTestleri(unittest.TestCase):
