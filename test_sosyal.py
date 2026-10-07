@@ -334,7 +334,10 @@ class PaylasTestleri(unittest.TestCase):
         sonuc = s.paylas(r, self.video, ortam=self.ortam, buffer=b, release=SahteRelease(),
                          bildir=self.bildirim.append, durum_yolu=self.durum, ig_uret=sahte_ig,
                          erisim=lambda u: True)
-        self.assertEqual(set(sonuc), {"instagram"})
+        self.assertEqual(sonuc, {})                       # IG videosunda da aynı başlık var
+        self.assertEqual(b.olusturulan, [])
+        for ad in ("Instagram hikâye gönderilmedi", "X gönderilmedi", "TikTok gönderilmedi"):
+            self.assertIn(ad, self.bildirim[0])
         self.assertIn("şüpheli ifade: kesin", self.bildirim[0])
 
     def test_platform_hatasi_digerlerini_durdurmaz(self):

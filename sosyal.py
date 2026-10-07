@@ -570,8 +570,11 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
             return sonuc
 
         metinler = {"instagram": "", "x": x_metni(rapor), "tiktok": tiktok_metni(rapor)}
+        # IG hikâyesinin metni boş ama videoda aynı başlıklar var: başlıklar
+        # filtreye takılırsa hikâye de gönderilmez.
+        denetlenen = dict(metinler, instagram="\n".join(basliklar(rapor, 3)))
         for p in list(bekleyen):
-            supheli = supheli_kelimeler(metinler[p])
+            supheli = supheli_kelimeler(denetlenen[p])
             if supheli:
                 bekleyen.remove(p)
                 sorunlar.append(f"{PLATFORM_AD[p]} gönderilmedi — şüpheli ifade: {', '.join(supheli)}")

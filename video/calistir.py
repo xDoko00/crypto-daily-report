@@ -196,7 +196,9 @@ def main(argv=None):
         kopya = (os.environ.get("VIDEO_KOPYA") or "").strip()
         if kopya:
             try:
-                shutil.copyfile(yol, kopya)
+                gecici = kopya + ".yaziliyor"
+                shutil.copyfile(yol, gecici)
+                os.replace(gecici, kopya)      # yarım mp4 asla `kopya` adıyla görünmez
             except Exception as e:            # noqa: BLE001
                 log(f"[uyarı] Video kopyası yazılamadı: {_gizle(e)}")
         if a.gonderme:

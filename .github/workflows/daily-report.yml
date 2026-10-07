@@ -128,6 +128,8 @@ jobs:
       # hata raporu bozmaz (sosyal.py her durumda 0 döner).
       - name: ManyChat günün özetini güncelle
         if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        timeout-minutes: 3
+        continue-on-error: true
         env:
           MANYCHAT_API_KEY:        ${{ secrets.MANYCHAT_API_KEY }}
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -171,6 +173,8 @@ jobs:
       # Buffer'da o gün API'den zamanlanmış gönderi kontrolü. Hata raporu bozmaz.
       - name: Sosyal medyaya zamanla
         if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        timeout-minutes: 10
+        continue-on-error: true
         env:
           BUFFER_API_KEY:          ${{ secrets.BUFFER_API_KEY }}
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -192,7 +196,9 @@ jobs:
       # Video b-roll döndürme durumu (state/video-son-kullanim.json) ve sosyal
       # çift gönderi kilidi (state/sosyal-son.json) ayrı commit.
       - name: Video durumunu kaydet
-        if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        # always(): video/sosyal adımı zaman aşımına uğrasa da b-roll durumu ve
+        # sosyal çift gönderi kilidi (state/sosyal-son.json) kaybolmasın.
+        if: ${{ always() && inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |
           [ -f state/video-son-kullanim.json ] && git add state/video-son-kullanim.json || true
           [ -f state/sosyal-son.json ] && git add state/sosyal-son.json || true
