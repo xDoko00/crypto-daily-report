@@ -28,6 +28,10 @@ on:
         description: "İsteğe bağlı sabit teslim saati TSİ (HH:MM). Boşsa hemen gönderir."
         type: string
         default: ""
+      sosyal_taslak_testi:
+        description: "Sosyal taslak testi: rapor ÜRETİLMEZ/GÖNDERİLMEZ; reports/latest.json ile video üretilir (Telegram'a gönderilmez), ManyChat güncellenir, Buffer'da yalnız TASLAK oluşturulur (yayın yok)"
+        type: boolean
+        default: false
 
 # Aynı anda tek çalışma yeter; üst üste binmeyi engelle.
 concurrency:
@@ -44,6 +48,9 @@ jobs:
     permissions:
       contents: write
     timeout-minutes: 300  # erken nöbetçinin 08:00'e kadar beklemesini kapsar
+    env:
+      # Sosyal taslak testi (yalnız elle tetiklemede true olabilir; zamanlanmışta boş).
+      SOSYAL_TASLAK: ${{ inputs.sosyal_taslak_testi && '1' || '' }}
 
     steps:
       - name: Repoyu çek
@@ -65,12 +72,14 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Claude Code CLI kur
+        if: ${{ !inputs.sosyal_taslak_testi }}
         run: npm install -g @anthropic-ai/claude-code
 
       - name: Yazı tipi + ses araçları kur (kart & ses için)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core ffmpeg
 
       - name: Raporu üret ve gönder
+        if: ${{ !inputs.sosyal_taslak_testi }}
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -105,7 +114,7 @@ jobs:
       # ≤1 MB, son 14 gün; ses_klon.web_ses_yaz). Site /bugun/ oynatıcısı onu
       # okuyor. `git add reports` 14 günden eski dosyaların silinmesini de işler.
       - name: Raporu ve takip durumunu kaydet
-        if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        if: ${{ !inputs.sosyal_taslak_testi && inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |
           # reports/ yazılamamış olabilir (diske yazma best-effort). O durumda
           # takip.json'ı yine de commit'lemeliyiz: yoksa nöbetçi kilidi kaydedilmez
@@ -123,11 +132,21 @@ jobs:
             git push || echo "push basarisiz (best-effort; rapor gonderildi)"
           fi
 
+      # Sosyal taslak testi: rapor adımı atlandığı için sonraki adımların okuduğu
+      # rapor dosyası mevcut reports/latest.json'dan kopyalanır.
+      - name: "TEST: mevcut raporu hazırla"
+        if: ${{ inputs.sosyal_taslak_testi }}
+        env:
+          VIDEO_RAPOR: ${{ runner.temp }}/video-rapor.json
+        run: |
+          cp reports/latest.json "$VIDEO_RAPOR"
+          python -c "import json, os; print('test raporu:', json.load(open(os.environ['VIDEO_RAPOR'], encoding='utf-8'))['id'])"
+
       # ManyChat bot alanı `bugun_ozet` (DM'de "BUGÜN" yazana giden günün 3 başlığı).
       # Yalnız rapor bu çalışmada gönderildiyse; anahtar yoksa uyarıyla atlanır,
       # hata raporu bozmaz (sosyal.py her durumda 0 döner).
       - name: ManyChat günün özetini güncelle
-        if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        if: ${{ inputs.sosyal_taslak_testi || (inputs.mode != 'test' && inputs.mode != 'onizleme') }}
         timeout-minutes: 3
         continue-on-error: true
         env:
@@ -160,7 +179,10 @@ jobs:
           # Üretilen videonun kopyası; sonraki sosyal medya adımı bunu kullanır.
           VIDEO_KOPYA:             ${{ runner.temp }}/gunaydin.mp4
         run: |
-          if [ -f "$VIDEO_RAPOR" ]; then
+          if [ -f "$VIDEO_RAPOR" ] && [ "$SOSYAL_TASLAK" = "1" ]; then
+            # Taslak testi: yalnız üret (VIDEO_KOPYA'ya yazılır), Telegram'a GÖNDERME.
+            timeout 480 python -m video.calistir --rapor "$VIDEO_RAPOR" --gonderme || true
+          elif [ -f "$VIDEO_RAPOR" ]; then
             python -c "import json, os; from video import calistir; calistir.izole_calistir(json.load(open(os.environ['VIDEO_RAPOR'], encoding='utf-8')))" || true
           else
             echo "bu calismada rapor gonderilmedi, video atlandi"
@@ -171,8 +193,10 @@ jobs:
       # dakika sonrasına zamanlanır; saat + gönderi id'leri admin Telegram'a gider.
       # Kapatmak için SOSYAL_YAYIN=kapali. Çift gönderi: state/sosyal-son.json +
       # Buffer'da o gün API'den zamanlanmış gönderi kontrolü. Hata raporu bozmaz.
+      # Taslak testinde (SOSYAL_TASLAK=1, job env) Buffer'da yalnız taslak oluşur,
+      # kilit yazılmaz, asset adları `-test` eklidir.
       - name: Sosyal medyaya zamanla
-        if: ${{ inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        if: ${{ inputs.sosyal_taslak_testi || (inputs.mode != 'test' && inputs.mode != 'onizleme') }}
         timeout-minutes: 10
         continue-on-error: true
         env:
@@ -198,7 +222,9 @@ jobs:
       - name: Video durumunu kaydet
         # always(): video/sosyal adımı zaman aşımına uğrasa da b-roll durumu ve
         # sosyal çift gönderi kilidi (state/sosyal-son.json) kaybolmasın.
-        if: ${{ always() && inputs.mode != 'test' && inputs.mode != 'onizleme' }}
+        # Taslak testinde atlanır: üretilen videonun b-roll döndürmesi gerçek akışı
+        # etkilemesin (sosyal kilidi zaten yazılmıyor).
+        if: ${{ always() && !inputs.sosyal_taslak_testi && inputs.mode != 'test' && inputs.mode != 'onizleme' }}
         run: |
           [ -f state/video-son-kullanim.json ] && git add state/video-son-kullanim.json || true
           [ -f state/sosyal-son.json ] && git add state/sosyal-son.json || true

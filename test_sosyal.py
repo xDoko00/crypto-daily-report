@@ -384,5 +384,96 @@ class PaylasTestleri(unittest.TestCase):
         self.assertFalse(os.path.exists(self.durum))
 
 
+class SahteBufferApi:
+    """Buffer GraphQL'i taklit eder: oluşturulanı saklar, posts sorgusunda status filtresini uygular."""
+    def __init__(self):
+        self.postlar = []
+        self.cagrilar = []
+
+    def post(self, url, json=None, headers=None, timeout=None):
+        self.cagrilar.append(json)
+        g = json["variables"]
+        if "createPost" in json["query"]:
+            i = g["input"]
+            n = {"id": f"p{len(self.postlar) + 1}", "channelId": i["channelId"], "via": "api",
+                 "dueAt": i.get("dueAt"), "status": "draft" if i.get("saveToDraft") else "scheduled"}
+            self.postlar.append(n)
+            return SahteYanit({"data": {"createPost": {"post": n}}})
+        durumlar = g["input"]["filter"]["status"]
+        return SahteYanit({"data": {"posts": {"edges": [
+            {"node": n} for n in self.postlar if n["status"] in durumlar]}}})
+
+
+class TaslakTestleri(unittest.TestCase):
+    def setUp(self):
+        self.d = tempfile.mkdtemp()
+        self.video = os.path.join(self.d, "v.mp4")
+        with open(self.video, "wb") as f:
+            f.write(b"v")
+        self.durum = os.path.join(self.d, "state", "sosyal-son.json")
+        self.bildirim = []
+
+    def _paylas(self, buffer, ortam, release=None):
+        return s.paylas(RAPOR, self.video, ortam=ortam, buffer=buffer, release=release or SahteRelease(),
+                        bildir=self.bildirim.append, simdi=datetime(2026, 10, 8, 5, 0, tzinfo=timezone.utc),
+                        durum_yolu=self.durum, ig_uret=sahte_ig, erisim=lambda u: True)
+
+    def test_taslak_bayragi_govdeye_girer(self):
+        g = s.Buffer("k", taslak=True).gonderi_girdisi("x", "https://u/v.mp4", "m", "D")
+        self.assertIs(g["saveToDraft"], True)
+        self.assertEqual(g["dueAt"], "D")
+        self.assertNotIn("saveToDraft", s.Buffer("k").gonderi_girdisi("x", "u", "m", "D"))
+
+    def test_taslak_ortamdan_ve_istek(self):
+        api = SahteBufferApi()
+        b = s.Buffer("k", http=api, taslak=s.taslak_mi({"SOSYAL_TASLAK": "1"}))
+        b.gonderi_olustur("tiktok", "u", "m", "D")
+        self.assertIs(api.cagrilar[0]["variables"]["input"]["saveToDraft"], True)
+        self.assertFalse(s.taslak_mi({}))
+
+    def test_taslak_kilit_yazmaz_test_asset_adi_ve_mesaj(self):
+        r = SahteRelease()
+        api = SahteBufferApi()
+        b = s.Buffer("k", http=api, taslak=True)
+        sonuc = self._paylas(b, {"BUFFER_API_KEY": "k", "SOSYAL_TASLAK": "1"}, r)
+        self.assertEqual(set(sonuc), {"instagram", "x", "tiktok"})
+        self.assertEqual({n["status"] for n in api.postlar}, {"draft"})
+        self.assertFalse(os.path.exists(self.durum))
+        self.assertEqual(sorted(r.yuklenen), ["gunaydin-2026-10-08-test-ig.mp4", "gunaydin-2026-10-08-test.mp4"])
+        self.assertTrue(self.bildirim[0].startswith(
+            "TEST: Buffer'da 3 taslak oluşturuldu (Instagram hikâye, X, TikTok). Kontrol edip silebilirsin."))
+
+    def test_taslak_kilidi_okumaz(self):
+        for p in s.KANALLAR:
+            s.durum_yaz("2026-10-08", p, "gercek", self.durum)
+        b = SahteBuffer(zaten=set(s.KANALLAR))
+        self.assertEqual(set(self._paylas(b, {"BUFFER_API_KEY": "k", "SOSYAL_TASLAK": "1"})), set(s.KANALLAR))
+
+    def test_taslaklar_gercek_calismayi_engellemez(self):
+        api = SahteBufferApi()
+        self._paylas(s.Buffer("k", http=api, taslak=True), {"BUFFER_API_KEY": "k", "SOSYAL_TASLAK": "1"})
+        sonuc = self._paylas(s.Buffer("k", http=api), {"BUFFER_API_KEY": "k"})
+        self.assertEqual(set(sonuc), {"instagram", "x", "tiktok"})
+        self.assertEqual([n["status"] for n in api.postlar], ["draft"] * 3 + ["scheduled"] * 3)
+        self.assertEqual(set(s.durum_oku(self.durum)["gonderiler"]), set(s.KANALLAR))
+        # gerçek gönderiler bundan sonra yine çift gönderiyi engeller
+        self.assertEqual(self._paylas(s.Buffer("k", http=api), {"BUFFER_API_KEY": "k"}), {})
+
+    def test_bugun_kontrolu_draft_saymaz(self):
+        http = SahteHttp({"data": {"posts": {"edges": [
+            {"node": {"channelId": "6ac5fcb16a5c39ccb63d823e", "via": "api", "status": "draft"}},
+            {"node": {"channelId": "6ac5fc7f6a5c39ccb63d7f09", "via": "api", "status": "scheduled"}}]}}})
+        self.assertEqual(s.Buffer("k", http=http).bugun_zamanlanmis("2026-10-08"), {"tiktok"})
+        self.assertNotIn("draft", http.cagrilar[0]["json"]["variables"]["input"]["filter"]["status"])
+
+    def test_temizlik_test_assetlerini_kapsar(self):
+        adlar = ["gunaydin-2026-09-30-test.mp4", "gunaydin-2026-09-30-test-ig.mp4",
+                 "gunaydin-2026-10-07-test.mp4", "gunaydin-2026-09-30-ig-test.mp4"]
+        self.assertEqual(s.silinecek_assetler(adlar, "2026-10-08"),
+                         ["gunaydin-2026-09-30-test-ig.mp4", "gunaydin-2026-09-30-test.mp4"])
+        self.assertEqual(s.asset_adlari("2026-10-08", test=True),
+                         ("gunaydin-2026-10-08-test.mp4", "gunaydin-2026-10-08-test-ig.mp4"))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -18,6 +18,9 @@ Bayraklar (ortam):
   SOSYAL_YAYIN=kapali                 sosyal paylaşımı tamamen kapatır
   SOSYAL_KURU=1                       kuru deneme: istekleri maskeli yazdırır, göndermez
   SOSYAL_GECIKME_DK=30                zamanlama gecikmesi (dakika)
+  SOSYAL_TASLAK=1                     taslak testi: Buffer'da TASLAK (saveToDraft) oluşturur,
+                                      yayınlamaz; çift gönderi kilidi okunmaz/yazılmaz,
+                                      release asset adları `-test` ekli
   GH_TOKEN + GITHUB_REPOSITORY        release asset yükleme (`gh` CLI)
 
 Hiçbir hata rapor akışını bozmaz: CLI her durumda 0 ile çıkar.
@@ -66,7 +69,7 @@ MANYCHAT_ALAN_ID = 5115106        # bugun_ozet
 
 RELEASE_TAG = "gunluk-video"
 ASSET_SAKLAMA_GUN = 7
-_ASSET_RE = re.compile(r"^gunaydin-(\d{4}-\d{2}-\d{2})(-ig)?\.mp4$")
+_ASSET_RE = re.compile(r"^gunaydin-(\d{4}-\d{2}-\d{2})(-test)?(-ig)?\.mp4$")
 
 DURUM_DOSYASI = os.path.join(KOK, "state", "sosyal-son.json")
 HTTP_TIMEOUT = 30
@@ -266,10 +269,11 @@ class Buffer:
                  "... on PostActionSuccess { post { id dueAt status channelId } } "
                  "... on MutationError { message } } }")
 
-    def __init__(self, anahtar, http=None, kuru=False):
+    def __init__(self, anahtar, http=None, kuru=False, taslak=False):
         self.anahtar = anahtar or ""
         self.http = http
         self.kuru = kuru
+        self.taslak = taslak
 
     def _istek(self, sorgu, degiskenler):
         basliklar = {"Authorization": f"Bearer {self.anahtar}", "Content-Type": "application/json"}
@@ -286,7 +290,11 @@ class Buffer:
         return d.get("data") or {}
 
     def bugun_zamanlanmis(self, gun):
-        """O TSİ günü için API'den (via=api) oluşturulmuş canlı gönderisi olan platformlar."""
+        """O TSİ günü için API'den (via=api) oluşturulmuş canlı gönderisi olan platformlar.
+
+        Taslaklar (status=draft) SAYILMAZ: taslak testi ertesi günün gerçek
+        zamanlamasını engellememeli. Filtre zaten draft istemez; yanıtta yine
+        de gelirse elenir."""
         bas, son = gun_araligi(gun)
         ters = {v: k for k, v in KANALLAR.items()}
         veri = self._istek(self.POSTLAR_Q, {"first": 50, "input": {
@@ -299,7 +307,7 @@ class Buffer:
         bulunan = set()
         for e in (veri.get("posts") or {}).get("edges") or []:
             n = e.get("node") or {}
-            if n.get("via") == "api" and n.get("channelId") in ters:
+            if n.get("via") == "api" and n.get("channelId") in ters and n.get("status") != "draft":
                 bulunan.add(ters[n["channelId"]])
         return bulunan
 
@@ -311,6 +319,8 @@ class Buffer:
             girdi["metadata"] = {"instagram": {"type": "story", "shouldShareToFeed": False}}
         else:
             girdi["text"] = metin
+        if self.taslak:
+            girdi["saveToDraft"] = True       # yayınlanmaz; dueAt yalnız bilgi amaçlı kalır
         return girdi
 
     def gonderi_olustur(self, platform, video_url, metin, due):
@@ -375,12 +385,13 @@ def telegram_bildir(metin, ortam=None, http=None, kuru=False):
 # GitHub Release asset barındırma (`gh` CLI)
 # --------------------------------------------------------------------------- #
 
-def asset_adlari(gun):
-    return f"gunaydin-{gun}.mp4", f"gunaydin-{gun}-ig.mp4"
+def asset_adlari(gun, test=False):
+    ek = "-test" if test else ""
+    return f"gunaydin-{gun}{ek}.mp4", f"gunaydin-{gun}{ek}-ig.mp4"
 
 
 def silinecek_assetler(adlar, bugun, gun_sayisi=ASSET_SAKLAMA_GUN):
-    """Adı `gunaydin-YYYY-MM-DD(-ig).mp4` olup `gun_sayisi` günden eski assetler."""
+    """Adı `gunaydin-YYYY-MM-DD(-test)(-ig).mp4` olup `gun_sayisi` günden eski assetler."""
     sinir = date.fromisoformat(bugun) - timedelta(days=gun_sayisi)
     sil = []
     for ad in adlar:
@@ -591,12 +602,21 @@ def kuru_mu(ortam=None):
     return (ortam.get("SOSYAL_KURU") or "").strip() == "1"
 
 
+def taslak_mi(ortam=None):
+    ortam = os.environ if ortam is None else ortam
+    return (ortam.get("SOSYAL_TASLAK") or "").strip() == "1"
+
+
 def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, simdi=None,
            durum_yolu=DURUM_DOSYASI, ig_uret=ig_varyant_uret, erisim=url_erisilebilir, ig_cikti=None):
     """Sosyal zamanlama. -> {platform: post_id}. Asla fırlatmaz."""
     ortam = os.environ if ortam is None else ortam
     kuru = kuru_mu(ortam)
+    taslak = taslak_mi(ortam)
     bildir = bildir or (lambda m: telegram_bildir(m, ortam, kuru=kuru))
+    if taslak:                                # test mesajları gerçeğiyle karışmasın
+        _bildir = bildir
+        bildir = lambda m: _bildir(m if m.startswith("TEST:") else "TEST: " + m)  # noqa: E731
     sonuc, sorunlar = {}, []
     try:
         if kapali_mi(ortam):
@@ -610,11 +630,13 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
             log("[sosyal] video dosyası yok — sosyal paylaşım atlandı.")
             return sonuc
         gun = rapor["id"]
-        buffer = buffer or Buffer(anahtar, kuru=kuru)
+        buffer = buffer or Buffer(anahtar, kuru=kuru, taslak=taslak)
         release = release or Release(depo_adi(ortam), kuru=kuru)
 
-        bekleyen = [p for p in KANALLAR if p not in durumda_gonderilmis(gun, durum_yolu)]
-        if bekleyen:
+        # Taslak testi yayınlamadığı için çift gönderi riski yok: kilit okunmaz
+        # (bugünün gerçek gönderileri testi engellemesin) ve aşağıda yazılmaz.
+        bekleyen = list(KANALLAR) if taslak else [p for p in KANALLAR if p not in durumda_gonderilmis(gun, durum_yolu)]
+        if bekleyen and not taslak:
             try:
                 zaten = buffer.bugun_zamanlanmis(gun)
             except Exception as e:            # noqa: BLE001
@@ -638,7 +660,7 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                 sorunlar.append(f"{PLATFORM_AD[p]} gönderilmedi — şüpheli ifade: {', '.join(supheli)}")
 
         with tempfile.TemporaryDirectory(prefix="sosyal-") as calisma:
-            ad, ig_ad = asset_adlari(gun)
+            ad, ig_ad = asset_adlari(gun, test=taslak)
             yuklenecek = {}
             if any(p in bekleyen for p in ("x", "tiktok")):
                 kopya = os.path.join(calisma, ad)
@@ -675,12 +697,19 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                 try:
                     pid = buffer.gonderi_olustur(p, urller[p], metinler[p], due)
                     sonuc[p] = pid
-                    if not kuru:
+                    if not (kuru or taslak):
                         durum_yaz(gun, p, pid, durum_yolu)
                 except Exception as e:        # noqa: BLE001
                     sorunlar.append(f"{PLATFORM_AD[p]} zamanlanamadı: {gizle(e)[:300]}")
 
-        if sonuc:
+        if sonuc and taslak:
+            satirlar = [f"TEST: Buffer'da {len(sonuc)} taslak oluşturuldu "
+                        f"({', '.join(PLATFORM_AD[p] for p in sonuc)}). Kontrol edip silebilirsin."]
+            satirlar += [f"{PLATFORM_AD[p]}: {pid}" for p, pid in sonuc.items()]
+            if sorunlar:
+                satirlar += ["", "⚠️ Sorunlar:"] + sorunlar
+            bildir("\n".join(satirlar))
+        elif sonuc:
             satirlar = [f"Sosyal medya: {yerel:%H:%M}'de yayınlanacak "
                         f"({', '.join(PLATFORM_AD[p] for p in sonuc)}). İptal için Buffer'dan sil."]
             satirlar += [f"{PLATFORM_AD[p]}: {pid}" for p, pid in sonuc.items()]
