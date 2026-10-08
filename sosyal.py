@@ -56,11 +56,14 @@ ETIKETLER = ["#kripto", "#bitcoin", "#günaydınkripto", "#kriptopara", "#ethere
 
 BUFFER_API = "https://api.buffer.com"
 ORG_ID = "6ac5fc216cdfcd627dfdac35"
-KANALLAR = {                      # sıra = gönderim sırası
-    "instagram": "6ac5fc4c6a5c39ccb63d7b1c",   # dogukanlive (hikâye)
-    "x": "6ac5fcb16a5c39ccb63d823e",           # DogukanDogan
-    "tiktok": "6ac5fc7f6a5c39ccb63d7f09",      # gercekdogukandogan
-}
+# Kanal kimlikleri sabit DEĞİL: hesap Buffer'a yeniden bağlanınca id değişir
+# (8 Eki 2026'da IG hikâyesi böyle kayboldu). Her çalışmada `channels`
+# sorgusuyla servis (+ hesap adı) eşleşmesinden bulunur.
+PLATFORMLAR = ("instagram", "x", "tiktok")       # sıra = gönderim sırası
+BUFFER_SERVIS = {"instagram": "instagram", "x": "twitter", "tiktok": "tiktok"}
+BEKLENEN_HESAP = {"instagram": "dogukanlive", "x": "DogukanDogan", "tiktok": "gercekdogukandogan"}
+VIA_BUFFER = ("api", "buffer")
+CANLI_DURUMLAR = ("scheduled", "sending", "sent", "needs_approval")
 PLATFORM_AD = {"instagram": "Instagram hikâye", "x": "X", "tiktok": "TikTok"}
 VARSAYILAN_GECIKME_DK = 30
 
@@ -266,14 +269,56 @@ class Buffer:
     POSTLAR_Q = ("query Postlar($input: PostsInput!, $first: Int) { posts(input: $input, first: $first) "
                  "{ edges { node { id channelId status dueAt via text } } } }")
     OLUSTUR_Q = ("mutation Olustur($input: CreatePostInput!) { createPost(input: $input) { "
-                 "... on PostActionSuccess { post { id dueAt status channelId } } "
-                 "... on MutationError { message } } }")
+                 "... on PostActionSuccess { post { id dueAt status channelId error { message } } } "
+                 "... on MutationError { __typename message } } }")
+    KANALLAR_Q = ("query Kanallar($input: ChannelsInput!) { channels(input: $input) "
+                  "{ id service name isDisconnected isLocked } }")
 
-    def __init__(self, anahtar, http=None, kuru=False, taslak=False):
+    def __init__(self, anahtar, http=None, kuru=False, taslak=False, kanallar=None):
         self.anahtar = anahtar or ""
         self.http = http
         self.kuru = kuru
         self.taslak = taslak
+        self.kanallar = dict(kanallar or {})      # platform -> kanal id (kanallari_bul doldurur)
+
+    def kanallari_bul(self):
+        """Buffer'daki kanallardan platform -> id eşlemesini kurar.
+
+        -> (eşleme, sorunlar). Kopuk/kilitli ya da bulunamayan platform eşlemeye
+        girmez, sorunlara yazılır. Sorgu başarısızsa fırlatır (çağıran hiçbir
+        platforma göndermez)."""
+        veri = self._istek(self.KANALLAR_Q, {"input": {"organizationId": ORG_ID}})
+        if veri is None:                          # kuru deneme: yer tutucu id
+            self.kanallar = {p: f"<{BUFFER_SERVIS[p]}-kanal>" for p in PLATFORMLAR}
+            return dict(self.kanallar), []
+        kanallar = veri.get("channels")
+        if not isinstance(kanallar, list):
+            raise RuntimeError("Buffer kanal listesi beklenmeyen biçimde")
+        eslesme, sorunlar = {}, []
+        for p in PLATFORMLAR:
+            adaylar = [k for k in kanallar if (k.get("service") or "").lower() == BUFFER_SERVIS[p]]
+            beklenen = BEKLENEN_HESAP[p].lower()
+            if len(adaylar) > 1:
+                adli = [k for k in adaylar if (k.get("name") or "").lower() == beklenen]
+                adaylar = adli or adaylar
+                # aynı ada birden çok kanal varsa bağlı olan önce
+                adaylar.sort(key=lambda k: bool(k.get("isDisconnected") or k.get("isLocked")))
+            if not adaylar:
+                sorunlar.append(f"Buffer'da {PLATFORM_AD[p]} kanalı bulunamadı — "
+                                f"{BEKLENEN_HESAP[p]} hesabını Buffer'a bağla.")
+                continue
+            k = adaylar[0]
+            if (k.get("name") or "").lower() != beklenen:
+                log(f"[sosyal] uyarı: {PLATFORM_AD[p]} kanal adı '{k.get('name')}' "
+                    f"(beklenen '{BEKLENEN_HESAP[p]}') — yine de kullanılıyor.")
+            if k.get("isDisconnected") or k.get("isLocked"):
+                neden = "bağlantısı kopmuş" if k.get("isDisconnected") else "kanalı kilitli"
+                sorunlar.append(f"Buffer'da {PLATFORM_AD[p]} ({k.get('name')}) {neden}, yeniden bağla — "
+                                f"bugün {PLATFORM_AD[p]} gönderilmedi.")
+                continue
+            eslesme[p] = k["id"]
+        self.kanallar = eslesme
+        return dict(eslesme), sorunlar
 
     def _istek(self, sorgu, degiskenler):
         basliklar = {"Authorization": f"Bearer {self.anahtar}", "Content-Type": "application/json"}
@@ -286,33 +331,44 @@ class Buffer:
         r = http.post(BUFFER_API, json=govde, headers=basliklar, timeout=HTTP_TIMEOUT)
         d = r.json()
         if d.get("errors"):
-            raise RuntimeError("Buffer hatası: " + gizle("; ".join(str(e.get("message")) for e in d["errors"])))
+            raise RuntimeError("Buffer hatası: " + gizle("; ".join(
+                str(e.get("message")) + (f" [{c}]" if (c := (e.get("extensions") or {}).get("code")) else "")
+                for e in d["errors"])))
         return d.get("data") or {}
 
     def bugun_zamanlanmis(self, gun):
-        """O TSİ günü için API'den (via=api) oluşturulmuş canlı gönderisi olan platformlar.
+        """O TSİ günü için Buffer üzerinden oluşturulmuş canlı gönderisi olan platformlar.
 
-        Taslaklar (status=draft) SAYILMAZ: taslak testi ertesi günün gerçek
-        zamanlamasını engellememeli. Filtre zaten draft istemez; yanıtta yine
-        de gelirse elenir."""
+        API ile oluşturulan gönderiler yanıtta `via=buffer` geliyor (8 Eki 2026'da
+        doğrulandı; `api` de kabul edilir). `network` = uygulamadan doğrudan
+        paylaşım, sayılmaz. Buffer arayüzünden elle zamanlanan gönderi de
+        sayılır: o gün o platforma ikinci kez gönderilmez.
+
+        Yalnız canlı durumlar sayılır; taslak (draft) SAYILMAZ (taslak testi
+        gerçek zamanlamayı engellememeli), `error` da sayılmaz. Durum süzgeci
+        istemcide: Buffer `status` filtresine birden çok değer verilince boş
+        dönüyor (8 Eki 2026'da doğrulandı)."""
         bas, son = gun_araligi(gun)
-        ters = {v: k for k, v in KANALLAR.items()}
+        if not self.kanallar:
+            return set()
+        ters = {v: k for k, v in self.kanallar.items()}
         veri = self._istek(self.POSTLAR_Q, {"first": 50, "input": {
             "organizationId": ORG_ID,
-            "filter": {"channelIds": list(KANALLAR.values()),
-                       "status": ["scheduled", "sending", "sent", "needs_approval"],
+            "filter": {"channelIds": list(self.kanallar.values()),
                        "dueAt": {"start": bas, "end": son}}}})
         if veri is None:
             return set()
         bulunan = set()
         for e in (veri.get("posts") or {}).get("edges") or []:
             n = e.get("node") or {}
-            if n.get("via") == "api" and n.get("channelId") in ters and n.get("status") != "draft":
+            if n.get("via") in VIA_BUFFER and n.get("channelId") in ters and n.get("status") in CANLI_DURUMLAR:
                 bulunan.add(ters[n["channelId"]])
         return bulunan
 
     def gonderi_girdisi(self, platform, video_url, metin, due):
-        girdi = {"channelId": KANALLAR[platform], "schedulingType": "automatic",
+        if platform not in self.kanallar:
+            raise RuntimeError(f"{PLATFORM_AD[platform]} için Buffer kanalı çözülmedi")
+        girdi = {"channelId": self.kanallar[platform], "schedulingType": "automatic",
                  "mode": "customScheduled", "dueAt": due,
                  "assets": [{"video": {"url": video_url}}]}
         if platform == "instagram":
@@ -328,9 +384,15 @@ class Buffer:
         if veri is None:
             return "KURU"
         sonuc = veri.get("createPost") or {}
-        if (sonuc.get("post") or {}).get("id"):
-            return sonuc["post"]["id"]
-        raise RuntimeError("createPost: " + gizle(sonuc.get("message") or "bilinmeyen yanıt"))
+        post = sonuc.get("post") or {}
+        if post.get("id"):
+            hata = (post.get("error") or {}).get("message")
+            if post.get("status") == "error" or hata:
+                raise RuntimeError(f"Buffer gönderiyi oluşturdu ama hatalı işaretledi (id {post['id']}, "
+                                   f"durum {post.get('status')}): " + gizle(hata or "ayrıntı yok"))
+            return post["id"]
+        tur = sonuc.get("__typename") or "MutationError"
+        raise RuntimeError(f"Buffer reddetti ({tur}): " + gizle(sonuc.get("message") or "bilinmeyen yanıt"))
 
 
 def manychat_govdesi(metin):
@@ -607,6 +669,10 @@ def taslak_mi(ortam=None):
     return (ortam.get("SOSYAL_TASLAK") or "").strip() == "1"
 
 
+def _maddeler(sorunlar):
+    return "\n".join(f"• {m}" for m in sorunlar)
+
+
 def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, simdi=None,
            durum_yolu=DURUM_DOSYASI, ig_uret=ig_varyant_uret, erisim=url_erisilebilir, ig_cikti=None):
     """Sosyal zamanlama. -> {platform: post_id}. Asla fırlatmaz."""
@@ -635,7 +701,19 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
 
         # Taslak testi yayınlamadığı için çift gönderi riski yok: kilit okunmaz
         # (bugünün gerçek gönderileri testi engellemesin) ve aşağıda yazılmaz.
-        bekleyen = list(KANALLAR) if taslak else [p for p in KANALLAR if p not in durumda_gonderilmis(gun, durum_yolu)]
+        bekleyen = list(PLATFORMLAR) if taslak else [p for p in PLATFORMLAR
+                                                     if p not in durumda_gonderilmis(gun, durum_yolu)]
+        if bekleyen:
+            # Kanal id'leri her çalışmada Buffer'dan; sorgu başarısızsa hiçbir yere gönderme.
+            try:
+                kanallar, kanal_sorunlari = buffer.kanallari_bul()
+            except Exception as e:            # noqa: BLE001
+                m = f"Buffer kanal listesi alınamadı, hiçbir platforma gönderilmedi: {gizle(e)[:300]}"
+                log("[uyarı] " + m)
+                bildir("⚠️ Sosyal medya: " + m)
+                return sonuc
+            sorunlar += kanal_sorunlari
+            bekleyen = [p for p in bekleyen if p in kanallar]
         if bekleyen and not taslak:
             try:
                 zaten = buffer.bugun_zamanlanmis(gun)
@@ -644,9 +722,9 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                 zaten = set(bekleyen)
             bekleyen = [p for p in bekleyen if p not in zaten]
         if not bekleyen:
-            log(f"[sosyal] {gun} için gönderiler zaten zamanlanmış — atlandı (çift gönderi koruması).")
+            log(f"[sosyal] {gun} için gönderilecek platform kalmadı (zaten zamanlanmış ya da kanal sorunu).")
             if sorunlar:
-                bildir("⚠️ Sosyal medya atlandı:\n" + "\n".join(sorunlar))
+                bildir("⚠️ Sosyal medya: hiçbir platforma gönderilmedi.\n" + _maddeler(sorunlar))
             return sonuc
 
         metinler = {"instagram": "", "x": x_metni(rapor), "tiktok": tiktok_metni(rapor)}
@@ -676,7 +754,7 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                     bekleyen.remove("instagram")
                     sorunlar.append(f"Instagram varyantı üretilemedi: {gizle(e)[:200]}")
             if not bekleyen:
-                bildir("⚠️ Sosyal medya: hiçbir platforma gönderilmedi.\n" + "\n".join(sorunlar))
+                bildir("⚠️ Sosyal medya: hiçbir platforma gönderilmedi.\n" + _maddeler(sorunlar))
                 return sonuc
 
             mevcut = release.hazirla()
@@ -707,21 +785,21 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                         f"({', '.join(PLATFORM_AD[p] for p in sonuc)}). Kontrol edip silebilirsin."]
             satirlar += [f"{PLATFORM_AD[p]}: {pid}" for p, pid in sonuc.items()]
             if sorunlar:
-                satirlar += ["", "⚠️ Sorunlar:"] + sorunlar
+                satirlar += ["", "⚠️ Sorunlar:", _maddeler(sorunlar)]
             bildir("\n".join(satirlar))
         elif sonuc:
             satirlar = [f"Sosyal medya: {yerel:%H:%M}'de yayınlanacak "
                         f"({', '.join(PLATFORM_AD[p] for p in sonuc)}). İptal için Buffer'dan sil."]
             satirlar += [f"{PLATFORM_AD[p]}: {pid}" for p, pid in sonuc.items()]
             if sorunlar:
-                satirlar += ["", "⚠️ Sorunlar:"] + sorunlar
+                satirlar += ["", "⚠️ Sorunlar:", _maddeler(sorunlar)]
             bildir("\n".join(satirlar))
         elif sorunlar:
-            bildir("⚠️ Sosyal medya: hiçbir platforma gönderilmedi.\n" + "\n".join(sorunlar))
+            bildir("⚠️ Sosyal medya: hiçbir platforma gönderilmedi.\n" + _maddeler(sorunlar))
     except Exception as e:                    # noqa: BLE001
         m = f"Sosyal medya adımı başarısız: {type(e).__name__}: {gizle(e)[:400]}"
         log("[uyarı] " + m)
-        bildir("⚠️ " + m + ("\n" + "\n".join(sorunlar) if sorunlar else ""))
+        bildir("⚠️ " + m + ("\n" + _maddeler(sorunlar) if sorunlar else ""))
     return sonuc
 
 

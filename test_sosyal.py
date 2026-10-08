@@ -22,6 +22,15 @@ RAPOR = {
 }
 
 
+IG_ID, X_ID, TT_ID = "6ac732776a5c39ccb64cfdb6", "6ac5fcb16a5c39ccb63d823e", "6ac5fc7f6a5c39ccb63d7f09"
+TEST_KANALLARI = {"instagram": IG_ID, "x": X_ID, "tiktok": TT_ID}
+KANAL_LISTESI = [
+    {"id": IG_ID, "service": "instagram", "name": "dogukanlive", "isDisconnected": False, "isLocked": False},
+    {"id": X_ID, "service": "twitter", "name": "DogukanDogan", "isDisconnected": False, "isLocked": False},
+    {"id": TT_ID, "service": "tiktok", "name": "gercekdogukandogan", "isDisconnected": False, "isLocked": False},
+]
+
+
 class SahteYanit:
     def __init__(self, veri, kod=200):
         self.veri, self.status_code = veri, kod
@@ -41,9 +50,15 @@ class SahteHttp:
 
 
 class SahteBuffer:
-    def __init__(self, zaten=(), hata=None):
+    def __init__(self, zaten=(), hata=None, kanal_sorunlari=(), kanal_hatasi=None, kopuk=()):
         self.zaten, self.hata = set(zaten), hata
+        self.kanal_sorunlari, self.kanal_hatasi, self.kopuk = list(kanal_sorunlari), kanal_hatasi, set(kopuk)
         self.olusturulan = []
+
+    def kanallari_bul(self):
+        if self.kanal_hatasi:
+            raise self.kanal_hatasi
+        return {p: i for p, i in TEST_KANALLARI.items() if p not in self.kopuk}, self.kanal_sorunlari
 
     def bugun_zamanlanmis(self, gun):
         if self.hata:
@@ -152,8 +167,8 @@ class ZamanlamaTestleri(unittest.TestCase):
 
 class IstekGovdesiTestleri(unittest.TestCase):
     def test_instagram_hikaye_girdisi(self):
-        g = s.Buffer("k").gonderi_girdisi("instagram", "https://u/ig.mp4", "", "2026-10-08T05:30:00.000Z")
-        self.assertEqual(g["channelId"], "6ac5fc4c6a5c39ccb63d7b1c")
+        g = s.Buffer("k", kanallar=TEST_KANALLARI).gonderi_girdisi("instagram", "https://u/ig.mp4", "", "2026-10-08T05:30:00.000Z")
+        self.assertEqual(g["channelId"], IG_ID)
         self.assertEqual(g["metadata"], {"instagram": {"type": "story", "shouldShareToFeed": False}})
         self.assertEqual(g["assets"], [{"video": {"url": "https://u/ig.mp4"}}])
         self.assertEqual((g["mode"], g["schedulingType"]), ("customScheduled", "automatic"))
@@ -161,13 +176,13 @@ class IstekGovdesiTestleri(unittest.TestCase):
 
     def test_x_tiktok_girdisi(self):
         for p, kanal in (("x", "6ac5fcb16a5c39ccb63d823e"), ("tiktok", "6ac5fc7f6a5c39ccb63d7f09")):
-            g = s.Buffer("k").gonderi_girdisi(p, "https://u/v.mp4", "metin", "D")
+            g = s.Buffer("k", kanallar=TEST_KANALLARI).gonderi_girdisi(p, "https://u/v.mp4", "metin", "D")
             self.assertEqual((g["channelId"], g["text"], g["dueAt"]), (kanal, "metin", "D"))
             self.assertNotIn("metadata", g)
 
     def test_buffer_istek_ve_yanit(self):
         http = SahteHttp({"data": {"createPost": {"post": {"id": "p1"}}}})
-        pid = s.Buffer("GIZLI", http=http).gonderi_olustur("x", "https://u/v.mp4", "m", "D")
+        pid = s.Buffer("GIZLI", http=http, kanallar=TEST_KANALLARI).gonderi_olustur("x", "https://u/v.mp4", "m", "D")
         self.assertEqual(pid, "p1")
         c = http.cagrilar[0]
         self.assertEqual(c["url"], "https://api.buffer.com")
@@ -178,13 +193,18 @@ class IstekGovdesiTestleri(unittest.TestCase):
     def test_buffer_mutation_hatasi(self):
         http = SahteHttp({"data": {"createPost": {"message": "Invalid"}}})
         with self.assertRaises(RuntimeError):
-            s.Buffer("k", http=http).gonderi_olustur("x", "u", "m", "D")
+            s.Buffer("k", http=http, kanallar=TEST_KANALLARI).gonderi_olustur("x", "u", "m", "D")
 
     def test_buffer_bugun_yalniz_api(self):
         http = SahteHttp({"data": {"posts": {"edges": [
-            {"node": {"channelId": "6ac5fcb16a5c39ccb63d823e", "via": "api"}},
-            {"node": {"channelId": "6ac5fc7f6a5c39ccb63d7f09", "via": "network"}}]}}})
-        self.assertEqual(s.Buffer("k", http=http).bugun_zamanlanmis("2026-10-08"), {"x"})
+            {"node": {"channelId": "6ac5fcb16a5c39ccb63d823e", "via": "api", "status": "scheduled"}},
+            {"node": {"channelId": "6ac5fc7f6a5c39ccb63d7f09", "via": "network", "status": "sent"}},
+            {"node": {"channelId": "eski-kanal", "via": "api", "status": "sent"}}]}}})
+        self.assertEqual(s.Buffer("k", http=http, kanallar=TEST_KANALLARI).bugun_zamanlanmis("2026-10-08"), {"x"})
+        http = SahteHttp({"data": {"posts": {"edges": [   # API gönderileri yanıtta via=buffer geliyor
+            {"node": {"channelId": IG_ID, "via": "buffer", "status": "sent"}}]}}})
+        self.assertEqual(s.Buffer("k", http=http, kanallar=TEST_KANALLARI).bugun_zamanlanmis("2026-10-08"),
+                         {"instagram"})
         f = http.cagrilar[0]["json"]["variables"]["input"]["filter"]
         self.assertEqual(f["dueAt"]["start"], "2026-10-07T21:00:00.000Z")
 
@@ -208,7 +228,7 @@ class IstekGovdesiTestleri(unittest.TestCase):
     def test_kuru_istek_gondermez_ve_maskeler(self):
         http = SahteHttp()
         with mock.patch("sys.stderr") as err:
-            self.assertEqual(s.Buffer("GIZLI", http=http, kuru=True).gonderi_olustur("x", "u", "m", "D"), "KURU")
+            self.assertEqual(s.Buffer("GIZLI", http=http, kuru=True, kanallar=TEST_KANALLARI).gonderi_olustur("x", "u", "m", "D"), "KURU")
             yazilan = "".join(c.args[0] for c in err.write.call_args_list)
         self.assertEqual(http.cagrilar, [])
         self.assertNotIn("GIZLI", yazilan)
@@ -393,13 +413,15 @@ class SahteBufferApi:
     def post(self, url, json=None, headers=None, timeout=None):
         self.cagrilar.append(json)
         g = json["variables"]
+        if "channels(" in json["query"]:
+            return SahteYanit({"data": {"channels": KANAL_LISTESI}})
         if "createPost" in json["query"]:
             i = g["input"]
             n = {"id": f"p{len(self.postlar) + 1}", "channelId": i["channelId"], "via": "api",
                  "dueAt": i.get("dueAt"), "status": "draft" if i.get("saveToDraft") else "scheduled"}
             self.postlar.append(n)
             return SahteYanit({"data": {"createPost": {"post": n}}})
-        durumlar = g["input"]["filter"]["status"]
+        durumlar = g["input"]["filter"].get("status") or [n["status"] for n in self.postlar]
         return SahteYanit({"data": {"posts": {"edges": [
             {"node": n} for n in self.postlar if n["status"] in durumlar]}}})
 
@@ -419,14 +441,14 @@ class TaslakTestleri(unittest.TestCase):
                         durum_yolu=self.durum, ig_uret=sahte_ig, erisim=lambda u: True)
 
     def test_taslak_bayragi_govdeye_girer(self):
-        g = s.Buffer("k", taslak=True).gonderi_girdisi("x", "https://u/v.mp4", "m", "D")
+        g = s.Buffer("k", taslak=True, kanallar=TEST_KANALLARI).gonderi_girdisi("x", "https://u/v.mp4", "m", "D")
         self.assertIs(g["saveToDraft"], True)
         self.assertEqual(g["dueAt"], "D")
-        self.assertNotIn("saveToDraft", s.Buffer("k").gonderi_girdisi("x", "u", "m", "D"))
+        self.assertNotIn("saveToDraft", s.Buffer("k", kanallar=TEST_KANALLARI).gonderi_girdisi("x", "u", "m", "D"))
 
     def test_taslak_ortamdan_ve_istek(self):
         api = SahteBufferApi()
-        b = s.Buffer("k", http=api, taslak=s.taslak_mi({"SOSYAL_TASLAK": "1"}))
+        b = s.Buffer("k", http=api, taslak=s.taslak_mi({"SOSYAL_TASLAK": "1"}), kanallar=TEST_KANALLARI)
         b.gonderi_olustur("tiktok", "u", "m", "D")
         self.assertIs(api.cagrilar[0]["variables"]["input"]["saveToDraft"], True)
         self.assertFalse(s.taslak_mi({}))
@@ -444,10 +466,10 @@ class TaslakTestleri(unittest.TestCase):
             "TEST: Buffer'da 3 taslak oluşturuldu (Instagram hikâye, X, TikTok). Kontrol edip silebilirsin."))
 
     def test_taslak_kilidi_okumaz(self):
-        for p in s.KANALLAR:
+        for p in s.PLATFORMLAR:
             s.durum_yaz("2026-10-08", p, "gercek", self.durum)
-        b = SahteBuffer(zaten=set(s.KANALLAR))
-        self.assertEqual(set(self._paylas(b, {"BUFFER_API_KEY": "k", "SOSYAL_TASLAK": "1"})), set(s.KANALLAR))
+        b = SahteBuffer(zaten=set(s.PLATFORMLAR))
+        self.assertEqual(set(self._paylas(b, {"BUFFER_API_KEY": "k", "SOSYAL_TASLAK": "1"})), set(s.PLATFORMLAR))
 
     def test_taslaklar_gercek_calismayi_engellemez(self):
         api = SahteBufferApi()
@@ -455,16 +477,18 @@ class TaslakTestleri(unittest.TestCase):
         sonuc = self._paylas(s.Buffer("k", http=api), {"BUFFER_API_KEY": "k"})
         self.assertEqual(set(sonuc), {"instagram", "x", "tiktok"})
         self.assertEqual([n["status"] for n in api.postlar], ["draft"] * 3 + ["scheduled"] * 3)
-        self.assertEqual(set(s.durum_oku(self.durum)["gonderiler"]), set(s.KANALLAR))
+        self.assertEqual(set(s.durum_oku(self.durum)["gonderiler"]), set(s.PLATFORMLAR))
         # gerçek gönderiler bundan sonra yine çift gönderiyi engeller
         self.assertEqual(self._paylas(s.Buffer("k", http=api), {"BUFFER_API_KEY": "k"}), {})
 
     def test_bugun_kontrolu_draft_saymaz(self):
         http = SahteHttp({"data": {"posts": {"edges": [
             {"node": {"channelId": "6ac5fcb16a5c39ccb63d823e", "via": "api", "status": "draft"}},
+            {"node": {"channelId": IG_ID, "via": "buffer", "status": "error"}},
             {"node": {"channelId": "6ac5fc7f6a5c39ccb63d7f09", "via": "api", "status": "scheduled"}}]}}})
-        self.assertEqual(s.Buffer("k", http=http).bugun_zamanlanmis("2026-10-08"), {"tiktok"})
-        self.assertNotIn("draft", http.cagrilar[0]["json"]["variables"]["input"]["filter"]["status"])
+        self.assertEqual(s.Buffer("k", http=http, kanallar=TEST_KANALLARI).bugun_zamanlanmis("2026-10-08"), {"tiktok"})
+        # Buffer çoklu status filtresinde boş dönüyor: süzgeç istemcide
+        self.assertNotIn("status", http.cagrilar[0]["json"]["variables"]["input"]["filter"])
 
     def test_temizlik_test_assetlerini_kapsar(self):
         adlar = ["gunaydin-2026-09-30-test.mp4", "gunaydin-2026-09-30-test-ig.mp4",
@@ -473,6 +497,113 @@ class TaslakTestleri(unittest.TestCase):
                          ["gunaydin-2026-09-30-test-ig.mp4", "gunaydin-2026-09-30-test.mp4"])
         self.assertEqual(s.asset_adlari("2026-10-08", test=True),
                          ("gunaydin-2026-10-08-test.mp4", "gunaydin-2026-10-08-test-ig.mp4"))
+
+
+def _kanal(i, servis, ad, kopuk=False, kilitli=False):
+    return {"id": i, "service": servis, "name": ad, "isDisconnected": kopuk, "isLocked": kilitli}
+
+
+class KanalTestleri(unittest.TestCase):
+    def setUp(self):
+        self.d = tempfile.mkdtemp()
+        self.video = os.path.join(self.d, "v.mp4")
+        with open(self.video, "wb") as f:
+            f.write(b"v")
+        self.durum = os.path.join(self.d, "state", "sosyal-son.json")
+        self.bildirim = []
+
+    def _paylas(self, buffer):
+        return s.paylas(RAPOR, self.video, ortam={"BUFFER_API_KEY": "k"}, buffer=buffer, release=SahteRelease(),
+                        bildir=self.bildirim.append, simdi=datetime(2026, 10, 8, 5, 0, tzinfo=timezone.utc),
+                        durum_yolu=self.durum, ig_uret=sahte_ig, erisim=lambda u: True)
+
+    def test_servise_gore_eslesir(self):
+        http = SahteHttp({"data": {"channels": KANAL_LISTESI}})
+        b = s.Buffer("k", http=http)
+        self.assertEqual(b.kanallari_bul(), (TEST_KANALLARI, []))
+        self.assertEqual(http.cagrilar[0]["json"]["variables"]["input"]["organizationId"], s.ORG_ID)
+        self.assertEqual(b.gonderi_girdisi("instagram", "u", "", "D")["channelId"], IG_ID)
+
+    def test_birden_fazla_eslesmede_ada_ve_baglantiya_gore(self):
+        liste = [_kanal("eski", "instagram", "dogukanlive", kopuk=True), _kanal("baska", "instagram", "baskahesap"),
+                 _kanal("yeni", "instagram", "DogukanLive"), KANAL_LISTESI[1], KANAL_LISTESI[2]]
+        kanallar, sorunlar = s.Buffer("k", http=SahteHttp({"data": {"channels": liste}})).kanallari_bul()
+        self.assertEqual((kanallar["instagram"], sorunlar), ("yeni", []))
+
+    def test_kopuk_ve_eksik_kanal_atlanir(self):
+        liste = [_kanal(IG_ID, "instagram", "dogukanlive", kopuk=True), _kanal(X_ID, "twitter", "DogukanDogan",
+                                                                             kilitli=True)]
+        kanallar, sorunlar = s.Buffer("k", http=SahteHttp({"data": {"channels": liste}})).kanallari_bul()
+        self.assertEqual(kanallar, {})
+        self.assertIn("Instagram hikâye (dogukanlive) bağlantısı kopmuş, yeniden bağla", sorunlar[0])
+        self.assertIn("X (DogukanDogan) kanalı kilitli", sorunlar[1])
+        self.assertIn("TikTok kanalı bulunamadı", sorunlar[2])
+
+    def test_kopuk_kanal_paylasimda_atlanir_ve_uyarilir(self):
+        api = SahteBufferApi()
+        liste = [_kanal(IG_ID, "instagram", "dogukanlive", kopuk=True)] + KANAL_LISTESI[1:]
+        api_post = api.post
+
+        def post(url, json=None, headers=None, timeout=None):
+            if "channels(" in json["query"]:
+                api.cagrilar.append(json)
+                return SahteYanit({"data": {"channels": liste}})
+            return api_post(url, json=json, headers=headers, timeout=timeout)
+        api.post = post
+        sonuc = self._paylas(s.Buffer("k", http=api))
+        self.assertEqual(set(sonuc), {"x", "tiktok"})
+        self.assertNotIn(IG_ID, {n["channelId"] for n in api.postlar})
+        self.assertIn("Instagram hikâye (dogukanlive) bağlantısı kopmuş, yeniden bağla", self.bildirim[0])
+        self.assertNotIn("instagram", s.durum_oku(self.durum)["gonderiler"])
+        # posts kontrolü yalnız dinamik id'lerle
+        postlar = [c for c in api.cagrilar if "posts(" in c["query"]][0]
+        self.assertEqual(postlar["variables"]["input"]["filter"]["channelIds"], [X_ID, TT_ID])
+
+    def test_kanal_sorgusu_hatasinda_hic_gondermez(self):
+        b = SahteBuffer(kanal_hatasi=RuntimeError("Buffer hatası: ağ"))
+        self.assertEqual(self._paylas(b), {})
+        self.assertEqual(b.olusturulan, [])
+        self.assertIn("Buffer kanal listesi alınamadı, hiçbir platforma gönderilmedi", self.bildirim[0])
+
+    def test_graphql_hatasinda_hic_gondermez(self):
+        http = SahteHttp({"errors": [{"message": "Actor can not access", "extensions": {"code": "FORBIDDEN"}}]})
+        self.assertEqual(self._paylas(s.Buffer("k", http=http)), {})
+        self.assertEqual(len(http.cagrilar), 1)
+        self.assertIn("Actor can not access [FORBIDDEN]", self.bildirim[0])
+
+    def test_tum_kanallar_kopuksa_uyarir(self):
+        b = SahteBuffer(kopuk=set(s.PLATFORMLAR), kanal_sorunlari=["Buffer'da X bağlantısı kopmuş, yeniden bağla"])
+        self.assertEqual(self._paylas(b), {})
+        self.assertTrue(self.bildirim[0].startswith("⚠️ Sosyal medya: hiçbir platforma gönderilmedi."))
+        self.assertIn("• Buffer'da X bağlantısı kopmuş", self.bildirim[0])
+
+    def test_kuru_yer_tutucu_kanal(self):
+        b = s.Buffer("k", http=SahteHttp(), kuru=True)
+        with mock.patch("sys.stderr"):
+            kanallar, sorunlar = b.kanallari_bul()
+        self.assertEqual((set(kanallar), sorunlar), (set(s.PLATFORMLAR), []))
+
+    def test_create_post_mutation_hatasi_acik_yazilir(self):
+        http = SahteHttp({"data": {"createPost": {"__typename": "PostChannelNotFoundError",
+                                                  "message": "Channel not found"}}})
+        with self.assertRaisesRegex(RuntimeError, r"Buffer reddetti \(PostChannelNotFoundError\): Channel not found"):
+            s.Buffer("k", http=http, kanallar=TEST_KANALLARI).gonderi_olustur("instagram", "u", "", "D")
+
+    def test_create_post_hata_durumu(self):
+        http = SahteHttp({"data": {"createPost": {"post": {"id": "p9", "status": "error",
+                                                           "error": {"message": "Token expired"}}}}})
+        with self.assertRaisesRegex(RuntimeError, r"hatalı işaretledi \(id p9, durum error\): Token expired"):
+            s.Buffer("k", http=http, kanallar=TEST_KANALLARI).gonderi_olustur("instagram", "u", "", "D")
+
+    def test_platform_hatasi_mesajda_net(self):
+        class IgRed(SahteBuffer):
+            def gonderi_olustur(self, platform, url, metin, due):
+                if platform == "instagram":
+                    raise RuntimeError("Buffer reddetti (PostChannelNotFoundError): yok")
+                return super().gonderi_olustur(platform, url, metin, due)
+        self._paylas(IgRed())
+        self.assertIn("⚠️ Sorunlar:\n• Instagram hikâye zamanlanamadı: Buffer reddetti (PostChannelNotFoundError)",
+                      self.bildirim[0])
 
 
 if __name__ == "__main__":
