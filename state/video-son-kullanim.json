@@ -1,13 +1,13 @@
 {
  "kanca-sabah": {
-  "gun": "2026-10-07",
-  "onceki": "istanbul-sabah/istanbul-sabah-01.mp4",
+  "gun": "2026-10-08",
+  "onceki": "sabah-sehir/sabah-sehir-02.mp4",
   "secilen": [
-   "sabah-sehir/sabah-sehir-02.mp4"
+   "istanbul-sabah/istanbul-sabah-02.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-10-07",
+  "gun": "2026-10-08",
   "onceki": "piyasa-dusus/piyasa-dusus-02.mp4",
   "secilen": [
    "piyasa-dusus/piyasa-dusus-03.mp4",
@@ -16,10 +16,10 @@
   ]
  },
  "hack-guvenlik": {
-  "gun": "2026-10-04",
-  "onceki": "hack-guvenlik/hack-guvenlik-01.mp4",
+  "gun": "2026-10-08",
+  "onceki": "hack-guvenlik/hack-guvenlik-02.mp4",
   "secilen": [
-   "hack-guvenlik/hack-guvenlik-02.mp4"
+   "hack-guvenlik/hack-guvenlik-01.mp4"
   ]
  },
  "borsa-islem-masasi": {
@@ -30,17 +30,17 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-10-07",
-  "onceki": "takvim-veri/takvim-veri-01.mp4",
+  "gun": "2026-10-08",
+  "onceki": "takvim-veri/takvim-veri-02.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-02.mp4"
+   "takvim-veri/takvim-veri-04.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-10-07",
-  "onceki": "kapanis/kapanis-01.mp4",
+  "gun": "2026-10-08",
+  "onceki": "kapanis/kapanis-03.mp4",
   "secilen": [
-   "kapanis/kapanis-03.mp4"
+   "kapanis/kapanis-04.mp4"
   ]
  },
  "piyasa-yukselis": {
@@ -77,6 +77,13 @@
   "onceki": "regulasyon-hukuk/regulasyon-hukuk-01.mp4",
   "secilen": [
    "regulasyon-hukuk/regulasyon-hukuk-02.mp4"
+  ]
+ },
+ "jeopolitik": {
+  "gun": "2026-10-08",
+  "onceki": null,
+  "secilen": [
+   "jeopolitik/jeopolitik-01.mp4"
   ]
  }
 }
