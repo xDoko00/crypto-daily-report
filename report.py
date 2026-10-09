@@ -50,6 +50,7 @@ import requests
 
 import render
 import sema
+import yazim
 
 # --------------------------------------------------------------------------- #
 # Sabitler
@@ -153,6 +154,7 @@ ALAN KURALLARI:
 - Uydurma metrik (100 üzerinden puan, güven skoru) kullanma.
 - Doğrulayamadığın hiçbir bilgiyi yazma.
 - Metin alanlarında HTML etiketi, markdown veya emoji KULLANMA — düz Türkçe metin yaz. Biçimlendirmeyi sistem yapıyor.
+- Türkçe karakterleri (ç, ğ, ı, İ, ö, ş, ü) eksiksiz kullan; metni ASCII'ye çevirme ("icin", "Hurmuz Bogazi" değil; "için", "Hürmüz Boğazı").
 - Metinler kısa ve yoğun olsun; "summary" 1-2 cümleyi geçmesin."""
 
 
@@ -496,6 +498,38 @@ def llm_ciktisi_uret(market_data, dun_takip):
         temel += chr(10) * 2 + 'DÜNKÜ TAKİP MADDELERİ: yok (sections.yesterday boş dizi olsun).'
 
     print("[bilgi] Claude Code raporu üretiyor (web araması yapılıyor)...", file=sys.stderr)
+    veri = _llm_dogrulanmis(temel)
+    return _turkce_denetle(veri, temel)
+
+
+def _turkce_denetle(veri, temel):
+    """Türkçe karakter güvenlik ağı: çıktı ASCII'leşmişse üretimi BİR kez
+    yeniden dener; yine öyleyse admin'i uyarır ve raporu olduğu gibi yayınlar
+    (yazım hatası raporu durdurmaya değmez)."""
+    sorun = yazim.turkce_sorunu(veri)
+    if not sorun:
+        return veri
+    print(f"[uyarı] Türkçe yazım denetimi: {sorun} — üretim bir kez yeniden deneniyor.",
+          file=sys.stderr)
+    try:
+        yeni = json_ayikla(_claude_calistir(
+            temel + chr(10) * 2 + yazim.YAZIM_UYARISI.format(sorun=sorun)))
+        sema.dogrula_llm_ciktisi(yeni)
+        yeni_sorun = yazim.turkce_sorunu(yeni)
+        if not yeni_sorun:
+            print("[bilgi] Yeniden üretim Türkçe yazım denetimini geçti.", file=sys.stderr)
+            return yeni
+        veri, sorun = yeni, yeni_sorun
+    except (RuntimeError, ValueError, sema.RaporSemaHatasi) as e:
+        print(f"[uyarı] Yazım için yeniden üretim başarısız: {_gizle(e)}", file=sys.stderr)
+    mesaj = f"Rapor Türkçe karakterleri eksik yayınlanıyor: {sorun}"
+    _actions_uyari("Türkçe yazım denetimi", mesaj)
+    admin_hata_bildir(mesaj)
+    return veri
+
+
+def _llm_dogrulanmis(temel):
+    """Şemaya uyan model çıktısını döndürür (ağ/biçim hatasında yeniden dener)."""
     prompt = temel
     son_hata = None
     for deneme in range(1, MAX_RETRY + 1):

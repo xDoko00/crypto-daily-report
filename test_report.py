@@ -10,6 +10,7 @@ import eposta
 import render
 import report
 import sema
+import yazim
 
 NL = chr(10)
 
@@ -632,6 +633,111 @@ class PiyasaYedek(unittest.TestCase):
         self._cek(istemci)
         for u, _, h in istemci.cagrilar:
             self.assertNotIn("x-cg-demo-api-key", h)
+
+
+# --------------------------------------------------------------------------- #
+# Türkçe yazım denetimi (model çıktısı ASCII'leşmiş mi)
+# --------------------------------------------------------------------------- #
+
+_ASCII = str.maketrans("ğıışöüçİĞŞÖÜÇ", "giisoucIGSOUC")
+
+# 2026-10-09 raporunun düzeltilmeden önceki (model çıktısı) hâlinden kesit.
+BOZUK_WHY = ("Fed'in Eylul toplanti tutanaklarinin yil sonuna kadar ek faiz artirimina "
+             "isaret etmesi ve Hurmuz Bogazi'ndaki tanker saldirilarinin petrolu siçratmasi "
+             "risk iştahini kirdi; 10 yillik tahvil getirisi 2002'den beri en yuksek "
+             "seviyeye çikarken bitcoin spot ETF'lerinden sert çikiş yaşandi.")
+
+
+def _ascii_llm():
+    veri = copy.deepcopy(LLM_CIKTISI)
+    veri["brief"]["why"] = BOZUK_WHY
+    veri["brief"]["mainRisk"] = veri["brief"]["mainRisk"].translate(_ASCII)
+    veri["followUps"] = [f.translate(_ASCII) for f in veri["followUps"]]
+    return veri
+
+
+class TurkceYazim(unittest.TestCase):
+    def test_ascii_ornek_yakalanir(self):
+        sorun = yazim.turkce_sorunu(_ascii_llm())
+        self.assertIsNotNone(sorun)
+        self.assertIn("artirimina", sorun)
+
+    def test_tamamen_ascii_uzun_metin_oranla_yakalanir(self):
+        def katla(x):
+            if isinstance(x, str):
+                return x.translate(_ASCII)
+            if isinstance(x, dict):
+                return {k: katla(v) for k, v in x.items()}
+            return [katla(v) for v in x] if isinstance(x, list) else x
+        veri = katla(LLM_CIKTISI)
+        veri["sections"]["risks"] = ["Piyasa satış baskısı altında kalabilir. " * 4] * 3
+        veri = katla(veri)
+        self.assertIn("oranı", yazim.turkce_sorunu(veri) or "")
+
+    def test_normal_rapor_gecer(self):
+        self.assertIsNone(yazim.turkce_sorunu(LLM_CIKTISI))
+        self.assertIsNone(yazim.turkce_sorunu(ornek_rapor()))
+
+    def test_ozel_ad_ve_ingilizce_terim_yanlis_pozitif_degil(self):
+        veri = copy.deepcopy(LLM_CIKTISI)
+        veri["brief"]["why"] += " Gore, Bogazici Ventures ve Kucoin için ETF içinde çıkış bekleniyor; NFT artist ve artisan koleksiyonları."
+        self.assertIsNone(yazim.turkce_sorunu(veri))
+
+    def test_kaynak_basligi_denetlenmez(self):
+        veri = copy.deepcopy(LLM_CIKTISI)
+        veri["sections"]["agenda"][0]["source"]["title"] = "Hurmuz Bogazi icin buyuk degisim"
+        self.assertIsNone(yazim.turkce_sorunu(veri))
+
+    def test_ic_kelimesi_tek_c_ile_dogru(self):
+        self.assertEqual(yazim.ascii_kelimeler("için içinde çıkış"), [])
+        self.assertEqual(yazim.ascii_kelimeler("çikis yaşandi"), ["çikis"])
+
+    def test_bugunku_duzeltilmis_rapor_gecer(self):
+        kok = os.path.dirname(os.path.abspath(__file__))
+        for yol in ("reports/2026/10/2026-10-09.json", "reports/latest.json"):
+            with open(os.path.join(kok, yol), encoding="utf-8") as f:
+                rapor = json.load(f)
+            if rapor.get("id") == "2026-10-09":
+                self.assertIsNone(yazim.turkce_sorunu(rapor), yol)
+
+
+class TurkceYenidenDeneme(unittest.TestCase):
+    def test_ascii_ciktida_bir_kez_yeniden_uretir(self):
+        iyi = json.dumps(LLM_CIKTISI, ensure_ascii=False)
+        with mock.patch.object(report, "_claude_calistir", return_value=iyi) as cl, \
+                mock.patch.object(report, "admin_hata_bildir") as admin:
+            sonuc = report._turkce_denetle(_ascii_llm(), "PROMPT")
+        self.assertEqual(sonuc, LLM_CIKTISI)
+        self.assertEqual(cl.call_count, 1)
+        self.assertIn("ç, ğ, ı, İ, ö, ş, ü", cl.call_args[0][0])
+        admin.assert_not_called()
+
+    def test_yine_ascii_ise_admin_uyarilir_ve_yayin_surer(self):
+        bozuk = json.dumps(_ascii_llm(), ensure_ascii=False)
+        with mock.patch.object(report, "_claude_calistir", return_value=bozuk) as cl, \
+                mock.patch.object(report, "admin_hata_bildir") as admin, \
+                mock.patch.object(report, "_actions_uyari"):
+            sonuc = report._turkce_denetle(_ascii_llm(), "PROMPT")
+        self.assertEqual(cl.call_count, 1)
+        self.assertEqual(sonuc["brief"]["why"], BOZUK_WHY)
+        admin.assert_called_once()
+        self.assertIn("Türkçe", admin.call_args[0][0])
+
+    def test_yeniden_uretim_hatasinda_ilk_cikti_yayinlanir(self):
+        with mock.patch.object(report, "_claude_calistir", side_effect=RuntimeError("zaman aşımı")), \
+                mock.patch.object(report, "admin_hata_bildir") as admin, \
+                mock.patch.object(report, "_actions_uyari"):
+            sonuc = report._turkce_denetle(_ascii_llm(), "PROMPT")
+        self.assertEqual(sonuc, _ascii_llm())
+        admin.assert_called_once()
+
+    def test_temiz_ciktida_yeniden_uretim_yok(self):
+        with mock.patch.object(report, "_claude_calistir") as cl:
+            self.assertEqual(report._turkce_denetle(LLM_CIKTISI, "P"), LLM_CIKTISI)
+        cl.assert_not_called()
+
+    def test_prompt_turkce_karakter_kurali_icerir(self):
+        self.assertIn("Türkçe karakterleri (ç, ğ, ı, İ, ö, ş, ü) eksiksiz kullan", report.RAPOR_PROMPTU)
 
 
 if __name__ == "__main__":
