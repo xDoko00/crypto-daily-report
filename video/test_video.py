@@ -207,6 +207,50 @@ class Test(unittest.TestCase):
         yazi = [k[0] for k in self._altyazi(sahne)]
         self.assertIn("CFTC'nin", yazi)
 
+    def test_altyazi_kesme_orijinal(self):
+        rapor = dict(RAPOR, brief={"mood": "Temkinli",
+                                   "mainRisk": "Fed'den sonra Bitcoin'in ve Ethena'nın 15:30'da düşüşü."})
+        sahne = next(x for x in s.sahneler(rapor) if x["tur"] == "risk")
+        self.assertIn("Fed'den sonra Bitcoinin ve Etinanın", sahne["konusma"])
+        yazi = " ".join(k[0] for k in self._altyazi(sahne))
+        self.assertIn("Fed'den sonra Bitcoin'in ve Ethena'nın 15:30'da", yazi)
+        self.assertNotIn("Bitcoinin", yazi)
+
+    def test_kanca_manset_ve_btc(self):
+        rapor = dict(RAPOR, market=dict(RAPOR["market"], coins={"BTC": {"priceUsd": 82279, "change24h": -1.62}}),
+                     sections={"agenda": [{"title": "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı"}]})
+        k = s.sahneler(rapor)[0]
+        self.assertEqual(s.etiketsiz(k["konusma"]), "Günaydın! Hürmüz Boğazında tanker saldırıları "
+                         "petrolü sıçrattı. Bitcoin 82 bin dolarda, günde yüzde 1,6 düşüşte.")
+        self.assertEqual(k["alt"], "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı")
+        self.assertEqual(k["mood"], "Temkinli")
+        yazi = " ".join(w[0] for w in self._altyazi(k))
+        self.assertIn("Boğazı'nda", yazi)
+        self.assertIn("%1,6 düşüşte.", yazi)
+
+    def test_kanca_kucuk_harekette_rakam_yok(self):
+        rapor = dict(RAPOR, market=dict(RAPOR["market"], coins={"BTC": {"priceUsd": 82279, "change24h": -0.18}}))
+        k = s.etiketsiz(s.sahneler(rapor)[0]["konusma"])
+        self.assertEqual(k, "Günaydın! THORChain, Bitget saldırganının fonlarını engellemeyi reddetti.")
+        self.assertNotIn("Piyasa", k)
+
+    def test_kanca_manset_kisaltma(self):
+        def m(baslik):
+            return s.kanca_manseti({"sections": {"agenda": [{"title": baslik}]}})
+        self.assertEqual(m("Zayıf istihdam verisi BTC'yi sıçrattı, tasfiye dalgası sonra geri çekti"),
+                         "Zayıf istihdam verisi BTC'yi sıçrattı")
+        uzun = m("Bir iki üç dört beş altı yedi ve dokuz on on bir")
+        self.assertEqual(uzun, "Bir iki üç dört beş altı yedi")
+        for b in ("Bir iki üç dört beş altı yedi ve dokuz on", "Kısa başlık."):
+            self.assertLessEqual(len(m(b).split()), s.KANCA_MAKS_KELIME)
+        self.assertEqual(m("Kısa başlık."), "Kısa başlık")
+
+    def test_kanca_mansetsiz_eski_davranis(self):
+        rapor = dict(RAPOR, sections={"agenda": []})
+        k = s.sahneler(rapor)[0]
+        self.assertIn("Bugün 29 Eylül Salı. [calm] Piyasa temkinli", k["konusma"])
+        self.assertEqual(s.kanca_manseti({}), "")
+
     def test_orijinal_yazim_art_arda_kelimeler(self):
         from video import gunaydin as g
         import telaffuz

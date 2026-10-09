@@ -34,6 +34,8 @@ VARSAYILAN_UYARI = "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
 HABER_ADET = 2           # haber sahnesi sayısı
 TAKIP_ADET = 3           # "Bugün takip et" madde sayısı
 YATAY_ESIGI = sk.YATAY_ESIGI
+KANCA_MAKS_KELIME = 8         # kanca manşeti: ≤ ~5 sn konuşma
+KANCA_HAREKET_ESIGI = 1.0     # |BTC %24s| bunun altındaysa kancada rakam yok
 
 # --------------------------------------------------------------------------- #
 # B-roll tema kütüphanesi. Klipler broll/<tema>/<tema>-NN.mp4 (katalog:
@@ -360,6 +362,40 @@ def _takip_ifadesi(olay, rapor):
     return (sk.tr_buyuk_bas(saat) + " " + baslik) if saat else ("Gün içinde de " + baslik)
 
 
+_ZAYIF_SON = {"ve", "ile", "için", "ama", "fakat", "bir", "de", "da", "ki", "gibi", "olarak",
+              "sonra", "önce", "kadar", "en", "çok", "daha", "bu", "şu", "o", "the", "of"}
+
+
+def kanca_manseti(rapor, maks=KANCA_MAKS_KELIME):
+    """Günün manşeti (ilk gündem başlığı), kancada okunacak kadar kısa: ≤ maks kelime.
+    Uzunsa ilk yan cümle (virgül/iki nokta öncesi), o da uzunsa ilk `maks` kelime; zayıf
+    bağlaçla bitmez. Başlık yoksa ""."""
+    gundem = (rapor.get("sections") or {}).get("agenda") or []
+    baslik = re.sub(r"\s+", " ", ((gundem[0] or {}).get("title") or "") if gundem else "").strip()
+    baslik = baslik.rstrip(" .;,:!?")
+    kel = baslik.split()
+    if len(kel) <= maks:
+        return baslik
+    ilk = re.split(r"\s*[,;:–—]\s*|\s+-\s+", baslik)[0].split()
+    if 3 <= len(ilk) <= maks:
+        return " ".join(ilk)
+    kel = kel[:maks]
+    while len(kel) > 3 and sk.tr_kucuk(kel[-1]).strip(",;:") in _ZAYIF_SON:
+        kel.pop()
+    return " ".join(kel).rstrip(",;:")
+
+
+def _kanca_btc(coin):
+    """'Bitcoin 82 bin dolarda, günde yüzde 1,6 düşüşte.' — hareket küçükse ""."""
+    fiyat, ch = (coin or {}).get("priceUsd"), (coin or {}).get("change24h")
+    if fiyat is None or ch is None or abs(ch) < KANCA_HAREKET_ESIGI or fiyat < 1000:
+        return ""
+    tutar = f"{round(fiyat / 1000)} bin"
+    yon = "düşüşte" if ch < 0 else "yükselişte"
+    yuzde = _rakam("yüzde " + sk.yuzde_konusma(ch), _yuzde_rakam(ch))
+    return f"Bitcoin {tutar} dolarda, günde {yuzde} {yon}."
+
+
 # --------------------------------------------------------------------------- #
 # Sahneler
 # --------------------------------------------------------------------------- #
@@ -383,13 +419,20 @@ def sahneler(rapor):
         _RAKAMLAR.clear()
         s.append(sahne)
 
-    # 1) Kanca: tarih + günün başlığı
-    gundem = (" ve ".join(temalar)) if temalar else ""
-    k = f"[cheerful] Günaydın! Bugün {sk._tarih(rapor)}. [calm] Piyasa {sk.tr_kucuk(mood)}"
-    k += f"; gündemde {konusma(gundem, rapor)}." if gundem else "."
+    # 1) Kanca: günün manşeti + BTC hareketi (manşet yoksa eski ruh hâli cümlesi)
+    manset = kanca_manseti(rapor)
+    if manset:
+        k = f"[cheerful] Günaydın! [calm] {_cumle(konusma(manset, rapor))}"
+        btc = _kanca_btc(coins.get("BTC"))
+        k += f" {btc}" if btc else ""
+        alt = ekran(manset)
+    else:
+        gundem = (" ve ".join(temalar)) if temalar else ""
+        k = f"[cheerful] Günaydın! Bugün {sk._tarih(rapor)}. [calm] Piyasa {sk.tr_kucuk(mood)}"
+        k += f"; gündemde {konusma(gundem, rapor)}." if gundem else "."
+        alt = sk.tr_buyuk_bas(", ".join(temalar)) if temalar else ""
     ekle({"tur": "kanca", "tema": SABAH_TEMA, "konusma": k,
-          "tarih": tarih_ekran(rapor), "mood": mood,
-          "alt": sk.tr_buyuk_bas(", ".join(temalar)) if temalar else ""})
+          "tarih": tarih_ekran(rapor), "mood": mood, "alt": alt})
 
     # 2) Fiyat kartı
     satirlar = []
