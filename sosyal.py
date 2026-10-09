@@ -391,8 +391,16 @@ class Buffer:
                 raise RuntimeError(f"Buffer gönderiyi oluşturdu ama hatalı işaretledi (id {post['id']}, "
                                    f"durum {post.get('status')}): " + gizle(hata or "ayrıntı yok"))
             return post["id"]
-        tur = sonuc.get("__typename") or "MutationError"
-        raise RuntimeError(f"Buffer reddetti ({tur}): " + gizle(sonuc.get("message") or "bilinmeyen yanıt"))
+        raise BufferReddi(sonuc.get("__typename") or "MutationError",
+                          gizle(sonuc.get("message") or "bilinmeyen yanıt"))
+
+
+class BufferReddi(RuntimeError):
+    """createPost MutationError (ör. InvalidInputError) döndü."""
+
+    def __init__(self, tur, mesaj):
+        self.tur, self.mesaj = tur, mesaj
+        super().__init__(f"Buffer reddetti ({tur}): {mesaj}")
 
 
 def manychat_govdesi(metin):
@@ -554,6 +562,10 @@ IG_HAP_YUKSEKLIK = 76
 IG_NABIZ_ARALIK = 5.0             # sn
 IG_NABIZ_SURE = 0.5               # sn
 IG_NABIZ_GENLIK = 0.12            # %12 büyüyüp küçülür
+# Buffer IG hikâyesini 1 dk'dan uzunsa reddeder (9 Eki 2026: 63,8 sn → InvalidInputError).
+IG_MAX_SN = 59.5                  # bunu aşan varyant hızlandırılır
+IG_HEDEF_SN = 59.0                # hızlandırma hedefi (katsayı = süre / 59)
+IG_MAX_HIZ = 1.15                 # daha fazlası (~68 sn üstü) bozuk duyulur: IG atlanır
 
 
 def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True):
@@ -637,16 +649,65 @@ def ig_varyant_komutu(girdi, kucuk, buyuk, cikti, sure, cagri_sn=IG_CAGRI_SN, na
             "-profile:v", "high", "-level", "4.1", "-c:a", "copy", "-movflags", "+faststart", cikti]
 
 
+class IgCokUzun(RuntimeError):
+    """Video IG hikâye sınırına makul hızlandırmayla sığmıyor."""
+
+    def __init__(self, sure):
+        self.sure = sure
+        super().__init__(f"IG hikâyesi için video çok uzun: {sure:.1f} sn "
+                         f"(sınır {IG_MAX_SN:g} sn, en fazla {IG_MAX_HIZ:g}x hızlandırılır)")
+
+
+def ig_hiz_katsayisi(sure, sinir=IG_MAX_SN, hedef=IG_HEDEF_SN, en_fazla=IG_MAX_HIZ):
+    """IG hikâyesi (Buffer: en fazla 1 dk) için hız katsayısı.
+
+    -> None (sığıyor) ya da sure/hedef. Katsayı `en_fazla`yı aşarsa IgCokUzun."""
+    if sure <= sinir:
+        return None
+    k = sure / hedef
+    if k > en_fazla:
+        raise IgCokUzun(sure)
+    return k
+
+
+def ig_hizlandir_komutu(girdi, cikti, katsayi, ses=True):
+    """Tüm varyantı (hap, nabız, son çağrı dahil) orantılı hızlandırır."""
+    k = f"{katsayi:.4f}"
+    if ses:
+        filtre = f"[0:v]setpts=PTS/{k}[v];[0:a]atempo={k}[a]"
+        eslem = ["-map", "[v]", "-map", "[a]", "-c:a", "aac", "-b:a", "160k"]
+    else:
+        filtre = f"[0:v]setpts=PTS/{k}[v]"
+        eslem = ["-map", "[v]"]
+    return (["ffmpeg", "-y", "-v", "error", "-i", girdi, "-filter_complex", filtre] + eslem
+            + ["-c:v", "libx264", "-preset", "fast", "-crf", "20", "-pix_fmt", "yuv420p",
+               "-profile:v", "high", "-level", "4.1", "-movflags", "+faststart", cikti])
+
+
+def _ses_var_mi(yol):
+    p = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=index",
+                        "-of", "csv=p=0", yol], capture_output=True, text=True, check=True)
+    return bool(p.stdout.strip())
+
+
 def ig_varyant_uret(girdi, cikti, calisma):
+    sure = _sure(girdi)
+    katsayi = ig_hiz_katsayisi(sure)          # çok uzunsa boşuna üretmeden IgCokUzun
     kucuk = kucuk_hap(os.path.join(calisma, "ig-hap.png"))
     buyuk = cagri_katmani(os.path.join(calisma, "ig-cagri.png"))
-    sure = _sure(girdi)
+    hedef = os.path.join(calisma, "ig-ham.mp4") if katsayi else cikti
     try:
-        subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, cikti, sure), check=True)
+        subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, hedef, sure), check=True)
     except subprocess.CalledProcessError:
         # Eski ffmpeg'de scale `t` değişkeni yok: nabızsız (sabit hap) üret.
         log("[sosyal] nabızlı IG varyantı üretilemedi, sabit hapla deneniyor")
-        subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, cikti, sure, nabiz=False), check=True)
+        subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, hedef, sure, nabiz=False), check=True)
+    if katsayi:
+        subprocess.run(ig_hizlandir_komutu(hedef, cikti, katsayi, ses=_ses_var_mi(hedef)), check=True)
+        yeni = _sure(cikti)
+        log(f"[sosyal] IG varyantı {sure:.2f} sn → {yeni:.2f} sn ({katsayi:.4f}x hızlandırıldı)")
+        if yeni > IG_MAX_SN:
+            raise RuntimeError(f"IG varyantı hızlandırmadan sonra hâlâ {yeni:.2f} sn (sınır {IG_MAX_SN:g})")
     return cikti
 
 
@@ -683,6 +744,12 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
     if taslak:                                # test mesajları gerçeğiyle karışmasın
         _bildir = bildir
         bildir = lambda m: _bildir(m if m.startswith("TEST:") else "TEST: " + m)  # noqa: E731
+    _telegram = bildir
+
+    def bildir(m):                            # admin mesajı Actions günlüğünde de görünsün
+        log("[sosyal] admin bildirimi:\n" + m)
+        _telegram(m)
+
     sonuc, sorunlar = {}, []
     try:
         if kapali_mi(ortam):
@@ -709,7 +776,7 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                 kanallar, kanal_sorunlari = buffer.kanallari_bul()
             except Exception as e:            # noqa: BLE001
                 m = f"Buffer kanal listesi alınamadı, hiçbir platforma gönderilmedi: {gizle(e)[:300]}"
-                log("[uyarı] " + m)
+                aktions_uyari("[sosyal] " + m)
                 bildir("⚠️ Sosyal medya: " + m)
                 return sonuc
             sorunlar += kanal_sorunlari
@@ -750,6 +817,9 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                     yuklenecek[ig_ad] = ig_yol
                     if ig_cikti:
                         shutil.copyfile(ig_yol, ig_cikti)
+                except IgCokUzun as e:
+                    bekleyen.remove("instagram")
+                    sorunlar.append(f"Instagram hikâye GÖNDERİLEMEDİ: {e}")
                 except Exception as e:        # noqa: BLE001
                     bekleyen.remove("instagram")
                     sorunlar.append(f"Instagram varyantı üretilemedi: {gizle(e)[:200]}")
@@ -777,6 +847,11 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                     sonuc[p] = pid
                     if not (kuru or taslak):
                         durum_yaz(gun, p, pid, durum_yolu)
+                except BufferReddi as e:
+                    if p == "instagram":
+                        sorunlar.append(f"Instagram hikâye GÖNDERİLEMEDİ: {e.mesaj[:300]} ({e.tur})")
+                    else:
+                        sorunlar.append(f"{PLATFORM_AD[p]} zamanlanamadı: {gizle(e)[:300]}")
                 except Exception as e:        # noqa: BLE001
                     sorunlar.append(f"{PLATFORM_AD[p]} zamanlanamadı: {gizle(e)[:300]}")
 
@@ -788,7 +863,8 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                 satirlar += ["", "⚠️ Sorunlar:", _maddeler(sorunlar)]
             bildir("\n".join(satirlar))
         elif sonuc:
-            satirlar = [f"Sosyal medya: {yerel:%H:%M}'de yayınlanacak "
+            satirlar = ["⚠️ " + m for m in sorunlar if m.startswith("Instagram hikâye GÖNDERİLEMEDİ")]
+            satirlar += [f"Sosyal medya: {yerel:%H:%M}'de yayınlanacak "
                         f"({', '.join(PLATFORM_AD[p] for p in sonuc)}). İptal için Buffer'dan sil."]
             satirlar += [f"{PLATFORM_AD[p]}: {pid}" for p, pid in sonuc.items()]
             if sorunlar:
@@ -799,7 +875,13 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
     except Exception as e:                    # noqa: BLE001
         m = f"Sosyal medya adımı başarısız: {type(e).__name__}: {gizle(e)[:400]}"
         log("[uyarı] " + m)
+        aktions_uyari("[sosyal] " + m)
         bildir("⚠️ " + m + ("\n" + _maddeler(sorunlar) if sorunlar else ""))
+    finally:
+        for m in sorunlar:                    # Actions özetinde sarı uyarı olarak görünür
+            aktions_uyari("[sosyal] " + m)
+        if sonuc:
+            log("[sosyal] zamanlandı: " + ", ".join(f"{PLATFORM_AD[p]}={pid}" for p, pid in sonuc.items()))
     return sonuc
 
 
