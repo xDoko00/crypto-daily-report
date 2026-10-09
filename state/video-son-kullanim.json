@@ -1,18 +1,16 @@
 {
  "kanca-sabah": {
-  "gun": "2026-10-08",
-  "onceki": "sabah-sehir/sabah-sehir-02.mp4",
+  "gun": "2026-10-09",
+  "onceki": "istanbul-sabah/istanbul-sabah-02.mp4",
   "secilen": [
-   "istanbul-sabah/istanbul-sabah-02.mp4"
+   "sabah-sehir/sabah-sehir-03.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-10-08",
+  "gun": "2026-10-09",
   "onceki": "piyasa-dusus/piyasa-dusus-02.mp4",
   "secilen": [
-   "piyasa-dusus/piyasa-dusus-03.mp4",
-   "piyasa-dusus/piyasa-dusus-01.mp4",
-   "piyasa-dusus/piyasa-dusus-02.mp4"
+   "piyasa-dusus/piyasa-dusus-03.mp4"
   ]
  },
  "hack-guvenlik": {
@@ -30,17 +28,17 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-10-08",
-  "onceki": "takvim-veri/takvim-veri-02.mp4",
+  "gun": "2026-10-09",
+  "onceki": "takvim-veri/takvim-veri-04.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-04.mp4"
+   "takvim-veri/takvim-veri-01.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-10-08",
-  "onceki": "kapanis/kapanis-03.mp4",
+  "gun": "2026-10-09",
+  "onceki": "kapanis/kapanis-04.mp4",
   "secilen": [
-   "kapanis/kapanis-04.mp4"
+   "kapanis/kapanis-01.mp4"
   ]
  },
  "piyasa-yukselis": {
@@ -52,9 +50,10 @@
   ]
  },
  "fed-makro": {
-  "gun": "2026-10-07",
-  "onceki": "fed-makro/fed-makro-02.mp4",
+  "gun": "2026-10-09",
+  "onceki": "fed-makro/fed-makro-01.mp4",
   "secilen": [
+   "fed-makro/fed-makro-02.mp4",
    "fed-makro/fed-makro-01.mp4"
   ]
  },
@@ -66,10 +65,11 @@
   ]
  },
  "sakin-yatay": {
-  "gun": "2026-10-07",
-  "onceki": "sakin-yatay/sakin-yatay-04.mp4",
+  "gun": "2026-10-09",
+  "onceki": "sakin-yatay/sakin-yatay-01.mp4",
   "secilen": [
-   "sakin-yatay/sakin-yatay-01.mp4"
+   "sakin-yatay/sakin-yatay-02.mp4",
+   "sakin-yatay/sakin-yatay-03.mp4"
   ]
  },
  "regulasyon-hukuk": {
