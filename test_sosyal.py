@@ -109,10 +109,15 @@ class MetinTestleri(unittest.TestCase):
     def test_x_metni(self):
         t = s.x_metni(RAPOR)
         self.assertTrue(t.startswith("Günaydın Kripto · 8 Ekim"))
-        self.assertIn("dogukanlive.com/bugun", t)
         self.assertTrue(t.endswith("Yatırım tavsiyesi değildir."))
         self.assertLessEqual(len(t), 280)
         self.assertEqual(t.count("• "), 3)
+
+    def test_x_ana_metinde_url_yok(self):
+        t = s.x_metni(RAPOR)
+        self.assertNotIn("dogukanlive", t)
+        self.assertNotRegex(t, r"https?://|www\.|\.com")
+        self.assertEqual(s.X_YANIT, "Detaylı rapor ve grafikler: https://dogukanlive.com/bugun/")
 
     def test_x_uzun_basliklar_sinira_sigar(self):
         r = {"id": "2026-10-08", "sections": {"agenda": [{"title": ("Çok uzun başlık kelime " * 10)} for _ in range(3)]}}
@@ -126,9 +131,18 @@ class MetinTestleri(unittest.TestCase):
         t = s.tiktok_metni(RAPOR)
         self.assertLessEqual(len(t), 2200)
         etiketler = [k for k in t.split() if k.startswith("#")]
-        self.assertTrue(4 <= len(etiketler) <= 6)
-        self.assertIn("#günaydınkripto", etiketler)
+        self.assertEqual(etiketler, ["#günaydın", "#gündem", "#ekonomi", "#haber"])
+        for e in etiketler:
+            self.assertNotRegex(s.tr_kucuk(e), r"kripto|crypto|bitcoin|btc|coin")
+        self.assertIn("Günaydın Kripto", t)              # metin aynı; yalnız etiketler nötr
         self.assertIn("Yatırım tavsiyesi değildir.", t)
+
+    def test_tiktok_etiket_filtresi(self):
+        girdi = ["#günaydın", "#Kripto", "#KRİPTOPARA", "#bitcoin", "#BTC", "#altcoin", "#Crypto", "#haber"]
+        self.assertEqual(s.guvenli_etiketler(girdi), ["#günaydın", "#haber"])
+        with mock.patch.object(s, "TIKTOK_ETIKETLER", ["#gündem", "#kriptohaber", "#günaydınkripto"]):
+            t = s.tiktok_metni(RAPOR)
+        self.assertEqual([k for k in t.split() if k.startswith("#")], ["#gündem"])
 
     def test_manychat_metni(self):
         t = s.manychat_metni(RAPOR)
@@ -178,7 +192,16 @@ class IstekGovdesiTestleri(unittest.TestCase):
         for p, kanal in (("x", "6ac5fcb16a5c39ccb63d823e"), ("tiktok", "6ac5fc7f6a5c39ccb63d7f09")):
             g = s.Buffer("k", kanallar=TEST_KANALLARI).gonderi_girdisi(p, "https://u/v.mp4", "metin", "D")
             self.assertEqual((g["channelId"], g["text"], g["dueAt"]), (kanal, "metin", "D"))
-            self.assertNotIn("metadata", g)
+        self.assertNotIn("metadata", s.Buffer("k", kanallar=TEST_KANALLARI).gonderi_girdisi("tiktok", "u", "m", "D"))
+
+    def test_x_thread_girdisi(self):
+        g = s.Buffer("k", kanallar=TEST_KANALLARI).gonderi_girdisi("x", "https://u/v.mp4", "ana metin", "D")
+        thread = g["metadata"]["twitter"]["thread"]
+        self.assertEqual(thread, [
+            {"text": "ana metin", "assets": [{"video": {"url": "https://u/v.mp4"}}]},
+            {"text": "Detaylı rapor ve grafikler: https://dogukanlive.com/bugun/", "assets": []}])
+        self.assertEqual(g["text"], thread[0]["text"])          # üst text = ilk parça (Buffer kuralı)
+        self.assertEqual(list(g["metadata"]), ["twitter"])
 
     def test_buffer_istek_ve_yanit(self):
         http = SahteHttp({"data": {"createPost": {"post": {"id": "p1"}}}})
