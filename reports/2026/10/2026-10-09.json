@@ -48,47 +48,47 @@
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Fed'in Eylul toplanti tutanaklarinin yil sonuna kadar ek faiz artirimina isaret etmesi ve Hurmuz Bogazi'ndaki tanker saldirilarinin petrolu siçratmasi risk iştahini kirdi; 10 yillik tahvil getirisi 2002'den beri en yuksek seviyeye çikarken bitcoin spot ETF'lerinden sert çikiş yaşandi ve 1,16 milyar dolarlik pozisyon likide oldu.",
+    "why": "Fed'in Eylül toplantı tutanaklarının yıl sonuna kadar ek faiz artırımına işaret etmesi ve Hürmüz Boğazı'ndaki tanker saldırılarının petrolü sıçratması risk iştahını kırdı; 10 yıllık tahvil getirisi 2002'den beri en yüksek seviyeye çıkarken bitcoin spot ETF'lerinden sert çıkış yaşandı ve 1,16 milyar dolarlık pozisyon likide oldu.",
     "criticalEvents": [
       {
         "timeTr": "16:30",
-        "title": "Fed'den Schmid konusmasi"
+        "title": "Fed'den Schmid konuşması"
       },
       {
         "timeTr": "17:00",
-        "title": "Michigan oncu tuketici guveni"
+        "title": "Michigan öncü tüketici güveni"
       },
       {
         "timeTr": "17:30",
-        "title": "EIA haftalik ham petrol stoklari"
+        "title": "EIA haftalık ham petrol stokları"
       }
     ],
-    "mainRisk": "Hurmuz Bogazi'ndaki gerginligin tirmanmasi petrol ve enflasyon beklentilerini yukari çekip Fed'in ek faiz artirimi ihtimalini guçlendirebilir, bu da risk varliklarindan çikişi hizlandirabilir."
+    "mainRisk": "Hürmüz Boğazı'ndaki gerginliğin tırmanması petrol ve enflasyon beklentilerini yukarı çekip Fed'in ek faiz artırımı ihtimalini güçlendirebilir, bu da risk varlıklarından çıkışı hızlandırabilir."
   },
   "sections": {
     "yesterday": [
       {
         "item": "Bitcoin 80 bin dolar seviyesini test etti mi",
-        "outcome": "Hayir, isabetsiz: BTC ekim ayinin dibi olan 82.700-83.000 dolar bandina geriledi ama 80 bin dolara inmedi."
+        "outcome": "Hayır, isabetsiz: BTC ekim ayının dibi olan 82.700-83.000 dolar bandına geriledi ama 80 bin dolara inmedi."
       },
       {
-        "item": "10 yillik tahvil getirisi yuzde 5,35'in uzerinde kalmaya devam etti mi",
-        "outcome": "Kismen isabetli: getiri 2002'den beri en yuksek seviye olan yuzde 5,35-5,36'ya çikti, gun içinde guçlu bir tahvil ihalesi sonrasi hafifçe geri çekildi."
+        "item": "10 yıllık tahvil getirisi yüzde 5,35'in üzerinde kalmaya devam etti mi",
+        "outcome": "Kısmen isabetli: getiri 2002'den beri en yüksek seviye olan yüzde 5,35-5,36'ya çıktı, gün içinde güçlü bir tahvil ihalesi sonrası hafifçe geri çekildi."
       },
       {
-        "item": "Waller'in Istanbul konusmasi piyasalarda faiz beklentisini degistirdi mi",
-        "outcome": "Belirgin bir degisim olmadi: Waller sahin durusu yineledi ama CME FedWatch'a gore ekim toplantisinda faiz artisi olasiligi yuzde 19,4'te kaldi."
+        "item": "Waller'ın İstanbul konuşması piyasalarda faiz beklentisini değiştirdi mi",
+        "outcome": "Belirgin bir değişim olmadı: Waller şahin duruşu yineledi ama CME FedWatch'a göre ekim toplantısında faiz artışı olasılığı yüzde 19,4'te kaldı."
       },
       {
-        "item": "Bitcoin spot ETF'lerinde çikislar surdu mu yoksa girise mi dondu",
-        "outcome": "Çikislar surdu: 7 Ekim'de Haziran'dan beri en buyuk gunluk çikis olan 487,1 milyon dolar, 8 Ekim'de 244 milyon dolar kaydedildi, girise donus olmadi."
+        "item": "Bitcoin spot ETF'lerinde çıkışlar sürdü mü yoksa girişe mi döndü",
+        "outcome": "Çıkışlar sürdü: 7 Ekim'de Haziran'dan beri en büyük günlük çıkış olan 487,1 milyon dolar, 8 Ekim'de 244 milyon dolar kaydedildi, girişe dönüş olmadı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Hurmuz Bogazi'nda tanker saldirilari petrolu sicratti",
-        "summary": "Iran baglantili saldirilarin surmesi ve Trump'in Iran ile gorusmelerin ilerlemedigini belirtmesi Brent petrolunu yukari itti; yukselen enflasyon riski bitcoin dahil risk varliklarini asagi çekti.",
+        "title": "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı",
+        "summary": "İran bağlantılı saldırıların sürmesi ve Trump'ın İran ile görüşmelerin ilerlemediğini belirtmesi Brent petrolünü yukarı itti; yükselen enflasyon riski bitcoin dahil risk varlıklarını aşağı çekti.",
         "source": {
           "url": "https://bitcoinmagazine.com/markets/bitcoin-price-slide-continues-below-81000",
           "title": "Bitcoin Falls Below $81,000 As Oil Spikes, Fed Talks Tough",
@@ -97,8 +97,8 @@
       },
       {
         "importance": "kritik",
-        "title": "ABD 10 yillik tahvil getirisi 22 yilin zirvesine çikti",
-        "summary": "Fed'in Eylul tutanaklarinin sahin tonu ve mali açik kaygilariyla 10 yillik tahvil getirisi 2002'den beri en yuksek seviye olan yuzde 5,35'e çikti; bu durum S&P 500'de de geri çekilmeye yol açti.",
+        "title": "ABD 10 yıllık tahvil getirisi 22 yılın zirvesine çıktı",
+        "summary": "Fed'in Eylül tutanaklarının şahin tonu ve mali açık kaygılarıyla 10 yıllık tahvil getirisi 2002'den beri en yüksek seviye olan yüzde 5,35'e çıktı; bu durum S&P 500'de de geri çekilmeye yol açtı.",
         "source": {
           "url": "https://thefinancialstandard.com/trending-news/treasury-yields-surge-22-year-highs-rattling-markets-october-2026",
           "title": "Treasury Yields Surge to 22-Year Highs, Rattling Markets on October 8, 2026",
@@ -107,8 +107,8 @@
       },
       {
         "importance": "onemli",
-        "title": "Fed'den Waller'dan Istanbul'da sahin ama esnek mesaj",
-        "summary": "Waller, Istanbul Ekonomi Forumu'nda enflasyonu yuzde 2 hedefine çekmek için ek faiz artirimlarinin muhtemelen gerekecegini ama zamanlamada esneklik oldugunu soyledi; piyasa ekim toplantisinda faiz artisi olasiligini yuzde 19,4'te gordu.",
+        "title": "Fed'den Waller'dan İstanbul'da şahin ama esnek mesaj",
+        "summary": "Waller, İstanbul Ekonomi Forumu'nda enflasyonu yüzde 2 hedefine çekmek için ek faiz artırımlarının muhtemelen gerekeceğini ama zamanlamada esneklik olduğunu söyledi; piyasa ekim toplantısında faiz artışı olasılığını yüzde 19,4'te gördü.",
         "source": {
           "url": "https://www.kucoin.com/news/insight/BTC/6ac788cc38a2640007932be8",
           "title": "Fed Board Member Waller Speaks at Istanbul Economic Forum",
@@ -117,8 +117,8 @@
       },
       {
         "importance": "onemli",
-        "title": "1,16 milyar dolarlik likidasyon dalgasi altcoinleri vurdu",
-        "summary": "Fed tutanaklarinin ardindan 24 saatte 1,16 milyar dolarlik kaldiraçli pozisyon likide oldu; ethereum ince emir defteri ve yuksek perakende kaldiraci nedeniyle bitcoin'den daha sert dustu.",
+        "title": "1,16 milyar dolarlık likidasyon dalgası altcoinleri vurdu",
+        "summary": "Fed tutanaklarının ardından 24 saatte 1,16 milyar dolarlık kaldıraçlı pozisyon likide oldu; ethereum ince emir defteri ve yüksek perakende kaldıracı nedeniyle bitcoin'den daha sert düştü.",
         "source": {
           "url": "https://cryptoticker.io/en/crypto-crash-reason-bitcoin-ethereum-october-2026/",
           "title": "Crypto Crash Reason: Why Bitcoin Fell Below $81,000 and Altcoins Bled Even Harder",
@@ -127,8 +127,8 @@
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin spot ETF'lerinden Haziran'dan beri en buyuk çikis",
-        "summary": "ABD spot bitcoin ETF'leri 7 Ekim'de 487,1 milyon dolarlik net çikisla Haziran ayindan beri en buyuk gunluk çikisi kaydetti; çikislar 8 Ekim'de 244 milyon dolarla surdu.",
+        "title": "Bitcoin spot ETF'lerinden Haziran'dan beri en büyük çıkış",
+        "summary": "ABD spot bitcoin ETF'leri 7 Ekim'de 487,1 milyon dolarlık net çıkışla Haziran ayından beri en büyük günlük çıkışı kaydetti; çıkışlar 8 Ekim'de 244 milyon dolarla sürdü.",
         "source": {
           "url": "https://www.coindesk.com/daybook-us/2026/10/08/bitcoin-etf-investors-head-for-the-exit-and-it-s-the-biggest-rush-in-months",
           "title": "Bitcoin ETFs bleed nearly $500 million in one day: Crypto Daily",
@@ -139,19 +139,19 @@
     "today": [
       {
         "timeTr": "16:30",
-        "title": "Fed'den Schmid konusmasi"
+        "title": "Fed'den Schmid konuşması"
       },
       {
         "timeTr": "17:00",
-        "title": "Michigan oncu tuketici guveni verisi"
+        "title": "Michigan öncü tüketici güveni verisi"
       },
       {
         "timeTr": "17:00",
-        "title": "Agustos toptan satis stoklari verisi"
+        "title": "Ağustos toptan satış stokları verisi"
       },
       {
         "timeTr": "17:30",
-        "title": "EIA haftalik ham petrol stoklari raporu"
+        "title": "EIA haftalık ham petrol stokları raporu"
       }
     ],
     "turkey": {
@@ -159,15 +159,15 @@
       "items": []
     },
     "risks": [
-      "Hurmuz Bogazi'ndaki tanker saldirilarinin tirmanmasi petrol fiyatlarini ve enflasyonu yukari itebilir.",
-      "Fed'in yil sonuna kadar ek faiz artirimi sinyali ve yuksek tahvil getirileri risk istahini baskilamayi surdurebilir."
+      "Hürmüz Boğazı'ndaki tanker saldırılarının tırmanması petrol fiyatlarını ve enflasyonu yukarı itebilir.",
+      "Fed'in yıl sonuna kadar ek faiz artırımı sinyali ve yüksek tahvil getirileri risk iştahını baskılamayı sürdürebilir."
     ]
   },
   "followUps": [
-    "Fed'den Schmid'in konusmasi sahin tonu teyit etti mi",
-    "EIA ham petrol stok verisi Hurmuz kesintisini yansitti mi",
-    "Bitcoin spot ETF çikislari yeniden hizlandi mi yoksa durdu mu",
-    "10 yillik tahvil getirisi yuzde 5,35 uzerine yeniden çikti mi"
+    "Fed'den Schmid'in konuşması şahin tonu teyit etti mi",
+    "EIA ham petrol stok verisi Hürmüz kesintisini yansıttı mı",
+    "Bitcoin spot ETF çıkışları yeniden hızlandı mı yoksa durdu mu",
+    "10 yıllık tahvil getirisi yüzde 5,35 üzerine yeniden çıktı mı"
   ],
   "sources": [
     {
