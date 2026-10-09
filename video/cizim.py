@@ -172,6 +172,21 @@ def sahne_kanca(s):
     tarih = cip(s["tarih"], ACCENT, (0, 0, 0), 34)
     o.append(Oge(tarih, SOL, y, 0, anim=False))
     y += tarih.height + 40
+    if s.get("manset"):                   # günün manşeti büyük; ruh hâli satırı yok
+        boyut = 112
+        while True:
+            f = font(boyut, 900, 100)
+            sat = sar(s["alt"], f, GEN)
+            if (len(sat) <= 4 and all(f.getlength(x) <= GEN for x in sat)) or boyut <= 64:
+                break
+            boyut -= 4
+        satir_h = int(boyut * 1.12)
+        im = _tuval(GEN, len(sat) * satir_h + 16)
+        d = ImageDraw.Draw(im)
+        for i, x in enumerate(sat):
+            d.text((0, i * satir_h), x, font=f, fill=INK)
+        o.append(Oge(im, SOL - 4, y, 0, anim=False))
+        return o
     mood = s["mood"].replace("i", "İ").upper() if s["mood"] else ""
     satir1, satir2 = "PİYASA", mood
     f1 = sigdir(satir1, GEN, 150, 900, 60, 100)

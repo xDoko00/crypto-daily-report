@@ -36,6 +36,7 @@ TAKIP_ADET = 3           # "Bugün takip et" madde sayısı
 YATAY_ESIGI = sk.YATAY_ESIGI
 KANCA_MAKS_KELIME = 8         # kanca manşeti: ≤ ~5 sn konuşma
 KANCA_HAREKET_ESIGI = 1.0     # |BTC %24s| bunun altındaysa kancada rakam yok
+MANSET_OZET_EK_SINIRI = 100   # manşet haberinde özet bundan uzunsa ek cümle okunmaz (süre)
 
 # --------------------------------------------------------------------------- #
 # B-roll tema kütüphanesi. Klipler broll/<tema>/<tema>-NN.mp4 (katalog:
@@ -385,15 +386,21 @@ def kanca_manseti(rapor, maks=KANCA_MAKS_KELIME):
     return " ".join(kel).rstrip(",;:")
 
 
+def _ozet_ilk(ozet):
+    """Özetin ';' öncesi ilk yarısı (kancada okunan manşetin yerine haber sahnesi açılışı)."""
+    parca = [p.strip() for p in (ozet or "").split(";") if p.strip()]
+    return parca[0] if parca else ""
+
+
 def _kanca_btc(coin):
-    """'Bitcoin 82 bin dolarda, günde yüzde 1,6 düşüşte.' — hareket küçükse ""."""
+    """'Bitcoin 82 bin dolar, günde yüzde 1,6 düşüş.' — hareket küçükse ""."""
     fiyat, ch = (coin or {}).get("priceUsd"), (coin or {}).get("change24h")
     if fiyat is None or ch is None or abs(ch) < KANCA_HAREKET_ESIGI or fiyat < 1000:
         return ""
     tutar = f"{round(fiyat / 1000)} bin"
-    yon = "düşüşte" if ch < 0 else "yükselişte"
+    yon = "düşüş" if ch < 0 else "yükseliş"
     yuzde = _rakam("yüzde " + sk.yuzde_konusma(ch), _yuzde_rakam(ch))
-    return f"Bitcoin {tutar} dolarda, günde {yuzde} {yon}."
+    return f"Bitcoin {tutar} dolar, günde {yuzde} {yon}."
 
 
 # --------------------------------------------------------------------------- #
@@ -427,12 +434,13 @@ def sahneler(rapor):
         k += f" {btc}" if btc else ""
         alt = ekran(manset)
     else:
+        manset = ""
         gundem = (" ve ".join(temalar)) if temalar else ""
         k = f"[cheerful] Günaydın! Bugün {sk._tarih(rapor)}. [calm] Piyasa {sk.tr_kucuk(mood)}"
         k += f"; gündemde {konusma(gundem, rapor)}." if gundem else "."
         alt = sk.tr_buyuk_bas(", ".join(temalar)) if temalar else ""
     ekle({"tur": "kanca", "tema": SABAH_TEMA, "konusma": k,
-          "tarih": tarih_ekran(rapor), "mood": mood, "alt": alt})
+          "tarih": tarih_ekran(rapor), "mood": mood, "alt": alt, "manset": bool(manset)})
 
     # 2) Fiyat kartı
     satirlar = []
@@ -456,10 +464,17 @@ def sahneler(rapor):
               "dun": fg.get("previousValue"), "hafta": fg.get("weekAgoValue")})
 
     # 4-5) Haberler
+    gundem0 = ((rapor.get("sections") or {}).get("agenda") or [None])[0]
     for i, h in enumerate(haber_sec(rapor)):
         ek = _yan_cumle(h.get("summary")) if i == 0 else ""   # süre: ek cümle yalnız ana haberde
-        on = "[serious] Günün haberi: " if i == 0 else "[calm] Bir başlık daha: "
-        metin = on + _cumle(konusma(h.get("title", ""), rapor))
+        ozet = _ozet_ilk(h.get("summary")) if manset and h is gundem0 else ""
+        if ozet:          # başlık kancada okundu: tekrar etme, özetle başla
+            metin = "[serious] Manşete dönelim: " + _cumle(konusma(ozet, rapor))
+            if len(ozet) > MANSET_OZET_EK_SINIRI:
+                ek = ""
+        else:
+            on = "[serious] Günün haberi: " if i == 0 else "[calm] Bir başlık daha: "
+            metin = on + _cumle(konusma(h.get("title", ""), rapor))
         if ek:
             metin += " " + _cumle(konusma(ek, rapor))
         onem = h.get("importance") or ""

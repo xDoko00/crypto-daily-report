@@ -221,12 +221,15 @@ class Test(unittest.TestCase):
                      sections={"agenda": [{"title": "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı"}]})
         k = s.sahneler(rapor)[0]
         self.assertEqual(s.etiketsiz(k["konusma"]), "Günaydın! Hürmüz Boğazında tanker saldırıları "
-                         "petrolü sıçrattı. Bitcoin 82 bin dolarda, günde yüzde 1,6 düşüşte.")
+                         "petrolü sıçrattı. Bitcoin 82 bin dolar, günde yüzde 1,6 düşüş.")
         self.assertEqual(k["alt"], "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı")
         self.assertEqual(k["mood"], "Temkinli")
         yazi = " ".join(w[0] for w in self._altyazi(k))
         self.assertIn("Boğazı'nda", yazi)
-        self.assertIn("%1,6 düşüşte.", yazi)
+        self.assertIn("%1,6 düşüş.", yazi)
+        self.assertTrue(k["manset"])
+        from video import cizim as cz
+        self.assertEqual(len(cz.sahne_kanca(k)), 2)          # tarih + manşet; "PİYASA TEMKİNLİ" yok
 
     def test_kanca_kucuk_harekette_rakam_yok(self):
         rapor = dict(RAPOR, market=dict(RAPOR["market"], coins={"BTC": {"priceUsd": 82279, "change24h": -0.18}}))
@@ -245,10 +248,22 @@ class Test(unittest.TestCase):
             self.assertLessEqual(len(m(b).split()), s.KANCA_MAKS_KELIME)
         self.assertEqual(m("Kısa başlık."), "Kısa başlık")
 
+    def test_haber_mansetu_tekrar_etmez(self):
+        haber = next(x for x in s.sahneler(RAPOR) if x["tur"] == "haber")
+        self.assertTrue(haber["konusma"].startswith("[serious] Manşete dönelim: 387 milyon dolarlık"))
+        self.assertNotIn("reddetti", haber["konusma"])
+        self.assertIn("THORChain", haber["baslik"])            # ekranda başlık durur
+        rapor = dict(RAPOR, sections={"agenda": [dict(RAPOR["sections"]["agenda"][0], summary="")]})
+        haber = next(x for x in s.sahneler(rapor) if x["tur"] == "haber")
+        self.assertTrue(haber["konusma"].startswith("[serious] Günün haberi: THORChain"))
+
     def test_kanca_mansetsiz_eski_davranis(self):
         rapor = dict(RAPOR, sections={"agenda": []})
         k = s.sahneler(rapor)[0]
         self.assertIn("Bugün 29 Eylül Salı. [calm] Piyasa temkinli", k["konusma"])
+        self.assertFalse(k["manset"])
+        from video import cizim as cz
+        self.assertEqual(len(cz.sahne_kanca(dict(k, alt="Gündem"))), 3)   # eski ekran: tarih, ruh hâli, alt
         self.assertEqual(s.kanca_manseti({}), "")
 
     def test_orijinal_yazim_art_arda_kelimeler(self):

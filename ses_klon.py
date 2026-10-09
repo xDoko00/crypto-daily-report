@@ -209,7 +209,7 @@ def _usd_nokta(m):
 # zinciri yalnız bu kalıbın içinde iş görür; kalıp zincirin tükettiği her bağlamı kapsamalı.
 _SAYI_IFADESI = re.compile(r"(?:\bsaat\s+)?(?:[$%]\s?)?\b\d(?:[\d.,:]*\d)?"
                            r"(?:\s*'?(?:de|da|te|ta)\b)?(?:\s*(?:milyon|milyar)\b)?"
-                           r"(?:\s*dolar)?(?:\s?%)?")
+                           r"(?:\s*dolar)?(?:\s?%(?!\s?\d))?")
 
 _SAYI_VEYA_KESME = re.compile(rf"(?P<kesme>{_KESME})|{_SAYI_IFADESI.pattern}")
 
