@@ -606,5 +606,137 @@ class KanalTestleri(unittest.TestCase):
                       self.bildirim[0])
 
 
+class IgSureTestleri(unittest.TestCase):
+    """IG hikâyesi Buffer'da ≤1 dk olmalı (9 Eki 2026: 63,8 sn reddedildi)."""
+
+    def setUp(self):
+        self.d = tempfile.mkdtemp()
+        self.video = os.path.join(self.d, "v.mp4")
+        with open(self.video, "wb") as f:
+            f.write(b"v")
+        self.durum = os.path.join(self.d, "state", "sosyal-son.json")
+        self.bildirim = []
+
+    def _paylas(self, buffer, ig_uret=sahte_ig):
+        with mock.patch("sys.stdout", new_callable=__import__("io").StringIO) as out, \
+                mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
+            sonuc = s.paylas(RAPOR, self.video, ortam={"BUFFER_API_KEY": "k"}, buffer=buffer,
+                             release=SahteRelease(), bildir=self.bildirim.append,
+                             simdi=datetime(2026, 10, 9, 5, 0, tzinfo=timezone.utc), durum_yolu=self.durum,
+                             ig_uret=ig_uret, erisim=lambda u: True)
+        return sonuc, out.getvalue()
+
+    def test_katsayi(self):
+        self.assertIsNone(s.ig_hiz_katsayisi(45.0))
+        self.assertIsNone(s.ig_hiz_katsayisi(59.5))
+        k = s.ig_hiz_katsayisi(63.8)
+        self.assertAlmostEqual(k, 1.0814, places=3)
+        self.assertLessEqual(63.8 / k, 59.5)
+        self.assertAlmostEqual(s.ig_hiz_katsayisi(67.8), 67.8 / 59.0)   # sınırın hemen altı
+        with self.assertRaises(s.IgCokUzun):
+            s.ig_hiz_katsayisi(75.0)
+
+    def test_hizlandir_komutu(self):
+        k = s.ig_hizlandir_komutu("in.mp4", "out.mp4", 63.8 / 59.0)
+        filtre = k[k.index("-filter_complex") + 1]
+        self.assertEqual(filtre, "[0:v]setpts=PTS/1.0814[v];[0:a]atempo=1.0814[a]")
+        self.assertEqual(k[-1], "out.mp4")
+        sessiz = s.ig_hizlandir_komutu("in.mp4", "out.mp4", 1.08, ses=False)
+        self.assertNotIn("atempo", sessiz[sessiz.index("-filter_complex") + 1])
+        self.assertNotIn("[a]", sessiz)
+
+    def _uret(self, sure_girdi, sure_cikti):
+        """ig_varyant_uret: ffmpeg/ffprobe mock'lu. -> (komutlar, hata)."""
+        komutlar = []
+        sureler = iter([sure_girdi, sure_cikti])
+
+        def calistir(k, **kw):
+            komutlar.append(k)
+            return SimpleNamespace(returncode=0, stdout="0\n", stderr="")
+        with mock.patch.object(s, "_sure", side_effect=lambda y: next(sureler)), \
+                mock.patch.object(s.subprocess, "run", side_effect=calistir), \
+                mock.patch.object(s, "kucuk_hap", side_effect=lambda y: y), \
+                mock.patch.object(s, "cagri_katmani", side_effect=lambda y: y), \
+                mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
+            try:
+                s.ig_varyant_uret("in.mp4", os.path.join(self.d, "out.mp4"), self.d)
+                return komutlar, None
+            except Exception as e:      # noqa: BLE001
+                return komutlar, e
+
+    def test_uzun_video_hizlanir(self):
+        komutlar, hata = self._uret(63.8, 59.0)
+        self.assertIsNone(hata)
+        hiz = [k for k in komutlar if "-filter_complex" in k and "setpts" in k[k.index("-filter_complex") + 1]]
+        self.assertEqual(len(hiz), 1)
+        self.assertIn("atempo=1.0814", hiz[0][hiz[0].index("-filter_complex") + 1])
+        self.assertEqual(hiz[0][-1], os.path.join(self.d, "out.mp4"))
+        # hızlandırma, varyant (hap + son çağrı) üretildikten SONRA, orijinal süreyle
+        varyant = komutlar[0]
+        self.assertIn("enable='gte(t,60.80)'", varyant[varyant.index("-filter_complex") + 1])
+
+    def test_kisa_video_hizlanmaz(self):
+        komutlar, hata = self._uret(45.0, None)
+        self.assertIsNone(hata)
+        self.assertEqual(len(komutlar), 1)
+        self.assertEqual(komutlar[0][-1], os.path.join(self.d, "out.mp4"))
+
+    def test_hizlanmis_hala_uzunsa_hata(self):
+        _, hata = self._uret(63.8, 60.2)
+        self.assertIsInstance(hata, RuntimeError)
+
+    def test_cok_uzun_ig_atlanir_uyari(self):
+        def uzun(girdi, cikti, calisma):
+            raise s.IgCokUzun(75.0)
+        b = SahteBuffer()
+        sonuc, out = self._paylas(b, ig_uret=uzun)
+        self.assertEqual(set(sonuc), {"x", "tiktok"})
+        self.assertNotIn("instagram", [p for p, *_ in b.olusturulan])
+        self.assertIn("IG hikâyesi için video çok uzun: 75.0 sn", self.bildirim[0])
+        self.assertIn("::warning::", out)
+        self.assertIn("video çok uzun", out)
+
+    def test_mutation_hatasi_net_uyari(self):
+        http = SahteHttp({"data": {"createPost": {
+            "__typename": "InvalidInputError",
+            "message": "Invalid post: Video must be no longer than 1 minute for Instagram Stories."}}})
+        with self.assertRaises(s.BufferReddi) as c:
+            s.Buffer("k", http=http, kanallar=TEST_KANALLARI).gonderi_olustur("instagram", "u", "", "D")
+        self.assertEqual(c.exception.tur, "InvalidInputError")
+
+        class Reddeden(SahteBuffer):
+            def gonderi_olustur(self, platform, url, metin, due):
+                if platform == "instagram":
+                    raise s.BufferReddi("InvalidInputError", "Invalid post: Video must be no longer than "
+                                                             "1 minute for Instagram Stories.")
+                return super().gonderi_olustur(platform, url, metin, due)
+        sonuc, out = self._paylas(Reddeden())
+        self.assertEqual(set(sonuc), {"x", "tiktok"})
+        beklenen = ("Instagram hikâye GÖNDERİLEMEDİ: Invalid post: Video must be no longer than "
+                    "1 minute for Instagram Stories.")
+        self.assertTrue(self.bildirim[0].startswith("⚠️ " + beklenen))
+        self.assertIn("::warning::[sosyal] " + beklenen, out)
+
+
+class IgGercekFfmpegTesti(unittest.TestCase):
+    """Gerçek ffmpeg ile sentetik 62 sn video (ffmpeg yoksa atlanır)."""
+
+    @unittest.skipUnless(__import__("shutil").which("ffmpeg") and __import__("shutil").which("ffprobe")
+                         and os.environ.get("IG_FFMPEG_TESTI") == "1",
+                         "IG_FFMPEG_TESTI=1 ve ffmpeg gerekli")
+    def test_62_sn_hizlanir(self):
+        import subprocess
+        d = tempfile.mkdtemp()
+        girdi, cikti = os.path.join(d, "in.mp4"), os.path.join(d, "out.mp4")
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "testsrc=s=1080x1920:r=30:d=62",
+                        "-f", "lavfi", "-i", "sine=f=440:d=62", "-c:v", "libx264", "-preset", "ultrafast",
+                        "-pix_fmt", "yuv420p", "-c:a", "aac", "-shortest", girdi], check=True)
+        s.ig_varyant_uret(girdi, cikti, d)
+        sure = s._sure(cikti)
+        self.assertLessEqual(sure, s.IG_MAX_SN)
+        self.assertGreater(sure, 58.5)
+        self.assertTrue(s._ses_var_mi(cikti))
+
+
 if __name__ == "__main__":
     unittest.main()
