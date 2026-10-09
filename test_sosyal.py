@@ -826,6 +826,71 @@ class IgFragmanTestleri(unittest.TestCase):
         self.assertEqual([c[0] for c in self.cagri], ["fragman", "eski"])
         self.assertIn("IG fragmanı üretilemedi", bildirim[0])
 
+    def test_x_tiktok_ig_fragmanindan_once_zamanlanir(self):
+        b = SahteBuffer()
+        gorulen = []
+
+        def yavas_fragman(rapor, cikti, calisma):
+            gorulen.append([p for p, *_ in b.olusturulan])
+            raise s.FragmanZamanAsimi("IG fragmanı 240 sn içinde bitmedi, durduruldu")
+        bildirim = []
+        with mock.patch.object(s, "ig_fragman_uret", side_effect=yavas_fragman), \
+                mock.patch.object(s, "ig_varyant_uret", side_effect=self.eski), \
+                mock.patch("sys.stdout", new_callable=__import__("io").StringIO), \
+                mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
+            sonuc = s.paylas(RAPOR, self.video, ortam={"BUFFER_API_KEY": "k"}, buffer=b, release=SahteRelease(),
+                             bildir=bildirim.append, simdi=datetime(2026, 10, 9, 5, 0, tzinfo=timezone.utc),
+                             durum_yolu=os.path.join(self.d, "state", "sosyal-son.json"), erisim=lambda u: True)
+        self.assertEqual(gorulen, [["x", "tiktok"]])                    # fragman başlarken X/TikTok hazır
+        self.assertEqual([p for p, *_ in b.olusturulan], ["x", "tiktok", "instagram"])
+        self.assertEqual(list(sonuc), ["instagram", "x", "tiktok"])
+        self.assertIn("240 sn içinde bitmedi", bildirim[0])              # admin uyarısı, eski varyant gitti
+
+    def test_ig_tamamen_coker_x_tiktok_etkilenmez(self):
+        def bozuk(girdi, cikti, calisma):
+            raise RuntimeError("ffmpeg yok")
+        b = SahteBuffer()
+        bildirim = []
+        with mock.patch("sys.stdout", new_callable=__import__("io").StringIO), \
+                mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
+            sonuc = s.paylas(RAPOR, self.video, ortam={"BUFFER_API_KEY": "k"}, buffer=b, release=SahteRelease(),
+                             bildir=bildirim.append, simdi=datetime(2026, 10, 9, 5, 0, tzinfo=timezone.utc),
+                             durum_yolu=os.path.join(self.d, "state", "sosyal-son.json"),
+                             ig_uret=bozuk, erisim=lambda u: True)
+        self.assertEqual(set(sonuc), {"x", "tiktok"})
+        self.assertIn("Instagram hikâye GÖNDERİLEMEDİ: ffmpeg yok", bildirim[0])
+
+    def test_fragman_alt_sureci_zaman_siniri(self):
+        class Takilan:
+            pid = 0
+
+            def wait(self, timeout=None):
+                raise s.subprocess.TimeoutExpired("python", timeout)
+        komutlar = []
+
+        def popen(k, **kw):
+            komutlar.append((k, kw))
+            return Takilan()
+        with mock.patch("video.calistir._oldur") as oldur:
+            with self.assertRaises(s.FragmanZamanAsimi):
+                s.ig_fragman_uret(RAPOR, os.path.join(self.d, "ig.mp4"), self.d, sure_siniri=5, popen=popen)
+        oldur.assert_called_once()
+        k, kw = komutlar[0]
+        self.assertEqual(k[1:3], ["-m", "video.fragman"])
+        self.assertTrue(kw.get("start_new_session") or os.name == "nt")
+        with open(os.path.join(self.d, "fragman-rapor.json"), encoding="utf-8") as f:
+            self.assertEqual(json.load(f)["id"], RAPOR["id"])
+
+    def test_fragman_alt_sureci_hata_kodu(self):
+        class Biten:
+            pid = 0
+
+            def wait(self, timeout=None):
+                return 1
+        with self.assertRaises(RuntimeError):
+            s.ig_fragman_uret(RAPOR, os.path.join(self.d, "ig.mp4"), self.d, popen=lambda k, **kw: Biten())
+        self.assertEqual(s.IG_FRAGMAN_SURE_SN, 240)
+
 
 if __name__ == "__main__":
     unittest.main()

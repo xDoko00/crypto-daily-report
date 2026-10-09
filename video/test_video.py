@@ -242,8 +242,15 @@ class Test(unittest.TestCase):
             return s.kanca_manseti({"sections": {"agenda": [{"title": baslik}]}})
         self.assertEqual(m("Zayıf istihdam verisi BTC'yi sıçrattı, tasfiye dalgası sonra geri çekti"),
                          "Zayıf istihdam verisi BTC'yi sıçrattı")
-        uzun = m("Bir iki üç dört beş altı yedi ve dokuz on on bir")
-        self.assertEqual(uzun, "Bir iki üç dört beş altı yedi")
+        # kör kesme yok: yan cümlesi de uzun manşet -> "" (eski ruh hâli kancası)
+        self.assertEqual(m("Bir iki üç dört beş altı yedi ve dokuz on on bir"), "")
+        self.assertEqual(m("Bitcoin spot ETF'lerine dokuz gündür kesintisiz net giriş serisi sürüyor"), "")
+        self.assertEqual(m("🚀🚀 📉"), "")                                   # harfsiz manşet
+        # ondalık virgül / saat ayraç sayılmaz
+        self.assertEqual(m("Hack sonrası toplam 1,2 milyar dolar çalındı, borsalar alarmda olduğunu duyurdu"),
+                         "Hack sonrası toplam 1,2 milyar dolar çalındı")
+        self.assertEqual(s.ilk_yan_cumle("Veri 15:30'da geldi: piyasa sakin"), "Veri 15:30'da geldi")
+        self.assertEqual(s.ilk_yan_cumle("Toplam 1,2 milyar dolar"), "Toplam 1,2 milyar dolar")
         for b in ("Bir iki üç dört beş altı yedi ve dokuz on", "Kısa başlık."):
             self.assertLessEqual(len(m(b).split()), s.KANCA_MAKS_KELIME)
         self.assertEqual(m("Kısa başlık."), "Kısa başlık")
@@ -546,7 +553,8 @@ FRAGMAN_RAPOR = {
         {"title": "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı"},
         {"title": "ABD 10 yıllık tahvil getirisi 22 yılın zirvesine çıktı"},
         {"title": "Fed'den Waller'dan İstanbul'da şahin ama esnek mesaj"},
-        {"title": "Hyperliquid ekibi 329 milyon dolarlık HYPE'ı OTC sattı"},
+        {"title": "Circle kurumsal müşterilere BTC teminatlı USDC borç verme hizmeti başlattı"},
+        {"title": "HYPE'ta 904 milyon dolarlık kilit açılımı"},
         {"title": "Bitcoin spot ETF'lerinden Haziran'dan beri en büyük çıkış"},
     ]},
 }
@@ -571,12 +579,15 @@ class TestFragman(unittest.TestCase):
         }
         for girdi, beklenen in ornekler.items():
             self.assertEqual(fr.baslik_kisalt(girdi), beklenen)
+        self.assertEqual(fr.baslik_kisalt("Toplam 1,2 milyar dolar çalındı, borsalar yeni önlemleri duyurdu"),
+                         "Toplam 1,2 milyar dolar çalındı")                 # ondalık virgül ayraç değil
+        # yalnız güvenli adımlar: sığmayan başlık kör kesilmez, atlanır (ekran_basligi -> None)
         uzun = "Circle kurumsal müşterilere BTC teminatlı USDC borç verme hizmeti başlattı"
-        self.assertLessEqual(len(fr.baslik_kisalt(uzun).split()), 7)
-        # 7'nin altı yalnız güvenli adımlarla: anlam bozulacaksa olduğu gibi kalır
-        self.assertEqual(fr.baslik_kisalt("Fed'den Waller'dan İstanbul'da şahin ama esnek mesaj", 6, zorla=False),
+        self.assertEqual(fr.baslik_kisalt(uzun), uzun)
+        self.assertIsNone(fr.ekran_basligi(uzun, FRAGMAN_RAPOR, 7))
+        self.assertEqual(fr.baslik_kisalt("Fed'den Waller'dan İstanbul'da şahin ama esnek mesaj", 6),
                          "Fed'den Waller'dan şahin ama esnek mesaj")
-        self.assertEqual(len(fr.baslik_kisalt("Bir iki üç dört beş altı yedi", 5, zorla=False).split()), 7)
+        self.assertEqual(len(fr.baslik_kisalt("Bir iki üç dört beş altı yedi", 5).split()), 7)
 
     def test_ses_ve_ekran_ayni_kelimeler(self):
         for adim in fr.KISALTMA_PLANI:
@@ -593,7 +604,8 @@ class TestFragman(unittest.TestCase):
         self.assertNotIn("Hürmüz", " ".join(gos[1]["maddeler"]))       # manşet kancada; tekrar yok
         self.assertIn("Üç başlık daha:", gos[1]["konusma"])
         self.assertEqual(gos[1]["ust"], "3 BAŞLIK DAHA")
-        self.assertIn("HYPE tokenini", gos[1]["maddeler"][2])          # seste yeniden kurulan ifade ekranda da
+        self.assertNotIn("Circle", " ".join(gos[1]["maddeler"]))         # sığmayan atlandı, sıradaki geldi
+        self.assertEqual(gos[1]["maddeler"][2], "HYPE tokeninde 904 milyon dolarlık kilit açılımı")  # sesteki gibi
         self.assertIn("Bitcoin 82 bin dolar", gos[0]["konusma"])
         self.assertNotIn("Bitcoin 82 bin", fr.sahneler(FRAGMAN_RAPOR, 7, False, 3)[0][0]["konusma"])
         self.assertEqual(gos[-1]["konusma"], "[warm] Haberler ve grafikler için bana BUGÜN yaz. Bay bay!")

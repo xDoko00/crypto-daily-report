@@ -69,15 +69,15 @@ def _kel_say(s):
     return len(s.split())
 
 
-def baslik_kisalt(baslik, maks=BASLIK_MAKS, zorla=True):
-    """Başlığı ≤ maks kelimeye indirir (kurallı, LLM yok).
-    Sıra: ilk yan cümle -> parantez -> 'N yıllık/günlük' -> bilgi taşımayan kelimeler ->
-    özel ad bulunma eki ('İstanbul'da') -> bağlaçtan önceki cümle -> (zorla ise) baştan maks kelime.
-    zorla=False: yalnız anlamı bozmayan adımlar; sonuç maks'ı aşabilir."""
+def baslik_kisalt(baslik, maks=BASLIK_MAKS):
+    """Başlığı ≤ maks kelimeye indirmeye çalışır (kurallı, LLM yok), yalnız anlamı
+    bozmayan adımlarla: ilk yan cümle -> parantez -> 'N yıllık/günlük' -> bilgi taşımayan
+    kelimeler -> özel ad bulunma eki ('İstanbul'da') -> bağlaçtan önceki cümle.
+    Kör kesme yok: sığmazsa sonuç maks'ı aşar (çağıran o başlığı atlar)."""
     b = re.sub(r"\s+", " ", (baslik or "")).strip().rstrip(" .;,:!?")
     if _kel_say(b) <= maks:
         return b
-    ilk = re.split(r"\s*[,;:–—]\s*|\s+-\s+", b)[0]
+    ilk = sn.ilk_yan_cumle(b)
     if 3 <= _kel_say(ilk) <= maks:
         return ilk
     b = re.sub(r"\s*\([^)]*\)", "", b).strip()
@@ -100,14 +100,10 @@ def baslik_kisalt(baslik, maks=BASLIK_MAKS, zorla=True):
             if 3 <= i <= maks and sn.sk.tr_kucuk(k) in _BAGLACLAR:
                 kel = kel[:i]
                 break
-    if len(kel) > maks and zorla:                 # son çare: baştan maks kelime (kanca manşeti gibi)
-        kel = kel[:maks]
-        while len(kel) > 3 and sn.sk.tr_kucuk(kel[-1]).strip(",;:") in sn._ZAYIF_SON:
-            kel.pop()
     return " ".join(kel).rstrip(",;:")
 
 
-def baslik_adaylari(rapor, manset_var, adet=BASLIK_ADET):
+def baslik_adaylari(rapor, manset_var, adet=None):
     """Gündem başlıkları; kancada manşet okunduysa o (ve aynı özel adı paylaşan) atlanır."""
     gundem = (rapor.get("sections") or {}).get("agenda") or []
     sonuc, gorulen = [], set()
@@ -128,18 +124,24 @@ def baslik_adaylari(rapor, manset_var, adet=BASLIK_ADET):
 
 def ekran_basligi(baslik, rapor, maks):
     """Ekranda yazan = seste okunan kelimeler: sesin kelime değişimleri (göreli tarih,
-    terim Türkçeleştirme) ekrana da uygulanır; okunuş farkları altyazıda geri eşlenir."""
+    terim Türkçeleştirme) ekrana da uygulanır; okunuş farkları altyazıda geri eşlenir.
+    BASLIK_MAKS'a güvenle sığmıyorsa None (başlık atlanır, sıradaki gelir)."""
     t = sn.ekran(sn._terimler(sn._goreli_tarih(baslik, rapor), sn.SES_TERIMLERI))
-    k = baslik_kisalt(t, maks, zorla=False)
-    return k if _kel_say(k) <= BASLIK_MAKS else baslik_kisalt(t, BASLIK_MAKS)
+    k = baslik_kisalt(t, maks)
+    if _kel_say(k) > BASLIK_MAKS:
+        k = baslik_kisalt(t, BASLIK_MAKS)
+    return k if 0 < _kel_say(k) <= BASLIK_MAKS else None
 
 
 def madde(baslik, rapor, maks):
     """-> (ses cümlesi, telaffuz eşlemeleri, rakam eşlemeleri, ekran metni).
     Ekran metni, ses cümlesinin altyazıdaki hâlidir (okunuşlar orijinal yazıma döner;
     "HYPE'ta" gibi seste yeniden kurulan ifadeler sesteki gibi yazılır) — ses ve ekran
-    birebir aynı kelimeler. Yeniden kurulum kelime ekletirse kaynak bir kez daha kısaltılır."""
+    birebir aynı kelimeler. Yeniden kurulum kelime ekletirse kaynak bir kez daha kısaltılır;
+    sığmazsa None (başlık atlanır)."""
     k = ekran_basligi(baslik, rapor, maks)
+    if k is None:
+        return None
     for _ in range(3):
         sn._ESLEMELER.clear()
         sn._RAKAMLAR.clear()
@@ -150,10 +152,13 @@ def madde(baslik, rapor, maks):
         kel = [(w, 0.0, 0.0) for w in sn.etiketsiz(ses).split()]
         kel = gv.orijinal_yazim(gv.orijinal_yazim(kel, tel), rak)
         ekran = " ".join(w[0] for w in kel).rstrip(" .;,:!?")
-        if _kel_say(ekran) <= BASLIK_MAKS or _kel_say(k) <= 3:
+        if _kel_say(ekran) <= BASLIK_MAKS:
+            return ses, tel, rak, ekran
+        yeni = baslik_kisalt(k, _kel_say(k) - (_kel_say(ekran) - BASLIK_MAKS))
+        if yeni == k:
             break
-        k = baslik_kisalt(k, _kel_say(k) - (_kel_say(ekran) - BASLIK_MAKS))
-    return ses, tel, rak, ekran
+        k = yeni
+    return None
 
 
 # --------------------------------------------------------------------------- #
@@ -183,9 +188,16 @@ def sahneler(rapor, maks=BASLIK_MAKS, btc=True, adet=BASLIK_ADET):
     sn._RAKAMLAR.clear()
     zam = [kanca]
     gos = [kanca]
-    adaylar = baslik_adaylari(rapor, kanca.get("manset"), adet if kanca.get("manset") else BASLIK_ADET)
-    if adaylar:
-        hazir = [madde(b, rapor, maks) for b in adaylar]
+    adet = adet if kanca.get("manset") else BASLIK_ADET
+    adaylar, hazir = [], []
+    for b in baslik_adaylari(rapor, kanca.get("manset")):
+        h = madde(b, rapor, maks)
+        if h is not None:                        # güvenle kısalmayan başlık yerine sıradaki
+            adaylar.append(b)
+            hazir.append(h)
+        if len(hazir) == adet:
+            break
+    if hazir:
         maddeler = [h[3] for h in hazir]
         daha = bool(kanca.get("manset"))
         giris = f"[calm] {SAYILAR[len(maddeler)]} başlık {'daha' if daha else 'var'}:"

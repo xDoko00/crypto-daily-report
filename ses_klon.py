@@ -197,7 +197,6 @@ def _kesme_duzelt(m):
         return f"{ad}'{ek}"
     if len(ad) <= KESME_KORU_HARF and telaffuz.donustur(ad) == ad:
         return f"{ad}'{ek}"          # Fed'den: ElevenLabs kesmeli kısa adı doğru okuyor (9 Eki testi)
-        return f"{ad}'{ek}"
     return ad + ek                   # bilinmeyen ad: kesmeyi kaldır (Bitcoin'in -> Bitcoinin)
 
 

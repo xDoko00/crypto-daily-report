@@ -363,27 +363,31 @@ def _takip_ifadesi(olay, rapor):
     return (sk.tr_buyuk_bas(saat) + " " + baslik) if saat else ("Gün içinde de " + baslik)
 
 
-_ZAYIF_SON = {"ve", "ile", "için", "ama", "fakat", "bir", "de", "da", "ki", "gibi", "olarak",
-              "sonra", "önce", "kadar", "en", "çok", "daha", "bu", "şu", "o", "the", "of"}
+
+# Yan cümle ayracı: virgül/iki nokta/noktalı virgül yalnız ardından boşluk gelirse
+# ("1,2 milyar", "15:30" bölünmez); tire yalnız iki yanı boşluklu.
+YAN_AYRAC = re.compile(r"\s*[,;:](?=\s)\s*|\s*[–—]\s*|\s+-\s+")
+
+
+def ilk_yan_cumle(metin):
+    return YAN_AYRAC.split(metin or "")[0].strip()
 
 
 def kanca_manseti(rapor, maks=KANCA_MAKS_KELIME):
     """Günün manşeti (ilk gündem başlığı), kancada okunacak kadar kısa: ≤ maks kelime.
-    Uzunsa ilk yan cümle (virgül/iki nokta öncesi), o da uzunsa ilk `maks` kelime; zayıf
-    bağlaçla bitmez. Başlık yoksa ""."""
+    Uzunsa ilk yan cümle (virgül/iki nokta öncesi tam ifade, 3..maks kelime). Kör kesme
+    yok: ikisi de olmazsa (ya da başlıkta harf yoksa) "" -> eski ruh hâli kancası."""
     gundem = (rapor.get("sections") or {}).get("agenda") or []
     baslik = re.sub(r"\s+", " ", ((gundem[0] or {}).get("title") or "") if gundem else "").strip()
     baslik = baslik.rstrip(" .;,:!?")
-    kel = baslik.split()
-    if len(kel) <= maks:
+    if not re.search(r"[^\W\d_]", baslik):
+        return ""
+    if len(baslik.split()) <= maks:
         return baslik
-    ilk = re.split(r"\s*[,;:–—]\s*|\s+-\s+", baslik)[0].split()
+    ilk = ilk_yan_cumle(baslik).split()
     if 3 <= len(ilk) <= maks:
         return " ".join(ilk)
-    kel = kel[:maks]
-    while len(kel) > 3 and sk.tr_kucuk(kel[-1]).strip(",;:") in _ZAYIF_SON:
-        kel.pop()
-    return " ".join(kel).rstrip(",;:")
+    return ""
 
 
 def _ozet_ilk(ozet):
