@@ -18,6 +18,8 @@ Bayraklar (ortam):
   SOSYAL_YAYIN=kapali                 sosyal paylaşımı tamamen kapatır
   SOSYAL_KURU=1                       kuru deneme: istekleri maskeli yazdırır, göndermez
   SOSYAL_GECIKME_DK=30                zamanlama gecikmesi (dakika)
+  IG_FRAGMAN=kapali                   IG hikâyesine ~20 sn fragman yerine eski tam video varyantı
+  ELEVENLABS_API_KEY                  IG fragmanının seslendirmesi (yoksa eski varyanta düşer)
   SOSYAL_TASLAK=1                     taslak testi: Buffer'da TASLAK (saveToDraft) oluşturur,
                                       yayınlamaz; çift gönderi kilidi okunmaz/yazılmaz,
                                       release asset adları `-test` ekli
@@ -107,7 +109,8 @@ def aktions_uyari(m):
 
 def _gizli_degerler(ortam=None):
     ortam = os.environ if ortam is None else ortam
-    return [v for k in ("BUFFER_API_KEY", "MANYCHAT_API_KEY", "TELEGRAM_BOT_TOKEN", "GH_TOKEN", "GITHUB_TOKEN")
+    return [v for k in ("BUFFER_API_KEY", "MANYCHAT_API_KEY", "TELEGRAM_BOT_TOKEN", "GH_TOKEN", "GITHUB_TOKEN",
+                        "ELEVENLABS_API_KEY", "COINGECKO_DEMO_API_KEY")
             if (v := (ortam.get(k) or "").strip())]
 
 
@@ -545,8 +548,10 @@ def url_erisilebilir(url, http=None):
 
 
 # --------------------------------------------------------------------------- #
-# Instagram varyantı: video boyunca küçük "DM'den BUGÜN yaz" hapı (her ~5 sn
-# kısa nabız) + son ~3 sn'de büyük çağrı. X ve TikTok'a orijinal gider.
+# Instagram hikâyesi: ~20 sn'lik FRAGMAN (video/fragman.py: kanca + başlıklar +
+# BTC grafikli "DM'den BUGÜN yaz" kapanışı). Fragman üretilemezse eski varyant:
+# tam video boyunca küçük "DM'den BUGÜN yaz" hapı (her ~5 sn kısa nabız) + son
+# ~3 sn'de büyük çağrı (60 sn sınırı için hızlandırma). X ve TikTok'a tam video gider.
 # --------------------------------------------------------------------------- #
 
 IG_CAGRI_SN = 3.0
@@ -566,6 +571,7 @@ IG_NABIZ_GENLIK = 0.12            # %12 büyüyüp küçülür
 IG_MAX_SN = 59.5                  # bunu aşan varyant hızlandırılır
 IG_HEDEF_SN = 59.0                # hızlandırma hedefi (katsayı = süre / 59)
 IG_MAX_HIZ = 1.15                 # daha fazlası (~68 sn üstü) bozuk duyulur: IG atlanır
+IG_FRAGMAN_BAYRAK = "IG_FRAGMAN"  # =kapali: fragman yerine eski tam video varyantı
 
 
 def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True):
@@ -711,6 +717,36 @@ def ig_varyant_uret(girdi, cikti, calisma):
     return cikti
 
 
+def fragman_kapali_mi(ortam=None):
+    ortam = os.environ if ortam is None else ortam
+    return tr_kucuk((ortam.get(IG_FRAGMAN_BAYRAK) or "").strip()) in ("kapali", "kapalı", "0", "false", "off")
+
+
+def ig_fragman_uret(rapor, cikti, calisma):
+    from video import fragman
+    return fragman.ig_fragman_uret(rapor, cikti, calisma)
+
+
+def ig_hikaye_uret(rapor, girdi, cikti, calisma, fragman=None, eski=None, ortam=None, notlar=None):
+    """IG hikâyesi: önce fragman; üretilemezse (ya da IG_FRAGMAN=kapali) eski tam video
+    varyantı. Fragman hatası `notlar`a (admin bildirimi) yazılır, akışı durdurmaz."""
+    fragman = fragman or ig_fragman_uret
+    eski = eski or ig_varyant_uret
+    if fragman_kapali_mi(ortam):
+        log("[sosyal] IG_FRAGMAN=kapali — IG'ye tam video varyantı gidiyor")
+    else:
+        try:
+            yol = fragman(rapor, cikti, calisma)
+            log("[sosyal] IG hikâyesi: fragman")
+            return yol
+        except Exception as e:                # noqa: BLE001
+            m = f"IG fragmanı üretilemedi, tam video varyantı gidiyor: {type(e).__name__}: {gizle(e)[:200]}"
+            log("[uyarı] " + m)
+            if notlar is not None:
+                notlar.append(m)
+    return eski(girdi, cikti, calisma)
+
+
 # --------------------------------------------------------------------------- #
 # Akışlar
 # --------------------------------------------------------------------------- #
@@ -735,8 +771,9 @@ def _maddeler(sorunlar):
 
 
 def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, simdi=None,
-           durum_yolu=DURUM_DOSYASI, ig_uret=ig_varyant_uret, erisim=url_erisilebilir, ig_cikti=None):
-    """Sosyal zamanlama. -> {platform: post_id}. Asla fırlatmaz."""
+           durum_yolu=DURUM_DOSYASI, ig_uret=None, erisim=url_erisilebilir, ig_cikti=None):
+    """Sosyal zamanlama. -> {platform: post_id}. Asla fırlatmaz.
+    ig_uret(girdi, cikti, calisma): vars. ig_hikaye_uret (fragman, olmazsa eski varyant)."""
     ortam = os.environ if ortam is None else ortam
     kuru = kuru_mu(ortam)
     taslak = taslak_mi(ortam)
@@ -751,6 +788,9 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
         _telegram(m)
 
     sonuc, sorunlar = {}, []
+    if ig_uret is None:
+        def ig_uret(girdi, cikti, calisma):
+            return ig_hikaye_uret(rapor, girdi, cikti, calisma, ortam=ortam, notlar=sorunlar)
     try:
         if kapali_mi(ortam):
             log("[sosyal] SOSYAL_YAYIN=kapali — sosyal paylaşım atlandı.")

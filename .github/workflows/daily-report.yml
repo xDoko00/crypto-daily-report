@@ -204,6 +204,9 @@ jobs:
           TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ADMIN_CHAT_ID:  ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           GH_TOKEN:                ${{ github.token }}
+          # IG hikâyesi fragmanı (video/fragman.py): tek ek seslendirme + BTC grafiği.
+          ELEVENLABS_API_KEY:      ${{ secrets.ELEVENLABS_API_KEY }}
+          COINGECKO_DEMO_API_KEY:  ${{ secrets.COINGECKO_DEMO_API_KEY }}
           SOSYAL_YAYIN:            "acik"
           SOSYAL_GECIKME_DK:       "30"
           VIDEO_RAPOR:             ${{ runner.temp }}/video-rapor.json

@@ -185,8 +185,8 @@ def adres_birlestir(kelimeler):
     return sonuc
 
 
-def zaman_cizelgesi(sahneler, kelimeler, ses_suresi):
-    top = ON_BOSLUK + ses_suresi / SES_HIZI + KUYRUK
+def zaman_cizelgesi(sahneler, kelimeler, ses_suresi, kuyruk=KUYRUK):
+    top = ON_BOSLUK + ses_suresi / SES_HIZI + kuyruk
     ks = [[(k, ON_BOSLUK + a / SES_HIZI, ON_BOSLUK + b / SES_HIZI) for k, a, b in kel] for kel in kelimeler]
     baslar = [0.0] + [max(0.0, kel[0][1] - 0.12) for kel in ks[1:]]
     araliklar = [(baslar[i], baslar[i + 1] if i + 1 < len(baslar) else top) for i in range(len(baslar))]
@@ -361,7 +361,9 @@ def sahne_ogeleri(s, sira_haber):
     return cz.sahne_kapanis(s), None
 
 
-def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma, kose=None):
+def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma, kose=None, ogeler=None):
+    """ogeler: sahne -> (öğeler, gösterge) çizici (vars. sahne_ogeleri; fragman kendi sahnelerini verir)."""
+    ogeler = ogeler or sahne_ogeleri
     toplam_kare = int(round(top * FPS))
     kodlayici = subprocess.Popen(
         ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{cz.W}x{cz.H}",
@@ -388,7 +390,7 @@ def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma
             ofs = 5.0 * kullanilan_tema.get(anahtar, 0)        # aynı klip 2. kez: ters yarıdan
             kullanilan_tema[anahtar] = kullanilan_tema.get(anahtar, 0) + 1
         ap = ArkaPlan(pingpong(s["klip"], calisma) if s.get("klip") else None, ofs, n)
-        ogeler, gosterge = sahne_ogeleri(s, haber_sira)
+        sahne_ogeler, gosterge = ogeler(s, haber_sira)
         if s["tur"] == "haber":
             haber_sira += 1
         orta = n // 2 if s["tur"] != "kanca" else int(1.2 * FPS)
@@ -410,7 +412,7 @@ def render(sahneler, araliklar, parcalar, top, ses, cikti, kare_klasoru, calisma
                 g_al = _yumusak(tl / 0.35)
                 g_img = gosterge_son if g_al >= 1 else _alfa(gosterge_son, g_al)
                 im.alpha_composite(g_img, (cz.SOL, gosterge["y"]))
-            for og in ogeler:
+            for og in sahne_ogeler:
                 d = tl - og.giris
                 if not og.anim or d >= 0.35:
                     im.alpha_composite(og.img, (int(og.x), int(og.y)))
