@@ -54,7 +54,13 @@ X_SINIR = 280
 TIKTOK_SINIR = 2200
 MANYCHAT_SINIR = 600
 BASLIK_SINIR = 90                 # tek başlık en fazla (karakter)
-ETIKETLER = ["#kripto", "#bitcoin", "#günaydınkripto", "#kriptopara", "#ethereum", "#kriptohaber"]
+# TikTok "#kriptopara"yı Topluluk Kuralları gerekçesiyle kaldırdı (Eki 2026, hesaba
+# uyarı): TikTok'ta kriptoyla ilgili HİÇBİR etiket kullanılmaz, yalnız nötr etiketler.
+TIKTOK_ETIKETLER = ["#günaydın", "#gündem", "#ekonomi", "#haber"]
+_YASAK_ETIKET_RE = re.compile(r"kripto|crypto|bitcoin|btc|coin")
+# X bağlantılı gönderinin erişimini düşürüyor: bağlantı ana gönderide değil,
+# altına yanıt (Buffer thread'inin 2. parçası) olarak gider.
+X_YANIT = "Detaylı rapor ve grafikler: https://dogukanlive.com/bugun/"
 
 BUFFER_API = "https://api.buffer.com"
 ORG_ID = "6ac5fc216cdfcd627dfdac35"
@@ -183,15 +189,25 @@ def _madde_metni(ust, bas, alt, sinir, en_az=2):
     return (f"{ust}\n\n• {tek}\n\n{alt}" if tek else f"{ust}\n\n{alt}")[:sinir]
 
 
+def guvenli_etiketler(etiketler):
+    """TikTok etiketlerinden kripto çağrışımlı olanları atar (kripto/crypto/bitcoin/btc/coin)."""
+    temiz = [e for e in etiketler if not _YASAK_ETIKET_RE.search(tr_kucuk(e))]
+    atilan = [e for e in etiketler if e not in temiz]
+    if atilan:
+        log(f"[sosyal] uyarı: TikTok'tan yasak etiket atıldı: {' '.join(atilan)}")
+    return temiz
+
+
 def x_metni(rapor):
+    """X ana gönderisi: bağlantı YOK (bağlantı X_YANIT ile yanıtta)."""
     ust = f"Günaydın Kripto · {tarih_kisa(rapor)}"
-    alt = f"{SITE_BUGUN}\n{UYARI}"
+    alt = UYARI
     return _madde_metni(ust, basliklar(rapor, 3), alt, X_SINIR)
 
 
 def tiktok_metni(rapor):
     ust = f"Günaydın Kripto · {tarih_kisa(rapor)} — günün kripto özeti"
-    alt = f"Detaylar: {SITE_BUGUN}\n{UYARI}\n\n" + " ".join(ETIKETLER)
+    alt = f"Detaylar: {SITE_BUGUN}\n{UYARI}\n\n" + " ".join(guvenli_etiketler(TIKTOK_ETIKETLER))
     return _madde_metni(ust, basliklar(rapor, 3), alt, TIKTOK_SINIR)
 
 
@@ -378,6 +394,12 @@ class Buffer:
             girdi["metadata"] = {"instagram": {"type": "story", "shouldShareToFeed": False}}
         else:
             girdi["text"] = metin
+        if platform == "x":
+            # Buffer thread: ilk parça ana gönderi (video burada), ikincisi ona yanıt.
+            # Doküman: tüm parçalar `thread`te olmalı, üst `text` = ilk parça.
+            girdi["metadata"] = {"twitter": {"thread": [
+                {"text": metin, "assets": girdi["assets"]},
+                {"text": X_YANIT, "assets": []}]}}
         if self.taslak:
             girdi["saveToDraft"] = True       # yayınlanmaz; dueAt yalnız bilgi amaçlı kalır
         return girdi
