@@ -18,6 +18,8 @@ Bayraklar (ortam):
   SOSYAL_YAYIN=kapali                 sosyal paylaşımı tamamen kapatır
   SOSYAL_KURU=1                       kuru deneme: istekleri maskeli yazdırır, göndermez
   SOSYAL_GECIKME_DK=30                zamanlama gecikmesi (dakika)
+  IG_FRAGMAN=kapali                   IG hikâyesine ~20 sn fragman yerine eski tam video varyantı
+  ELEVENLABS_API_KEY                  IG fragmanının seslendirmesi (yoksa eski varyanta düşer)
   SOSYAL_TASLAK=1                     taslak testi: Buffer'da TASLAK (saveToDraft) oluşturur,
                                       yayınlamaz; çift gönderi kilidi okunmaz/yazılmaz,
                                       release asset adları `-test` ekli
@@ -59,7 +61,7 @@ ORG_ID = "6ac5fc216cdfcd627dfdac35"
 # Kanal kimlikleri sabit DEĞİL: hesap Buffer'a yeniden bağlanınca id değişir
 # (8 Eki 2026'da IG hikâyesi böyle kayboldu). Her çalışmada `channels`
 # sorgusuyla servis (+ hesap adı) eşleşmesinden bulunur.
-PLATFORMLAR = ("instagram", "x", "tiktok")       # sıra = gönderim sırası
+PLATFORMLAR = ("instagram", "x", "tiktok")       # gönderim: önce X + TikTok, sonra IG (paylas)
 BUFFER_SERVIS = {"instagram": "instagram", "x": "twitter", "tiktok": "tiktok"}
 BEKLENEN_HESAP = {"instagram": "dogukanlive", "x": "DogukanDogan", "tiktok": "gercekdogukandogan"}
 VIA_BUFFER = ("api", "buffer")
@@ -107,7 +109,8 @@ def aktions_uyari(m):
 
 def _gizli_degerler(ortam=None):
     ortam = os.environ if ortam is None else ortam
-    return [v for k in ("BUFFER_API_KEY", "MANYCHAT_API_KEY", "TELEGRAM_BOT_TOKEN", "GH_TOKEN", "GITHUB_TOKEN")
+    return [v for k in ("BUFFER_API_KEY", "MANYCHAT_API_KEY", "TELEGRAM_BOT_TOKEN", "GH_TOKEN", "GITHUB_TOKEN",
+                        "ELEVENLABS_API_KEY", "COINGECKO_DEMO_API_KEY")
             if (v := (ortam.get(k) or "").strip())]
 
 
@@ -545,8 +548,10 @@ def url_erisilebilir(url, http=None):
 
 
 # --------------------------------------------------------------------------- #
-# Instagram varyantı: video boyunca küçük "DM'den BUGÜN yaz" hapı (her ~5 sn
-# kısa nabız) + son ~3 sn'de büyük çağrı. X ve TikTok'a orijinal gider.
+# Instagram hikâyesi: ~20 sn'lik FRAGMAN (video/fragman.py: kanca + başlıklar +
+# BTC grafikli "DM'den BUGÜN yaz" kapanışı). Fragman üretilemezse eski varyant:
+# tam video boyunca küçük "DM'den BUGÜN yaz" hapı (her ~5 sn kısa nabız) + son
+# ~3 sn'de büyük çağrı (60 sn sınırı için hızlandırma). X ve TikTok'a tam video gider.
 # --------------------------------------------------------------------------- #
 
 IG_CAGRI_SN = 3.0
@@ -566,6 +571,8 @@ IG_NABIZ_GENLIK = 0.12            # %12 büyüyüp küçülür
 IG_MAX_SN = 59.5                  # bunu aşan varyant hızlandırılır
 IG_HEDEF_SN = 59.0                # hızlandırma hedefi (katsayı = süre / 59)
 IG_MAX_HIZ = 1.15                 # daha fazlası (~68 sn üstü) bozuk duyulur: IG atlanır
+IG_FRAGMAN_BAYRAK = "IG_FRAGMAN"  # =kapali: fragman yerine eski tam video varyantı
+IG_FRAGMAN_SURE_SN = 240          # fragman alt süreci üst sınırı (adım sınırı 10 dk)
 
 
 def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True):
@@ -711,6 +718,57 @@ def ig_varyant_uret(girdi, cikti, calisma):
     return cikti
 
 
+def fragman_kapali_mi(ortam=None):
+    ortam = os.environ if ortam is None else ortam
+    return tr_kucuk((ortam.get(IG_FRAGMAN_BAYRAK) or "").strip()) in ("kapali", "kapalı", "0", "false", "off")
+
+
+class FragmanZamanAsimi(RuntimeError):
+    pass
+
+
+def ig_fragman_uret(rapor, cikti, calisma, sure_siniri=None, popen=subprocess.Popen):
+    """Fragmanı AYRI süreçte, zaman sınırıyla üretir (takılırsa öldürülür, adım sınırını
+    yemez). Hata/zaman aşımında fırlatır; ig_hikaye_uret eski varyanta düşer."""
+    from video.calistir import _oldur
+    sure_siniri = IG_FRAGMAN_SURE_SN if sure_siniri is None else sure_siniri
+    rapor_yolu = os.path.join(calisma, "fragman-rapor.json")
+    with open(rapor_yolu, "w", encoding="utf-8") as f:
+        json.dump(rapor, f, ensure_ascii=False)
+    p = popen([sys.executable, "-m", "video.fragman", "--rapor", rapor_yolu, "--cikti", cikti,
+               "--calisma", calisma], cwd=KOK, start_new_session=(os.name != "nt"))
+    try:
+        kod = p.wait(timeout=sure_siniri)
+    except subprocess.TimeoutExpired:
+        _oldur(p)
+        raise FragmanZamanAsimi(f"IG fragmanı {sure_siniri:g} sn içinde bitmedi, durduruldu")
+    if kod != 0:
+        raise RuntimeError(f"fragman alt süreci başarısız (çıkış {kod})")
+    if not os.path.isfile(cikti):
+        raise RuntimeError("fragman dosyası üretilmedi")
+    return cikti
+
+
+def ig_hikaye_uret(rapor, girdi, cikti, calisma, fragman=None, eski=None, ortam=None, notlar=None):
+    """IG hikâyesi: önce fragman; üretilemezse (ya da IG_FRAGMAN=kapali) eski tam video
+    varyantı. Fragman hatası `notlar`a (admin bildirimi) yazılır, akışı durdurmaz."""
+    fragman = fragman or ig_fragman_uret
+    eski = eski or ig_varyant_uret
+    if fragman_kapali_mi(ortam):
+        log("[sosyal] IG_FRAGMAN=kapali — IG'ye tam video varyantı gidiyor")
+    else:
+        try:
+            yol = fragman(rapor, cikti, calisma)
+            log("[sosyal] IG hikâyesi: fragman")
+            return yol
+        except Exception as e:                # noqa: BLE001
+            m = f"IG fragmanı üretilemedi, tam video varyantı gidiyor: {type(e).__name__}: {gizle(e)[:200]}"
+            log("[uyarı] " + m)
+            if notlar is not None:
+                notlar.append(m)
+    return eski(girdi, cikti, calisma)
+
+
 # --------------------------------------------------------------------------- #
 # Akışlar
 # --------------------------------------------------------------------------- #
@@ -735,8 +793,9 @@ def _maddeler(sorunlar):
 
 
 def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, simdi=None,
-           durum_yolu=DURUM_DOSYASI, ig_uret=ig_varyant_uret, erisim=url_erisilebilir, ig_cikti=None):
-    """Sosyal zamanlama. -> {platform: post_id}. Asla fırlatmaz."""
+           durum_yolu=DURUM_DOSYASI, ig_uret=None, erisim=url_erisilebilir, ig_cikti=None):
+    """Sosyal zamanlama. -> {platform: post_id}. Asla fırlatmaz.
+    ig_uret(girdi, cikti, calisma): vars. ig_hikaye_uret (fragman, olmazsa eski varyant)."""
     ortam = os.environ if ortam is None else ortam
     kuru = kuru_mu(ortam)
     taslak = taslak_mi(ortam)
@@ -751,6 +810,9 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
         _telegram(m)
 
     sonuc, sorunlar = {}, []
+    if ig_uret is None:
+        def ig_uret(girdi, cikti, calisma):
+            return ig_hikaye_uret(rapor, girdi, cikti, calisma, ortam=ortam, notlar=sorunlar)
     try:
         if kapali_mi(ortam):
             log("[sosyal] SOSYAL_YAYIN=kapali — sosyal paylaşım atlandı.")
@@ -806,42 +868,17 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
 
         with tempfile.TemporaryDirectory(prefix="sosyal-") as calisma:
             ad, ig_ad = asset_adlari(gun, test=taslak)
-            yuklenecek = {}
-            if any(p in bekleyen for p in ("x", "tiktok")):
-                kopya = os.path.join(calisma, ad)
-                shutil.copyfile(video, kopya)
-                yuklenecek[ad] = kopya
-            if "instagram" in bekleyen:
-                try:
-                    ig_yol = ig_uret(video, os.path.join(calisma, ig_ad), calisma)
-                    yuklenecek[ig_ad] = ig_yol
-                    if ig_cikti:
-                        shutil.copyfile(ig_yol, ig_cikti)
-                except IgCokUzun as e:
-                    bekleyen.remove("instagram")
-                    sorunlar.append(f"Instagram hikâye GÖNDERİLEMEDİ: {e}")
-                except Exception as e:        # noqa: BLE001
-                    bekleyen.remove("instagram")
-                    sorunlar.append(f"Instagram varyantı üretilemedi: {gizle(e)[:200]}")
-            if not bekleyen:
-                bildir("⚠️ Sosyal medya: hiçbir platforma gönderilmedi.\n" + _maddeler(sorunlar))
-                return sonuc
-
-            mevcut = release.hazirla()
-            release.yukle(list(yuklenecek.values()))
-            silinen = release.temizle(mevcut, gun)
-            if silinen:
-                log(f"[sosyal] eski assetler silindi: {', '.join(silinen)}")
-
             depo = release.depo
             urller = {"instagram": asset_url(depo, ig_ad), "x": asset_url(depo, ad), "tiktok": asset_url(depo, ad)}
-            if not kuru:
-                for u in sorted({urller[p] for p in bekleyen}):
-                    if not erisim(u):
-                        raise RuntimeError(f"video URL'i erişilebilir değil: {u}")
-
             due, yerel = due_at(simdi, gecikme_dk(ortam))
-            for p in bekleyen:
+            mevcut = release.hazirla()
+
+            def yukle_ve_dogrula(yol, url):
+                release.yukle([yol])
+                if not kuru and not erisim(url):
+                    raise RuntimeError(f"video URL'i erişilebilir değil: {url}")
+
+            def zamanla(p):
                 try:
                     pid = buffer.gonderi_olustur(p, urller[p], metinler[p], due)
                     sonuc[p] = pid
@@ -855,6 +892,41 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
                 except Exception as e:        # noqa: BLE001
                     sorunlar.append(f"{PLATFORM_AD[p]} zamanlanamadı: {gizle(e)[:300]}")
 
+            # 1) Önce X + TikTok (tam video): IG fragmanı takılsa/uzasa da bunlar zamanlanmış olur.
+            tam = [p for p in bekleyen if p in ("x", "tiktok")]
+            if tam:
+                try:
+                    kopya = os.path.join(calisma, ad)
+                    shutil.copyfile(video, kopya)
+                    yukle_ve_dogrula(kopya, urller["x"])
+                    for p in tam:
+                        zamanla(p)
+                except Exception as e:        # noqa: BLE001
+                    sorunlar.append(f"{' ve '.join(PLATFORM_AD[p] for p in tam)} gönderilmedi: {gizle(e)[:300]}")
+
+            # 2) Sonra IG hikâyesi: fragman ayrı süreçte, zaman sınırlı (olmazsa eski varyant).
+            if "instagram" in bekleyen:
+                try:
+                    ig_yol = ig_uret(video, os.path.join(calisma, ig_ad), calisma)
+                    if ig_cikti:
+                        shutil.copyfile(ig_yol, ig_cikti)
+                    yukle_ve_dogrula(ig_yol, urller["instagram"])
+                    zamanla("instagram")
+                except IgCokUzun as e:
+                    sorunlar.append(f"Instagram hikâye GÖNDERİLEMEDİ: {e}")
+                except Exception as e:        # noqa: BLE001
+                    sorunlar.append(f"Instagram hikâye GÖNDERİLEMEDİ: {gizle(e)[:200]}")
+
+            try:
+                silinen = release.temizle(mevcut, gun)
+                if silinen:
+                    log(f"[sosyal] eski assetler silindi: {', '.join(silinen)}")
+            except Exception as e:            # noqa: BLE001
+                log(f"[uyarı] eski assetler temizlenemedi: {gizle(e)[:200]}")
+
+        sirali = {p: sonuc[p] for p in PLATFORMLAR if p in sonuc}   # mesajlarda sabit sıra
+        sonuc.clear()
+        sonuc.update(sirali)
         if sonuc and taslak:
             satirlar = [f"TEST: Buffer'da {len(sonuc)} taslak oluşturuldu "
                         f"({', '.join(PLATFORM_AD[p] for p in sonuc)}). Kontrol edip silebilirsin."]

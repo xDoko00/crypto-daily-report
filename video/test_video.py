@@ -207,6 +207,72 @@ class Test(unittest.TestCase):
         yazi = [k[0] for k in self._altyazi(sahne)]
         self.assertIn("CFTC'nin", yazi)
 
+    def test_altyazi_kesme_orijinal(self):
+        rapor = dict(RAPOR, brief={"mood": "Temkinli",
+                                   "mainRisk": "Fed'den sonra Bitcoin'in ve Ethena'nın 15:30'da düşüşü."})
+        sahne = next(x for x in s.sahneler(rapor) if x["tur"] == "risk")
+        self.assertIn("Fed'den sonra Bitcoinin ve Etinanın", sahne["konusma"])
+        yazi = " ".join(k[0] for k in self._altyazi(sahne))
+        self.assertIn("Fed'den sonra Bitcoin'in ve Ethena'nın 15:30'da", yazi)
+        self.assertNotIn("Bitcoinin", yazi)
+
+    def test_kanca_manset_ve_btc(self):
+        rapor = dict(RAPOR, market=dict(RAPOR["market"], coins={"BTC": {"priceUsd": 82279, "change24h": -1.62}}),
+                     sections={"agenda": [{"title": "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı"}]})
+        k = s.sahneler(rapor)[0]
+        self.assertEqual(s.etiketsiz(k["konusma"]), "Günaydın! Hürmüz Boğazında tanker saldırıları "
+                         "petrolü sıçrattı. Bitcoin 82 bin dolar, günde yüzde 1,6 düşüş.")
+        self.assertEqual(k["alt"], "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı")
+        self.assertEqual(k["mood"], "Temkinli")
+        yazi = " ".join(w[0] for w in self._altyazi(k))
+        self.assertIn("Boğazı'nda", yazi)
+        self.assertIn("%1,6 düşüş.", yazi)
+        self.assertTrue(k["manset"])
+        from video import cizim as cz
+        self.assertEqual(len(cz.sahne_kanca(k)), 2)          # tarih + manşet; "PİYASA TEMKİNLİ" yok
+
+    def test_kanca_kucuk_harekette_rakam_yok(self):
+        rapor = dict(RAPOR, market=dict(RAPOR["market"], coins={"BTC": {"priceUsd": 82279, "change24h": -0.18}}))
+        k = s.etiketsiz(s.sahneler(rapor)[0]["konusma"])
+        self.assertEqual(k, "Günaydın! THORChain, Bitget saldırganının fonlarını engellemeyi reddetti.")
+        self.assertNotIn("Piyasa", k)
+
+    def test_kanca_manset_kisaltma(self):
+        def m(baslik):
+            return s.kanca_manseti({"sections": {"agenda": [{"title": baslik}]}})
+        self.assertEqual(m("Zayıf istihdam verisi BTC'yi sıçrattı, tasfiye dalgası sonra geri çekti"),
+                         "Zayıf istihdam verisi BTC'yi sıçrattı")
+        # kör kesme yok: yan cümlesi de uzun manşet -> "" (eski ruh hâli kancası)
+        self.assertEqual(m("Bir iki üç dört beş altı yedi ve dokuz on on bir"), "")
+        self.assertEqual(m("Bitcoin spot ETF'lerine dokuz gündür kesintisiz net giriş serisi sürüyor"), "")
+        self.assertEqual(m("🚀🚀 📉"), "")                                   # harfsiz manşet
+        # ondalık virgül / saat ayraç sayılmaz
+        self.assertEqual(m("Hack sonrası toplam 1,2 milyar dolar çalındı, borsalar alarmda olduğunu duyurdu"),
+                         "Hack sonrası toplam 1,2 milyar dolar çalındı")
+        self.assertEqual(s.ilk_yan_cumle("Veri 15:30'da geldi: piyasa sakin"), "Veri 15:30'da geldi")
+        self.assertEqual(s.ilk_yan_cumle("Toplam 1,2 milyar dolar"), "Toplam 1,2 milyar dolar")
+        for b in ("Bir iki üç dört beş altı yedi ve dokuz on", "Kısa başlık."):
+            self.assertLessEqual(len(m(b).split()), s.KANCA_MAKS_KELIME)
+        self.assertEqual(m("Kısa başlık."), "Kısa başlık")
+
+    def test_haber_mansetu_tekrar_etmez(self):
+        haber = next(x for x in s.sahneler(RAPOR) if x["tur"] == "haber")
+        self.assertTrue(haber["konusma"].startswith("[serious] Manşete dönelim: 387 milyon dolarlık"))
+        self.assertNotIn("reddetti", haber["konusma"])
+        self.assertIn("THORChain", haber["baslik"])            # ekranda başlık durur
+        rapor = dict(RAPOR, sections={"agenda": [dict(RAPOR["sections"]["agenda"][0], summary="")]})
+        haber = next(x for x in s.sahneler(rapor) if x["tur"] == "haber")
+        self.assertTrue(haber["konusma"].startswith("[serious] Günün haberi: THORChain"))
+
+    def test_kanca_mansetsiz_eski_davranis(self):
+        rapor = dict(RAPOR, sections={"agenda": []})
+        k = s.sahneler(rapor)[0]
+        self.assertIn("Bugün 29 Eylül Salı. [calm] Piyasa temkinli", k["konusma"])
+        self.assertFalse(k["manset"])
+        from video import cizim as cz
+        self.assertEqual(len(cz.sahne_kanca(dict(k, alt="Gündem"))), 3)   # eski ekran: tarih, ruh hâli, alt
+        self.assertEqual(s.kanca_manseti({}), "")
+
     def test_orijinal_yazim_art_arda_kelimeler(self):
         from video import gunaydin as g
         import telaffuz
@@ -469,3 +535,175 @@ class TestDoganKose(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# --------------------------------------------------------------------------- #
+# IG fragmanı (video/fragman.py + video/btc_grafik.py)
+# --------------------------------------------------------------------------- #
+
+from video import fragman as fr          # noqa: E402
+from video import btc_grafik as bg       # noqa: E402
+from video import gunaydin as gv         # noqa: E402
+
+FRAGMAN_RAPOR = {
+    "id": "2026-10-09", "disclaimer": "Bilgilendirme amaçlıdır.",
+    "market": {"coins": {"BTC": {"priceUsd": 82279, "change24h": -2.4}}},
+    "brief": {"mood": "Temkinli"},
+    "sections": {"agenda": [
+        {"title": "Hürmüz Boğazı'nda tanker saldırıları petrolü sıçrattı"},
+        {"title": "ABD 10 yıllık tahvil getirisi 22 yılın zirvesine çıktı"},
+        {"title": "Fed'den Waller'dan İstanbul'da şahin ama esnek mesaj"},
+        {"title": "Circle kurumsal müşterilere BTC teminatlı USDC borç verme hizmeti başlattı"},
+        {"title": "HYPE'ta 904 milyon dolarlık kilit açılımı"},
+        {"title": "Bitcoin spot ETF'lerinden Haziran'dan beri en büyük çıkış"},
+    ]},
+}
+
+
+def _noktalamasiz(kelimeler):
+    import re
+    return [re.sub(r"[.,;:!?]+$", "", w) for w in kelimeler]
+
+
+class TestFragman(unittest.TestCase):
+    def test_baslik_kisalt_en_fazla_yedi(self):
+        ornekler = {
+            "ABD 10 yıllık tahvil getirisi 22 yılın zirvesine çıktı": "ABD tahvil getirisi 22 yılın zirvesine çıktı",
+            "Bitcoin spot ETF'lerinden Haziran'dan beri en büyük çıkış":
+                "Bitcoin ETF'lerinden Haziran'dan beri en büyük çıkış",
+            "Zayıf istihdam verisi BTC'yi sıçrattı, tasfiye dalgası geri çekti": "Zayıf istihdam verisi BTC'yi sıçrattı",
+            "Fed'in Eylül tutanakları şahin çıktı ama piyasa omuz silkti": "Fed'in Eylül tutanakları şahin çıktı",
+            "Grayscale'in Zcash ETF'i (ZCSH) 890 milyon dolara yaklaştı":
+                "Grayscale'in Zcash ETF'i 890 milyon dolara yaklaştı",
+            "Kısa başlık.": "Kısa başlık",
+        }
+        for girdi, beklenen in ornekler.items():
+            self.assertEqual(fr.baslik_kisalt(girdi), beklenen)
+        self.assertEqual(fr.baslik_kisalt("Toplam 1,2 milyar dolar çalındı, borsalar yeni önlemleri duyurdu"),
+                         "Toplam 1,2 milyar dolar çalındı")                 # ondalık virgül ayraç değil
+        # yalnız güvenli adımlar: sığmayan başlık kör kesilmez, atlanır (ekran_basligi -> None)
+        uzun = "Circle kurumsal müşterilere BTC teminatlı USDC borç verme hizmeti başlattı"
+        self.assertEqual(fr.baslik_kisalt(uzun), uzun)
+        self.assertIsNone(fr.ekran_basligi(uzun, FRAGMAN_RAPOR, 7))
+        self.assertEqual(fr.baslik_kisalt("Fed'den Waller'dan İstanbul'da şahin ama esnek mesaj", 6),
+                         "Fed'den Waller'dan şahin ama esnek mesaj")
+        self.assertEqual(len(fr.baslik_kisalt("Bir iki üç dört beş altı yedi", 5).split()), 7)
+
+    def test_ses_ve_ekran_ayni_kelimeler(self):
+        for adim in fr.KISALTMA_PLANI:
+            gos, zam = fr.sahneler(FRAGMAN_RAPOR, *adim)
+            self.assertEqual(sn_tam(gos), sn_tam(zam))
+            maddeler = gos[1]["maddeler"]
+            self.assertEqual(len(maddeler), adim[2])
+            kel = [[(w, 0.0, 0.0) for w in s.etiketsiz(z["konusma"]).split()] for z in zam]
+            altyazi = gv._orijinal_yazimlar(zam, kel)[2:-1]            # başlık maddeleri
+            for m, k in zip(maddeler, altyazi):
+                self.assertLessEqual(len(m.split()), fr.BASLIK_MAKS)
+                self.assertEqual(_noktalamasiz([w[0] for w in k]), _noktalamasiz(m.split()))
+        gos, _ = fr.sahneler(FRAGMAN_RAPOR, 7, True, 3)
+        self.assertNotIn("Hürmüz", " ".join(gos[1]["maddeler"]))       # manşet kancada; tekrar yok
+        self.assertIn("Üç başlık daha:", gos[1]["konusma"])
+        self.assertEqual(gos[1]["ust"], "3 BAŞLIK DAHA")
+        self.assertNotIn("Circle", " ".join(gos[1]["maddeler"]))         # sığmayan atlandı, sıradaki geldi
+        self.assertEqual(gos[1]["maddeler"][2], "HYPE tokeninde 904 milyon dolarlık kilit açılımı")  # sesteki gibi
+        self.assertIn("Bitcoin 82 bin dolar", gos[0]["konusma"])
+        self.assertNotIn("Bitcoin 82 bin", fr.sahneler(FRAGMAN_RAPOR, 7, False, 3)[0][0]["konusma"])
+        self.assertEqual(gos[-1]["konusma"], "[warm] Haberler ve grafikler için bana BUGÜN yaz. Bay bay!")
+        self.assertNotIn("Acele", gos[-1]["konusma"])
+
+    def test_mansetsiz_kanca_bugunun_basliklari(self):
+        r = dict(FRAGMAN_RAPOR, sections={"agenda": [{"title": ""}] + FRAGMAN_RAPOR["sections"]["agenda"][1:]})
+        gos, _ = fr.sahneler(r)
+        self.assertFalse(gos[0]["manset"])
+        self.assertEqual(gos[1]["ust"], "BUGÜNÜN 3 BAŞLIĞI")
+        self.assertIn("Üç başlık var:", gos[1]["konusma"])
+
+    def test_sure_hedefe_gore_plan(self):
+        self.assertAlmostEqual(fr.tahmini_sure("[calm] " + "a" * 120),
+                               gv.ON_BOSLUK + 10.0 / gv.SES_HIZI + fr.KUYRUK)
+        i, gos, _, t = fr.plan_sec(FRAGMAN_RAPOR)
+        self.assertLessEqual(t, fr.FRAGMAN_HEDEF_SN)
+        self.assertAlmostEqual(t, fr.tahmini_sure(sn_tam(gos)))
+        for j in range(i):                      # önceki (daha uzun) planlar hedefi aşıyordu
+            self.assertGreater(fr.tahmini_sure(sn_tam(fr.sahneler(FRAGMAN_RAPOR, *fr.KISALTMA_PLANI[j])[0])),
+                               fr.FRAGMAN_HEDEF_SN)
+        kisa = dict(FRAGMAN_RAPOR, market={"coins": {"BTC": {"priceUsd": 82279, "change24h": 0.1}}},
+                    sections={"agenda": [{"title": "BTC yatay"}, {"title": "ETF girişi sürüyor"},
+                                         {"title": "Solana ağı güncellendi"}, {"title": "XRP sakin"}]})
+        self.assertEqual(fr.plan_sec(kisa)[0], 0)
+        # hiçbiri sığmasa da en kısa plan döner; 59 sn sınırı uret()'te
+        self.assertEqual(fr.plan_sec(FRAGMAN_RAPOR, hedef=1.0)[0], len(fr.KISALTMA_PLANI) - 1)
+
+    def test_uzun_fragman_reddedilir(self):
+        with mock.patch.object(fr, "_ses_ve_zaman", return_value=(None, {}, 60, [], 61.0, [])), \
+                mock.patch("sys.stderr"):
+            with self.assertRaises(RuntimeError):
+                fr.uret(FRAGMAN_RAPOR, tempfile.mkdtemp(), "x.mp4", grafik_verisi={})
+
+
+def sn_tam(sahneler):
+    return s.tam_metin(sahneler)
+
+
+def _mumlar(n=300):
+    t0 = 1_700_000_000
+    # Coinbase: [time, low, high, open, close, volume], yeniden eskiye
+    return [[t0 + i * 86400, 100 + i - 2, 100 + i + 2, 100 + i, 100 + i + 1, 5] for i in reversed(range(n))]
+
+
+class TestBtcGrafik(unittest.TestCase):
+    def _getir(self, coinbase=None, coingecko=None):
+        cagrilar = []
+
+        def getir(url, params=None, headers=None):
+            cagrilar.append(url)
+            kaynak = coinbase if "coinbase" in url else coingecko
+            if isinstance(kaynak, Exception):
+                raise kaynak
+            return kaynak
+        return getir, cagrilar
+
+    def test_coinbase_mumlari(self):
+        getir, cagrilar = self._getir(coinbase=_mumlar())
+        with mock.patch("sys.stderr"):
+            v = bg.veri_al(getir)
+        self.assertEqual((v["tur"], v["kaynak"], len(v["mumlar"])), ("mum", "Coinbase", 300))
+        self.assertLess(v["zaman"][0], v["zaman"][-1])                  # eskiden yeniye
+        self.assertEqual(v["mumlar"][-1][1:], (399.0, 401.0, 397.0, 400.0))   # (açılış, yüksek, düşük, kapanış)
+        self.assertEqual(cagrilar, [bg.COINBASE_URL])
+        o = bg.ozet(v)
+        self.assertEqual(len(o["kapanis"]), bg.GORUNEN)
+        self.assertNotIn(None, o["s200"])                                # 200g ortalama tüm pencerede
+        self.assertEqual(o["yuksek30"], 401.0)
+        self.assertEqual(o["dusuk30"], 100 + 270 - 2)
+
+    def test_coinbase_hatasinda_coingecko_cizgi(self):
+        fiyatlar = [[(1_700_000_000 + i * 86400) * 1000, 100.0 + i] for i in range(300)]
+        getir, cagrilar = self._getir(coinbase=RuntimeError("451"), coingecko={"prices": fiyatlar})
+        with mock.patch("sys.stderr"):
+            v = bg.veri_al(getir)
+        self.assertEqual((v["tur"], v["kaynak"]), ("cizgi", "CoinGecko"))
+        self.assertEqual(cagrilar, [bg.COINBASE_URL, bg.COINGECKO_URL])
+        self.assertEqual(v["kapanis"][-1], 399.0)
+
+    def test_az_veri_de_hata_sayilir(self):
+        getir, _ = self._getir(coinbase=_mumlar(10), coingecko={"prices": []})
+        with mock.patch("sys.stderr"):
+            self.assertIsNone(bg.veri_al(getir))
+
+    def test_ikisi_de_yoksa_grafiksiz(self):
+        getir, _ = self._getir(coinbase=RuntimeError("451"), coingecko=RuntimeError("429"))
+        with mock.patch("sys.stderr"):
+            self.assertIsNone(bg.veri_al(getir))
+        # grafiksiz kapanış sahnesi çizilir (çağrı büyür)
+        ogeler = fr.sahne_cagri({"grafik": None})
+        self.assertEqual(len(ogeler), 2)
+
+    def test_kart_cizer_bozuk_veride_none(self):
+        getir, _ = self._getir(coinbase=_mumlar())
+        with mock.patch("sys.stderr"):
+            v = bg.veri_al(getir)
+            k = bg.kart(v)
+            self.assertEqual(k.size, (fr.cz.GEN, 520))
+            self.assertEqual(len(fr.sahne_cagri({"grafik": k})), 3)
+            self.assertIsNone(bg.kart({"tur": "mum", "kaynak": "x", "kapanis": [], "zaman": [], "mumlar": []}))

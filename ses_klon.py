@@ -182,8 +182,12 @@ def _hal(ek):
     return None
 
 
+KESME_KORU_HARF = 4
+_KESME = r"\b(?P<ad>[A-Za-zÇĞİÖŞÜçğıöşü][\w.]*?)'(?P<ek>[a-zçğıöşü]+)\b"
+
+
 def _kesme_duzelt(m):
-    ad, ek = m.group(1), m.group(2)
+    ad, ek = m.group("ad"), m.group("ek")
     tur = OZEL_ADLAR.get(ad)
     if tur:
         hal = _hal(ek)
@@ -191,6 +195,8 @@ def _kesme_duzelt(m):
             return f"{ad} {_BAS_ISIM[tur][hal]}"
     if ad.isupper():                 # ABD'nin, HYPE'ın: kısaltmada kesme kalsın
         return f"{ad}'{ek}"
+    if len(ad) <= KESME_KORU_HARF and telaffuz.donustur(ad) == ad:
+        return f"{ad}'{ek}"          # Fed'den: ElevenLabs kesmeli kısa adı doğru okuyor (9 Eki testi)
     return ad + ek                   # bilinmeyen ad: kesmeyi kaldır (Bitcoin'in -> Bitcoinin)
 
 
@@ -202,7 +208,9 @@ def _usd_nokta(m):
 # zinciri yalnız bu kalıbın içinde iş görür; kalıp zincirin tükettiği her bağlamı kapsamalı.
 _SAYI_IFADESI = re.compile(r"(?:\bsaat\s+)?(?:[$%]\s?)?\b\d(?:[\d.,:]*\d)?"
                            r"(?:\s*'?(?:de|da|te|ta)\b)?(?:\s*(?:milyon|milyar)\b)?"
-                           r"(?:\s*dolar)?(?:\s?%)?")
+                           r"(?:\s*dolar)?(?:\s?%(?!\s?\d))?")
+
+_SAYI_VEYA_KESME = re.compile(rf"(?P<kesme>{_KESME})|{_SAYI_IFADESI.pattern}")
 
 
 def _sayi_eslemesi(okunus, orijinal):
@@ -218,8 +226,9 @@ def _sayi_eslemesi(okunus, orijinal):
 def telaffuz_duzelt(metin, fonetik=True, eslemeler=None):
     """LLM'in yazdığı serbest metni sesli okumaya uygun hale getirir.
     fonetik=False: telaffuz.py sözlüğü uygulanmaz (çağıran sonra kendisi uygular).
-    eslemeler (liste): sayı dönüşümlerinin (okunuş, orijinal) kelime eşlemeleri metin sırasıyla
-    eklenir (altyazıda "on beş otuzda" yerine "15:30'da" yazmak için)."""
+    eslemeler (liste): sayı ve kesme dönüşümlerinin (okunuş, orijinal) kelime eşlemeleri metin
+    sırasıyla eklenir (altyazıda "on beş otuzda" yerine "15:30'da", "Bitcoinin" yerine
+    "Bitcoin'in" yazmak için)."""
     t = re.sub(r"<[^>]+>", "", metin or "")
     t = _EMOJI.sub("", t)
     t = t.replace("’", "'").replace("‘", "'")
@@ -227,15 +236,18 @@ def telaffuz_duzelt(metin, fonetik=True, eslemeler=None):
     t = re.sub(r"\(\s*TSİ\s*\)|\bTSİ\b", "", t)
 
     def ifade(m):
-        okunus = _sayilar(m.group(0))
-        es = _sayi_eslemesi(okunus, m.group(0))
+        if m.group("kesme"):                     # Kesme + ek
+            okunus = _kesme_duzelt(m)
+            es = ((okunus,), (m.group(0),)) if okunus == m.group("ad") + m.group("ek") else None
+        else:
+            okunus = _sayilar(m.group(0))
+            es = _sayi_eslemesi(okunus, m.group(0))
         if es and eslemeler is not None:
             eslemeler.append(es)
         return okunus
 
-    t = _SAYI_IFADESI.sub(ifade, t)
-    # Kesme + ek
-    t = re.sub(r"\b([A-Za-zÇĞİÖŞÜçğıöşü][\w.]*?)'([a-zçğıöşü]+)\b", _kesme_duzelt, t)
+    # Sayı ifadeleri ve kesmeler tek geçişte: eşlemeler metin sırasıyla birikir
+    t = _SAYI_VEYA_KESME.sub(ifade, t)
     if fonetik:
         t = telaffuz.donustur(t)
     t = re.sub(r"\s+([,.;:])", r"\1", t)

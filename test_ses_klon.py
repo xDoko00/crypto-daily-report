@@ -82,6 +82,26 @@ class Telaffuz(unittest.TestCase):
         self.assertEqual(sk.telaffuz_duzelt("Bitcoin'in"), "Bitcoinin")
         self.assertEqual(sk.telaffuz_duzelt("ABD'nin verisi"), "A-Be-De'nin verisi")
 
+    def test_kisa_adda_kesme_kalir(self):
+        self.assertEqual(sk.telaffuz_duzelt("Fed'den sonra"), "Fed'den sonra")
+        self.assertEqual(sk.telaffuz_duzelt("Nasdaq'ta"), "Nasdaqta")
+
+    def test_saatten_sonra_yuzde(self):
+        es = []
+        t = sk.telaffuz_duzelt("saat 15:30'da %2,5 düştü", eslemeler=es)
+        self.assertEqual(t, "saat on beş otuzda yüzde 2,5 düştü")
+        self.assertEqual(es, [(("on", "beş", "otuzda"), ("15:30'da",)), (("yüzde", "2,5"), ("%2,5",))])
+        self.assertEqual(sk.telaffuz_duzelt("2.5% arttı"), "yüzde 2,5 arttı")
+
+    def test_kesme_eslemesi_metin_sirasiyla(self):
+        es = []
+        t = sk.telaffuz_duzelt("Bitcoin'in fiyatı 15:30'da Ethereum'un Fed'den önce",
+                               fonetik=False, eslemeler=es)
+        self.assertEqual(t, "Bitcoinin fiyatı saat on beş otuzda Ethereumun Fed'den önce")
+        self.assertEqual(es, [(("Bitcoinin",), ("Bitcoin'in",)),
+                              (("saat", "on", "beş", "otuzda"), ("15:30'da",)),
+                              (("Ethereumun",), ("Ethereum'un",))])
+
     def test_sayilar_ve_yuzde(self):
         self.assertEqual(sk.telaffuz_duzelt("387,5 milyon dolarlık"), "387 milyon dolarlık")
         self.assertEqual(sk.telaffuz_duzelt("$387,5 milyon"), "387 milyon dolar")
