@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 
 import ses_klon as sk
 import telaffuz
@@ -272,8 +273,10 @@ class ApiKatmani(unittest.TestCase):
         url, kw = http.cagrilar[0]
         self.assertTrue(url.endswith("/v1/text-to-speech/l4Ygbni4CmTFHmTYdyhD"))
         self.assertEqual(kw["params"], {"output_format": "mp3_44100_128"})
-        self.assertEqual(kw["json"], {"text": "Merhaba dünya", "model_id": "eleven_v4",
-                                      "language_code": "tr"})
+        self.assertEqual(kw["json"], {"text": "Merhaba dünya", "model_id": "eleven_multilingual_v2",
+                                      "language_code": "tr",
+                                      "voice_settings": {"stability": 0.6, "similarity_boost": 0.9,
+                                                         "style": 0, "use_speaker_boost": True}})
         self.assertEqual(kw["headers"]["xi-api-key"], "gizli-anahtar")
 
     def test_4xx_tekrar_denemez_anahtar_sizmaz(self):
@@ -305,6 +308,46 @@ class ApiKatmani(unittest.TestCase):
             os.unlink(f.name)
 
 
+class ModelVeTag(unittest.TestCase):
+    def test_model_secimi(self):
+        self.assertEqual(sk.ses_modeli({}), "eleven_multilingual_v2")
+        self.assertEqual(sk.ses_modeli({"SES_MODEL": " eleven_v4 "}), "eleven_v4")
+        self.assertEqual(sk.ses_modeli({"SES_MODEL": ""}), "eleven_multilingual_v2")
+
+    def test_istemci_ortamdan_model_alir(self):
+        with mock.patch.dict(os.environ, {"SES_MODEL": "eleven_v4"}):
+            self.assertEqual(sk.ElevenLabsIstemci("k", http=SahteHttp([])).model_id, "eleven_v4")
+
+    def test_tag_temizligi(self):
+        m = ("[cheerful] Günaydın. [calm] Piyasa sakin. [curious] Neden? [serious] Bir. "
+             "[short pause] İki [short pause] üç. [serious] Ana risk şu: [short pause] X. [warm] Bay bay.")
+        self.assertEqual(sk.tagsiz(m),
+                         "Günaydın. Piyasa sakin. Neden? Bir. İki, üç. Ana risk şu: X. Bay bay.")
+        self.assertEqual(sk.tagsiz("[lighthearted] Endeks 60."), "Endeks 60.")
+
+    def test_v2_tagsiz_v4_tagli_gider(self):
+        m = "[calm] Merhaba. [short pause] Dünya."
+        v2 = sk.istek_govdesi(m, "eleven_multilingual_v2")
+        self.assertEqual(v2["text"], "Merhaba. Dünya.")
+        self.assertEqual(v2["voice_settings"]["stability"], 0.6)
+        v4 = sk.istek_govdesi(m, "eleven_v4")
+        self.assertEqual(v4["text"], m)
+        self.assertNotIn("voice_settings", v4)
+        self.assertEqual(v4["language_code"], "tr")
+
+    def test_konusma_metni_v2de_tag_kalmaz(self):
+        g = sk.istek_govdesi(sk.konusma_metni(RAPOR), "eleven_multilingual_v2")
+        self.assertNotIn("[", g["text"])
+        self.assertTrue(g["text"].endswith("Bay bay."))
+
+    def test_onbellek_imzasi_model_ve_ayara_bagli(self):
+        v2 = sk.onbellek_imzasi("eleven_multilingual_v2")
+        self.assertNotEqual(v2, sk.onbellek_imzasi("eleven_v4"))
+        self.assertIn("stability=0.6", v2)
+        with mock.patch.dict(sk.MODEL_AYARLARI, {"eleven_multilingual_v2": {"stability": 0.5}}):
+            self.assertNotEqual(v2, sk.onbellek_imzasi("eleven_multilingual_v2"))
+
+
 class AkisDurmaz(unittest.TestCase):
     def test_bayrak_varsayilan_kapali(self):
         self.assertFalse(sk.aktif_mi({}))
@@ -332,7 +375,8 @@ class AkisDurmaz(unittest.TestCase):
         ogg = sk.ozet_ogg(rapor(), istemci=sk.ElevenLabsIstemci("k", http=http),
                           donustur=lambda b: b"OGG:" + b, log=lambda m: None)
         self.assertEqual(ogg, b"OGG:MP3")
-        self.assertTrue(http.cagrilar[0][1]["json"]["text"].endswith("[warm] Bay bay."))
+        self.assertTrue(http.cagrilar[0][1]["json"]["text"].endswith(" Bay bay."))
+        self.assertNotIn("[", http.cagrilar[0][1]["json"]["text"])
 
 
 class WebSes(unittest.TestCase):

@@ -6,11 +6,14 @@ depoda yok; kütüphane ~/gunaydin-video'da üretilip video/broll/'a kopyalanır
 """
 import base64
 import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import ses_klon as sk                    # noqa: E402  model/ayar/tag temizliği tek merkezde
 
 ELEVEN_ENV = os.path.expanduser("~/.config/elevenlabs/.env")
 
 SES_ID = "l4Ygbni4CmTFHmTYdyhD"
-SES_MODEL = "eleven_v4"
 SES_BICIM = "mp3_44100_128"
 HTTP_SURE = 120
 
@@ -31,8 +34,9 @@ def anahtar_oku(dosya, ad):
     return (os.environ.get(ad) or "").strip()
 
 
-def seslendir_zamanli(metin, hedef_mp3, log=print, http=None):
-    """POST /with-timestamps -> (mp3 yazılır) dict(alignment, maliyet)."""
+def seslendir_zamanli(metin, hedef_mp3, log=print, http=None, model=None):
+    """POST /with-timestamps -> (mp3 yazılır) dict(alignment, maliyet).
+    Model/ayar ses_klon'dan (SES_MODEL); tag'ler model desteklemiyorsa temizlenir."""
     if http is None:
         import requests as http
     anahtar = anahtar_oku(ELEVEN_ENV, "ELEVENLABS_API_KEY")
@@ -41,7 +45,7 @@ def seslendir_zamanli(metin, hedef_mp3, log=print, http=None):
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{SES_ID}/with-timestamps"
     r = http.post(url, params={"output_format": SES_BICIM},
                   headers={"xi-api-key": anahtar, "Content-Type": "application/json"},
-                  json={"text": metin, "model_id": SES_MODEL, "language_code": "tr"},
+                  json=sk.istek_govdesi(metin, model),
                   timeout=HTTP_SURE)
     if r.status_code != 200:
         raise ServisHatasi(f"ElevenLabs HTTP {r.status_code}: {r.text[:200]}")

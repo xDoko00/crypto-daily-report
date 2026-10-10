@@ -358,7 +358,19 @@ class TestServisler(unittest.TestCase):
         self.assertEqual(d2["maliyet"], 116)
         url, kw = http.cagrilar[0]
         self.assertTrue(url.endswith(f"/{sv.SES_ID}/with-timestamps"))
-        self.assertEqual(kw["json"]["model_id"], "eleven_v4")
+        self.assertEqual(kw["json"]["model_id"], "eleven_multilingual_v2")
+        self.assertEqual(kw["json"]["text"], "Merhaba.")          # v2: tag temizlendi
+        self.assertEqual(kw["json"]["voice_settings"]["similarity_boost"], 0.9)
+
+    def test_zamanli_ses_v4_tagli(self):
+        import base64
+        http = _Http([_Yanit({"audio_base64": base64.b64encode(b"mp3").decode()})])
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(sv, "anahtar_oku", return_value="k"), \
+                mock.patch.dict(os.environ, {"SES_MODEL": "eleven_v4"}):
+            sv.seslendir_zamanli("[calm] Merhaba.", os.path.join(d, "s.mp3"), log=lambda m: None, http=http)
+        kw = http.cagrilar[0][1]
+        self.assertEqual((kw["json"]["model_id"], kw["json"]["text"]), ("eleven_v4", "[calm] Merhaba."))
 
     def test_anahtar_yoksa_hata(self):
         with mock.patch.object(sv, "anahtar_oku", return_value=""):
@@ -563,6 +575,37 @@ FRAGMAN_RAPOR = {
 def _noktalamasiz(kelimeler):
     import re
     return [re.sub(r"[.,;:!?]+$", "", w) for w in kelimeler]
+
+
+class TestSesOnbellek(unittest.TestCase):
+    def test_model_degisince_onbellek_kullanilmaz(self):
+        cagri = []
+
+        def sahte(metin, mp3, log):
+            cagri.append(metin)
+            open(mp3, "wb").write(b"x")
+            return {"maliyet": 5}
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(gv.sv, "seslendir_zamanli", sahte), \
+                mock.patch.object(gv, "log", lambda m: None):
+            with mock.patch.dict(os.environ, {"SES_MODEL": "eleven_v4"}):
+                gv.ses_al("Merhaba.", d)
+                _, t = gv.ses_al("Merhaba.", d)
+                self.assertTrue(t.get("onbellek"))
+            with mock.patch.dict(os.environ, {"SES_MODEL": ""}):
+                _, t = gv.ses_al("Merhaba.", d)
+                self.assertFalse(t.get("onbellek"))
+                _, t = gv.ses_al("Merhaba.", d)
+                self.assertTrue(t.get("onbellek"))
+        self.assertEqual(len(cagri), 2)
+
+    def test_imzasiz_eski_onbellek_kullanilmaz(self):
+        with tempfile.TemporaryDirectory() as d:
+            open(os.path.join(d, "ses.mp3"), "wb").write(b"x")
+            json.dump({"metin": "Merhaba."}, open(os.path.join(d, "tts.json"), "w"))
+            with mock.patch.object(gv.sv, "seslendir_zamanli", return_value={"maliyet": 1}) as m, \
+                    mock.patch.object(gv, "log", lambda m: None):
+                gv.ses_al("Merhaba.", d)
+            m.assert_called_once()
 
 
 class TestFragman(unittest.TestCase):

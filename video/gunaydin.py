@@ -68,14 +68,15 @@ def rapor_oku(kaynak):
 def ses_al(metin, klasor):
     """Aynı metin için önbellekteki sesi kullanır; yoksa tek ElevenLabs çağrısı."""
     mp3, js = os.path.join(klasor, "ses.mp3"), os.path.join(klasor, "tts.json")
+    imza = sn.sk.onbellek_imzasi()
     if os.path.exists(js) and os.path.exists(mp3):
         d = json.load(open(js, encoding="utf-8"))
-        if d.get("metin") == metin:
+        if d.get("metin") == metin and d.get("imza") == imza:
             log("[ses] önbellekten (ElevenLabs çağrılmadı, maliyet 0)")
             d["onbellek"] = True
             return mp3, d
     d = sv.seslendir_zamanli(metin, mp3, log)
-    d["metin"] = metin
+    d["metin"], d["imza"] = metin, imza
     json.dump(d, open(js, "w", encoding="utf-8"), ensure_ascii=False)
     return mp3, d
 

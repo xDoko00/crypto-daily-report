@@ -6,7 +6,9 @@ ELEVENLABS_API_KEY tanımlı olmalı. Kapalıyken report.py eski edge-tts
 sesini kullanmaya devam eder.
 
 - Konuşma metni kanonik rapordan DETERMİNİSTİK şablonla kurulur (LLM yok).
-- ElevenLabs audio tag'leri ([calm], [serious] …) sesli okunmaz, tonu verir.
+- Metin ElevenLabs v4 audio tag'leriyle ([calm], [serious] …) kurulur. Model
+  tag desteklemiyorsa (eleven_multilingual_v2) tag'ler istekten önce
+  tts_metni()'nde temizlenir — yoksa sesli okunabilir.
 - Hata (API, kota, ffmpeg) rapor akışını ASLA durdurmaz: ozet_ogg() None döner
   ve sebebi loga yazar. Anahtar hiçbir koşulda loglanmaz.
 """
@@ -29,7 +31,16 @@ YEREL_ANAHTAR_DOSYASI = os.path.expanduser("~/.config/elevenlabs/.env")
 
 API_TABAN = "https://api.elevenlabs.io"
 SES_ID = "l4Ygbni4CmTFHmTYdyhD"          # "Dogukan v1"
-MODEL_ID = "eleven_v4"
+# Model + ses ayarı TEK YERDE. Varsayılan: Doğukan'ın kulakla seçtiği "A4" —
+# PVC ince ayarı yalnız eleven_multilingual_v2'de. SES_MODEL=eleven_v4 ile geri dönülür.
+MODEL_DEGISKENI = "SES_MODEL"
+VARSAYILAN_MODEL = "eleven_multilingual_v2"
+MODEL_ID = VARSAYILAN_MODEL
+TAG_DESTEKLI_MODELLER = ("eleven_v3", "eleven_v4")
+MODEL_AYARLARI = {
+    "eleven_multilingual_v2": {"stability": 0.6, "similarity_boost": 0.9, "style": 0,
+                               "use_speaker_boost": True},
+}
 DIL = "tr"
 CIKTI_BICIMI = "mp3_44100_128"
 HTTP_TIMEOUT = 90
@@ -55,6 +66,63 @@ def aktif_mi(ortam=None):
     """Bayrak açık mı? (1/true/evet/on). Varsayılan KAPALI."""
     ortam = os.environ if ortam is None else ortam
     return str(ortam.get(BAYRAK, "")).strip().lower() in ("1", "true", "evet", "on", "yes")
+
+
+def ses_modeli(ortam=None):
+    """SES_MODEL ortam değişkeni, yoksa VARSAYILAN_MODEL."""
+    ortam = os.environ if ortam is None else ortam
+    return (ortam.get(MODEL_DEGISKENI) or "").strip() or VARSAYILAN_MODEL
+
+
+def ses_ayarlari(model):
+    """Modele özgü voice_settings (None = sesin kayıtlı varsayılanları)."""
+    a = MODEL_AYARLARI.get(model)
+    return dict(a) if a else None
+
+
+def tag_destekli(model):
+    return model in TAG_DESTEKLI_MODELLER
+
+
+_TAG = re.compile(r"\s*\[([a-z][a-z ]*)\]\s*")
+_DURAKLAMA = ("short pause", "pause", "long pause")
+
+
+def tagsiz(metin):
+    """Audio tag'lerini doğal noktalamayla değiştirir: duraklama tag'i önünde
+    noktalama yoksa virgül olur, diğer tag'ler (ton) tamamen silinir."""
+    def degis(m):
+        if m.group(1) in _DURAKLAMA:
+            once = metin[:m.start()].rstrip()
+            if once and once[-1] not in ".,;:!?…":
+                return ", "
+        return " "
+    t = _TAG.sub(degis, metin)
+    t = re.sub(r"\s+([,.;:!?])", r"\1", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def tts_metni(metin, model):
+    """ElevenLabs'e gidecek metin: model tag desteklemiyorsa tag'ler temizlenir."""
+    return metin if tag_destekli(model) else tagsiz(metin)
+
+
+def istek_govdesi(metin, model=None):
+    """TTS isteğinin JSON gövdesi (tag temizliği + model + ayarlar) — tek merkez.
+    language_code=tr multilingual_v2'de de kabul ediliyor (10 Eki 2026, HTTP 200)."""
+    model = model or ses_modeli()
+    g = {"text": tts_metni(metin, model), "model_id": model, "language_code": DIL}
+    ayar = ses_ayarlari(model)
+    if ayar:
+        g["voice_settings"] = ayar
+    return g
+
+
+def onbellek_imzasi(model=None):
+    """TTS önbelleği için model + ayar imzası (değişince eski ses kullanılmaz)."""
+    model = model or ses_modeli()
+    ayar = ses_ayarlari(model) or {}
+    return model + "|" + ",".join(f"{k}={ayar[k]}" for k in sorted(ayar))
 
 
 # --------------------------------------------------------------------------- #
@@ -428,7 +496,7 @@ def anahtar_al(ortam=None, dosya=YEREL_ANAHTAR_DOSYASI):
 class ElevenLabsIstemci:
     """İnce TTS istemcisi. `http` requests uyumlu (post) — testte sahtesi verilir."""
 
-    def __init__(self, api_key, http=None, ses_id=SES_ID, model_id=MODEL_ID,
+    def __init__(self, api_key, http=None, ses_id=SES_ID, model_id=None,
                  cikti=CIKTI_BICIMI, timeout=HTTP_TIMEOUT, deneme=MAX_DENEME):
         if not api_key:
             raise SesHatasi(f"{ANAHTAR_DEGISKENI} tanımlı değil")
@@ -436,7 +504,7 @@ class ElevenLabsIstemci:
             import requests
             http = requests
         self._anahtar = api_key
-        self.http, self.ses_id, self.model_id = http, ses_id, model_id
+        self.http, self.ses_id, self.model_id = http, ses_id, model_id or ses_modeli()
         self.cikti, self.timeout, self.deneme = cikti, timeout, deneme
 
     def __repr__(self):                       # anahtar asla görünmesin
@@ -452,7 +520,7 @@ class ElevenLabsIstemci:
                     url, params={"output_format": self.cikti},
                     headers={"xi-api-key": self._anahtar, "Content-Type": "application/json",
                              "Accept": "audio/mpeg"},
-                    json={"text": metin, "model_id": self.model_id, "language_code": DIL},
+                    json=istek_govdesi(metin, self.model_id),
                     timeout=self.timeout)
             except Exception as e:            # noqa: BLE001 — ağ hatası
                 son = SesHatasi(f"ağ hatası: {type(e).__name__}")
