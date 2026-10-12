@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-12",
+  "language": "tr",
+  "title": "12 Ekim 2026, Pazartesi",
+  "publishedAt": "2026-10-12T07:52:24+03:00",
+  "updatedAt": "2026-10-12T07:52:24+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-12T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 83989,
+        "change24h": 1.280230815895211
+      },
+      "ETH": {
+        "priceUsd": 2561.76,
+        "change24h": 2.239345273728608
+      },
+      "SOL": {
+        "priceUsd": 112.71,
+        "change24h": 2.883216602475482
+      },
+      "BNB": {
+        "priceUsd": 753.4,
+        "change24h": 0.7997719703908319
+      },
+      "XRP": {
+        "priceUsd": 1.41,
+        "change24h": 1.4286800106258961
+      }
+    },
+    "btcDominance": 59.65844550393362,
+    "ethDominance": 11.060642673459867,
+    "totalMarketCapUsd": 2823887982633.8906,
+    "volume24hUsd": 57015597288.838844,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 69,
+      "label": "Açgözlülük",
+      "previousValue": 61,
+      "weekAgoValue": 70
+    }
+  },
+  "brief": {
+    "mood": "İyimser",
+    "why": "Net sebep tek değil: Cuma günü ABD spot BTC ETF'lerinde haftanın çıkış serisi hafif bir girişle kesildi ve ABD hükümetinin Bitfinex kaynaklı 1 milyar dolarlık BTC transferinde satış sinyali görülmemesi piyasayı rahatlattı; bu da Çarşamba'daki ABD TÜFE verisi öncesi altcoinlerin BTC'den güçlü ayrışmasıyla birlikte genele yayılan bir risk iştahı doğurdu.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:30",
+        "title": "Evernorth (XRPN) Nasdaq ilk işlem günü"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD spot BTC ETF Pazartesi akış verisi"
+      }
+    ],
+    "mainRisk": "Ekim ayı genelinde hâlâ net çıkışta olan BTC ETF akışları, Çarşamba günkü ABD TÜFE verisi öncesi yeniden negatife dönerse risk iştahı hızla sönebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "BTC ETF akışları Pazartesi net girişe mi döndü",
+        "outcome": "Henüz netleşmedi; Pazartesi'nin resmi akış verisi ABD piyasası kapandıktan sonra açıklanacak. Son tamamlanan seans olan Cuma günü yaklaşık 21 milyon dolarlık hafif net girişle üç günlük 679 milyon dolarlık çıkış serisi kesilmişti, ancak Ekim ayı toplamı hâlâ yaklaşık 386 milyon dolar net çıkışta."
+      },
+      {
+        "item": "BTC 83.000 doları haftasonu sonrası yeniden kazanabildi mi",
+        "outcome": "İsabet. BTC hafta sonu sonrası 83.000 doların üzerine döndü, şu an yaklaşık 83.989 dolardan işlem görüyor ve gün içinde kısa süreliğine 84.000 doları da test etti."
+      },
+      {
+        "item": "ABD hükümetinin Bitfinex BTC cüzdanlarında yeni bir hareket oldu mu",
+        "outcome": "İsabet. 8 Ekim'de hükümete bağlı cüzdanlar Bitfinex hack'inden ele geçirilen 12.267 BTC'yi (yaklaşık 1.01 milyar dolar) yeni, etiketlenmemiş adreslere taşıdı; borsaya yatırım yapılmadığı için satıştan çok cüzdan düzenlemesi olarak değerlendiriliyor."
+      },
+      {
+        "item": "Tayland borsasında kripto ETF için ilk resmi başvuru geldi mi",
+        "outcome": "Işka. Tayland SEC'i 8 Ekim'de Bitcoin ve Ether ETF kurallarını netleştirdi, 16 Ekim'de yürürlüğe girecek; ancak şu ana kadar hiçbir fon resmi başvuru yapmadı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "ABD hükümeti Bitfinex kaynaklı 1 milyar dolarlık BTC'yi taşıdı",
+        "summary": "Hükümete bağlı cüzdanlar 8 Ekim'de 12.267 BTC'yi yeni adreslere aktardı; borsaya yatırım olmaması satış değil cüzdan düzenlemesi olduğuna işaret ediyor.",
+        "source": {
+          "url": "https://www.coindesk.com/business/2026/10/08/u-s-government-moves-usd1-billion-in-bitcoin-from-bitfinex-hack-wallet-no-sale-indicated",
+          "title": "U.S. government moves $1 billion in bitcoin tied to Bitfinex hack wallet",
+          "publisher": "CoinDesk"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Tayland'da Bitcoin ve Ether ETF kuralları netleşti",
+        "summary": "Tayland SEC'i 16 Ekim'den itibaren yerel borsada BTC ve ETH ETF'lerine izin veren kuralları yayınladı; fonlar yurt dışı yapılara erişemeyecek ve tek coine en az yüzde 80 maruziyet şartı var.",
+        "source": {
+          "url": "https://cryptobriefing.com/thailand-sec-finalizes-bitcoin-ether-etf-rules/",
+          "title": "Thailand SEC Finalizes Bitcoin, Ether ETF Rules",
+          "publisher": "CryptoBriefing"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Ledger donanım cüzdanlarında tedarik zinciri saldırısı doğrulandı",
+        "summary": "Ledger, Güneydoğu Asyalı distribütör CryptoBilis üzerinden satılan cihazlarda yetkisiz donanım implantı tespit ettiğini doğruladı; kayıpların 86 milyon doları aştığı tahmin ediliyor.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/10/11/ledger-confirms-hardware-implant-amid-86m-loss-probe-urges-users-to-re-seed/",
+          "title": "Ledger Confirms Hardware Implant Amid $86M Loss Probe",
+          "publisher": "CryptoTimes"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "XRP hazine şirketi Evernorth bugün Nasdaq'ta işlem görmeye başlıyor",
+        "summary": "Armada Acquisition ile SPAC birleşmesini tamamlayan Evernorth, 473 milyon XRP ve 300 milyon dolar nakit ile XRPN kodu altında bugün Nasdaq'ta işlem görmeye başlıyor.",
+        "source": {
+          "url": "https://crypto.news/evernorth-pushes-xrpn-nasdaq-trading-debut-to-oct-12/",
+          "title": "Evernorth pushes XRPN Nasdaq trading debut to Oct. 12",
+          "publisher": "Crypto.news"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:30",
+        "title": "Evernorth (XRPN) Nasdaq'ta ilk işlem günü"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD spot BTC ETF Pazartesi günlük akış verisi açıklanacak"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Ekim ayı toplamında hâlâ net çıkışta olan BTC ETF akışları Pazartesi de negatif gelirse satış baskısı geri dönebilir.",
+      "Ledger/CryptoBilis tedarik zinciri saldırısı sonrası donanım cüzdanı güvenliğine duyulan güven sarsılabilir."
+    ]
+  },
+  "followUps": [
+    "ABD spot BTC ETF'lerinde Pazartesi net akış pozitif mi negatif mi sonuçlandı",
+    "Evernorth (XRPN) Nasdaq'taki ilk işlem gününü nasıl kapattı",
+    "JPMorgan ve Citigroup'un Salı günkü bilançoları risk iştahını nasıl etkiledi",
+    "Ledger/CryptoBilis soruşturmasında zarar tutarı veya mağdur sayısı güncellendi mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.coindesk.com/business/2026/10/08/u-s-government-moves-usd1-billion-in-bitcoin-from-bitfinex-hack-wallet-no-sale-indicated",
+      "title": "U.S. government moves $1 billion in bitcoin tied to Bitfinex hack wallet",
+      "publisher": "CoinDesk"
+    },
+    {
+      "url": "https://cryptobriefing.com/thailand-sec-finalizes-bitcoin-ether-etf-rules/",
+      "title": "Thailand SEC Finalizes Bitcoin, Ether ETF Rules",
+      "publisher": "CryptoBriefing"
+    },
+    {
+      "url": "https://www.cryptotimes.io/2026/10/11/ledger-confirms-hardware-implant-amid-86m-loss-probe-urges-users-to-re-seed/",
+      "title": "Ledger Confirms Hardware Implant Amid $86M Loss Probe",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://crypto.news/evernorth-pushes-xrpn-nasdaq-trading-debut-to-oct-12/",
+      "title": "Evernorth pushes XRPN Nasdaq trading debut to Oct. 12",
+      "publisher": "Crypto.news"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

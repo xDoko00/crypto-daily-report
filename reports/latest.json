@@ -1,129 +1,135 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-11",
+  "id": "2026-10-12",
   "language": "tr",
-  "title": "11 Ekim 2026, Pazar",
-  "publishedAt": "2026-10-11T07:53:45+03:00",
-  "updatedAt": "2026-10-11T07:53:45+03:00",
+  "title": "12 Ekim 2026, Pazartesi",
+  "publishedAt": "2026-10-12T07:52:24+03:00",
+  "updatedAt": "2026-10-12T07:52:24+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-11T07:48:00+03:00",
+    "asOf": "2026-10-12T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 82927,
-        "change24h": 0.3860803077331787
+        "priceUsd": 83989,
+        "change24h": 1.280230815895211
       },
       "ETH": {
-        "priceUsd": 2505.96,
-        "change24h": 0.5312751877303332
+        "priceUsd": 2561.76,
+        "change24h": 2.239345273728608
       },
       "SOL": {
-        "priceUsd": 109.56,
-        "change24h": -0.14634123608674596
+        "priceUsd": 112.71,
+        "change24h": 2.883216602475482
       },
       "BNB": {
-        "priceUsd": 747.42,
-        "change24h": 0.2523887261833038
+        "priceUsd": 753.4,
+        "change24h": 0.7997719703908319
       },
       "XRP": {
-        "priceUsd": 1.4,
-        "change24h": -0.7122967326842128
+        "priceUsd": 1.41,
+        "change24h": 1.4286800106258961
       }
     },
-    "btcDominance": 59.12147792470106,
-    "ethDominance": 10.857485792985823,
-    "totalMarketCapUsd": 2812828633856.419,
-    "volume24hUsd": 45666941512.93097,
+    "btcDominance": 59.65844550393362,
+    "ethDominance": 11.060642673459867,
+    "totalMarketCapUsd": 2823887982633.8906,
+    "volume24hUsd": 57015597288.838844,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 61,
+      "value": 69,
       "label": "Açgözlülük",
-      "previousValue": 64,
-      "weekAgoValue": 65
+      "previousValue": 61,
+      "weekAgoValue": 70
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "Fiyatlar son 24 saatte yatay bir seyir izledi; BTC ve ETH ETF'lerinden gelen sekiz günlük çıkış serisi Cuma günü küçük bir girişle hız kesti ve bu piyasayı kısa süreli sakinleştirdi, ancak belirgin tek bir yükseliş sebebi yok.",
+    "mood": "İyimser",
+    "why": "Net sebep tek değil: Cuma günü ABD spot BTC ETF'lerinde haftanın çıkış serisi hafif bir girişle kesildi ve ABD hükümetinin Bitfinex kaynaklı 1 milyar dolarlık BTC transferinde satış sinyali görülmemesi piyasayı rahatlattı; bu da Çarşamba'daki ABD TÜFE verisi öncesi altcoinlerin BTC'den güçlü ayrışmasıyla birlikte genele yayılan bir risk iştahı doğurdu.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "APT token kilidi açılıyor"
+        "timeTr": "16:30",
+        "title": "Evernorth (XRPN) Nasdaq ilk işlem günü"
       },
       {
         "timeTr": null,
-        "title": "ETF çıkış serisinde zayıflama izleniyor"
+        "title": "ABD spot BTC ETF Pazartesi akış verisi"
       }
     ],
-    "mainRisk": "Fed'in ek faiz artışı sinyalleri ve ETF çıkışlarının yeniden hızlanma riski piyasayı baskılayabilir."
+    "mainRisk": "Ekim ayı genelinde hâlâ net çıkışta olan BTC ETF akışları, Çarşamba günkü ABD TÜFE verisi öncesi yeniden negatife dönerse risk iştahı hızla sönebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "BTC spot ETF çıkışlarının dördüncü işlem gününe taşınıp taşınmayacağı",
-        "outcome": "Dört günlük çıkış serisi Cuma günü (9 Ekim) IBIT öncülüğünde gelen 21 milyon dolarlık net girişle kesildi; buna karşın hafta genel olarak 681 milyon dolar net çıkışla kapandı, yani kısmi bir durma yaşandı."
+        "item": "BTC ETF akışları Pazartesi net girişe mi döndü",
+        "outcome": "Henüz netleşmedi; Pazartesi'nin resmi akış verisi ABD piyasası kapandıktan sonra açıklanacak. Son tamamlanan seans olan Cuma günü yaklaşık 21 milyon dolarlık hafif net girişle üç günlük 679 milyon dolarlık çıkış serisi kesilmişti, ancak Ekim ayı toplamı hâlâ yaklaşık 386 milyon dolar net çıkışta."
       },
       {
-        "item": "ABD hükümetinin Coinbase Prime'a taşıdığı Bitfinex BTC'sinin satışa dönüşüp dönüşmediği",
-        "outcome": "Satış teyit edilmedi. 12.267 BTC (yaklaşık 1 milyar dolar) yeni, etiketlenmemiş cüzdanlara taşındı; bir kısmı Coinbase Prime'a geçti ama borsaya giriş kaydı yok, bu da satıştan çok cüzdan yeniden düzenlemesine işaret ediyor."
+        "item": "BTC 83.000 doları haftasonu sonrası yeniden kazanabildi mi",
+        "outcome": "İsabet. BTC hafta sonu sonrası 83.000 doların üzerine döndü, şu an yaklaşık 83.989 dolardan işlem görüyor ve gün içinde kısa süreliğine 84.000 doları da test etti."
       },
       {
-        "item": "BTC'nin 83.000 dolar direncini kırıp kırmadığı",
-        "outcome": "Tam tersi oldu: BTC, 8 Ekim'de Fed tutanaklarının ardından 83.000 doların altına indi. Seviye kırılmadı, aslında destek olarak işliyor ve fiyat hâlâ bu bandın çevresinde dolaşıyor."
+        "item": "ABD hükümetinin Bitfinex BTC cüzdanlarında yeni bir hareket oldu mu",
+        "outcome": "İsabet. 8 Ekim'de hükümete bağlı cüzdanlar Bitfinex hack'inden ele geçirilen 12.267 BTC'yi (yaklaşık 1.01 milyar dolar) yeni, etiketlenmemiş adreslere taşıdı; borsaya yatırım yapılmadığı için satıştan çok cüzdan düzenlemesi olarak değerlendiriliyor."
       },
       {
-        "item": "Tayland'ın 16 Ekim'de yürürlüğe girecek ETF kuralları için ilk fon başvurularının gelip gelmediği",
-        "outcome": "Henüz teyit edilmiş bir başvuru yok. Tayland SEC kuralları 8 Ekim'de yayımladı, varlık yöneticileri hâlâ hazırlık aşamasında; 16 Ekim yalnızca kuralların başlangıç tarihi, ilk fonun işlem tarihi değil."
+        "item": "Tayland borsasında kripto ETF için ilk resmi başvuru geldi mi",
+        "outcome": "Işka. Tayland SEC'i 8 Ekim'de Bitcoin ve Ether ETF kurallarını netleştirdi, 16 Ekim'de yürürlüğe girecek; ancak şu ana kadar hiçbir fon resmi başvuru yapmadı."
       }
     ],
     "agenda": [
       {
-        "importance": "onemli",
-        "title": "BTC ve ETH ETF'lerinde sekiz günlük çıkış serisi",
-        "summary": "7-8 Ekim'de spot BTC ve ETH ETF'lerinden toplam 964 milyon dolar çıktı; Fidelity'nin FBTC'si tek başına 197 milyon dolarla öncülük etti ve seri sekizinci güne ulaştı.",
+        "importance": "kritik",
+        "title": "ABD hükümeti Bitfinex kaynaklı 1 milyar dolarlık BTC'yi taşıdı",
+        "summary": "Hükümete bağlı cüzdanlar 8 Ekim'de 12.267 BTC'yi yeni adreslere aktardı; borsaya yatırım olmaması satış değil cüzdan düzenlemesi olduğuna işaret ediyor.",
         "source": {
-          "url": "https://www.cryptotimes.io/2026/10/10/crypto-etfs-see-964m-in-outflows-over-two-days-as-bitcoin-funds-lose-244m/",
-          "title": "Crypto ETFs See $964M in Outflows Over Two Days as Bitcoin Funds Lose $244M",
+          "url": "https://www.coindesk.com/business/2026/10/08/u-s-government-moves-usd1-billion-in-bitcoin-from-bitfinex-hack-wallet-no-sale-indicated",
+          "title": "U.S. government moves $1 billion in bitcoin tied to Bitfinex hack wallet",
+          "publisher": "CoinDesk"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Tayland'da Bitcoin ve Ether ETF kuralları netleşti",
+        "summary": "Tayland SEC'i 16 Ekim'den itibaren yerel borsada BTC ve ETH ETF'lerine izin veren kuralları yayınladı; fonlar yurt dışı yapılara erişemeyecek ve tek coine en az yüzde 80 maruziyet şartı var.",
+        "source": {
+          "url": "https://cryptobriefing.com/thailand-sec-finalizes-bitcoin-ether-etf-rules/",
+          "title": "Thailand SEC Finalizes Bitcoin, Ether ETF Rules",
+          "publisher": "CryptoBriefing"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Ledger donanım cüzdanlarında tedarik zinciri saldırısı doğrulandı",
+        "summary": "Ledger, Güneydoğu Asyalı distribütör CryptoBilis üzerinden satılan cihazlarda yetkisiz donanım implantı tespit ettiğini doğruladı; kayıpların 86 milyon doları aştığı tahmin ediliyor.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/10/11/ledger-confirms-hardware-implant-amid-86m-loss-probe-urges-users-to-re-seed/",
+          "title": "Ledger Confirms Hardware Implant Amid $86M Loss Probe",
           "publisher": "CryptoTimes"
         }
       },
       {
         "importance": "bilgi",
-        "title": "10 Ekim çöküşünün birinci yılında likidite toparlandı",
-        "summary": "Geçen yılın 19 milyar dolarlık tasfiye dalgasının üzerinden bir yıl geçti; BTC ve ETH likiditesi büyük ölçüde toparlanırken altcoin'ler hâlâ risk altında.",
+        "title": "XRP hazine şirketi Evernorth bugün Nasdaq'ta işlem görmeye başlıyor",
+        "summary": "Armada Acquisition ile SPAC birleşmesini tamamlayan Evernorth, 473 milyon XRP ve 300 milyon dolar nakit ile XRPN kodu altında bugün Nasdaq'ta işlem görmeye başlıyor.",
         "source": {
-          "url": "https://www.coindesk.com/markets/2026/10/10/one-year-after-10-10-bitcoin-and-ether-liquidity-have-rebuilt-but-other-altcoins-still-face-risks",
-          "title": "One year after 10/10, Bitcoin and ether liquidity have rebuilt but other altcoins still face risks",
-          "publisher": "CoinDesk"
-        }
-      },
-      {
-        "importance": "bilgi",
-        "title": "SEC 19 Kasım'da kripto varlık brifingi düzenleyecek",
-        "summary": "ABD SEC, yatırım şirketleri için düzenlediği yıllık uyum seminerine Kripto Varlık Görev Gücü'nün katılacağı özel bir oturum ekledi.",
-        "source": {
-          "url": "https://www.sec.gov/newsroom/press-releases/2026-102-sec-host-virtual-national-compliance-outreach-seminar-investment-companies-investment-advisers",
-          "title": "SEC to Host Virtual National Compliance Outreach Seminar for Investment Companies and Investment Advisers",
-          "publisher": "SEC.gov"
+          "url": "https://crypto.news/evernorth-pushes-xrpn-nasdaq-trading-debut-to-oct-12/",
+          "title": "Evernorth pushes XRPN Nasdaq trading debut to Oct. 12",
+          "publisher": "Crypto.news"
         }
       }
     ],
     "today": [
       {
-        "timeTr": null,
-        "title": "APT token kilidi (9,1 milyon dolar) açılıyor"
+        "timeTr": "16:30",
+        "title": "Evernorth (XRPN) Nasdaq'ta ilk işlem günü"
       },
       {
         "timeTr": null,
-        "title": "Hafta sonu düşük hacimde BTC'nin 82.000-83.000 bandını koruması izleniyor"
-      },
-      {
-        "timeTr": null,
-        "title": "Pazartesi öncesi ETF akış verisine yönelik pozisyonlanma"
+        "title": "ABD spot BTC ETF Pazartesi günlük akış verisi açıklanacak"
       }
     ],
     "turkey": {
@@ -131,31 +137,36 @@
       "items": []
     },
     "risks": [
-      "ETF çıkışlarının yeniden hızlanması halinde kısa vadeli satış baskısı artabilir.",
-      "Fed'in ek faiz artışı sinyalleri risk iştahını zayıflatabilir."
+      "Ekim ayı toplamında hâlâ net çıkışta olan BTC ETF akışları Pazartesi de negatif gelirse satış baskısı geri dönebilir.",
+      "Ledger/CryptoBilis tedarik zinciri saldırısı sonrası donanım cüzdanı güvenliğine duyulan güven sarsılabilir."
     ]
   },
   "followUps": [
-    "BTC ETF akışları Pazartesi net girişe mi döndü",
-    "BTC 83.000 doları haftasonu sonrası yeniden kazanabildi mi",
-    "ABD hükümetinin Bitfinex BTC cüzdanlarında yeni bir hareket oldu mu",
-    "Tayland borsasında kripto ETF için ilk resmi başvuru geldi mi"
+    "ABD spot BTC ETF'lerinde Pazartesi net akış pozitif mi negatif mi sonuçlandı",
+    "Evernorth (XRPN) Nasdaq'taki ilk işlem gününü nasıl kapattı",
+    "JPMorgan ve Citigroup'un Salı günkü bilançoları risk iştahını nasıl etkiledi",
+    "Ledger/CryptoBilis soruşturmasında zarar tutarı veya mağdur sayısı güncellendi mi"
   ],
   "sources": [
     {
-      "url": "https://www.cryptotimes.io/2026/10/10/crypto-etfs-see-964m-in-outflows-over-two-days-as-bitcoin-funds-lose-244m/",
-      "title": "Crypto ETFs See $964M in Outflows Over Two Days as Bitcoin Funds Lose $244M",
-      "publisher": "CryptoTimes"
-    },
-    {
-      "url": "https://www.coindesk.com/markets/2026/10/10/one-year-after-10-10-bitcoin-and-ether-liquidity-have-rebuilt-but-other-altcoins-still-face-risks",
-      "title": "One year after 10/10, Bitcoin and ether liquidity have rebuilt but other altcoins still face risks",
+      "url": "https://www.coindesk.com/business/2026/10/08/u-s-government-moves-usd1-billion-in-bitcoin-from-bitfinex-hack-wallet-no-sale-indicated",
+      "title": "U.S. government moves $1 billion in bitcoin tied to Bitfinex hack wallet",
       "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.sec.gov/newsroom/press-releases/2026-102-sec-host-virtual-national-compliance-outreach-seminar-investment-companies-investment-advisers",
-      "title": "SEC to Host Virtual National Compliance Outreach Seminar for Investment Companies and Investment Advisers",
-      "publisher": "SEC.gov"
+      "url": "https://cryptobriefing.com/thailand-sec-finalizes-bitcoin-ether-etf-rules/",
+      "title": "Thailand SEC Finalizes Bitcoin, Ether ETF Rules",
+      "publisher": "CryptoBriefing"
+    },
+    {
+      "url": "https://www.cryptotimes.io/2026/10/11/ledger-confirms-hardware-implant-amid-86m-loss-probe-urges-users-to-re-seed/",
+      "title": "Ledger Confirms Hardware Implant Amid $86M Loss Probe",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://crypto.news/evernorth-pushes-xrpn-nasdaq-trading-debut-to-oct-12/",
+      "title": "Evernorth pushes XRPN Nasdaq trading debut to Oct. 12",
+      "publisher": "Crypto.news"
     }
   ],
   "assets": {
