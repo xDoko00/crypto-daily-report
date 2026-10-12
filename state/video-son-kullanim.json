@@ -1,16 +1,16 @@
 {
  "kanca-sabah": {
-  "gun": "2026-10-11",
-  "onceki": "sabah-sehir/sabah-sehir-01.mp4",
+  "gun": "2026-10-12",
+  "onceki": "istanbul-sabah/istanbul-sabah-01.mp4",
   "secilen": [
-   "istanbul-sabah/istanbul-sabah-01.mp4"
+   "sabah-sehir/sabah-sehir-02.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-10-11",
-  "onceki": "piyasa-dusus/piyasa-dusus-01.mp4",
+  "gun": "2026-10-12",
+  "onceki": "piyasa-dusus/piyasa-dusus-02.mp4",
   "secilen": [
-   "piyasa-dusus/piyasa-dusus-02.mp4"
+   "piyasa-dusus/piyasa-dusus-03.mp4"
   ]
  },
  "hack-guvenlik": {
@@ -28,25 +28,25 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-10-11",
-  "onceki": "takvim-veri/takvim-veri-02.mp4",
+  "gun": "2026-10-12",
+  "onceki": "takvim-veri/takvim-veri-04.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-04.mp4"
+   "takvim-veri/takvim-veri-01.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-10-11",
-  "onceki": "kapanis/kapanis-03.mp4",
+  "gun": "2026-10-12",
+  "onceki": "kapanis/kapanis-04.mp4",
   "secilen": [
-   "kapanis/kapanis-04.mp4"
+   "kapanis/kapanis-01.mp4"
   ]
  },
  "piyasa-yukselis": {
-  "gun": "2026-10-05",
-  "onceki": "piyasa-yukselis/piyasa-yukselis-04.mp4",
+  "gun": "2026-10-12",
+  "onceki": "piyasa-yukselis/piyasa-yukselis-02.mp4",
   "secilen": [
-   "piyasa-yukselis/piyasa-yukselis-01.mp4",
-   "piyasa-yukselis/piyasa-yukselis-02.mp4"
+   "piyasa-yukselis/piyasa-yukselis-03.mp4",
+   "piyasa-yukselis/piyasa-yukselis-04.mp4"
   ]
  },
  "fed-makro": {
@@ -58,10 +58,10 @@
   ]
  },
  "etf-kurumsal": {
-  "gun": "2026-10-11",
-  "onceki": "etf-kurumsal/etf-kurumsal-02.mp4",
+  "gun": "2026-10-12",
+  "onceki": "etf-kurumsal/etf-kurumsal-01.mp4",
   "secilen": [
-   "etf-kurumsal/etf-kurumsal-01.mp4"
+   "etf-kurumsal/etf-kurumsal-02.mp4"
   ]
  },
  "sakin-yatay": {
@@ -73,10 +73,10 @@
   ]
  },
  "regulasyon-hukuk": {
-  "gun": "2026-10-06",
-  "onceki": "regulasyon-hukuk/regulasyon-hukuk-01.mp4",
+  "gun": "2026-10-12",
+  "onceki": "regulasyon-hukuk/regulasyon-hukuk-02.mp4",
   "secilen": [
-   "regulasyon-hukuk/regulasyon-hukuk-02.mp4"
+   "regulasyon-hukuk/regulasyon-hukuk-01.mp4"
   ]
  },
  "jeopolitik": {
