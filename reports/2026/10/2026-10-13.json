@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-13",
+  "language": "tr",
+  "title": "13 Ekim 2026, Salı",
+  "publishedAt": "2026-10-13T07:52:15+03:00",
+  "updatedAt": "2026-10-13T07:52:15+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-13T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 83388,
+        "change24h": -0.7938914479529537
+      },
+      "ETH": {
+        "priceUsd": 2513.86,
+        "change24h": -1.909043005380228
+      },
+      "SOL": {
+        "priceUsd": 107.89,
+        "change24h": -4.366317696514453
+      },
+      "BNB": {
+        "priceUsd": 744.46,
+        "change24h": -1.2410342464576463
+      },
+      "XRP": {
+        "priceUsd": 1.37,
+        "change24h": -3.4110897286660724
+      }
+    },
+    "btcDominance": 59.32000285871683,
+    "ethDominance": 10.866096971383184,
+    "totalMarketCapUsd": 2823555245002.2397,
+    "volume24hUsd": 96499365612.11037,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 57,
+      "label": "Açgözlülük",
+      "previousValue": 69,
+      "weekAgoValue": 73
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Hürmüz Boğazı'ndaki saldırıların sürmesiyle petrol fiyatları yüksek kalırken ABD 10 yıllık tahvil faizi yüzde 5'in üzerinde seyretti, bu da Fed'in faiz indirimi beklentilerini zayıflatıp risk iştahını geneldebastırdı; kaldıraçlı long pozisyonlardaki 672 milyon dolarlık tasfiye de düşüşü hızlandırdı.",
+    "criticalEvents": [
+      {
+        "timeTr": "14:00",
+        "title": "JPMorgan ve Citigroup bilançoları"
+      },
+      {
+        "timeTr": "20:00",
+        "title": "Fed yetkilisi Barkin konuşması"
+      }
+    ],
+    "mainRisk": "Hürmüz Boğazı'nda yeni bir saldırı veya tahvil faizlerinde ek yükseliş, zaten zayıflayan risk iştahını daha da bastırabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD spot BTC ETF'lerinde Pazartesi net akışın pozitif mi negatif mi kapanacağı",
+        "outcome": "Iska: net akış hafif negatif kapandı, BlackRock'un IBIT'inden çıkan 65,4 milyon dolar tek başına toplam net çıkışı oluşturdu, belirgin bir dönüş yaşanmadı."
+      },
+      {
+        "item": "Evernorth (XRPN) Nasdaq'taki ilk işlem gününün nasıl geçeceği",
+        "outcome": "Karışık: hisse gün içi yaklaşık 19,4 dolara kadar yükseldi ama Cuma kapanışı olan 17,09 dolara yakın, hafif eksi bir seviyeye geri çekilerek kapattı, açılış coşkusu kalıcı olmadı."
+      },
+      {
+        "item": "JPMorgan ve Citigroup'un Salı günkü bilançolarının risk iştahına etkisi",
+        "outcome": "Henüz belli değil: bilançolar ABD piyasası açılmadan, TSİ 14:00 civarında açıklanacak; bu raporun hazırlandığı saatte sonuç yok."
+      },
+      {
+        "item": "Ledger/CryptoBilis soruşturmasında zarar tutarı veya mağdur sayısının güncellenip güncellenmediği",
+        "outcome": "Güncellendi: tahmini zarar 72-93 milyon dolar aralığına çıktı (çoğu kaynak 86-93 milyon dolar civarında belirtiyor), 311-315 cüzdanı kapsıyor; Ledger en az bir cihazda yetkisiz donanım implantı doğruladı ama resmi toplam rakam açıklamadı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Ledger, CryptoBilis cihazlarında donanım implantı buldu",
+        "summary": "Ledger, Güneydoğu Asya'da CryptoBilis bayisinden satılan en az bir cihazda kurtarma anahtarlarını çalan yetkisiz bir donanım implantı tespit etti; tahmini zarar 86-93 milyon dolara ulaştı.",
+        "source": {
+          "url": "https://thehackernews.com/2026/10/ledger-finds-unauthorized-hardware.html",
+          "title": "Ledger Finds Unauthorized Hardware Implant in CryptoBilis-Sold Wallet Amid Fund Theft Reports",
+          "publisher": "The Hacker News"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Kripto piyasasında geniş çaplı satış ve tasfiye dalgası",
+        "summary": "Toplam piyasa değeri yüzde 2 gerileyerek 2,85 trilyon dolara düştü, son 24 saatte 672 milyon dolarlık pozisyon tasfiye oldu (586 milyonu long); altcoinler Bitcoin'den daha sert vuruldu.",
+        "source": {
+          "url": "https://cryptoticker.io/en/crypto-crash-reason-bitcoin-ethereum-october-2026/",
+          "title": "Crypto Crash Reason: Why Bitcoin Fell Below $81,000 and Altcoins Bled Even Harder",
+          "publisher": "CryptoTicker"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "SEC ve CFTC kripto işlem ve piyasa düzenlemesini yayımladı",
+        "summary": "Regulation Crypto Asset Transactions ve Regulation Crypto Asset Markets başlıklı ortak düzenleme teklifi 13 Ekim'de Federal Register'da yayımlandı; kripto varlık işlemleri için çerçeve kuralları netleştiriyor.",
+        "source": {
+          "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20888/regulation-crypto-asset-transactions-and-regulation-crypto-asset-markets",
+          "title": "Regulation Crypto Asset Transactions and Regulation Crypto Asset Markets",
+          "publisher": "Federal Register"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Evernorth 473 milyon XRP'lik hazinesiyle Nasdaq'ta işlem görmeye başladı",
+        "summary": "Ripple destekli Evernorth, 473 milyon XRP'lik bilanço büyüklüğüyle Nasdaq'ta XRPN koduyla işlem görmeye başladı; hisse gün içi yaklaşık yüzde 13 yükselip çoğu kazancını geri verdi.",
+        "source": {
+          "url": "https://decrypt.co/380728/ripple-backed-evernorth-hits-nasdaq-holding-473-million-xrp",
+          "title": "Ripple-Backed Evernorth Hits Nasdaq Holding 473 Million XRP Worth Far Less Than It Paid",
+          "publisher": "Decrypt"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "14:00",
+        "title": "JPMorgan ve Citigroup üçüncü çeyrek bilançoları"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "JPMorgan yatırımcı çağrısı"
+      },
+      {
+        "timeTr": "20:00",
+        "title": "Fed'den Barkin'in konuşması"
+      },
+      {
+        "timeTr": "23:00",
+        "title": "Fed'den Collins'in konuşması"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Hürmüz Boğazı'ndaki saldırılar sürerse petrol fiyatları ve enflasyon beklentileri yükselip risk iştahını daha da bastırabilir.",
+      "Kaldıraçlı pozisyonlardaki tasfiyeler sürdükçe kısa vadeli oynaklık yüksek kalabilir."
+    ]
+  },
+  "followUps": [
+    "JPMorgan ve Citigroup bilançoları risk iştahını nasıl etkiledi",
+    "ABD Eylül TÜFE verisi (14 Ekim) beklentiyi aştı mı, Fed faiz indirim olasılığı nasıl değişti",
+    "Ledger/CryptoBilis soruşturmasında resmi zarar rakamı netleşti mi",
+    "ABD spot BTC ve ETH ETF'lerinde net akış pozitife döndü mü"
+  ],
+  "sources": [
+    {
+      "url": "https://thehackernews.com/2026/10/ledger-finds-unauthorized-hardware.html",
+      "title": "Ledger Finds Unauthorized Hardware Implant in CryptoBilis-Sold Wallet Amid Fund Theft Reports",
+      "publisher": "The Hacker News"
+    },
+    {
+      "url": "https://cryptoticker.io/en/crypto-crash-reason-bitcoin-ethereum-october-2026/",
+      "title": "Crypto Crash Reason: Why Bitcoin Fell Below $81,000 and Altcoins Bled Even Harder",
+      "publisher": "CryptoTicker"
+    },
+    {
+      "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20888/regulation-crypto-asset-transactions-and-regulation-crypto-asset-markets",
+      "title": "Regulation Crypto Asset Transactions and Regulation Crypto Asset Markets",
+      "publisher": "Federal Register"
+    },
+    {
+      "url": "https://decrypt.co/380728/ripple-backed-evernorth-hits-nasdaq-holding-473-million-xrp",
+      "title": "Ripple-Backed Evernorth Hits Nasdaq Holding 473 Million XRP Worth Far Less Than It Paid",
+      "publisher": "Decrypt"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
