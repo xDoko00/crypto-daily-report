@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-14",
+  "language": "tr",
+  "title": "14 Ekim 2026, Çarşamba",
+  "publishedAt": "2026-10-14T07:51:06+03:00",
+  "updatedAt": "2026-10-14T07:51:06+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-14T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 83761,
+        "change24h": 0.4588666298791756
+      },
+      "ETH": {
+        "priceUsd": 2516.22,
+        "change24h": 0.09238918116134358
+      },
+      "SOL": {
+        "priceUsd": 107.99,
+        "change24h": 0.07195281212936895
+      },
+      "BNB": {
+        "priceUsd": 744.81,
+        "change24h": 0.03844824538888699
+      },
+      "XRP": {
+        "priceUsd": 1.38,
+        "change24h": 0.6667127971905014
+      }
+    },
+    "btcDominance": 59.28821051488745,
+    "ethDominance": 10.823574449238672,
+    "totalMarketCapUsd": 2838593285339.601,
+    "volume24hUsd": 750330996881104.9,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 62,
+      "label": "Açgözlülük",
+      "previousValue": 57,
+      "weekAgoValue": 71
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Kripto fiyatlarındaki sınırlı yükseliş BTC ve ETH spot ETF'lerinde çıkış serisinin net girişe dönmesinden besleniyor; ancak JPMorgan'ın beklenti altı kalan bilançosu ve Asya çip hisselerindeki sert satış borsalarda risk iştahını bastırdı, bu da kriptoda hareketi sınırlı tuttu.",
+    "criticalEvents": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül TÜFE verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Çip hisselerinde satış baskısının sürmesi"
+      }
+    ],
+    "mainRisk": "TÜFE beklentiyi (yıllık yaklaşık yüzde 3,6-3,7) aşarsa Fed'in Ekim'de faiz artırımı ihtimali yeniden fiyatlanabilir ve risk varlıklarında satış dalgası tetiklenebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "JPMorgan ve Citigroup bilançoları risk iştahını nasıl etkiledi",
+        "outcome": "Karışık geçti: JPMorgan sabit gelirli işlem gelirinin beklenti altı kalmasıyla nadir bir EPS ıskası açıkladı, Citigroup ise rekor gelire ulaştı; buna çip hisselerindeki satış da eklenince borsalar hafif eksiye döndü, kriptoya etkisi sınırlı kaldı."
+      },
+      {
+        "item": "ABD Eylül TÜFE verisi (14 Ekim) beklentiyi aştı mı, Fed faiz indirim olasılığı nasıl değişti",
+        "outcome": "Veri bu raporun hazırlandığı saatte henüz açıklanmadı, TSİ 15:30'da bekleniyor; piyasa şu an Fed'in Ekim'de faizi sabit tutmasına yaklaşık yüzde 80 olasılık veriyor."
+      },
+      {
+        "item": "Ledger/CryptoBilis soruşturmasında resmi zarar rakamı netleşti mi",
+        "outcome": "Hayır, Ledger resmi bir rakam doğrulamadı; bağımsız izleme şirketleri zararı yaklaşık 93 milyon dolar ve 315 cüzdan olarak tahmin ediyor, sebebin donanıma gömülü sahte bir çip olduğu belirtiliyor."
+      },
+      {
+        "item": "ABD spot BTC ve ETH ETF'lerinde net akış pozitife döndü mü",
+        "outcome": "Evet, 13 Ekim'de BTC ETF'leri 175,6 milyon dolar net giriş gördü, ETH ETF'leri de art arda gelen çıkış serisini 24,8 milyon dolarlık girişle sonlandırdı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "JPMorgan beklenti altı kaldı, Citigroup rekor kırdı",
+        "summary": "JPMorgan sabit gelirli işlem gelirinin tahminin altında kalmasıyla nadir bir EPS ıskası açıkladı, Citigroup ise on yılın en yüksek gelirine ulaştı; banka hisseleri karışık, çip hisseleri Çin bellek rekabeti kaygısıyla sert satıldı.",
+        "source": {
+          "url": "https://www.fool.com/coverage/stock-market-today/2026/10/13/stock-market-midday-oct-13-bank-earnings-and-chip-pressure-drives-mixed-trading/",
+          "title": "Stock Market Midday, Oct. 13: Bank Earnings and Chip Pressure Drive Mixed Trading",
+          "publisher": "The Motley Fool"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "CFTC kripto piyasaları için iki yeni çerçeve önerdi",
+        "summary": "CFTC, kaldıraçlı kripto işlemlerini düzenleyen CTX ve platformların kayıt/denetimini kapsayan CAM çerçevelerini Federal Register'da yayımladı; kamuoyu görüşü 14 Aralık'a kadar açık.",
+        "source": {
+          "url": "https://cryptotimes.io/2026/10/13/cftc-moves-to-build-a-new-regulatory-framework-for-crypto-markets/",
+          "title": "CFTC Moves to Build a New Regulatory Framework for Crypto Markets",
+          "publisher": "CryptoTimes"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Ledger/CryptoBilis'te zarar tahmini 93 milyon dolara çıktı",
+        "summary": "İzleme şirketleri, Ledger cihazlarının bir bölümüne gömülü sahte bir çip aracılığıyla kurtarma ifadelerinin çalındığını, 315 cüzdandan toplam yaklaşık 93 milyon dolar kripto varlık çekildiğini tahmin ediyor; Ledger resmi rakamı henüz doğrulamadı.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/10/12/ledger-cryptobilis-hack-explained-93m-stolen-wallets-tampered/",
+          "title": "Ledger CryptoBilis Hack Explained: $93M Stolen, Wallets Tampered",
+          "publisher": "CryptoTimes"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "BTC ve ETH spot ETF'lerinde çıkış serisi sona erdi",
+        "summary": "13 Ekim'de ABD'li BTC ETF'leri 175,6 milyon dolar, ETH ETF'leri ise 10 günlük çıkış serisinin ardından 24,8 milyon dolar net giriş gördü.",
+        "source": {
+          "url": "https://cryptobriefing.com/spot-bitcoin-etfs-inflows-ether-etfs-october/",
+          "title": "Spot Bitcoin ETFs pull in $175.6 million as ether funds add $24.8 million",
+          "publisher": "CryptoBriefing"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül TÜFE verisi açıklanıyor"
+      },
+      {
+        "timeTr": null,
+        "title": "Çip hisselerinde satış baskısının sürüp sürmediği"
+      },
+      {
+        "timeTr": null,
+        "title": "Günlük BTC/ETH spot ETF akış verileri"
+      },
+      {
+        "timeTr": null,
+        "title": "Ledger/CryptoBilis soruşturmasında yeni açıklama beklentisi"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "TÜFE beklentiyi aşarsa Fed'in Ekim'de faiz artırma ihtimali yeniden gündeme gelebilir.",
+      "Asya çip hisselerindeki satış dalgası küresel risk iştahını bozarsa kriptoya da sıçrayabilir."
+    ]
+  },
+  "followUps": [
+    "ABD Eylül TÜFE verisi beklentiyi aştı mı, Fed'in Ekim faiz fiyatlaması değişti mi",
+    "BTC ve ETH ETF'lerindeki net giriş serisi ikinci güne taşındı mı",
+    "Çip hisselerindeki satış dalgası kripto piyasasına sıçradı mı",
+    "Ledger/CryptoBilis soruşturmasında resmi zarar rakamı ve sorumlu taraf açıklandı mı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/10/13/stock-market-midday-oct-13-bank-earnings-and-chip-pressure-drives-mixed-trading/",
+      "title": "Stock Market Midday, Oct. 13: Bank Earnings and Chip Pressure Drive Mixed Trading",
+      "publisher": "The Motley Fool"
+    },
+    {
+      "url": "https://cryptotimes.io/2026/10/13/cftc-moves-to-build-a-new-regulatory-framework-for-crypto-markets/",
+      "title": "CFTC Moves to Build a New Regulatory Framework for Crypto Markets",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://www.cryptotimes.io/2026/10/12/ledger-cryptobilis-hack-explained-93m-stolen-wallets-tampered/",
+      "title": "Ledger CryptoBilis Hack Explained: $93M Stolen, Wallets Tampered",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://cryptobriefing.com/spot-bitcoin-etfs-inflows-ether-etfs-october/",
+      "title": "Spot Bitcoin ETFs pull in $175.6 million as ether funds add $24.8 million",
+      "publisher": "CryptoBriefing"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
