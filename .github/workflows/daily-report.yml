@@ -142,7 +142,9 @@ jobs:
           cp reports/latest.json "$VIDEO_RAPOR"
           python -c "import json, os; print('test raporu:', json.load(open(os.environ['VIDEO_RAPOR'], encoding='utf-8'))['id'])"
 
-      # ManyChat bot alanı `bugun_ozet` (DM'de "BUGÜN" yazana giden günün 3 başlığı).
+      # ManyChat bot alanı `bugun_ozet` (DM'de "BUGÜN" yazana giden günün 3 başlığı +
+      # günün kavramı). Önce `bugun_gun_sayac` okunur, admin'e "Dün N kişi..." gider, sıfırlanır.
+      # Bu adım yalnız raporu GÖNDEREN çalışmada koşar (VIDEO_RAPOR dosyası) → günde bir kez.
       # Yalnız rapor bu çalışmada gönderildiyse; anahtar yoksa uyarıyla atlanır,
       # hata raporu bozmaz (sosyal.py her durumda 0 döner).
       - name: ManyChat günün özetini güncelle
@@ -156,7 +158,7 @@ jobs:
           VIDEO_RAPOR:             ${{ runner.temp }}/video-rapor.json
         run: |
           if [ -f "$VIDEO_RAPOR" ]; then
-            python sosyal.py manychat --rapor "$VIDEO_RAPOR" || true
+            python sosyal.py manychat --rapor "$VIDEO_RAPOR" || { echo "::warning::ManyChat adımı hata kodu döndürdü ($?)"; true; }
           else
             echo "bu calismada rapor gonderilmedi, ManyChat atlandi"
           fi
@@ -217,7 +219,7 @@ jobs:
           elif [ ! -f "$VIDEO_KOPYA" ]; then
             echo "video uretilmedi, sosyal atlandi"
           else
-            python sosyal.py paylas --rapor "$VIDEO_RAPOR" --video "$VIDEO_KOPYA" || true
+            python sosyal.py paylas --rapor "$VIDEO_RAPOR" --video "$VIDEO_KOPYA" || { echo "::warning::Sosyal paylaşım adımı hata kodu döndürdü ($?)"; true; }
           fi
 
       # Video b-roll döndürme durumu (state/video-son-kullanim.json) ve sosyal

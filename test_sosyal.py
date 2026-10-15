@@ -709,7 +709,7 @@ class IgSureTestleri(unittest.TestCase):
         self.assertIsInstance(hata, RuntimeError)
 
     def test_cok_uzun_ig_atlanir_uyari(self):
-        def uzun(girdi, cikti, calisma):
+        def uzun(girdi, cikti, calisma, kavram=None):
             raise s.IgCokUzun(75.0)
         b = SahteBuffer()
         sonuc, out = self._paylas(b, ig_uret=uzun)
@@ -781,8 +781,9 @@ class IgFragmanTestleri(unittest.TestCase):
         self.cagri.append(("fragman", rapor["id"], cikti))
         raise RuntimeError("ElevenLabs HTTP 401")
 
-    def eski(self, girdi, cikti, calisma):
+    def eski(self, girdi, cikti, calisma, kavram=None):
         self.cagri.append(("eski", girdi, cikti))
+        self.kavram = kavram
         with open(cikti, "wb") as f:
             f.write(b"eski")
         return cikti
@@ -816,7 +817,7 @@ class IgFragmanTestleri(unittest.TestCase):
         self.assertEqual([c[0] for c in self.cagri], ["eski"])
 
     def test_eski_varyant_ig_cok_uzun_korunur(self):
-        def uzun(girdi, cikti, calisma):
+        def uzun(girdi, cikti, calisma, kavram=None):
             raise s.IgCokUzun(75.0)
         with mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
             with self.assertRaises(s.IgCokUzun):
@@ -913,6 +914,218 @@ class IgFragmanTestleri(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             s.ig_fragman_uret(RAPOR, os.path.join(self.d, "ig.mp4"), self.d, popen=lambda k, **kw: Biten())
         self.assertEqual(s.IG_FRAGMAN_SURE_SN, 240)
+
+
+class SahteManyChat:
+    """GET getBotFields + POST setBotFieldByName / setBotField kaydı."""
+
+    def __init__(self, alanlar=None, get_hata=None, post_yanitlari=None):
+        self.alanlar, self.get_hata = alanlar, get_hata
+        self.post_yanitlari = list(post_yanitlari or [])
+        self.get_cagrilar, self.post_cagrilar = [], []
+
+    def get(self, url, headers=None, timeout=None):
+        self.get_cagrilar.append({"url": url, "headers": headers})
+        if self.get_hata:
+            raise self.get_hata
+        if self.alanlar is None:
+            return SahteYanit({"status": "error", "message": "nope"}, 400)
+        return SahteYanit({"status": "success", "data": [
+            {"id": 100 + i, "name": ad, "type": "number", "value": v} for i, (ad, v) in enumerate(self.alanlar.items())]})
+
+    def post(self, url, json=None, headers=None, timeout=None):
+        self.post_cagrilar.append({"url": url, "json": json, "headers": headers})
+        return SahteYanit(self.post_yanitlari.pop(0) if self.post_yanitlari else {"status": "success"})
+
+
+AKADEMI_SOZLUK = os.environ.get("AKADEMI_SOZLUK") or os.path.expanduser("~/akademi/src/sozluk.json")
+
+
+class KavramTestleri(unittest.TestCase):
+    def test_veri_dosyasi(self):
+        ks = s.kavramlar()
+        self.assertGreaterEqual(len(ks), 20)
+        self.assertEqual(len({k["slug"] for k in ks}), len(ks))
+        for k in ks:
+            self.assertRegex(k["slug"], r"^[a-z0-9]+(-[a-z0-9]+)*$")
+            self.assertTrue(k["ad"].strip())
+            self.assertLessEqual(len(k["aciklama"]), 140, k["slug"])
+            # kanal çizgisi: al-sat / fiyat tahmini / kâr vaadi yok
+            self.assertEqual(s.supheli_kelimeler(k["ad"] + " " + k["aciklama"]), [], k["slug"])
+
+    @unittest.skipUnless(os.path.isfile(AKADEMI_SOZLUK), "akademi sözlüğü yerelde yok")
+    def test_sluglar_akademi_ile_eslesir(self):
+        with open(AKADEMI_SOZLUK, encoding="utf-8") as f:
+            akademi = {t["slug"] for t in json.load(f)["terimler"]}
+        bizde = {k["slug"] for k in s.kavramlar()}
+        self.assertEqual(bizde - akademi, set(), "akademi'de olmayan slug")
+        self.assertEqual(akademi - bizde, set(), "kavramlar.json'a eklenmemiş akademi terimi")
+
+    def test_secim_deterministik(self):
+        a = s.gunun_kavrami("2026-10-15")
+        self.assertEqual(a, s.gunun_kavrami("2026-10-15"))
+        from datetime import date
+        self.assertEqual(a, s.gunun_kavrami(date(2026, 10, 15)))
+        ks = s.kavramlar()
+        # ardışık günler sırayla döner, N gün sonra başa gelir
+        self.assertEqual(s.gunun_kavrami("2026-10-16"), ks[(ks.index(a) + 1) % len(ks)])
+        gunler = [s.gunun_kavrami(date.fromordinal(date(2026, 10, 15).toordinal() + i)) for i in range(len(ks))]
+        self.assertEqual(len({k["slug"] for k in gunler}), len(ks))
+
+    def test_veri_yoksa_none(self):
+        with mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
+            self.assertIsNone(s.gunun_kavrami("bozuk-tarih"))
+        self.assertIsNone(s.gunun_kavrami("2026-10-15", liste=()))
+
+    def test_manychat_metni_kavram_blogu(self):
+        k = {"slug": "rsi", "ad": "RSI", "aciklama": "Bir gösterge."}
+        t = s.manychat_metni(RAPOR, kavram=k)
+        self.assertTrue(t.startswith("📅 8 Ekim\n• "))
+        self.assertTrue(t.endswith("\n\n🧠 Günün kavramı: RSI\nBir gösterge.\n"
+                                   "→ akademi.dogukanlive.com/sozluk/rsi/"))
+        self.assertEqual(t.count("\n• "), 3)
+        self.assertEqual(s.manychat_metni(RAPOR, kavram=False).count("🧠"), 0)
+        self.assertIn("🧠 Günün kavramı: ", s.manychat_metni(RAPOR))      # varsayılan: tarihten seçilir
+
+    def test_manychat_metni_sinir_kavram_korunur(self):
+        uzun = {"id": "2026-10-15", "sections": {"agenda": [
+            {"title": f"{i}. " + ("çok uzun gündem başlığı " * 10)} for i in range(3)]}}
+        en_uzun = max(s.kavramlar(), key=lambda k: len(s.kavram_blogu(k)))
+        for sinir in (600, 400, 300):
+            with mock.patch.object(s, "MANYCHAT_SINIR", sinir), mock.patch.object(s, "BASLIK_SINIR", 200):
+                t = s.manychat_metni(uzun, kavram=en_uzun)
+            self.assertLessEqual(len(t), sinir)
+            self.assertTrue(t.endswith(s.kavram_blogu(en_uzun)), sinir)
+            self.assertTrue(t.startswith("📅 15 Ekim"))
+        with mock.patch.object(s, "MANYCHAT_SINIR", 400), mock.patch.object(s, "BASLIK_SINIR", 200):
+            t = s.manychat_metni(uzun, kavram=en_uzun)
+        self.assertEqual(t.count("\n• "), 3)                     # önce kısaltılır, adet korunur
+        self.assertIn("…", t)
+        for k in s.kavramlar():
+            self.assertLessEqual(len(s.manychat_metni(uzun, kavram=k)), 600)
+
+
+class GunlukSayacTestleri(unittest.TestCase):
+    def _calistir(self, http, ortam=None):
+        bildirim = []
+        with mock.patch("sys.stderr", new_callable=__import__("io").StringIO), \
+                mock.patch("sys.stdout", new_callable=__import__("io").StringIO) as out:
+            metin = s.manychat(RAPOR, ortam={"MANYCHAT_API_KEY": "MK"} if ortam is None else ortam, http=http, bildir=bildirim.append)
+        return metin, bildirim, out.getvalue()
+
+    def test_oku_bildir_sifirla_sonra_ozet(self):
+        http = SahteManyChat({"bugun_ozet": "x", "bugun_gun_sayac": 7, "bugun_sayac": 132})
+        metin, bildirim, _ = self._calistir(http)
+        self.assertEqual(http.get_cagrilar[0]["url"], "https://api.manychat.com/fb/page/getBotFields")
+        self.assertEqual(http.get_cagrilar[0]["headers"]["Authorization"], "Bearer MK")
+        self.assertEqual(bildirim, ["Dün 7 kişi DM'den BUGÜN yazdı (toplam: 132)"])
+        self.assertEqual([c["url"] for c in http.post_cagrilar],
+                         ["https://api.manychat.com/fb/page/setBotFieldByName",
+                          "https://api.manychat.com/fb/page/setBotField"])          # sıfırlama ÖZETTEN önce
+        self.assertEqual(http.post_cagrilar[0]["json"], {"field_name": "bugun_gun_sayac", "field_value": 0})
+        self.assertEqual(http.post_cagrilar[1]["json"]["field_id"], 5115106)
+        self.assertIsNotNone(metin)
+
+    def test_ondalik_ve_bos_deger(self):
+        http = SahteManyChat({"bugun_gun_sayac": 3.0})
+        _, bildirim, _ = self._calistir(http)
+        self.assertEqual(bildirim, ["Dün 3 kişi DM'den BUGÜN yazdı"])                   # toplam alanı yok
+        http = SahteManyChat({"bugun_gun_sayac": None, "bugun_sayac": "40"})
+        _, bildirim, _ = self._calistir(http)
+        self.assertEqual(bildirim, ["Dün 0 kişi DM'den BUGÜN yazdı (toplam: 40)"])
+        self.assertEqual([c["url"] for c in http.post_cagrilar], [s.MANYCHAT_API])     # 0 ise sıfırlama yok
+
+    def test_alan_yoksa_akis_kirilmaz(self):
+        http = SahteManyChat({"bugun_ozet": "x", "bugun_sayac": 5})
+        metin, bildirim, out = self._calistir(http)
+        self.assertIsNotNone(metin)
+        self.assertEqual(bildirim, [])                                    # sessiz: admin'e yazılmaz
+        self.assertIn("::warning::[manychat] ManyChat 'bugun_gun_sayac' alanı yok", out)
+        self.assertEqual([c["url"] for c in http.post_cagrilar], [s.MANYCHAT_API])
+
+    def test_hata_akisi_kirmaz_ve_secret_sizmaz(self):
+        for http in (SahteManyChat(get_hata=ConnectionError("Bearer MK zaman aşımı")),
+                     SahteManyChat(alanlar=None),
+                     SahteManyChat({"bugun_gun_sayac": "abc"})):
+            metin, bildirim, out = self._calistir(http)
+            self.assertIsNotNone(metin)
+            self.assertEqual(bildirim, [])
+            self.assertIn("::warning::[manychat] ManyChat günlük sayaç", out)
+            self.assertNotIn("MK", out.replace("[manychat]", ""))
+            self.assertEqual(http.post_cagrilar[-1]["url"], s.MANYCHAT_API)
+
+    def test_sifirlama_hatasi_akisi_kirmaz(self):
+        http = SahteManyChat({"bugun_gun_sayac": 4}, post_yanitlari=[{"status": "error"}, {"status": "success"}])
+        metin, bildirim, out = self._calistir(http)
+        self.assertIsNotNone(metin)
+        self.assertEqual(len(bildirim), 1)
+        self.assertIn("sıfırlanamadı", out)
+
+    def test_taslak_ve_kuru_sayaca_dokunmaz(self):
+        http = SahteManyChat({"bugun_gun_sayac": 9})
+        _, bildirim, _ = self._calistir(http, ortam={"MANYCHAT_API_KEY": "MK", "SOSYAL_TASLAK": "1"})
+        self.assertEqual((http.get_cagrilar, bildirim), ([], []))
+        self.assertEqual([c["url"] for c in http.post_cagrilar], [s.MANYCHAT_API])
+        http = SahteManyChat({"bugun_gun_sayac": 9})
+        self._calistir(http, ortam={"SOSYAL_KURU": "1"})
+        self.assertEqual((http.get_cagrilar, http.post_cagrilar), ([], []))
+
+    def test_anahtarsiz_hic_cagri_yok(self):
+        http = SahteManyChat({"bugun_gun_sayac": 9})
+        metin, _, _ = self._calistir(http, ortam={})
+        self.assertIsNone(metin)
+        self.assertEqual((http.get_cagrilar, http.post_cagrilar), ([], []))
+
+
+class IgKavramHapTestleri(unittest.TestCase):
+    def test_hap_metni_sigar(self):
+        metin, boyut = s.hap_metni_sec(40, 30, 28)
+        self.assertEqual((metin, boyut), (s.IG_HAP_METIN, 40))
+        self.assertLessEqual(s.hap_genisligi(metin, boyut, 30, 28) * (1 + s.IG_NABIZ_GENLIK), 1080 - 40)
+        # dar sınırda önce kısa varyant/küçük yazı; her durumda sınıra sığar
+        for maks in (800, 700, 600, 500):
+            metin, boyut = s.hap_metni_sec(40, 30, 28, maks=maks)
+            self.assertIn(metin, (s.IG_HAP_METIN, s.IG_HAP_METIN_KISA))
+            self.assertLessEqual(s.hap_genisligi(metin, boyut, 30, 28), maks)
+            if min(s.hap_genisligi(m, 40, 30, 28) for m in (s.IG_HAP_METIN, s.IG_HAP_METIN_KISA)) > maks:
+                self.assertLess(boyut, 40)
+        self.assertLess(s.hap_metni_sec(40, 30, 28, maks=500)[1], 40)
+
+    def test_kucuk_hap_png(self):
+        d = tempfile.mkdtemp()
+        from PIL import Image
+        yol = s.kucuk_hap(os.path.join(d, "hap.png"))
+        im = Image.open(yol)
+        self.assertEqual(im.height, s.IG_HAP_YUKSEKLIK + 8)
+        self.assertLessEqual(im.width - 8, s.IG_HAP_MAKS_GEN)
+
+    def test_iki_satir_cagri_sigar_ve_bantta(self):
+        from PIL import Image
+        self.assertGreater(s.IG_CAGRI2_Y, 1500)
+        self.assertLess(s.IG_CAGRI2_Y + s.IG_CAGRI2_YUKSEKLIK + 8, 1920 - 200)
+        for k in s.kavramlar() + ({"slug": "x", "ad": "Çok uzun bir kavram adı örneği burada", "aciklama": "."},):
+            hap = s.cagri_iki_satir(k)
+            self.assertLessEqual(hap.width - 8, s.IG_CAGRI2_MAKS_GEN, k["ad"])
+            ikonlu = s.cagri_iki_satir(k, ikon=Image.new("RGBA", (64, 64), (255, 0, 0, 255)))
+            self.assertLessEqual(ikonlu.width - 8, s.IG_CAGRI2_MAKS_GEN, k["ad"])
+        self.assertEqual(s.kavram_sorusu({"ad": "RSI"}), "Bugün: RSI nedir?")
+        d = tempfile.mkdtemp()
+        im = Image.open(s.cagri_katmani(os.path.join(d, "c.png"), kavram=s.kavramlar()[0]))
+        self.assertEqual(im.size, (1080, 1920))
+        kutu = im.getbbox()
+        self.assertGreaterEqual(kutu[0], 40)
+        self.assertLessEqual(kutu[2], 1040)
+        self.assertGreaterEqual(kutu[1], s.IG_CAGRI2_Y)
+
+    def test_eski_varyanta_gunun_kavrami_gider(self):
+        cagri = {}
+
+        def eski(girdi, cikti, calisma, kavram=None):
+            cagri["kavram"] = kavram
+            return cikti
+        with mock.patch("sys.stderr", new_callable=__import__("io").StringIO):
+            s.ig_hikaye_uret(RAPOR, "v.mp4", "ig.mp4", tempfile.mkdtemp(), eski=eski, ortam={"IG_FRAGMAN": "kapali"})
+        self.assertEqual(cagri["kavram"], s.gunun_kavrami("2026-10-08"))
 
 
 if __name__ == "__main__":

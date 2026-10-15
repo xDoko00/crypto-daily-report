@@ -8,7 +8,9 @@ Sosyal medya + ManyChat otomasyonu (günlük, best-effort)
      ve Buffer üzerinden Instagram HİKÂYE + X + TikTok'a `SOSYAL_GECIKME_DK`
      (vars. 30) dakika sonrasına zamanlar. Admin Telegram'a saat + gönderi
      id'leri gider; iptal Buffer'dan silerek yapılır.
-  2. `manychat` — ManyChat bot alanı `bugun_ozet`'i günün 3 başlığıyla günceller.
+  2. `manychat` — ManyChat bot alanı `bugun_ozet`'i günün 3 başlığı + "günün kavramı"
+     (kavramlar.json, akademi sözlüğünden; tarihe göre deterministik) ile günceller.
+     Önce günlük sayaç `bugun_gun_sayac`ı okur, admin'e "Dün N kişi..." yazar, sıfırlar.
 
 Metinler şablonla üretilir (LLM yok). Kanal çizgisi: kâr vaadi / al-sat /
 fiyat tahmini yok — şüpheli kelime görülen platforma gönderilmez, admin uyarılır.
@@ -33,6 +35,7 @@ Kullanım:
 """
 
 import argparse
+import functools
 import json
 import os
 import re
@@ -77,6 +80,17 @@ VARSAYILAN_GECIKME_DK = 30
 
 MANYCHAT_API = "https://api.manychat.com/fb/page/setBotField"
 MANYCHAT_ALAN_ID = 5115106        # bugun_ozet
+MANYCHAT_ALANLAR_API = "https://api.manychat.com/fb/page/getBotFields"
+MANYCHAT_ADLA_API = "https://api.manychat.com/fb/page/setBotFieldByName"
+# DM'de BUGÜN yazanlar: flow her çalışmada ikisini de +1 yapar. Günlük olanı her sabah
+# okunup admin'e raporlanır ve sıfırlanır; toplam olanı (akademi haftalık huni okur) dokunulmaz.
+GUNLUK_SAYAC_ALANI = "bugun_gun_sayac"
+TOPLAM_SAYAC_ALANI = "bugun_sayac"
+
+# Günün kavramı: akademi sözlüğünden (src/sozluk.json) sadeleştirilmiş kopya; Actions'ta
+# akademi reposu yok. Slug eşleşmesi test_sosyal'da denetlenir.
+KAVRAM_DOSYASI = os.path.join(KOK, "kavramlar.json")
+SOZLUK_URL = "akademi.dogukanlive.com/sozluk"
 
 RELEASE_TAG = "gunluk-video"
 ASSET_SAKLAMA_GUN = 7
@@ -211,14 +225,55 @@ def tiktok_metni(rapor):
     return _madde_metni(ust, basliklar(rapor, 3), alt, TIKTOK_SINIR)
 
 
-def manychat_metni(rapor):
+@functools.lru_cache(maxsize=4)
+def kavramlar(yol=KAVRAM_DOSYASI):
+    """-> tuple(dict(slug, ad, aciklama)). Dosya sırası = seçim sırası."""
+    with open(yol, encoding="utf-8") as f:
+        veri = json.load(f)
+    return tuple({"slug": k["slug"], "ad": k["ad"], "aciklama": k["aciklama"]} for k in veri["kavramlar"])
+
+
+def gunun_kavrami(gun, liste=None):
+    """Tarihe göre deterministik kavram (aynı gün hep aynı; ardışık günler sırayla döner).
+
+    `gun`: date ya da 'YYYY-MM-DD'. -> dict ya da None (veri okunamazsa; asla fırlatmaz)."""
+    try:
+        liste = kavramlar() if liste is None else liste
+        if not liste:
+            return None
+        g = gun if isinstance(gun, date) else date.fromisoformat(str(gun))
+        return liste[g.toordinal() % len(liste)]
+    except Exception as e:                    # noqa: BLE001
+        log(f"[uyarı] günün kavramı seçilemedi: {type(e).__name__}: {e}")
+        return None
+
+
+def kavram_blogu(kavram):
+    return (f"🧠 Günün kavramı: {kavram['ad']}\n{kavram['aciklama']}\n"
+            f"→ {SOZLUK_URL}/{kavram['slug']}/")
+
+
+def manychat_metni(rapor, kavram=None):
+    """📅 tarih + 3 başlık (+ boş satır + günün kavramı bloğu). Sınırı aşarsa önce başlıklar
+    kısaltılır, sonra azaltılır; kavram bloğu korunur. kavram=False: bloksuz (eski metin)."""
     bas = basliklar(rapor, 3)
     ust = f"📅 {tarih_kisa(rapor)}"
-    for n in range(len(bas), -1, -1):
-        metin = "\n".join([ust] + [f"• {b}" for b in bas[:n]])
+    if kavram is None:
+        kavram = gunun_kavrami(rapor.get("id"))
+    alt = f"\n\n{kavram_blogu(kavram)}" if kavram else ""
+
+    def kur(b):
+        return "\n".join([ust] + [f"• {x}" for x in b]) + alt
+
+    for sinir in (BASLIK_SINIR, 70, 55, 40, 30):
+        metin = kur([_kisalt(b, sinir) for b in bas])
         if len(metin) <= MANYCHAT_SINIR:
             return metin
-    return ust
+    for n in range(len(bas) - 1, -1, -1):
+        metin = kur([_kisalt(b, 30) for b in bas[:n]])
+        if len(metin) <= MANYCHAT_SINIR:
+            return metin
+    return (ust + alt)[:MANYCHAT_SINIR]
 
 
 # --------------------------------------------------------------------------- #
@@ -432,10 +487,14 @@ def manychat_govdesi(metin):
     return {"field_id": MANYCHAT_ALAN_ID, "field_value": metin}
 
 
+def _manychat_basliklari(anahtar):
+    return {"Authorization": f"Bearer {anahtar}", "Content-Type": "application/json",
+            "Accept": "application/json"}
+
+
 def manychat_guncelle(rapor, anahtar, http=None, kuru=False):
     metin = manychat_metni(rapor)
-    basliklar_ = {"Authorization": f"Bearer {anahtar}", "Content-Type": "application/json",
-                  "Accept": "application/json"}
+    basliklar_ = _manychat_basliklari(anahtar)
     govde = manychat_govdesi(metin)
     if kuru:
         log("[manychat][KURU] POST " + MANYCHAT_API + " " + json.dumps(maskeli_baslik(basliklar_)))
@@ -450,6 +509,75 @@ def manychat_guncelle(rapor, anahtar, http=None, kuru=False):
     if d.get("status") != "success":
         raise RuntimeError(f"ManyChat yanıtı: HTTP {getattr(r, 'status_code', '?')} {gizle(d)[:300]}")
     return metin
+
+
+def manychat_alanlari(anahtar, http=None):
+    """GET getBotFields -> {alan adı: değer}. Hata/başarısız yanıtta fırlatır."""
+    http = http or _http()
+    r = http.get(MANYCHAT_ALANLAR_API, headers=_manychat_basliklari(anahtar), timeout=HTTP_TIMEOUT)
+    try:
+        d = r.json()
+    except ValueError:
+        d = {}
+    if d.get("status") != "success":
+        raise RuntimeError(f"ManyChat getBotFields: HTTP {getattr(r, 'status_code', '?')} {gizle(d)[:300]}")
+    return {a.get("name"): a.get("value") for a in (d.get("data") or []) if isinstance(a, dict)}
+
+
+def manychat_alan_yaz(anahtar, ad, deger, http=None):
+    """POST setBotFieldByName. Başarısızsa fırlatır."""
+    http = http or _http()
+    r = http.post(MANYCHAT_ADLA_API, json={"field_name": ad, "field_value": deger},
+                  headers=_manychat_basliklari(anahtar), timeout=HTTP_TIMEOUT)
+    try:
+        d = r.json()
+    except ValueError:
+        d = {}
+    if d.get("status") != "success":
+        raise RuntimeError(f"ManyChat setBotFieldByName({ad}): HTTP {getattr(r, 'status_code', '?')} "
+                           f"{gizle(d)[:300]}")
+
+
+def _sayi(v):
+    """Bot alanı değeri -> int (boş/None = 0). Sayıya çevrilemezse ValueError."""
+    if v is None or (isinstance(v, str) and not v.strip()):
+        return 0
+    return int(float(v))
+
+
+def gunluk_sayac(anahtar, http=None, bildir=None, kuru=False):
+    """`bugun_gun_sayac`ı okur -> admin'e "Dün N kişi..." -> 0'a sıfırlar. -> N ya da None.
+
+    Alan yoksa / hata olursa yalnız uyarı loglanır (admin'e bildirim yok); asla fırlatmaz."""
+    if kuru:
+        log(f"[manychat][KURU] GET {MANYCHAT_ALANLAR_API} → {GUNLUK_SAYAC_ALANI} okunur, admin'e "
+            f"bildirilir, POST {MANYCHAT_ADLA_API} ile 0'a sıfırlanır")
+        return None
+    try:
+        alanlar = manychat_alanlari(anahtar, http=http)
+        if GUNLUK_SAYAC_ALANI not in alanlar:
+            m = f"ManyChat '{GUNLUK_SAYAC_ALANI}' alanı yok — günlük sayaç raporu atlandı."
+            log("[uyarı] " + m)
+            aktions_uyari("[manychat] " + m)
+            return None
+        n = _sayi(alanlar[GUNLUK_SAYAC_ALANI])
+        try:
+            toplam = _sayi(alanlar.get(TOPLAM_SAYAC_ALANI)) if TOPLAM_SAYAC_ALANI in alanlar else None
+        except ValueError:
+            toplam = None
+        metin = f"Dün {n} kişi DM'den BUGÜN yazdı" + (f" (toplam: {toplam})" if toplam is not None else "")
+        if bildir:
+            bildir(metin)
+        log(f"[manychat] {metin}")
+        if n != 0:
+            manychat_alan_yaz(anahtar, GUNLUK_SAYAC_ALANI, 0, http=http)
+            log(f"[manychat] {GUNLUK_SAYAC_ALANI} sıfırlandı.")
+        return n
+    except Exception as e:                    # noqa: BLE001
+        m = f"ManyChat günlük sayaç okunamadı/sıfırlanamadı: {type(e).__name__}: {gizle(e)[:300]}"
+        log("[uyarı] " + m)
+        aktions_uyari("[manychat] " + m)
+        return None
 
 
 # --------------------------------------------------------------------------- #
@@ -572,12 +700,21 @@ def url_erisilebilir(url, http=None):
 # --------------------------------------------------------------------------- #
 # Instagram hikâyesi: ~20 sn'lik FRAGMAN (video/fragman.py: kanca + başlıklar +
 # BTC grafikli "DM'den BUGÜN yaz" kapanışı). Fragman üretilemezse eski varyant:
-# tam video boyunca küçük "DM'den BUGÜN yaz" hapı (her ~5 sn kısa nabız) + son
+# tam video boyunca küçük "Günün kavramı DM'de · BUGÜN yaz" hapı (her ~5 sn kısa nabız) + son
 # ~3 sn'de büyük çağrı (60 sn sınırı için hızlandırma). X ve TikTok'a tam video gider.
 # --------------------------------------------------------------------------- #
 
 IG_CAGRI_SN = 3.0
 IG_CAGRI_METIN = "DM'den BUGÜN yaz"
+# Küçük hap: günün kavramı DM'de. Uzun metin sığmazsa kısa varyant, o da sığmazsa yazı
+# küçülür (hap_metni_sec). Genişlik sınırı gölgesiz; nabızla %12 büyüse de 1080'e sığar.
+IG_HAP_METIN = "Günün kavramı DM'de · BUGÜN yaz"
+IG_HAP_METIN_KISA = "Günün kavramı DM'de → BUGÜN yaz"
+IG_HAP_MAKS_GEN = 900
+# Son saniyelerin iki satırlı çağrısı (kavram varsa): "Bugün: RSI nedir?" + "DM'den BUGÜN yaz".
+IG_CAGRI2_Y = 1548                # y 1548-1698: boş bant içinde, IG yanıt kutusunun (y>1720) üstü
+IG_CAGRI2_YUKSEKLIK = 150
+IG_CAGRI2_MAKS_GEN = 1000
 # Yerleşim (1080x1920): kartlar/altyazı (merkez cizim.ALTYAZI_Y=1430, iki satırda
 # alt kenar ~1500), Doğan balonu (y 1096-1328) ve ilerleme çubuğu (üst) dışında
 # kalan boş bant y≈1540-1700. IG hikâye arayüzü üst ~250 px ve alt ~200 px'i
@@ -597,14 +734,38 @@ IG_FRAGMAN_BAYRAK = "IG_FRAGMAN"  # =kapali: fragman yerine eski tam video varya
 IG_FRAGMAN_SURE_SN = 240          # fragman alt süreci üst sınırı (adım sınırı 10 dk)
 
 
-def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True):
+def hap_genisligi(metin, yazi_boyut, ic, ok_gen):
+    """hap_ciz'in gölgesiz genişliği (px)."""
+    from video import cizim as cz
+    return int(ic + cz.font(yazi_boyut, 800).getlength(metin) + int(ok_gen * 0.55) + ok_gen + ic)
+
+
+def hap_metni_sec(yazi_boyut, ic, ok_gen, maks=IG_HAP_MAKS_GEN):
+    """-> (metin, yazı boyutu): önce uzun, sonra kısa varyant; ikisi de sığmazsa yazı küçülür."""
+    for boyut in range(yazi_boyut, 19, -2):
+        for metin in (IG_HAP_METIN, IG_HAP_METIN_KISA):
+            if hap_genisligi(metin, boyut, ic, ok_gen) <= maks:
+                return metin, boyut
+    return IG_HAP_METIN, 20
+
+
+def _asagi_ok(d, ox, orta, ok_gen):
+    sap = max(ok_gen * 0.3, 4)
+    u = ok_gen * 0.8
+    d.rectangle((ox + ok_gen / 2 - sap / 2, orta - u * 0.95, ox + ok_gen / 2 + sap / 2, orta + u * 0.15),
+                fill=(0, 0, 0, 255))
+    d.polygon([(ox, orta + u * 0.05), (ox + ok_gen, orta + u * 0.05), (ox + ok_gen / 2, orta + u * 0.8)],
+              fill=(0, 0, 0, 255))
+
+
+def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True, metin=IG_CAGRI_METIN):
     """Kırpılmış RGBA hap: sarı zemin, siyah yazı + çizilmiş aşağı ok (emoji fontuna güvenmez)."""
     from PIL import Image, ImageDraw
     from video import cizim as cz
     f = cz.font(yazi_boyut, 800)
-    yazi_gen = f.getlength(IG_CAGRI_METIN)
+    yazi_gen = f.getlength(metin)
     bosluk = int(ok_gen * 0.55)
-    gen = int(ic + yazi_gen + bosluk + ok_gen + ic)
+    gen = hap_genisligi(metin, yazi_boyut, ic, ok_gen)
     pay = 8 if golge else 0
     im = Image.new("RGBA", (gen + pay, yukseklik + pay), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
@@ -613,30 +774,65 @@ def hap_ciz(yukseklik, yazi_boyut, ic, ok_gen, golge=True):
         d.rounded_rectangle((4, 6, gen + 3, yukseklik + 5), radius=r, fill=(0, 0, 0, 110))
     d.rounded_rectangle((0, 0, gen - 1, yukseklik - 1), radius=r, fill=cz.ACCENT + (255,))
     orta = yukseklik // 2
-    d.text((ic, orta), IG_CAGRI_METIN, font=f, fill=(0, 0, 0, 255), anchor="lm")
-    ox = ic + yazi_gen + bosluk
-    sap = max(ok_gen * 0.3, 4)
-    u = ok_gen * 0.8
-    d.rectangle((ox + ok_gen / 2 - sap / 2, orta - u * 0.95, ox + ok_gen / 2 + sap / 2, orta + u * 0.15),
-                fill=(0, 0, 0, 255))
-    d.polygon([(ox, orta + u * 0.05), (ox + ok_gen, orta + u * 0.05), (ox + ok_gen / 2, orta + u * 0.8)],
-              fill=(0, 0, 0, 255))
+    d.text((ic, orta), metin, font=f, fill=(0, 0, 0, 255), anchor="lm")
+    _asagi_ok(d, ic + yazi_gen + bosluk, orta, ok_gen)
     return im
 
 
-def cagri_katmani(yol, w=1080, h=1920):
-    """Son saniyelerin büyük çağrısı: saydam 1080x1920 PNG."""
+def kavram_sorusu(kavram):
+    return f"Bugün: {kavram['ad']} nedir?"
+
+
+def cagri_iki_satir(kavram, ikon=None, maks=IG_CAGRI2_MAKS_GEN):
+    """İki satırlı RGBA çağrı hapı: "Bugün: <kavram> nedir?" + "DM'den BUGÜN yaz".
+    `ikon` (RGBA, ör. 📩 emojisi) verilirse solda; yoksa sağda çizilmiş aşağı ok."""
+    from PIL import Image, ImageDraw
+    from video import cizim as cz
+    Y, ic, ara, ok_gen = IG_CAGRI2_YUKSEKLIK, 48, 22, 40
+    ust = kavram_sorusu(kavram)
+    sabit = ic * 2 + ((ikon.width + ara) if ikon is not None else (ara + ok_gen))
+    b1, b2 = 44, 56
+    while True:
+        f1, f2 = cz.font(b1, 700), cz.font(b2, 800)
+        yazi = max(f1.getlength(ust), f2.getlength(IG_CAGRI_METIN))
+        if sabit + yazi <= maks or b1 <= 24:
+            break
+        b1, b2 = b1 - 2, max(b2 - 2, 40)
+    gen = int(sabit + yazi)
+    im = Image.new("RGBA", (gen + 8, Y + 8), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    r = 48
+    d.rounded_rectangle((4, 6, gen + 3, Y + 5), radius=r, fill=(0, 0, 0, 110))
+    d.rounded_rectangle((0, 0, gen - 1, Y - 1), radius=r, fill=cz.ACCENT + (255,))
+    x = ic
+    if ikon is not None:
+        im.alpha_composite(ikon, (ic, (Y - ikon.height) // 2))
+        x = ic + ikon.width + ara
+    d.text((x, int(Y * 0.31)), ust, font=f1, fill=(0, 0, 0, 255), anchor="lm")
+    d.text((x, int(Y * 0.69)), IG_CAGRI_METIN, font=f2, fill=(0, 0, 0, 255), anchor="lm")
+    if ikon is None:
+        _asagi_ok(d, x + yazi + ara, Y // 2, ok_gen)
+    return im
+
+
+def cagri_katmani(yol, w=1080, h=1920, kavram=None):
+    """Son saniyelerin büyük çağrısı: saydam 1080x1920 PNG. Kavram varsa iki satırlı."""
     from PIL import Image
-    hap = hap_ciz(IG_CAGRI_YUKSEKLIK, 58, 44, 40)
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    im.alpha_composite(hap, ((w - hap.width) // 2, IG_CAGRI_Y))
+    if kavram:
+        hap = cagri_iki_satir(kavram)
+        im.alpha_composite(hap, ((w - hap.width) // 2, IG_CAGRI2_Y))
+    else:
+        hap = hap_ciz(IG_CAGRI_YUKSEKLIK, 58, 44, 40)
+        im.alpha_composite(hap, ((w - hap.width) // 2, IG_CAGRI_Y))
     im.save(yol)
     return yol
 
 
 def kucuk_hap(yol):
-    """Video boyunca duran küçük hap (kırpılmış PNG)."""
-    hap_ciz(IG_HAP_YUKSEKLIK, 40, 30, 28).save(yol)
+    """Video boyunca duran küçük hap (kırpılmış PNG): "Günün kavramı DM'de · BUGÜN yaz"."""
+    metin, boyut = hap_metni_sec(40, 30, 28)
+    hap_ciz(IG_HAP_YUKSEKLIK, boyut, 30, 28, metin=metin).save(yol)
     return yol
 
 
@@ -719,11 +915,12 @@ def _ses_var_mi(yol):
     return bool(p.stdout.strip())
 
 
-def ig_varyant_uret(girdi, cikti, calisma):
+def ig_varyant_uret(girdi, cikti, calisma, kavram=None):
     sure = _sure(girdi)
     katsayi = ig_hiz_katsayisi(sure)          # çok uzunsa boşuna üretmeden IgCokUzun
     kucuk = kucuk_hap(os.path.join(calisma, "ig-hap.png"))
-    buyuk = cagri_katmani(os.path.join(calisma, "ig-cagri.png"))
+    cagri_yolu = os.path.join(calisma, "ig-cagri.png")
+    buyuk = cagri_katmani(cagri_yolu, kavram=kavram) if kavram else cagri_katmani(cagri_yolu)
     hedef = os.path.join(calisma, "ig-ham.mp4") if katsayi else cikti
     try:
         subprocess.run(ig_varyant_komutu(girdi, kucuk, buyuk, hedef, sure), check=True)
@@ -788,7 +985,7 @@ def ig_hikaye_uret(rapor, girdi, cikti, calisma, fragman=None, eski=None, ortam=
             log("[uyarı] " + m)
             if notlar is not None:
                 notlar.append(m)
-    return eski(girdi, cikti, calisma)
+    return eski(girdi, cikti, calisma, kavram=gunun_kavrami(rapor.get("id")))
 
 
 # --------------------------------------------------------------------------- #
@@ -980,7 +1177,12 @@ def paylas(rapor, video, ortam=None, buffer=None, release=None, bildir=None, sim
 
 
 def manychat(rapor, ortam=None, http=None, bildir=None):
-    """bugun_ozet alanını günceller. -> metin ya da None. Asla fırlatmaz."""
+    """Önce günlük sayaç raporu + sıfırlama, sonra bugun_ozet güncellemesi.
+    -> metin ya da None. Asla fırlatmaz.
+
+    Günde bir kez çalışır: iş akışı bu adımı yalnız rapor O çalışmada gönderildiyse
+    (VIDEO_RAPOR dosyası varsa) koşar; geç nöbetçiler atlar. Taslak testinde
+    (SOSYAL_TASLAK=1) sayaç okunmaz/sıfırlanmaz."""
     ortam = os.environ if ortam is None else ortam
     kuru = kuru_mu(ortam)
     bildir = bildir or (lambda m: telegram_bildir(m, ortam, kuru=kuru))
@@ -988,6 +1190,10 @@ def manychat(rapor, ortam=None, http=None, bildir=None):
     if not anahtar and not kuru:
         aktions_uyari("MANYCHAT_API_KEY tanımlı değil — ManyChat güncellemesi atlandı.")
         return None
+    if taslak_mi(ortam):
+        log("[manychat] taslak testi — günlük sayaç raporu/sıfırlama atlandı.")
+    else:
+        gunluk_sayac(anahtar, http=http, bildir=bildir, kuru=kuru)
     try:
         metin = manychat_guncelle(rapor, anahtar, http=http, kuru=kuru)
         log("[manychat] bugun_ozet güncellendi.")
