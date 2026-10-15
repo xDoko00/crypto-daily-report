@@ -570,7 +570,15 @@ def gunluk_sayac(anahtar, http=None, bildir=None, kuru=False):
             bildir(metin)
         log(f"[manychat] {metin}")
         if n != 0:
-            manychat_alan_yaz(anahtar, GUNLUK_SAYAC_ALANI, 0, http=http)
+            try:
+                manychat_alan_yaz(anahtar, GUNLUK_SAYAC_ALANI, 0, http=http)
+            except Exception as e:            # noqa: BLE001
+                m = f"ManyChat günlük sayaç sıfırlanamadı: {type(e).__name__}: {gizle(e)[:300]}"
+                log("[uyarı] " + m)
+                aktions_uyari("[manychat] " + m)
+                if bildir:
+                    bildir(f"⚠️ {GUNLUK_SAYAC_ALANI} sıfırlanamadı, yarınki sayı birikimli olacak.")
+                return n
             log(f"[manychat] {GUNLUK_SAYAC_ALANI} sıfırlandı.")
         return n
     except Exception as e:                    # noqa: BLE001

@@ -1058,8 +1058,10 @@ class GunlukSayacTestleri(unittest.TestCase):
         http = SahteManyChat({"bugun_gun_sayac": 4}, post_yanitlari=[{"status": "error"}, {"status": "success"}])
         metin, bildirim, out = self._calistir(http)
         self.assertIsNotNone(metin)
-        self.assertEqual(len(bildirim), 1)
-        self.assertIn("sıfırlanamadı", out)
+        self.assertEqual(bildirim, ["Dün 4 kişi DM'den BUGÜN yazdı",
+                                    "⚠️ bugun_gun_sayac sıfırlanamadı, yarınki sayı birikimli olacak."])
+        self.assertIn("::warning::[manychat] ManyChat günlük sayaç sıfırlanamadı", out)
+        self.assertEqual([c["url"] for c in http.post_cagrilar], [s.MANYCHAT_ADLA_API, s.MANYCHAT_API])
 
     def test_taslak_ve_kuru_sayaca_dokunmaz(self):
         http = SahteManyChat({"bugun_gun_sayac": 9})
