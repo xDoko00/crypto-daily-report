@@ -357,14 +357,21 @@ def uret(rapor, calisma, cikti, durum=None, grafik_verisi=None, kare_klasoru=Non
 # IG katmanları: küçük nabızlı hap (bölüm 1-2) + büyük "📩 DM'den BUGÜN yaz" (kapanış)
 # --------------------------------------------------------------------------- #
 
-def cagri_katmani(yol, w=1080, h=1920):
-    """Büyük çağrı: 📩 + DM'den BUGÜN yaz (sarı hap, sosyal.hap_ciz ölçüleri).
+def cagri_katmani(yol, w=1080, h=1920, kavram=None):
+    """Büyük çağrı: 📩 + DM'den BUGÜN yaz (sarı hap, sosyal.hap_ciz ölçüleri); kavram
+    varsa iki satır: "Bugün: <kavram> nedir?" + "DM'den BUGÜN yaz".
     Emoji fontu yoksa sosyal.cagri_katmani (çizilmiş ok)."""
     import sosyal
     from PIL import Image
     e = bg.emoji("\U0001F4E9", 64)
     if e is None:
-        return sosyal.cagri_katmani(yol, w, h)
+        return sosyal.cagri_katmani(yol, w, h, kavram=kavram)
+    if kavram:
+        hap = sosyal.cagri_iki_satir(kavram, ikon=e)
+        im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        im.alpha_composite(hap, ((w - hap.width) // 2, sosyal.IG_CAGRI2_Y))
+        im.save(yol)
+        return yol
     Y, ic = sosyal.IG_CAGRI_YUKSEKLIK, 44
     f = cz.font(58, 800)
     tg = f.getlength(sosyal.IG_CAGRI_METIN)
@@ -389,7 +396,8 @@ def ig_fragman_uret(rapor, cikti, calisma, grafik_verisi=None):
     ham = os.path.join(is_klasoru, "fragman-ham.mp4")
     oz = uret(rapor, is_klasoru, ham, grafik_verisi=grafik_verisi)
     kucuk = sosyal.kucuk_hap(os.path.join(is_klasoru, "ig-hap.png"))
-    buyuk = cagri_katmani(os.path.join(is_klasoru, "ig-cagri.png"))
+    buyuk = cagri_katmani(os.path.join(is_klasoru, "ig-cagri.png"),
+                          kavram=sosyal.gunun_kavrami(rapor.get("id")))
     top = oz["sure"]
     cagri_sn = top - oz["cagri_bas"]
     try:

@@ -1,0 +1,120 @@
+{
+ "_not": "Günün kavramı (ManyChat BUGÜN + IG hikâyesi). Kaynak: akademi src/sozluk.json ('kisa' alanı, stablecoin'de 'garanti' kelimesi kanal filtresine takıldığı için sadeleştirildi). Sıra = seçim sırası (tarih ordinal mod adet); slug'lar akademi ile eşleşmeli (test_sosyal).",
+ "kavramlar": [
+  {
+   "slug": "blockchain",
+   "ad": "Blockchain",
+   "aciklama": "Herkesin görebildiği ama kimsenin silemediği ortak bir defter."
+  },
+  {
+   "slug": "kripto-cuzdan",
+   "ad": "Kripto cüzdan",
+   "aciklama": "Paranın durduğu yer değil, paranın anahtarının durduğu yer."
+  },
+  {
+   "slug": "seed-phrase",
+   "ad": "Seed phrase",
+   "aciklama": "Cüzdanını geri getiren 12 veya 24 kelime. Kaybedersen kimse yardım edemez."
+  },
+  {
+   "slug": "cex",
+   "ad": "CEX",
+   "aciklama": "Kriptonun bankası: paran senin cüzdanında değil, borsanın hesabında durur."
+  },
+  {
+   "slug": "dex",
+   "ad": "DEX",
+   "aciklama": "Aracı yok: işlemi kendi cüzdanınla yaparsın, hata yaparsan geri dönüş de yoktur."
+  },
+  {
+   "slug": "spot",
+   "ad": "Spot işlem",
+   "aciklama": "En basit alım satım: neyin varsa onun kadarını alırsın, borcun olmaz."
+  },
+  {
+   "slug": "kaldirac",
+   "ad": "Kaldıraç",
+   "aciklama": "Senin olmayan parayla işlem yapmak: kazanç da kayıp da aynı oranda büyür."
+  },
+  {
+   "slug": "likidasyon",
+   "ad": "Likidasyon",
+   "aciklama": "Teminatın bitmeye yaklaşınca borsanın pozisyonunu senin yerine zorla kapatması."
+  },
+  {
+   "slug": "stop-loss",
+   "ad": "Stop loss",
+   "aciklama": "\"Fiyat şuraya düşerse otomatik çık\" emri."
+  },
+  {
+   "slug": "market-cap",
+   "ad": "Market cap",
+   "aciklama": "Fiyat × dolaşımdaki adet. Ucuz görünen coin ucuz olmayabilir."
+  },
+  {
+   "slug": "dca",
+   "ad": "DCA",
+   "aciklama": "Tek seferde değil, düzenli aralıklarla aynı miktarda alım yapmak."
+  },
+  {
+   "slug": "altcoin",
+   "ad": "Altcoin",
+   "aciklama": "Bitcoin dışındaki bütün coinler."
+  },
+  {
+   "slug": "boga-ayi-piyasasi",
+   "ad": "Boğa ve ayı piyasası",
+   "aciklama": "Boğa yükselişi, ayı düşüşü anlatır. Adı hayvanların vuruş yönünden gelir."
+  },
+  {
+   "slug": "halving",
+   "ad": "Halving",
+   "aciklama": "Bitcoin madencilerine verilen ödülün dört yılda bir yarıya inmesi."
+  },
+  {
+   "slug": "staking",
+   "ad": "Staking",
+   "aciklama": "Kriptonu bir ağda kilitleyip karşılığında coin olarak ödül almak."
+  },
+  {
+   "slug": "stablecoin",
+   "ad": "Stablecoin",
+   "aciklama": "Dolara sabitlenmeye çalışan kripto. Her zaman sabit kalamayabilir."
+  },
+  {
+   "slug": "rug-pull",
+   "ad": "Rug pull",
+   "aciklama": "Proje sahiplerinin toplanan parayı çekip ortadan kaybolması."
+  },
+  {
+   "slug": "pump-and-dump",
+   "ad": "Pump and dump",
+   "aciklama": "Önce sana aldırıp fiyatı yükseltmek, sonra senin üstüne satmak."
+  },
+  {
+   "slug": "phishing",
+   "ad": "Phishing",
+   "aciklama": "Sahte site ve sahte bağlantıyla cüzdan bilgilerini çalma yöntemi."
+  },
+  {
+   "slug": "fomo",
+   "ad": "FOMO",
+   "aciklama": "\"Kaçırıyorum\" duygusuyla, plansız şekilde alım yapmak."
+  },
+  {
+   "slug": "fud",
+   "ad": "FUD",
+   "aciklama": "Korku yayarak insanları satmaya itme; bazen gerçek, bazen manipülasyon."
+  },
+  {
+   "slug": "rsi",
+   "ad": "RSI",
+   "aciklama": "Son dönemdeki yükselişlerin düşüşlere göre ne kadar güçlü olduğunu 0 ile 100 arasında gösteren bir gösterge."
+  },
+  {
+   "slug": "hareketli-ortalama",
+   "ad": "Hareketli ortalama",
+   "aciklama": "Fiyatın belli bir dönemdeki ortalaması. Her yeni günle güncellenir, günlük dalgalanmayı yumuşatır."
+  }
+ ]
+}
