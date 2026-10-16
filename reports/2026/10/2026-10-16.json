@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-16",
+  "language": "tr",
+  "title": "16 Ekim 2026, Cuma",
+  "publishedAt": "2026-10-16T07:50:59+03:00",
+  "updatedAt": "2026-10-16T07:50:59+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-16T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 81963,
+        "change24h": 0.5623403181062046
+      },
+      "ETH": {
+        "priceUsd": 2439.52,
+        "change24h": 2.5004542804083836
+      },
+      "SOL": {
+        "priceUsd": 105.33,
+        "change24h": 1.3052426151360872
+      },
+      "BNB": {
+        "priceUsd": 728.52,
+        "change24h": 0.8283415632139681
+      },
+      "XRP": {
+        "priceUsd": 1.33,
+        "change24h": 0.7115501685168275
+      }
+    },
+    "btcDominance": 59.269395841805725,
+    "ethDominance": 10.713333738686346,
+    "totalMarketCapUsd": 2772818849117.707,
+    "volume24hUsd": 1.0087036525222155e+21,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 63,
+      "label": "Açgözlülük",
+      "previousValue": 53,
+      "weekAgoValue": 59
+    }
+  },
+  "brief": {
+    "mood": "Kararsız",
+    "why": "Eylül ayı ÜFE verisi yıllık yüzde 6.3 ile dört yılın en sert yükselişini kaydedip Fed'in Ekim toplantısında faiz artışı ihtimalini masada tutarken, borç yükü endişesiyle derinleşen yapay zeka ve çip hisseleri satış dalgası risk iştahını baskılamaya çalıştı; buna karşın kripto piyasası bu baskıyı büyük ölçüde absorbe ederek yükseldi.",
+    "criticalEvents": [
+      {
+        "timeTr": "06:30",
+        "title": "Fed Başkanı Warsh IMF toplantısında konuşacak"
+      },
+      {
+        "timeTr": "11:00",
+        "title": "Deribit'te 16 milyar dolarlık BTC opsiyon vadesi"
+      }
+    ],
+    "mainRisk": "AI ve çip şirketlerindeki borç kaygılarının derinleşmesi, risk iştahını yeniden bozup kriptoya sıçrayabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD ÜFE verisi TÜFE'yi teyit edip Fed'in Ekim faiz artış ihtimalini daha da yükseltecek mi",
+        "outcome": "Evet, ÜFE yıllık yüzde 6.3 ile beklentinin oldukça üzerinde gelip TÜFE'deki yükselişi teyit etti, ancak piyasa yine de yüzde 66 ihtimalle duraksama fiyatlıyor; isabetli ama faiz artışı henüz baskın senaryo değil."
+      },
+      {
+        "item": "BTC spot ETF'lerindeki iki günlük net giriş serisi üçüncü güne taşınacak mı",
+        "outcome": "Hayır, 14 Ekim'de seri bozuldu ve Bitcoin ile Ether ETF'lerinden toplam yaklaşık 391 milyon dolar net çıkış kaydedildi."
+      },
+      {
+        "item": "Çip hisselerindeki satış dalgası derinleşirse kripto piyasasında yeni bir tasfiye dalgası görülecek mi",
+        "outcome": "Satış dalgası gerçekten derinleşti ve çip hisseleri altı seansta 1.6 trilyon doların üzerinde değer kaybetti, ancak kriptoda beklenen yeni tasfiye dalgası görülmedi; BTC toparlanarak 82.000 doların üzerine çıktı."
+      },
+      {
+        "item": "Standard Chartered'ın VARA lisansı sonrası başka büyük bankalardan benzer adımlar gelecek mi",
+        "outcome": "Henüz yok; VARA kayıtlı sağlayıcı sayısı 58'e çıktı ama Standard Chartered dışında büyük uluslararası bir bankadan doğrudan kripto alım satımı adımı gelmedi."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "ABD ÜFE dört yılın en yükseğinde",
+        "summary": "Eylül ayı üretici fiyatları yıllık yüzde 6.3 ile yüzde 5.3'lük beklentinin oldukça üzerinde geldi, çekirdek ÜFE aylık yüzde 0.7 arttı; veri Fed'in 27-28 Ekim toplantısında faiz artışı ihtimalini canlı tutuyor.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html",
+          "title": "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "AI ve çip hisselerinde satış dalgası derinleşti",
+        "summary": "CoreWeave gibi yapay zeka bulut şirketlerinin borç yükü endişesiyle çip hisseleri altı işlem gününde 1.6 trilyon doların üzerinde değer kaybetti, Nvidia yüzde 3'ün üzerinde geriledi.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/15/whats-behind-the-sell-off-in-ai-neocloud-stocks-like-coreweave-and-nebius-.html",
+          "title": "What's behind the sell-off in AI neocloud stocks like CoreWeave and Nebius",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Standard Chartered'a VARA'dan kripto lisansı",
+        "summary": "Standard Chartered, Bitcoin ve Ether alım satımını doğrudan banka hesabı üzerinden sunan ilk uluslararası banka oldu; saklama ve takas Zodia Markets iş birliğiyle kendi sistemi içinde yapılacak.",
+        "source": {
+          "url": "https://www.coindesk.com/business/2026/10/14/standard-chartered-unlocks-direct-bitcoin-and-ether-trading-for-affluent-uae-clients",
+          "title": "Standard Chartered unlocks direct bitcoin and ether trading for affluent UAE clients",
+          "publisher": "CoinDesk"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "BTC ve ETH ETF'lerinde çıkış sürdü",
+        "summary": "14 Ekim'de ABD spot Bitcoin ve Ether ETF'lerinden toplam yaklaşık 391 milyon dolar net çıkış kaydedildi, Ekim ayı toplam net çıkışı 1 milyar doları aştı.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/bitcoin-and-ethereum-etfs-record-391m-in-net-outflows-on-october-14",
+          "title": "Bitcoin and Ethereum ETFs Record $391M in Net Outflows on October 14",
+          "publisher": "KuCoin"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "06:30",
+        "title": "Fed Başkanı Warsh'ın IMF toplantısındaki konuşması"
+      },
+      {
+        "timeTr": "11:00",
+        "title": "Deribit'te 16 milyar dolarlık BTC opsiyon vade sonu"
+      },
+      {
+        "timeTr": null,
+        "title": "AI ve çip hisselerindeki satış dalgasının devam edip etmeyeceği"
+      },
+      {
+        "timeTr": null,
+        "title": "Günlük BTC/ETH spot ETF akış verileri"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "AI ve çip şirketlerindeki borç kaygılarının derinleşmesi risk iştahını yeniden bozabilir",
+      "Sıcak ÜFE verisi sonrası 27-28 Ekim FOMC toplantısında faiz artışı ihtimali masada kalmaya devam ediyor"
+    ]
+  },
+  "followUps": [
+    "Fed Başkanı Warsh'ın IMF konuşması faiz artışı sinyali verdi mi",
+    "BTC ve ETH spot ETF'lerinde çıkışlar sürdü mü yoksa girişe mi döndü",
+    "AI ve çip hisselerindeki satış dalgası yeni haftaya da taşındı mı",
+    "Deribit opsiyon vade sonrası BTC 83.000 dolar seviyesine yaklaştı mı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html",
+      "title": "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/10/15/whats-behind-the-sell-off-in-ai-neocloud-stocks-like-coreweave-and-nebius-.html",
+      "title": "What's behind the sell-off in AI neocloud stocks like CoreWeave and Nebius",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.coindesk.com/business/2026/10/14/standard-chartered-unlocks-direct-bitcoin-and-ether-trading-for-affluent-uae-clients",
+      "title": "Standard Chartered unlocks direct bitcoin and ether trading for affluent UAE clients",
+      "publisher": "CoinDesk"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/bitcoin-and-ethereum-etfs-record-391m-in-net-outflows-on-october-14",
+      "title": "Bitcoin and Ethereum ETFs Record $391M in Net Outflows on October 14",
+      "publisher": "KuCoin"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
