@@ -1,143 +1,147 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-16",
+  "id": "2026-10-17",
   "language": "tr",
-  "title": "16 Ekim 2026, Cuma",
-  "publishedAt": "2026-10-16T07:50:59+03:00",
-  "updatedAt": "2026-10-16T07:50:59+03:00",
+  "title": "17 Ekim 2026, Cumartesi",
+  "publishedAt": "2026-10-17T07:49:34+03:00",
+  "updatedAt": "2026-10-17T07:49:34+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-16T07:48:00+03:00",
+    "asOf": "2026-10-17T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 81963,
-        "change24h": 0.5623403181062046
+        "priceUsd": 81470,
+        "change24h": -0.6211513495044335
       },
       "ETH": {
-        "priceUsd": 2439.52,
-        "change24h": 2.5004542804083836
+        "priceUsd": 2426.22,
+        "change24h": -0.5584203002734255
       },
       "SOL": {
-        "priceUsd": 105.33,
-        "change24h": 1.3052426151360872
+        "priceUsd": 104.67,
+        "change24h": -0.6584237649062358
       },
       "BNB": {
-        "priceUsd": 728.52,
-        "change24h": 0.8283415632139681
+        "priceUsd": 721.8,
+        "change24h": -0.9208266598070223
       },
       "XRP": {
-        "priceUsd": 1.33,
-        "change24h": 0.7115501685168275
+        "priceUsd": 1.31,
+        "change24h": -1.9467850966522968
       }
     },
-    "btcDominance": 59.269395841805725,
-    "ethDominance": 10.713333738686346,
-    "totalMarketCapUsd": 2772818849117.707,
-    "volume24hUsd": 1.0087036525222155e+21,
+    "btcDominance": 59.289137399356726,
+    "ethDominance": 10.729522511566415,
+    "totalMarketCapUsd": 2756321353214.15,
+    "volume24hUsd": 162188162701754.34,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 63,
+      "value": 55,
       "label": "Açgözlülük",
-      "previousValue": 53,
-      "weekAgoValue": 59
+      "previousValue": 63,
+      "weekAgoValue": 64
     }
   },
   "brief": {
-    "mood": "Kararsız",
-    "why": "Eylül ayı ÜFE verisi yıllık yüzde 6.3 ile dört yılın en sert yükselişini kaydedip Fed'in Ekim toplantısında faiz artışı ihtimalini masada tutarken, borç yükü endişesiyle derinleşen yapay zeka ve çip hisseleri satış dalgası risk iştahını baskılamaya çalıştı; buna karşın kripto piyasası bu baskıyı büyük ölçüde absorbe ederek yükseldi.",
+    "mood": "Temkinli",
+    "why": "Fed Başkanı Warsh'ın IMF'deki faiz artışına dair net sinyal vermeyen konuşması belirsizliği sürdürürken, AI çip hisselerindeki derinleşen satış dalgası risk iştahını geniş çapta baskıladı.",
     "criticalEvents": [
       {
-        "timeTr": "06:30",
-        "title": "Fed Başkanı Warsh IMF toplantısında konuşacak"
+        "timeTr": null,
+        "title": "EDCON Ethereum konferansı başlıyor"
       },
       {
-        "timeTr": "11:00",
-        "title": "Deribit'te 16 milyar dolarlık BTC opsiyon vadesi"
+        "timeTr": null,
+        "title": "CRO token kilidi açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite riski"
       }
     ],
-    "mainRisk": "AI ve çip şirketlerindeki borç kaygılarının derinleşmesi, risk iştahını yeniden bozup kriptoya sıçrayabilir."
+    "mainRisk": "Hafta sonu düşük işlem hacminde AI hisselerindeki satış baskısının kripto piyasasına sıçraması ani fiyat dalgalanmalarına yol açabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "ABD ÜFE verisi TÜFE'yi teyit edip Fed'in Ekim faiz artış ihtimalini daha da yükseltecek mi",
-        "outcome": "Evet, ÜFE yıllık yüzde 6.3 ile beklentinin oldukça üzerinde gelip TÜFE'deki yükselişi teyit etti, ancak piyasa yine de yüzde 66 ihtimalle duraksama fiyatlıyor; isabetli ama faiz artışı henüz baskın senaryo değil."
+        "item": "Fed Başkanı Warsh'ın IMF konuşması faiz artışı sinyali verdi mi",
+        "outcome": "Hayır, net sinyal vermedi; piyasa Ekim ayı faiz artışı olasılığını yüzde 15'e düşürdü ve duraklama beklentisi güçlendi."
       },
       {
-        "item": "BTC spot ETF'lerindeki iki günlük net giriş serisi üçüncü güne taşınacak mı",
-        "outcome": "Hayır, 14 Ekim'de seri bozuldu ve Bitcoin ile Ether ETF'lerinden toplam yaklaşık 391 milyon dolar net çıkış kaydedildi."
+        "item": "BTC ve ETH spot ETF'lerinde çıkışlar sürdü mü yoksa girişe mi döndü",
+        "outcome": "Karışık seyir: BTC ETF'leri 15 Ekim'de 5 milyon dolar net giriş gördü ama 16 Ekim'de yeniden yaklaşık 82 milyon dolar çıkışa döndü; ETH ETF'lerinden çıkışlar sürdü."
       },
       {
-        "item": "Çip hisselerindeki satış dalgası derinleşirse kripto piyasasında yeni bir tasfiye dalgası görülecek mi",
-        "outcome": "Satış dalgası gerçekten derinleşti ve çip hisseleri altı seansta 1.6 trilyon doların üzerinde değer kaybetti, ancak kriptoda beklenen yeni tasfiye dalgası görülmedi; BTC toparlanarak 82.000 doların üzerine çıktı."
+        "item": "AI ve çip hisselerindeki satış dalgası yeni haftaya da taşındı mı",
+        "outcome": "Evet, satış dalgası derinleşerek sürdü; çip hisseleri altı işlem gününde yaklaşık 1,64 trilyon dolar değer kaybetti, Nvidia piyasa değeri 5,16 trilyon dolara geriledi."
       },
       {
-        "item": "Standard Chartered'ın VARA lisansı sonrası başka büyük bankalardan benzer adımlar gelecek mi",
-        "outcome": "Henüz yok; VARA kayıtlı sağlayıcı sayısı 58'e çıktı ama Standard Chartered dışında büyük uluslararası bir bankadan doğrudan kripto alım satımı adımı gelmedi."
+        "item": "Deribit opsiyon vade sonrası BTC 83.000 dolar seviyesine yaklaştı mı",
+        "outcome": "Evet, 16 Ekim vadesinde maksimum acı noktası 83.000 dolardı ve BTC vade sonrasında 85.199 dolardan 83.800 dolara geriledi."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "ABD ÜFE dört yılın en yükseğinde",
-        "summary": "Eylül ayı üretici fiyatları yıllık yüzde 6.3 ile yüzde 5.3'lük beklentinin oldukça üzerinde geldi, çekirdek ÜFE aylık yüzde 0.7 arttı; veri Fed'in 27-28 Ekim toplantısında faiz artışı ihtimalini canlı tutuyor.",
+        "title": "Warsh'tan IMF'de faizde sinyal yok",
+        "summary": "Fed Başkanı Kevin Warsh, Bangkok'taki IMF toplantısında Ekim ayı faiz kararına dair net sinyal vermedi; piyasalar artış olasılığını yüzde 15'e indirirken küresel sıkılaşmanın sürdüğünü vurguladı.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html",
-          "title": "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
+          "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+          "title": "Fed's Warsh withholds rate signal, praises recent global tightening",
           "publisher": "CNBC"
         }
       },
       {
         "importance": "onemli",
-        "title": "AI ve çip hisselerinde satış dalgası derinleşti",
-        "summary": "CoreWeave gibi yapay zeka bulut şirketlerinin borç yükü endişesiyle çip hisseleri altı işlem gününde 1.6 trilyon doların üzerinde değer kaybetti, Nvidia yüzde 3'ün üzerinde geriledi.",
+        "title": "AI çip hisselerinde 1,64 trilyon dolarlık erime",
+        "summary": "AI finansmanına yönelik endişeler ve yükselen tahvil getirileri nedeniyle çip hisseleri altı işlem gününde 1,64 trilyon dolar değer kaybetti; Nvidia piyasa değeri zirvesinden yüzde 12'den fazla geriledi.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/15/whats-behind-the-sell-off-in-ai-neocloud-stocks-like-coreweave-and-nebius-.html",
-          "title": "What's behind the sell-off in AI neocloud stocks like CoreWeave and Nebius",
+          "url": "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
+          "title": "Nvidia, AMD, Dell sink in global tech rout on AI funding worries",
           "publisher": "CNBC"
         }
       },
       {
         "importance": "onemli",
-        "title": "Standard Chartered'a VARA'dan kripto lisansı",
-        "summary": "Standard Chartered, Bitcoin ve Ether alım satımını doğrudan banka hesabı üzerinden sunan ilk uluslararası banka oldu; saklama ve takas Zodia Markets iş birliğiyle kendi sistemi içinde yapılacak.",
+        "title": "Bitcoin ETF girişi neredeyse durdu",
+        "summary": "ABD spot Bitcoin ETF'leri 15 Ekim'de sadece 5 milyon dolarlık sınırlı net giriş görürken Ethereum ETF'lerinden 60 milyon dolar çıkış yaşandı; kurumsal talepte zayıflama sinyali veriyor.",
         "source": {
-          "url": "https://www.coindesk.com/business/2026/10/14/standard-chartered-unlocks-direct-bitcoin-and-ether-trading-for-affluent-uae-clients",
-          "title": "Standard Chartered unlocks direct bitcoin and ether trading for affluent UAE clients",
-          "publisher": "CoinDesk"
+          "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-5-06m-inflows-as-ethereum-etfs-lose-60-22m",
+          "title": "Bitcoin ETFs See $5.06M Inflows as Ethereum ETFs Lose $60.22M",
+          "publisher": "KuCoin"
         }
       },
       {
         "importance": "bilgi",
-        "title": "BTC ve ETH ETF'lerinde çıkış sürdü",
-        "summary": "14 Ekim'de ABD spot Bitcoin ve Ether ETF'lerinden toplam yaklaşık 391 milyon dolar net çıkış kaydedildi, Ekim ayı toplam net çıkışı 1 milyar doları aştı.",
+        "title": "Deribit'te 1,47 milyar dolarlık opsiyon vadesi",
+        "summary": "Deribit'te 16 Ekim'de 1,47 milyar dolarlık BTC opsiyonu 83.000 dolar maksimum acı seviyesinden sona erdi; pozisyonların çözülmesi fiyatı bu bantta tuttu.",
         "source": {
-          "url": "https://www.kucoin.com/news/flash/bitcoin-and-ethereum-etfs-record-391m-in-net-outflows-on-october-14",
-          "title": "Bitcoin and Ethereum ETFs Record $391M in Net Outflows on October 14",
-          "publisher": "KuCoin"
+          "url": "https://cryptoticker.io/en/bitcoin-options-expiry-16-october-max-pain/",
+          "title": "Bitcoin options expiry October 16: max pain at $83,000",
+          "publisher": "CryptoTicker"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "06:30",
-        "title": "Fed Başkanı Warsh'ın IMF toplantısındaki konuşması"
-      },
-      {
-        "timeTr": "11:00",
-        "title": "Deribit'te 16 milyar dolarlık BTC opsiyon vade sonu"
+        "timeTr": null,
+        "title": "EDCON 2026 Ethereum konferansı (Kuala Lumpur)"
       },
       {
         "timeTr": null,
-        "title": "AI ve çip hisselerindeki satış dalgasının devam edip etmeyeceği"
+        "title": "CRO token kilidi açılışı"
       },
       {
         "timeTr": null,
-        "title": "Günlük BTC/ETH spot ETF akış verileri"
+        "title": "deBridge DBR çeyreklik kilit açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite - oynaklık takibi"
       }
     ],
     "turkey": {
@@ -145,36 +149,36 @@
       "items": []
     },
     "risks": [
-      "AI ve çip şirketlerindeki borç kaygılarının derinleşmesi risk iştahını yeniden bozabilir",
-      "Sıcak ÜFE verisi sonrası 27-28 Ekim FOMC toplantısında faiz artışı ihtimali masada kalmaya devam ediyor"
+      "AI hisselerindeki satış dalgasının derinleşmesi risk iştahını kripto genelinde baskılayabilir.",
+      "30 Ekim'deki büyük opsiyon vadesi (10,7 milyar dolar) öncesi oynaklık artabilir."
     ]
   },
   "followUps": [
-    "Fed Başkanı Warsh'ın IMF konuşması faiz artışı sinyali verdi mi",
-    "BTC ve ETH spot ETF'lerinde çıkışlar sürdü mü yoksa girişe mi döndü",
-    "AI ve çip hisselerindeki satış dalgası yeni haftaya da taşındı mı",
-    "Deribit opsiyon vade sonrası BTC 83.000 dolar seviyesine yaklaştı mı"
+    "AI çip hisselerindeki satış dalgası hafta sonu sonrası Pazartesi devam edecek mi",
+    "BTC ETF'lerinde net giriş/çıkış yönü netleşecek mi",
+    "BTC 83.000 dolar direncini aşıp 85.000 dolar bandına geri dönecek mi",
+    "28 Ekim Fed toplantısı öncesi piyasa fiyatlaması değişecek mi"
   ],
   "sources": [
     {
-      "url": "https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html",
-      "title": "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
+      "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+      "title": "Fed's Warsh withholds rate signal, praises recent global tightening",
       "publisher": "CNBC"
     },
     {
-      "url": "https://www.cnbc.com/2026/10/15/whats-behind-the-sell-off-in-ai-neocloud-stocks-like-coreweave-and-nebius-.html",
-      "title": "What's behind the sell-off in AI neocloud stocks like CoreWeave and Nebius",
+      "url": "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
+      "title": "Nvidia, AMD, Dell sink in global tech rout on AI funding worries",
       "publisher": "CNBC"
     },
     {
-      "url": "https://www.coindesk.com/business/2026/10/14/standard-chartered-unlocks-direct-bitcoin-and-ether-trading-for-affluent-uae-clients",
-      "title": "Standard Chartered unlocks direct bitcoin and ether trading for affluent UAE clients",
-      "publisher": "CoinDesk"
-    },
-    {
-      "url": "https://www.kucoin.com/news/flash/bitcoin-and-ethereum-etfs-record-391m-in-net-outflows-on-october-14",
-      "title": "Bitcoin and Ethereum ETFs Record $391M in Net Outflows on October 14",
+      "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-5-06m-inflows-as-ethereum-etfs-lose-60-22m",
+      "title": "Bitcoin ETFs See $5.06M Inflows as Ethereum ETFs Lose $60.22M",
       "publisher": "KuCoin"
+    },
+    {
+      "url": "https://cryptoticker.io/en/bitcoin-options-expiry-16-october-max-pain/",
+      "title": "Bitcoin options expiry October 16: max pain at $83,000",
+      "publisher": "CryptoTicker"
     }
   ],
   "assets": {

@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-17",
+  "language": "tr",
+  "title": "17 Ekim 2026, Cumartesi",
+  "publishedAt": "2026-10-17T07:49:34+03:00",
+  "updatedAt": "2026-10-17T07:49:34+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-17T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 81470,
+        "change24h": -0.6211513495044335
+      },
+      "ETH": {
+        "priceUsd": 2426.22,
+        "change24h": -0.5584203002734255
+      },
+      "SOL": {
+        "priceUsd": 104.67,
+        "change24h": -0.6584237649062358
+      },
+      "BNB": {
+        "priceUsd": 721.8,
+        "change24h": -0.9208266598070223
+      },
+      "XRP": {
+        "priceUsd": 1.31,
+        "change24h": -1.9467850966522968
+      }
+    },
+    "btcDominance": 59.289137399356726,
+    "ethDominance": 10.729522511566415,
+    "totalMarketCapUsd": 2756321353214.15,
+    "volume24hUsd": 162188162701754.34,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 55,
+      "label": "Açgözlülük",
+      "previousValue": 63,
+      "weekAgoValue": 64
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Fed Başkanı Warsh'ın IMF'deki faiz artışına dair net sinyal vermeyen konuşması belirsizliği sürdürürken, AI çip hisselerindeki derinleşen satış dalgası risk iştahını geniş çapta baskıladı.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "EDCON Ethereum konferansı başlıyor"
+      },
+      {
+        "timeTr": null,
+        "title": "CRO token kilidi açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite riski"
+      }
+    ],
+    "mainRisk": "Hafta sonu düşük işlem hacminde AI hisselerindeki satış baskısının kripto piyasasına sıçraması ani fiyat dalgalanmalarına yol açabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Fed Başkanı Warsh'ın IMF konuşması faiz artışı sinyali verdi mi",
+        "outcome": "Hayır, net sinyal vermedi; piyasa Ekim ayı faiz artışı olasılığını yüzde 15'e düşürdü ve duraklama beklentisi güçlendi."
+      },
+      {
+        "item": "BTC ve ETH spot ETF'lerinde çıkışlar sürdü mü yoksa girişe mi döndü",
+        "outcome": "Karışık seyir: BTC ETF'leri 15 Ekim'de 5 milyon dolar net giriş gördü ama 16 Ekim'de yeniden yaklaşık 82 milyon dolar çıkışa döndü; ETH ETF'lerinden çıkışlar sürdü."
+      },
+      {
+        "item": "AI ve çip hisselerindeki satış dalgası yeni haftaya da taşındı mı",
+        "outcome": "Evet, satış dalgası derinleşerek sürdü; çip hisseleri altı işlem gününde yaklaşık 1,64 trilyon dolar değer kaybetti, Nvidia piyasa değeri 5,16 trilyon dolara geriledi."
+      },
+      {
+        "item": "Deribit opsiyon vade sonrası BTC 83.000 dolar seviyesine yaklaştı mı",
+        "outcome": "Evet, 16 Ekim vadesinde maksimum acı noktası 83.000 dolardı ve BTC vade sonrasında 85.199 dolardan 83.800 dolara geriledi."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Warsh'tan IMF'de faizde sinyal yok",
+        "summary": "Fed Başkanı Kevin Warsh, Bangkok'taki IMF toplantısında Ekim ayı faiz kararına dair net sinyal vermedi; piyasalar artış olasılığını yüzde 15'e indirirken küresel sıkılaşmanın sürdüğünü vurguladı.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+          "title": "Fed's Warsh withholds rate signal, praises recent global tightening",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "AI çip hisselerinde 1,64 trilyon dolarlık erime",
+        "summary": "AI finansmanına yönelik endişeler ve yükselen tahvil getirileri nedeniyle çip hisseleri altı işlem gününde 1,64 trilyon dolar değer kaybetti; Nvidia piyasa değeri zirvesinden yüzde 12'den fazla geriledi.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
+          "title": "Nvidia, AMD, Dell sink in global tech rout on AI funding worries",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin ETF girişi neredeyse durdu",
+        "summary": "ABD spot Bitcoin ETF'leri 15 Ekim'de sadece 5 milyon dolarlık sınırlı net giriş görürken Ethereum ETF'lerinden 60 milyon dolar çıkış yaşandı; kurumsal talepte zayıflama sinyali veriyor.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-5-06m-inflows-as-ethereum-etfs-lose-60-22m",
+          "title": "Bitcoin ETFs See $5.06M Inflows as Ethereum ETFs Lose $60.22M",
+          "publisher": "KuCoin"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Deribit'te 1,47 milyar dolarlık opsiyon vadesi",
+        "summary": "Deribit'te 16 Ekim'de 1,47 milyar dolarlık BTC opsiyonu 83.000 dolar maksimum acı seviyesinden sona erdi; pozisyonların çözülmesi fiyatı bu bantta tuttu.",
+        "source": {
+          "url": "https://cryptoticker.io/en/bitcoin-options-expiry-16-october-max-pain/",
+          "title": "Bitcoin options expiry October 16: max pain at $83,000",
+          "publisher": "CryptoTicker"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "EDCON 2026 Ethereum konferansı (Kuala Lumpur)"
+      },
+      {
+        "timeTr": null,
+        "title": "CRO token kilidi açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "deBridge DBR çeyreklik kilit açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite - oynaklık takibi"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "AI hisselerindeki satış dalgasının derinleşmesi risk iştahını kripto genelinde baskılayabilir.",
+      "30 Ekim'deki büyük opsiyon vadesi (10,7 milyar dolar) öncesi oynaklık artabilir."
+    ]
+  },
+  "followUps": [
+    "AI çip hisselerindeki satış dalgası hafta sonu sonrası Pazartesi devam edecek mi",
+    "BTC ETF'lerinde net giriş/çıkış yönü netleşecek mi",
+    "BTC 83.000 dolar direncini aşıp 85.000 dolar bandına geri dönecek mi",
+    "28 Ekim Fed toplantısı öncesi piyasa fiyatlaması değişecek mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+      "title": "Fed's Warsh withholds rate signal, praises recent global tightening",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
+      "title": "Nvidia, AMD, Dell sink in global tech rout on AI funding worries",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-5-06m-inflows-as-ethereum-etfs-lose-60-22m",
+      "title": "Bitcoin ETFs See $5.06M Inflows as Ethereum ETFs Lose $60.22M",
+      "publisher": "KuCoin"
+    },
+    {
+      "url": "https://cryptoticker.io/en/bitcoin-options-expiry-16-october-max-pain/",
+      "title": "Bitcoin options expiry October 16: max pain at $83,000",
+      "publisher": "CryptoTicker"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
