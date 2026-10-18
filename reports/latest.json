@@ -1,147 +1,143 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-17",
+  "id": "2026-10-18",
   "language": "tr",
-  "title": "17 Ekim 2026, Cumartesi",
-  "publishedAt": "2026-10-17T07:49:34+03:00",
-  "updatedAt": "2026-10-17T07:49:34+03:00",
+  "title": "18 Ekim 2026, Pazar",
+  "publishedAt": "2026-10-18T07:51:57+03:00",
+  "updatedAt": "2026-10-18T07:51:57+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-17T07:48:00+03:00",
+    "asOf": "2026-10-18T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 81470,
-        "change24h": -0.6211513495044335
+        "priceUsd": 81750,
+        "change24h": 0.3695114199140064
       },
       "ETH": {
-        "priceUsd": 2426.22,
-        "change24h": -0.5584203002734255
+        "priceUsd": 2416.8,
+        "change24h": -0.3402972480925043
       },
       "SOL": {
-        "priceUsd": 104.67,
-        "change24h": -0.6584237649062358
+        "priceUsd": 103.9,
+        "change24h": -0.6944541145803175
       },
       "BNB": {
-        "priceUsd": 721.8,
-        "change24h": -0.9208266598070223
+        "priceUsd": 719.73,
+        "change24h": -0.2720951783786479
       },
       "XRP": {
-        "priceUsd": 1.31,
-        "change24h": -1.9467850966522968
+        "priceUsd": 1.3,
+        "change24h": -0.8420699596303973
       }
     },
-    "btcDominance": 59.289137399356726,
-    "ethDominance": 10.729522511566415,
-    "totalMarketCapUsd": 2756321353214.15,
-    "volume24hUsd": 162188162701754.34,
+    "btcDominance": 59.478423493509034,
+    "ethDominance": 10.684263155715227,
+    "totalMarketCapUsd": 2756892628429.9673,
+    "volume24hUsd": 2.370575226802274e+17,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 55,
-      "label": "Açgözlülük",
-      "previousValue": 63,
-      "weekAgoValue": 64
+      "value": 53,
+      "label": "Nötr",
+      "previousValue": 55,
+      "weekAgoValue": 61
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Fed Başkanı Warsh'ın IMF'deki faiz artışına dair net sinyal vermeyen konuşması belirsizliği sürdürürken, AI çip hisselerindeki derinleşen satış dalgası risk iştahını geniş çapta baskıladı.",
+    "why": "AI çip hisselerindeki 8 seanslık art arda düşüşün (2008'den beri en uzun seri) ve ABD 10 yıllık tahvil faizinin yüzde 5,3'e çıkmasının yarattığı risk-off hava, Bitcoin ETF'lerinden süren net çıkışlarla birleşince kripto piyasasını yatay ve temkinli tutuyor.",
     "criticalEvents": [
       {
         "timeTr": null,
-        "title": "EDCON Ethereum konferansı başlıyor"
+        "title": "Money20/20 USA zirvesi başlıyor"
+      },
+      {
+        "timeTr": "05:00",
+        "title": "Çin 3. çeyrek büyüme verisi"
       },
       {
         "timeTr": null,
-        "title": "CRO token kilidi açılışı"
-      },
-      {
-        "timeTr": null,
-        "title": "Hafta sonu düşük likidite riski"
+        "title": "Asya seansında çip hisseleri tepkisi"
       }
     ],
-    "mainRisk": "Hafta sonu düşük işlem hacminde AI hisselerindeki satış baskısının kripto piyasasına sıçraması ani fiyat dalgalanmalarına yol açabilir."
+    "mainRisk": "AI çip hisselerindeki satış dalgasının ve yükselen tahvil faizlerinin Pazartesi kripto piyasasına sıçrama riski sürüyor."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Fed Başkanı Warsh'ın IMF konuşması faiz artışı sinyali verdi mi",
-        "outcome": "Hayır, net sinyal vermedi; piyasa Ekim ayı faiz artışı olasılığını yüzde 15'e düşürdü ve duraklama beklentisi güçlendi."
+        "item": "AI çip hisselerindeki satış dalgası hafta sonu sonrası Pazartesi devam edecek mi",
+        "outcome": "Henüz netleşmedi: satış 16 Ekim itibariyle 8. seansa uzayarak 2008'den beri en uzun seriye dönüştü (SOXX 8 seansta yüzde 16 geriledi), hafta sonu işlem olmadığı için dönüş Pazartesi kapanışında belli olacak"
       },
       {
-        "item": "BTC ve ETH spot ETF'lerinde çıkışlar sürdü mü yoksa girişe mi döndü",
-        "outcome": "Karışık seyir: BTC ETF'leri 15 Ekim'de 5 milyon dolar net giriş gördü ama 16 Ekim'de yeniden yaklaşık 82 milyon dolar çıkışa döndü; ETH ETF'lerinden çıkışlar sürdü."
+        "item": "BTC ETF'lerinde net giriş/çıkış yönü netleşecek mi",
+        "outcome": "Netleşti, çıkış yönünde: 16 Ekim'de spot BTC ETF'lerinden 82,4 milyon dolar net çıkış oldu, Ekim ayı toplamı 617 milyon dolar net çıkışa ulaştı"
       },
       {
-        "item": "AI ve çip hisselerindeki satış dalgası yeni haftaya da taşındı mı",
-        "outcome": "Evet, satış dalgası derinleşerek sürdü; çip hisseleri altı işlem gününde yaklaşık 1,64 trilyon dolar değer kaybetti, Nvidia piyasa değeri 5,16 trilyon dolara geriledi."
+        "item": "BTC 83.000 dolar direncini aşıp 85.000 dolar bandına geri dönecek mi",
+        "outcome": "Iska: BTC 81.500-82.000 dolar bandında sıkışık kaldı, 84.000-85.000 dolar direnç bölgesine yeniden saldıramadı"
       },
       {
-        "item": "Deribit opsiyon vade sonrası BTC 83.000 dolar seviyesine yaklaştı mı",
-        "outcome": "Evet, 16 Ekim vadesinde maksimum acı noktası 83.000 dolardı ve BTC vade sonrasında 85.199 dolardan 83.800 dolara geriledi."
+        "item": "28 Ekim Fed toplantısı öncesi piyasa fiyatlaması değişecek mi",
+        "outcome": "Büyük ölçüde değişmedi: piyasa hâlâ yüzde 72 olasılıkla faizin sabit kalacağını fiyatlıyor, toplantı sabit/artış arasında yakın görülmeye devam ediyor"
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Warsh'tan IMF'de faizde sinyal yok",
-        "summary": "Fed Başkanı Kevin Warsh, Bangkok'taki IMF toplantısında Ekim ayı faiz kararına dair net sinyal vermedi; piyasalar artış olasılığını yüzde 15'e indirirken küresel sıkılaşmanın sürdüğünü vurguladı.",
+        "title": "Çip hisseleri 2008'den beri en uzun düşüş serisinde",
+        "summary": "ABD'de yarı iletken hisseleri art arda 8. seansta değer kaybetti, SOXX endeksi bu dönemde yüzde 16 geriledi; yükselen tahvil faizleri ve AI yatırım harcamalarına dair şüpheler satışı tetikledi.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
-          "title": "Fed's Warsh withholds rate signal, praises recent global tightening",
-          "publisher": "CNBC"
+          "url": "https://247wallst.com/investing/2026/10/17/chip-stocks-just-fell-8-days-in-a-row-their-longest-losing-streak-since-2008",
+          "title": "Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008",
+          "publisher": "24/7 Wall St."
         }
       },
       {
         "importance": "onemli",
-        "title": "AI çip hisselerinde 1,64 trilyon dolarlık erime",
-        "summary": "AI finansmanına yönelik endişeler ve yükselen tahvil getirileri nedeniyle çip hisseleri altı işlem gününde 1,64 trilyon dolar değer kaybetti; Nvidia piyasa değeri zirvesinden yüzde 12'den fazla geriledi.",
+        "title": "Spot BTC ETF'lerinde çıkışlar Ekim'de sürüyor",
+        "summary": "ABD'deki spot Bitcoin ETF'leri 16 Ekim'de 82,4 milyon dolar net çıkış yaşadı, ayın başından bu yana toplam net çıkış 617 milyon dolara ulaştı.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
-          "title": "Nvidia, AMD, Dell sink in global tech rout on AI funding worries",
-          "publisher": "CNBC"
+          "url": "https://www.tftc.io/bitcoin-etf-flows/october-2026",
+          "title": "Bitcoin ETF Flows: October 2026",
+          "publisher": "TFTC"
         }
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin ETF girişi neredeyse durdu",
-        "summary": "ABD spot Bitcoin ETF'leri 15 Ekim'de sadece 5 milyon dolarlık sınırlı net giriş görürken Ethereum ETF'lerinden 60 milyon dolar çıkış yaşandı; kurumsal talepte zayıflama sinyali veriyor.",
+        "title": "Büyük bir kripto cüzdanı BTC'den ETH'ye döndü",
+        "summary": "Arkham verilerine göre bir balina ya da kurum son beş günde 1.601 BTC (yaklaşık 132 milyon dolar) satıp 53.095 ETH aldı, pozisyon şu an ortalama maliyetin yaklaşık yüzde 2 altında.",
         "source": {
-          "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-5-06m-inflows-as-ethereum-etfs-lose-60-22m",
-          "title": "Bitcoin ETFs See $5.06M Inflows as Ethereum ETFs Lose $60.22M",
-          "publisher": "KuCoin"
+          "url": "https://www.coingabbar.com/en/ethereum-news-today-btc-eth-price-whale-buying-eth-etf-flows",
+          "title": "Ethereum News: BTC Rotation, Phishing Funds and ETF Flows",
+          "publisher": "CoinGabbar"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Deribit'te 1,47 milyar dolarlık opsiyon vadesi",
-        "summary": "Deribit'te 16 Ekim'de 1,47 milyar dolarlık BTC opsiyonu 83.000 dolar maksimum acı seviyesinden sona erdi; pozisyonların çözülmesi fiyatı bu bantta tuttu.",
+        "title": "Anthropic'in junk kredi notu Bitcoin tartışmasını alevlendirdi",
+        "summary": "Kroll'un Anthropic'e verdiği BB+ notunun (yatırım yapılabilir seviyenin bir altı) açığa çıkması, yükselen tahvil faizleri ortamında Bitcoin'in alternatif değer saklama aracı olarak savunulmasına yol açtı.",
         "source": {
-          "url": "https://cryptoticker.io/en/bitcoin-options-expiry-16-october-max-pain/",
-          "title": "Bitcoin options expiry October 16: max pain at $83,000",
-          "publisher": "CryptoTicker"
+          "url": "https://finance.yahoo.com/markets/crypto/articles/anthropics-junk-rating-sparks-bigger-011115520.html",
+          "title": "Anthropic's Junk Rating Sparks a Bigger Bitcoin Debate",
+          "publisher": "Yahoo Finance"
         }
       }
     ],
     "today": [
       {
         "timeTr": null,
-        "title": "EDCON 2026 Ethereum konferansı (Kuala Lumpur)"
+        "title": "Money20/20 USA zirvesi başlıyor (Las Vegas)"
+      },
+      {
+        "timeTr": "05:00",
+        "title": "Çin 3. çeyrek büyüme verisi"
       },
       {
         "timeTr": null,
-        "title": "CRO token kilidi açılışı"
-      },
-      {
-        "timeTr": null,
-        "title": "deBridge DBR çeyreklik kilit açılışı"
-      },
-      {
-        "timeTr": null,
-        "title": "Hafta sonu düşük likidite - oynaklık takibi"
+        "title": "Asya seansında çip hisseleri tepkisi izlenecek"
       }
     ],
     "turkey": {
@@ -149,36 +145,36 @@
       "items": []
     },
     "risks": [
-      "AI hisselerindeki satış dalgasının derinleşmesi risk iştahını kripto genelinde baskılayabilir.",
-      "30 Ekim'deki büyük opsiyon vadesi (10,7 milyar dolar) öncesi oynaklık artabilir."
+      "AI çip hisselerindeki satış dalgasının Pazartesi ABD ve Asya seanslarına sıçraması riski sürüyor.",
+      "Yükselen ABD 10 yıllık tahvil faizi (yüzde 5,3) risk iştahını bastırmaya devam edebilir."
     ]
   },
   "followUps": [
-    "AI çip hisselerindeki satış dalgası hafta sonu sonrası Pazartesi devam edecek mi",
-    "BTC ETF'lerinde net giriş/çıkış yönü netleşecek mi",
-    "BTC 83.000 dolar direncini aşıp 85.000 dolar bandına geri dönecek mi",
-    "28 Ekim Fed toplantısı öncesi piyasa fiyatlaması değişecek mi"
+    "Pazartesi ABD ve Asya seanslarında çip hisseleri satışı durdu mu",
+    "BTC ETF'lerinde süren net çıkış serisi kesintiye uğradı mı",
+    "BTC 83.000 dolar üzerine kapanış yaparak 84-85 bin dolar direncine yeniden saldırdı mı",
+    "28 Ekim FOMC öncesi piyasanın fiyatladığı sabit faiz olasılığı (yüzde 72) değişti mi"
   ],
   "sources": [
     {
-      "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
-      "title": "Fed's Warsh withholds rate signal, praises recent global tightening",
-      "publisher": "CNBC"
+      "url": "https://247wallst.com/investing/2026/10/17/chip-stocks-just-fell-8-days-in-a-row-their-longest-losing-streak-since-2008",
+      "title": "Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008",
+      "publisher": "24/7 Wall St."
     },
     {
-      "url": "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
-      "title": "Nvidia, AMD, Dell sink in global tech rout on AI funding worries",
-      "publisher": "CNBC"
+      "url": "https://www.tftc.io/bitcoin-etf-flows/october-2026",
+      "title": "Bitcoin ETF Flows: October 2026",
+      "publisher": "TFTC"
     },
     {
-      "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-5-06m-inflows-as-ethereum-etfs-lose-60-22m",
-      "title": "Bitcoin ETFs See $5.06M Inflows as Ethereum ETFs Lose $60.22M",
-      "publisher": "KuCoin"
+      "url": "https://www.coingabbar.com/en/ethereum-news-today-btc-eth-price-whale-buying-eth-etf-flows",
+      "title": "Ethereum News: BTC Rotation, Phishing Funds and ETF Flows",
+      "publisher": "CoinGabbar"
     },
     {
-      "url": "https://cryptoticker.io/en/bitcoin-options-expiry-16-october-max-pain/",
-      "title": "Bitcoin options expiry October 16: max pain at $83,000",
-      "publisher": "CryptoTicker"
+      "url": "https://finance.yahoo.com/markets/crypto/articles/anthropics-junk-rating-sparks-bigger-011115520.html",
+      "title": "Anthropic's Junk Rating Sparks a Bigger Bitcoin Debate",
+      "publisher": "Yahoo Finance"
     }
   ],
   "assets": {

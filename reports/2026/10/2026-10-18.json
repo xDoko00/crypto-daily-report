@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-18",
+  "language": "tr",
+  "title": "18 Ekim 2026, Pazar",
+  "publishedAt": "2026-10-18T07:51:57+03:00",
+  "updatedAt": "2026-10-18T07:51:57+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-18T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 81750,
+        "change24h": 0.3695114199140064
+      },
+      "ETH": {
+        "priceUsd": 2416.8,
+        "change24h": -0.3402972480925043
+      },
+      "SOL": {
+        "priceUsd": 103.9,
+        "change24h": -0.6944541145803175
+      },
+      "BNB": {
+        "priceUsd": 719.73,
+        "change24h": -0.2720951783786479
+      },
+      "XRP": {
+        "priceUsd": 1.3,
+        "change24h": -0.8420699596303973
+      }
+    },
+    "btcDominance": 59.478423493509034,
+    "ethDominance": 10.684263155715227,
+    "totalMarketCapUsd": 2756892628429.9673,
+    "volume24hUsd": 2.370575226802274e+17,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 53,
+      "label": "Nötr",
+      "previousValue": 55,
+      "weekAgoValue": 61
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "AI çip hisselerindeki 8 seanslık art arda düşüşün (2008'den beri en uzun seri) ve ABD 10 yıllık tahvil faizinin yüzde 5,3'e çıkmasının yarattığı risk-off hava, Bitcoin ETF'lerinden süren net çıkışlarla birleşince kripto piyasasını yatay ve temkinli tutuyor.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Money20/20 USA zirvesi başlıyor"
+      },
+      {
+        "timeTr": "05:00",
+        "title": "Çin 3. çeyrek büyüme verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Asya seansında çip hisseleri tepkisi"
+      }
+    ],
+    "mainRisk": "AI çip hisselerindeki satış dalgasının ve yükselen tahvil faizlerinin Pazartesi kripto piyasasına sıçrama riski sürüyor."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "AI çip hisselerindeki satış dalgası hafta sonu sonrası Pazartesi devam edecek mi",
+        "outcome": "Henüz netleşmedi: satış 16 Ekim itibariyle 8. seansa uzayarak 2008'den beri en uzun seriye dönüştü (SOXX 8 seansta yüzde 16 geriledi), hafta sonu işlem olmadığı için dönüş Pazartesi kapanışında belli olacak"
+      },
+      {
+        "item": "BTC ETF'lerinde net giriş/çıkış yönü netleşecek mi",
+        "outcome": "Netleşti, çıkış yönünde: 16 Ekim'de spot BTC ETF'lerinden 82,4 milyon dolar net çıkış oldu, Ekim ayı toplamı 617 milyon dolar net çıkışa ulaştı"
+      },
+      {
+        "item": "BTC 83.000 dolar direncini aşıp 85.000 dolar bandına geri dönecek mi",
+        "outcome": "Iska: BTC 81.500-82.000 dolar bandında sıkışık kaldı, 84.000-85.000 dolar direnç bölgesine yeniden saldıramadı"
+      },
+      {
+        "item": "28 Ekim Fed toplantısı öncesi piyasa fiyatlaması değişecek mi",
+        "outcome": "Büyük ölçüde değişmedi: piyasa hâlâ yüzde 72 olasılıkla faizin sabit kalacağını fiyatlıyor, toplantı sabit/artış arasında yakın görülmeye devam ediyor"
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Çip hisseleri 2008'den beri en uzun düşüş serisinde",
+        "summary": "ABD'de yarı iletken hisseleri art arda 8. seansta değer kaybetti, SOXX endeksi bu dönemde yüzde 16 geriledi; yükselen tahvil faizleri ve AI yatırım harcamalarına dair şüpheler satışı tetikledi.",
+        "source": {
+          "url": "https://247wallst.com/investing/2026/10/17/chip-stocks-just-fell-8-days-in-a-row-their-longest-losing-streak-since-2008",
+          "title": "Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008",
+          "publisher": "24/7 Wall St."
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Spot BTC ETF'lerinde çıkışlar Ekim'de sürüyor",
+        "summary": "ABD'deki spot Bitcoin ETF'leri 16 Ekim'de 82,4 milyon dolar net çıkış yaşadı, ayın başından bu yana toplam net çıkış 617 milyon dolara ulaştı.",
+        "source": {
+          "url": "https://www.tftc.io/bitcoin-etf-flows/october-2026",
+          "title": "Bitcoin ETF Flows: October 2026",
+          "publisher": "TFTC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Büyük bir kripto cüzdanı BTC'den ETH'ye döndü",
+        "summary": "Arkham verilerine göre bir balina ya da kurum son beş günde 1.601 BTC (yaklaşık 132 milyon dolar) satıp 53.095 ETH aldı, pozisyon şu an ortalama maliyetin yaklaşık yüzde 2 altında.",
+        "source": {
+          "url": "https://www.coingabbar.com/en/ethereum-news-today-btc-eth-price-whale-buying-eth-etf-flows",
+          "title": "Ethereum News: BTC Rotation, Phishing Funds and ETF Flows",
+          "publisher": "CoinGabbar"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Anthropic'in junk kredi notu Bitcoin tartışmasını alevlendirdi",
+        "summary": "Kroll'un Anthropic'e verdiği BB+ notunun (yatırım yapılabilir seviyenin bir altı) açığa çıkması, yükselen tahvil faizleri ortamında Bitcoin'in alternatif değer saklama aracı olarak savunulmasına yol açtı.",
+        "source": {
+          "url": "https://finance.yahoo.com/markets/crypto/articles/anthropics-junk-rating-sparks-bigger-011115520.html",
+          "title": "Anthropic's Junk Rating Sparks a Bigger Bitcoin Debate",
+          "publisher": "Yahoo Finance"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Money20/20 USA zirvesi başlıyor (Las Vegas)"
+      },
+      {
+        "timeTr": "05:00",
+        "title": "Çin 3. çeyrek büyüme verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Asya seansında çip hisseleri tepkisi izlenecek"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "AI çip hisselerindeki satış dalgasının Pazartesi ABD ve Asya seanslarına sıçraması riski sürüyor.",
+      "Yükselen ABD 10 yıllık tahvil faizi (yüzde 5,3) risk iştahını bastırmaya devam edebilir."
+    ]
+  },
+  "followUps": [
+    "Pazartesi ABD ve Asya seanslarında çip hisseleri satışı durdu mu",
+    "BTC ETF'lerinde süren net çıkış serisi kesintiye uğradı mı",
+    "BTC 83.000 dolar üzerine kapanış yaparak 84-85 bin dolar direncine yeniden saldırdı mı",
+    "28 Ekim FOMC öncesi piyasanın fiyatladığı sabit faiz olasılığı (yüzde 72) değişti mi"
+  ],
+  "sources": [
+    {
+      "url": "https://247wallst.com/investing/2026/10/17/chip-stocks-just-fell-8-days-in-a-row-their-longest-losing-streak-since-2008",
+      "title": "Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008",
+      "publisher": "24/7 Wall St."
+    },
+    {
+      "url": "https://www.tftc.io/bitcoin-etf-flows/october-2026",
+      "title": "Bitcoin ETF Flows: October 2026",
+      "publisher": "TFTC"
+    },
+    {
+      "url": "https://www.coingabbar.com/en/ethereum-news-today-btc-eth-price-whale-buying-eth-etf-flows",
+      "title": "Ethereum News: BTC Rotation, Phishing Funds and ETF Flows",
+      "publisher": "CoinGabbar"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/crypto/articles/anthropics-junk-rating-sparks-bigger-011115520.html",
+      "title": "Anthropic's Junk Rating Sparks a Bigger Bitcoin Debate",
+      "publisher": "Yahoo Finance"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
