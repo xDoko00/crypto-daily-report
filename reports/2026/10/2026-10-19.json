@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-19",
+  "language": "tr",
+  "title": "19 Ekim 2026, Pazartesi",
+  "publishedAt": "2026-10-19T07:55:07+03:00",
+  "updatedAt": "2026-10-19T07:55:07+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-19T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 82672,
+        "change24h": 1.1227231419549857
+      },
+      "ETH": {
+        "priceUsd": 2425.83,
+        "change24h": 0.3613415082018613
+      },
+      "SOL": {
+        "priceUsd": 105.59,
+        "change24h": 1.6096802803880983
+      },
+      "BNB": {
+        "priceUsd": 727.62,
+        "change24h": 1.0864001629203317
+      },
+      "XRP": {
+        "priceUsd": 1.31,
+        "change24h": 1.3168951957522426
+      }
+    },
+    "btcDominance": 60.15170247443813,
+    "ethDominance": 10.725397664357821,
+    "totalMarketCapUsd": 2760508277246.5034,
+    "volume24hUsd": 45654557076078.914,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 59,
+      "label": "Açgözlülük",
+      "previousValue": 53,
+      "weekAgoValue": 69
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Asya seansında DeepSeek'in yeni model güncellemesi çip talebine yönelik endişeleri büyüttü ve Bloomberg Asya yarı iletken endeksini Temmuz'dan bu yana en düşük seviyeye çekti; Bitcoin ise kurumsal hazine alımlarıyla 80.750 dolar desteğinden toparlanarak hisse senedi satışından ayrıştı.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Asya çip satışı sonrası ABD açılışı"
+      },
+      {
+        "timeTr": "17:00",
+        "title": "ABD NAHB konut piyasası endeksi"
+      },
+      {
+        "timeTr": null,
+        "title": "Fed'de FOMC öncesi sessizlik dönemi"
+      }
+    ],
+    "mainRisk": "AI altyapı finansmanına yönelik artan şüpheler çip hisselerinden kripto paraya sıçrayabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Pazartesi ABD ve Asya seanslarında çip hisseleri satışı durdu mu",
+        "outcome": "Durmadı; DeepSeek'in yeni model güncellemesi Asya seansında yeni bir satış dalgası tetikledi, Bloomberg Asya yarı iletken endeksi Temmuz'dan bu yana en düşük seviyeye indi."
+      },
+      {
+        "item": "BTC ETF'lerinde süren net çıkış serisi kesintiye uğradı mı",
+        "outcome": "Uğramadı; ABD spot Bitcoin ETF'leri geçen hafta 228,4 milyon dolar net çıkış gördü ve seri ikinci haftaya taşındı."
+      },
+      {
+        "item": "BTC 83.000 dolar üzerine kapanış yaparak 84-85 bin dolar direncine yeniden saldırdı mı",
+        "outcome": "Hayır; BTC 82.000-82.700 dolar bandında sıkıştı, 83.000 doları kalıcı şekilde geçemedi."
+      },
+      {
+        "item": "28 Ekim FOMC öncesi piyasanın fiyatladığı sabit faiz olasılığı (yüzde 72) değişti mi",
+        "outcome": "Değişti; CME FedWatch sabit faiz olasılığını yüzde 87,3'e yükseltti, indirim ihtimali fiyatlamadan tamamen çıktı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Asya çip hisselerinde DeepSeek kaynaklı çöküş",
+        "summary": "DeepSeek'in hafta sonu yayınladığı yeni model güncellemesi daha az kaynak kullanarak çip talebini azaltabileceği endişesini doğurdu, TSMC ve SK Hynix öncülüğünde Bloomberg Asya yarı iletken endeksi Temmuz'dan bu yana en düşük seviyeye indi.",
+        "source": {
+          "url": "https://www.bloomberg.com/news/articles/2026-10-19/korean-stocks-fall-as-deepseek-model-funding-worry-rattle-chips",
+          "title": "Korean Stocks Fall as DeepSeek Model, Funding Worry Rattle Chips",
+          "publisher": "Bloomberg"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Fed'de faiz indirimi ihtimali fiyatlamadan tamamen çıktı",
+        "summary": "CME FedWatch verilerine göre 28 Ekim FOMC toplantısında sabit faiz olasılığı yüzde 87,3'e yükseldi, indirim ihtimali sıfırlanırken küçük bir artırım olasılığı belirdi.",
+        "source": {
+          "url": "https://coinedition.com/fed-rate-cuts-off-the-table-for-october-what-it-means-for-bitcoin-and-gold/",
+          "title": "Fed Rate Cuts Off the Table for October: What It Means for Bitcoin and Gold",
+          "publisher": "CoinEdition"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin ETF çıkış serisi ikinci haftaya taşındı",
+        "summary": "ABD spot Bitcoin ETF'leri IBIT öncülüğünde geçen hafta 228,4 milyon dolar net çıkış gördü, son iki haftada fonlardan toplam yaklaşık 910 milyon dolar çıktı.",
+        "source": {
+          "url": "https://kucoin.com/news/flash/bitcoin-etfs-see-228-4m-net-outflow-this-week-led-by-ibit",
+          "title": "Bitcoin ETFs See $228.4M Net Outflow This Week, Led by IBIT",
+          "publisher": "KuCoin News"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Bitcoin çip satışından ayrışarak toparlandı",
+        "summary": "Kurumsal hazine alımları ve sınırlı orta vadeli satış baskısı Bitcoin'i 80.750 dolar desteğinden hızla toparlattı, Kore borsaları düşerken BTC yükseliş kaydetti.",
+        "source": {
+          "url": "https://www.investing.com/analysis/bitcoin-decoupling-from-korean-stocks-signals-stronger-spot-demand-200689508",
+          "title": "Bitcoin Decoupling From Korean Stocks Signals Stronger Spot Demand",
+          "publisher": "Investing.com"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "17:00",
+        "title": "ABD NAHB konut piyasası endeksi"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD Kansas City Fed imalat endeksi"
+      },
+      {
+        "timeTr": null,
+        "title": "Wall Street açılışında çip hisselerinde tepki denemesi"
+      },
+      {
+        "timeTr": null,
+        "title": "Netflix ve GM kazanç öncesi pozisyonlanma"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "AI altyapı finansmanına yönelik şüpheler çip hisselerinden risk iştahına sıçrayabilir.",
+      "28 Ekim FOMC öncesi faiz indirimi beklentisinin sıfırlanması risk varlıklarını zorlayabilir."
+    ]
+  },
+  "followUps": [
+    "Wall Street açılışında çip hisseleri Asya kaynaklı satışın etkisini atlatabildi mi",
+    "Bitcoin ETF çıkış serisi üçüncü haftaya taşındı mı",
+    "Netflix ve GM kazançları AI/çip harcama endişelerini yatıştırdı mı",
+    "BTC 83.000 dolar direncini yeniden test etti mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.bloomberg.com/news/articles/2026-10-19/korean-stocks-fall-as-deepseek-model-funding-worry-rattle-chips",
+      "title": "Korean Stocks Fall as DeepSeek Model, Funding Worry Rattle Chips",
+      "publisher": "Bloomberg"
+    },
+    {
+      "url": "https://coinedition.com/fed-rate-cuts-off-the-table-for-october-what-it-means-for-bitcoin-and-gold/",
+      "title": "Fed Rate Cuts Off the Table for October: What It Means for Bitcoin and Gold",
+      "publisher": "CoinEdition"
+    },
+    {
+      "url": "https://kucoin.com/news/flash/bitcoin-etfs-see-228-4m-net-outflow-this-week-led-by-ibit",
+      "title": "Bitcoin ETFs See $228.4M Net Outflow This Week, Led by IBIT",
+      "publisher": "KuCoin News"
+    },
+    {
+      "url": "https://www.investing.com/analysis/bitcoin-decoupling-from-korean-stocks-signals-stronger-spot-demand-200689508",
+      "title": "Bitcoin Decoupling From Korean Stocks Signals Stronger Spot Demand",
+      "publisher": "Investing.com"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
