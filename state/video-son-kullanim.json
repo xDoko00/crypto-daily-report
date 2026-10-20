@@ -1,15 +1,17 @@
 {
  "kanca-sabah": {
-  "gun": "2026-10-19",
-  "onceki": "istanbul-sabah/istanbul-sabah-02.mp4",
+  "gun": "2026-10-20",
+  "onceki": "sabah-sehir/sabah-sehir-03.mp4",
   "secilen": [
-   "sabah-sehir/sabah-sehir-03.mp4"
+   "sabah-sehir/sabah-sehir-01.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-10-19",
-  "onceki": "piyasa-dusus/piyasa-dusus-03.mp4",
+  "gun": "2026-10-20",
+  "onceki": "piyasa-dusus/piyasa-dusus-01.mp4",
   "secilen": [
+   "piyasa-dusus/piyasa-dusus-02.mp4",
+   "piyasa-dusus/piyasa-dusus-03.mp4",
    "piyasa-dusus/piyasa-dusus-01.mp4"
   ]
  },
@@ -28,17 +30,17 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-10-19",
-  "onceki": "takvim-veri/takvim-veri-01.mp4",
+  "gun": "2026-10-20",
+  "onceki": "takvim-veri/takvim-veri-02.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-02.mp4"
+   "takvim-veri/takvim-veri-04.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-10-19",
-  "onceki": "kapanis/kapanis-01.mp4",
+  "gun": "2026-10-20",
+  "onceki": "kapanis/kapanis-03.mp4",
   "secilen": [
-   "kapanis/kapanis-03.mp4"
+   "kapanis/kapanis-04.mp4"
   ]
  },
  "piyasa-yukselis": {
@@ -57,9 +59,10 @@
   ]
  },
  "etf-kurumsal": {
-  "gun": "2026-10-18",
-  "onceki": "etf-kurumsal/etf-kurumsal-02.mp4",
+  "gun": "2026-10-20",
+  "onceki": "etf-kurumsal/etf-kurumsal-01.mp4",
   "secilen": [
+   "etf-kurumsal/etf-kurumsal-02.mp4",
    "etf-kurumsal/etf-kurumsal-01.mp4"
   ]
  },
