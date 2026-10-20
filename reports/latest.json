@@ -1,147 +1,139 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-19",
+  "id": "2026-10-20",
   "language": "tr",
-  "title": "19 Ekim 2026, Pazartesi",
-  "publishedAt": "2026-10-19T07:55:07+03:00",
-  "updatedAt": "2026-10-19T07:55:07+03:00",
+  "title": "20 Ekim 2026, Salı",
+  "publishedAt": "2026-10-20T07:50:19+03:00",
+  "updatedAt": "2026-10-20T07:50:19+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-19T07:48:00+03:00",
+    "asOf": "2026-10-20T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 82672,
-        "change24h": 1.1227231419549857
+        "priceUsd": 82002,
+        "change24h": -0.88057968130483
       },
       "ETH": {
-        "priceUsd": 2425.83,
-        "change24h": 0.3613415082018613
+        "priceUsd": 2410.65,
+        "change24h": -0.7104025238333428
       },
       "SOL": {
-        "priceUsd": 105.59,
-        "change24h": 1.6096802803880983
+        "priceUsd": 105.13,
+        "change24h": -0.5002843176703315
       },
       "BNB": {
-        "priceUsd": 727.62,
-        "change24h": 1.0864001629203317
+        "priceUsd": 730.5,
+        "change24h": 0.3551737586533421
       },
       "XRP": {
         "priceUsd": 1.31,
-        "change24h": 1.3168951957522426
+        "change24h": -0.6567678143469844
       }
     },
-    "btcDominance": 60.15170247443813,
-    "ethDominance": 10.725397664357821,
-    "totalMarketCapUsd": 2760508277246.5034,
-    "volume24hUsd": 45654557076078.914,
+    "btcDominance": 59.5771328381282,
+    "ethDominance": 10.64361057291595,
+    "totalMarketCapUsd": 2759925504400.645,
+    "volume24hUsd": 69270922164.80644,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 59,
+      "value": 55,
       "label": "Açgözlülük",
-      "previousValue": 53,
-      "weekAgoValue": 69
+      "previousValue": 59,
+      "weekAgoValue": 57
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "Asya seansında DeepSeek'in yeni model güncellemesi çip talebine yönelik endişeleri büyüttü ve Bloomberg Asya yarı iletken endeksini Temmuz'dan bu yana en düşük seviyeye çekti; Bitcoin ise kurumsal hazine alımlarıyla 80.750 dolar desteğinden toparlanarak hisse senedi satışından ayrıştı.",
+    "mood": "Kararsız",
+    "why": "Pazartesi çip hisselerindeki toparlanma risk iştahını canlandırdı ama Bitcoin ETF'lerinden Fidelity ve Grayscale üzerinden çıkışlar sürdüğü için BTC 83.000 doları zorlayıp geri çekildi; hisse senedi ile kripto arasında ayrışma öne çıkıyor, belirgin tek sebep yok.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "Asya çip satışı sonrası ABD açılışı"
+        "timeTr": "15:30",
+        "title": "GM çeyreklik bilançosu"
       },
       {
-        "timeTr": "17:00",
-        "title": "ABD NAHB konut piyasası endeksi"
-      },
-      {
-        "timeTr": null,
-        "title": "Fed'de FOMC öncesi sessizlik dönemi"
+        "timeTr": "23:00",
+        "title": "Netflix çeyreklik bilançosu"
       }
     ],
-    "mainRisk": "AI altyapı finansmanına yönelik artan şüpheler çip hisselerinden kripto paraya sıçrayabilir."
+    "mainRisk": "ETF çıkışlarının yeniden ağırlık kazanması ve 28 Ekim FOMC öncesi faiz beklentisi oynaklığı BTC'yi 82.000 doların altına itebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Pazartesi ABD ve Asya seanslarında çip hisseleri satışı durdu mu",
-        "outcome": "Durmadı; DeepSeek'in yeni model güncellemesi Asya seansında yeni bir satış dalgası tetikledi, Bloomberg Asya yarı iletken endeksi Temmuz'dan bu yana en düşük seviyeye indi."
+        "item": "Wall Street açılışında çip hisseleri Asya kaynaklı satışın etkisini atlatabildi mi",
+        "outcome": "İsabet - Philadelphia yarı iletken endeksi Pazartesi yüzde 1,6 yükselerek sekiz günlük düşüş serisini kırdı, Nasdaq yüzde 1,1 arttı."
       },
       {
-        "item": "BTC ETF'lerinde süren net çıkış serisi kesintiye uğradı mı",
-        "outcome": "Uğramadı; ABD spot Bitcoin ETF'leri geçen hafta 228,4 milyon dolar net çıkış gördü ve seri ikinci haftaya taşındı."
+        "item": "Bitcoin ETF çıkış serisi üçüncü haftaya taşındı mı",
+        "outcome": "Karışık - haftalık net çıkışlar sürdü ama Pazartesi BlackRock'ın IBIT'i öncülüğünde toplam akış net girişe döndü, Fidelity ve Grayscale'de çıkış devam etti."
       },
       {
-        "item": "BTC 83.000 dolar üzerine kapanış yaparak 84-85 bin dolar direncine yeniden saldırdı mı",
-        "outcome": "Hayır; BTC 82.000-82.700 dolar bandında sıkıştı, 83.000 doları kalıcı şekilde geçemedi."
+        "item": "Netflix ve GM kazançları AI çip harcama endişelerini yatıştırdı mı",
+        "outcome": "Henüz kısmi - GM bu sabah beklenti üstü kâr bildirdi, Netflix bilançosu gün sonunda açıklanacak; net yargı için akşamı beklemek gerekiyor."
       },
       {
-        "item": "28 Ekim FOMC öncesi piyasanın fiyatladığı sabit faiz olasılığı (yüzde 72) değişti mi",
-        "outcome": "Değişti; CME FedWatch sabit faiz olasılığını yüzde 87,3'e yükseltti, indirim ihtimali fiyatlamadan tamamen çıktı."
+        "item": "BTC 83.000 dolar direncini yeniden test etti mi",
+        "outcome": "İsabet - fiyat 83.000 doları test etti ancak kıramadı, 81.300-81.500 desteğine geri çekilip şu an 82.000 dolar civarında dengelendi."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Asya çip hisselerinde DeepSeek kaynaklı çöküş",
-        "summary": "DeepSeek'in hafta sonu yayınladığı yeni model güncellemesi daha az kaynak kullanarak çip talebini azaltabileceği endişesini doğurdu, TSMC ve SK Hynix öncülüğünde Bloomberg Asya yarı iletken endeksi Temmuz'dan bu yana en düşük seviyeye indi.",
+        "title": "JPMorgan JPM Coin'i Ethereum'a taşıdı",
+        "summary": "JPMorgan, kurumsal mevduat tokeni JPM Coin'i Base'den sonra Ethereum ağına da genişletti; kurumsal müşteriler artık tokenize varlık ödemelerini Ethereum üzerinden 7 gün 24 saat yapabilecek.",
         "source": {
-          "url": "https://www.bloomberg.com/news/articles/2026-10-19/korean-stocks-fall-as-deepseek-model-funding-worry-rattle-chips",
-          "title": "Korean Stocks Fall as DeepSeek Model, Funding Worry Rattle Chips",
-          "publisher": "Bloomberg"
+          "url": "https://www.pymnts.com/cryptocurrency/2026/jpmorgan-brings-its-deposit-token-to-the-ethereum-blockchain/",
+          "title": "JPMorgan Brings Its Deposit Token to the Ethereum Blockchain",
+          "publisher": "PYMNTS"
         }
       },
       {
         "importance": "onemli",
-        "title": "Fed'de faiz indirimi ihtimali fiyatlamadan tamamen çıktı",
-        "summary": "CME FedWatch verilerine göre 28 Ekim FOMC toplantısında sabit faiz olasılığı yüzde 87,3'e yükseldi, indirim ihtimali sıfırlanırken küçük bir artırım olasılığı belirdi.",
+        "title": "Bitcoin ETF'lerinde akışlar ayrıştı",
+        "summary": "Pazartesi günü BlackRock'ın IBIT'i 665 milyon dolar girişle öne çıkarken Fidelity'nin FBTC'si 83,6 milyon, Grayscale'in GBTC'si 54,9 milyon dolar çıkış gördü; toplamda net giriş yaşandı ama fon bazında tablo karışık.",
         "source": {
-          "url": "https://coinedition.com/fed-rate-cuts-off-the-table-for-october-what-it-means-for-bitcoin-and-gold/",
-          "title": "Fed Rate Cuts Off the Table for October: What It Means for Bitcoin and Gold",
-          "publisher": "CoinEdition"
+          "url": "https://en.bloomingbit.io/feed/news/122546",
+          "title": "US Spot-Bitcoin ETFs Draw $526.64 Million of Net Inflows, Led by BlackRock",
+          "publisher": "Bloomingbit"
         }
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin ETF çıkış serisi ikinci haftaya taşındı",
-        "summary": "ABD spot Bitcoin ETF'leri IBIT öncülüğünde geçen hafta 228,4 milyon dolar net çıkış gördü, son iki haftada fonlardan toplam yaklaşık 910 milyon dolar çıktı.",
+        "title": "Çip hisseleri sekiz günlük düşüşü kırdı",
+        "summary": "Nvidia, AMD ve Micron gibi yarı iletken hisseleri Pazartesi günü sert toparlanarak sekiz işlem günlük kayıp serisini sonlandırdı, bu da genel risk iştahını destekledi.",
         "source": {
-          "url": "https://kucoin.com/news/flash/bitcoin-etfs-see-228-4m-net-outflow-this-week-led-by-ibit",
-          "title": "Bitcoin ETFs See $228.4M Net Outflow This Week, Led by IBIT",
-          "publisher": "KuCoin News"
+          "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-futures-rise-113805730.html",
+          "title": "Nasdaq climbs as chip and AI-linked stocks bounce back",
+          "publisher": "Yahoo Finance"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Bitcoin çip satışından ayrışarak toparlandı",
-        "summary": "Kurumsal hazine alımları ve sınırlı orta vadeli satış baskısı Bitcoin'i 80.750 dolar desteğinden hızla toparlattı, Kore borsaları düşerken BTC yükseliş kaydetti.",
+        "title": "Strategy hissesinde golden cross sinyali yaklaşıyor",
+        "summary": "Bitcoin'in en büyük kurumsal sahiplerinden Strategy'nin (MSTR) hissesi, Bitcoin'in haftalar önce verdiği bullish golden cross sinyaline yaklaşıyor; tarihsel isabet oranı yüzde 50 olduğu için temkinli yorumlanıyor.",
         "source": {
-          "url": "https://www.investing.com/analysis/bitcoin-decoupling-from-korean-stocks-signals-stronger-spot-demand-200689508",
-          "title": "Bitcoin Decoupling From Korean Stocks Signals Stronger Spot Demand",
-          "publisher": "Investing.com"
+          "url": "https://www.coindesk.com/daybook-us/2026/10/19/strategy-on-verge-of-golden-cross-just-weeks-after-bitcoin-flashed-same-bullish-signal",
+          "title": "Strategy (MSTR) on verge of golden cross, just weeks after bitcoin (BTC) did the same",
+          "publisher": "CoinDesk"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "17:00",
-        "title": "ABD NAHB konut piyasası endeksi"
+        "timeTr": "15:30",
+        "title": "ABD konut başlangıçları verisi (Eylül)"
       },
       {
-        "timeTr": "18:00",
-        "title": "ABD Kansas City Fed imalat endeksi"
+        "timeTr": "15:30",
+        "title": "GM çeyreklik bilanço çağrısı"
       },
       {
-        "timeTr": null,
-        "title": "Wall Street açılışında çip hisselerinde tepki denemesi"
-      },
-      {
-        "timeTr": null,
-        "title": "Netflix ve GM kazanç öncesi pozisyonlanma"
+        "timeTr": "23:00",
+        "title": "Netflix çeyreklik bilançosu ve CEO röportajı"
       }
     ],
     "turkey": {
@@ -149,36 +141,36 @@
       "items": []
     },
     "risks": [
-      "AI altyapı finansmanına yönelik şüpheler çip hisselerinden risk iştahına sıçrayabilir.",
-      "28 Ekim FOMC öncesi faiz indirimi beklentisinin sıfırlanması risk varlıklarını zorlayabilir."
+      "ETF çıkışlarının Fidelity ve Grayscale üzerinden yeniden ağırlık kazanması BTC üzerinde baskı oluşturabilir.",
+      "28 Ekim FOMC kararı öncesi faiz beklentilerindeki oynaklık risk iştahını sınırlayabilir."
     ]
   },
   "followUps": [
-    "Wall Street açılışında çip hisseleri Asya kaynaklı satışın etkisini atlatabildi mi",
-    "Bitcoin ETF çıkış serisi üçüncü haftaya taşındı mı",
-    "Netflix ve GM kazançları AI/çip harcama endişelerini yatıştırdı mı",
-    "BTC 83.000 dolar direncini yeniden test etti mi"
+    "GM ve Netflix bilançoları AI çip harcama endişelerini gerçekten yatıştırdı mı",
+    "Bitcoin ETF'lerinde BlackRock öncülüğündeki net giriş kalıcı olacak mı yoksa Fidelity Grayscale çıkışları yeniden ağır basacak mı",
+    "BTC 83.000 dolar direncini net biçimde kırabilecek mi",
+    "Strategy hissesinde golden cross sinyali gerçekleşecek mi"
   ],
   "sources": [
     {
-      "url": "https://www.bloomberg.com/news/articles/2026-10-19/korean-stocks-fall-as-deepseek-model-funding-worry-rattle-chips",
-      "title": "Korean Stocks Fall as DeepSeek Model, Funding Worry Rattle Chips",
-      "publisher": "Bloomberg"
+      "url": "https://www.pymnts.com/cryptocurrency/2026/jpmorgan-brings-its-deposit-token-to-the-ethereum-blockchain/",
+      "title": "JPMorgan Brings Its Deposit Token to the Ethereum Blockchain",
+      "publisher": "PYMNTS"
     },
     {
-      "url": "https://coinedition.com/fed-rate-cuts-off-the-table-for-october-what-it-means-for-bitcoin-and-gold/",
-      "title": "Fed Rate Cuts Off the Table for October: What It Means for Bitcoin and Gold",
-      "publisher": "CoinEdition"
+      "url": "https://en.bloomingbit.io/feed/news/122546",
+      "title": "US Spot-Bitcoin ETFs Draw $526.64 Million of Net Inflows, Led by BlackRock",
+      "publisher": "Bloomingbit"
     },
     {
-      "url": "https://kucoin.com/news/flash/bitcoin-etfs-see-228-4m-net-outflow-this-week-led-by-ibit",
-      "title": "Bitcoin ETFs See $228.4M Net Outflow This Week, Led by IBIT",
-      "publisher": "KuCoin News"
+      "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-futures-rise-113805730.html",
+      "title": "Nasdaq climbs as chip and AI-linked stocks bounce back",
+      "publisher": "Yahoo Finance"
     },
     {
-      "url": "https://www.investing.com/analysis/bitcoin-decoupling-from-korean-stocks-signals-stronger-spot-demand-200689508",
-      "title": "Bitcoin Decoupling From Korean Stocks Signals Stronger Spot Demand",
-      "publisher": "Investing.com"
+      "url": "https://www.coindesk.com/daybook-us/2026/10/19/strategy-on-verge-of-golden-cross-just-weeks-after-bitcoin-flashed-same-bullish-signal",
+      "title": "Strategy (MSTR) on verge of golden cross, just weeks after bitcoin (BTC) did the same",
+      "publisher": "CoinDesk"
     }
   ],
   "assets": {

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-20",
+  "language": "tr",
+  "title": "20 Ekim 2026, Salı",
+  "publishedAt": "2026-10-20T07:50:19+03:00",
+  "updatedAt": "2026-10-20T07:50:19+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-20T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 82002,
+        "change24h": -0.88057968130483
+      },
+      "ETH": {
+        "priceUsd": 2410.65,
+        "change24h": -0.7104025238333428
+      },
+      "SOL": {
+        "priceUsd": 105.13,
+        "change24h": -0.5002843176703315
+      },
+      "BNB": {
+        "priceUsd": 730.5,
+        "change24h": 0.3551737586533421
+      },
+      "XRP": {
+        "priceUsd": 1.31,
+        "change24h": -0.6567678143469844
+      }
+    },
+    "btcDominance": 59.5771328381282,
+    "ethDominance": 10.64361057291595,
+    "totalMarketCapUsd": 2759925504400.645,
+    "volume24hUsd": 69270922164.80644,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 55,
+      "label": "Açgözlülük",
+      "previousValue": 59,
+      "weekAgoValue": 57
+    }
+  },
+  "brief": {
+    "mood": "Kararsız",
+    "why": "Pazartesi çip hisselerindeki toparlanma risk iştahını canlandırdı ama Bitcoin ETF'lerinden Fidelity ve Grayscale üzerinden çıkışlar sürdüğü için BTC 83.000 doları zorlayıp geri çekildi; hisse senedi ile kripto arasında ayrışma öne çıkıyor, belirgin tek sebep yok.",
+    "criticalEvents": [
+      {
+        "timeTr": "15:30",
+        "title": "GM çeyreklik bilançosu"
+      },
+      {
+        "timeTr": "23:00",
+        "title": "Netflix çeyreklik bilançosu"
+      }
+    ],
+    "mainRisk": "ETF çıkışlarının yeniden ağırlık kazanması ve 28 Ekim FOMC öncesi faiz beklentisi oynaklığı BTC'yi 82.000 doların altına itebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Wall Street açılışında çip hisseleri Asya kaynaklı satışın etkisini atlatabildi mi",
+        "outcome": "İsabet - Philadelphia yarı iletken endeksi Pazartesi yüzde 1,6 yükselerek sekiz günlük düşüş serisini kırdı, Nasdaq yüzde 1,1 arttı."
+      },
+      {
+        "item": "Bitcoin ETF çıkış serisi üçüncü haftaya taşındı mı",
+        "outcome": "Karışık - haftalık net çıkışlar sürdü ama Pazartesi BlackRock'ın IBIT'i öncülüğünde toplam akış net girişe döndü, Fidelity ve Grayscale'de çıkış devam etti."
+      },
+      {
+        "item": "Netflix ve GM kazançları AI çip harcama endişelerini yatıştırdı mı",
+        "outcome": "Henüz kısmi - GM bu sabah beklenti üstü kâr bildirdi, Netflix bilançosu gün sonunda açıklanacak; net yargı için akşamı beklemek gerekiyor."
+      },
+      {
+        "item": "BTC 83.000 dolar direncini yeniden test etti mi",
+        "outcome": "İsabet - fiyat 83.000 doları test etti ancak kıramadı, 81.300-81.500 desteğine geri çekilip şu an 82.000 dolar civarında dengelendi."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "JPMorgan JPM Coin'i Ethereum'a taşıdı",
+        "summary": "JPMorgan, kurumsal mevduat tokeni JPM Coin'i Base'den sonra Ethereum ağına da genişletti; kurumsal müşteriler artık tokenize varlık ödemelerini Ethereum üzerinden 7 gün 24 saat yapabilecek.",
+        "source": {
+          "url": "https://www.pymnts.com/cryptocurrency/2026/jpmorgan-brings-its-deposit-token-to-the-ethereum-blockchain/",
+          "title": "JPMorgan Brings Its Deposit Token to the Ethereum Blockchain",
+          "publisher": "PYMNTS"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin ETF'lerinde akışlar ayrıştı",
+        "summary": "Pazartesi günü BlackRock'ın IBIT'i 665 milyon dolar girişle öne çıkarken Fidelity'nin FBTC'si 83,6 milyon, Grayscale'in GBTC'si 54,9 milyon dolar çıkış gördü; toplamda net giriş yaşandı ama fon bazında tablo karışık.",
+        "source": {
+          "url": "https://en.bloomingbit.io/feed/news/122546",
+          "title": "US Spot-Bitcoin ETFs Draw $526.64 Million of Net Inflows, Led by BlackRock",
+          "publisher": "Bloomingbit"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Çip hisseleri sekiz günlük düşüşü kırdı",
+        "summary": "Nvidia, AMD ve Micron gibi yarı iletken hisseleri Pazartesi günü sert toparlanarak sekiz işlem günlük kayıp serisini sonlandırdı, bu da genel risk iştahını destekledi.",
+        "source": {
+          "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-futures-rise-113805730.html",
+          "title": "Nasdaq climbs as chip and AI-linked stocks bounce back",
+          "publisher": "Yahoo Finance"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Strategy hissesinde golden cross sinyali yaklaşıyor",
+        "summary": "Bitcoin'in en büyük kurumsal sahiplerinden Strategy'nin (MSTR) hissesi, Bitcoin'in haftalar önce verdiği bullish golden cross sinyaline yaklaşıyor; tarihsel isabet oranı yüzde 50 olduğu için temkinli yorumlanıyor.",
+        "source": {
+          "url": "https://www.coindesk.com/daybook-us/2026/10/19/strategy-on-verge-of-golden-cross-just-weeks-after-bitcoin-flashed-same-bullish-signal",
+          "title": "Strategy (MSTR) on verge of golden cross, just weeks after bitcoin (BTC) did the same",
+          "publisher": "CoinDesk"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD konut başlangıçları verisi (Eylül)"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "GM çeyreklik bilanço çağrısı"
+      },
+      {
+        "timeTr": "23:00",
+        "title": "Netflix çeyreklik bilançosu ve CEO röportajı"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "ETF çıkışlarının Fidelity ve Grayscale üzerinden yeniden ağırlık kazanması BTC üzerinde baskı oluşturabilir.",
+      "28 Ekim FOMC kararı öncesi faiz beklentilerindeki oynaklık risk iştahını sınırlayabilir."
+    ]
+  },
+  "followUps": [
+    "GM ve Netflix bilançoları AI çip harcama endişelerini gerçekten yatıştırdı mı",
+    "Bitcoin ETF'lerinde BlackRock öncülüğündeki net giriş kalıcı olacak mı yoksa Fidelity Grayscale çıkışları yeniden ağır basacak mı",
+    "BTC 83.000 dolar direncini net biçimde kırabilecek mi",
+    "Strategy hissesinde golden cross sinyali gerçekleşecek mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.pymnts.com/cryptocurrency/2026/jpmorgan-brings-its-deposit-token-to-the-ethereum-blockchain/",
+      "title": "JPMorgan Brings Its Deposit Token to the Ethereum Blockchain",
+      "publisher": "PYMNTS"
+    },
+    {
+      "url": "https://en.bloomingbit.io/feed/news/122546",
+      "title": "US Spot-Bitcoin ETFs Draw $526.64 Million of Net Inflows, Led by BlackRock",
+      "publisher": "Bloomingbit"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-futures-rise-113805730.html",
+      "title": "Nasdaq climbs as chip and AI-linked stocks bounce back",
+      "publisher": "Yahoo Finance"
+    },
+    {
+      "url": "https://www.coindesk.com/daybook-us/2026/10/19/strategy-on-verge-of-golden-cross-just-weeks-after-bitcoin-flashed-same-bullish-signal",
+      "title": "Strategy (MSTR) on verge of golden cross, just weeks after bitcoin (BTC) did the same",
+      "publisher": "CoinDesk"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
