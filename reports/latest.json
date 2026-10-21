@@ -1,139 +1,147 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-20",
+  "id": "2026-10-21",
   "language": "tr",
-  "title": "20 Ekim 2026, Salı",
-  "publishedAt": "2026-10-20T07:50:19+03:00",
-  "updatedAt": "2026-10-20T07:50:19+03:00",
+  "title": "21 Ekim 2026, Çarşamba",
+  "publishedAt": "2026-10-21T07:51:01+03:00",
+  "updatedAt": "2026-10-21T07:51:01+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-20T07:48:00+03:00",
+    "asOf": "2026-10-21T07:48:03+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 82002,
-        "change24h": -0.88057968130483
+        "priceUsd": 82703,
+        "change24h": 0.8264030117459058
       },
       "ETH": {
-        "priceUsd": 2410.65,
-        "change24h": -0.7104025238333428
+        "priceUsd": 2441.13,
+        "change24h": 1.2304787734945646
       },
       "SOL": {
-        "priceUsd": 105.13,
-        "change24h": -0.5002843176703315
+        "priceUsd": 105.7,
+        "change24h": 0.5022211325146282
       },
       "BNB": {
-        "priceUsd": 730.5,
-        "change24h": 0.3551737586533421
+        "priceUsd": 740.96,
+        "change24h": 1.4123079705409423
       },
       "XRP": {
-        "priceUsd": 1.31,
-        "change24h": -0.6567678143469844
+        "priceUsd": 1.33,
+        "change24h": 1.9872185564126017
       }
     },
-    "btcDominance": 59.5771328381282,
-    "ethDominance": 10.64361057291595,
-    "totalMarketCapUsd": 2759925504400.645,
-    "volume24hUsd": 69270922164.80644,
+    "btcDominance": 59.514662205499526,
+    "ethDominance": 10.678896837403808,
+    "totalMarketCapUsd": 2786820823223.2847,
+    "volume24hUsd": 79648000876.53407,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 55,
+      "value": 63,
       "label": "Açgözlülük",
-      "previousValue": 59,
-      "weekAgoValue": 57
+      "previousValue": 55,
+      "weekAgoValue": 62
     }
   },
   "brief": {
-    "mood": "Kararsız",
-    "why": "Pazartesi çip hisselerindeki toparlanma risk iştahını canlandırdı ama Bitcoin ETF'lerinden Fidelity ve Grayscale üzerinden çıkışlar sürdüğü için BTC 83.000 doları zorlayıp geri çekildi; hisse senedi ile kripto arasında ayrışma öne çıkıyor, belirgin tek sebep yok.",
+    "mood": "İyimser",
+    "why": "Bitcoin ETF'lerinde BlackRock öncülüğünde iki haftalık çıkış serisini kıran giriş dönüşü ve Strategy hissesindeki golden cross sinyali piyasayı yukarı taşıdı; ancak çip hisselerindeki AI harcama endişelerinin yeniden derinleşmesi kazançları sınırlı tuttu.",
     "criticalEvents": [
       {
-        "timeTr": "15:30",
-        "title": "GM çeyreklik bilançosu"
+        "timeTr": "23:30",
+        "title": "Meta bilançosu"
       },
       {
-        "timeTr": "23:00",
-        "title": "Netflix çeyreklik bilançosu"
+        "timeTr": "00:30",
+        "title": "Tesla bilançosu"
+      },
+      {
+        "timeTr": null,
+        "title": "Çip hisselerinde AI harcama satışı sürüyor"
       }
     ],
-    "mainRisk": "ETF çıkışlarının yeniden ağırlık kazanması ve 28 Ekim FOMC öncesi faiz beklentisi oynaklığı BTC'yi 82.000 doların altına itebilir."
+    "mainRisk": "Teknoloji ve çip hisselerindeki AI harcama endişelerinin yeniden derinleşmesi, risk iştahını kripto piyasasına da sıçratabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Wall Street açılışında çip hisseleri Asya kaynaklı satışın etkisini atlatabildi mi",
-        "outcome": "İsabet - Philadelphia yarı iletken endeksi Pazartesi yüzde 1,6 yükselerek sekiz günlük düşüş serisini kırdı, Nasdaq yüzde 1,1 arttı."
+        "item": "GM ve Netflix bilançoları AI çip harcama endişelerini yatıştıracak mı",
+        "outcome": "Hayır: Netflix kârda beklentiyi aşsa da 2026 reklam gelir hedefini düşürdü, Samsung ve SK Hynix hisseleri AI harcama endişeleriyle yeniden sert düştü; GM da kazancı aşmasına rağmen CEO Barra'nın 'yoğunlaşan zorluklar' uyarısı ve daraltılmış rehberlik sonrası hissesi yüzde 7,6 geriledi — endişeler yatışmadı, sürdü."
       },
       {
-        "item": "Bitcoin ETF çıkış serisi üçüncü haftaya taşındı mı",
-        "outcome": "Karışık - haftalık net çıkışlar sürdü ama Pazartesi BlackRock'ın IBIT'i öncülüğünde toplam akış net girişe döndü, Fidelity ve Grayscale'de çıkış devam etti."
+        "item": "Bitcoin ETF'lerinde BlackRock öncülüğündeki net girişin kalıcılığı",
+        "outcome": "Kısmen isabet: 19 Ekim'de IBIT 665 milyon dolar girişle iki haftalık çıkış serisini kırdı, Fidelity'nin FBTC'si ve Grayscale'in GBTC'si yine çıkış gördü; ancak ekim ayı toplamında hâlâ yaklaşık 88 milyon dolar net çıkış var, kalıcılık henüz teyit edilmedi."
       },
       {
-        "item": "Netflix ve GM kazançları AI çip harcama endişelerini yatıştırdı mı",
-        "outcome": "Henüz kısmi - GM bu sabah beklenti üstü kâr bildirdi, Netflix bilançosu gün sonunda açıklanacak; net yargı için akşamı beklemek gerekiyor."
+        "item": "BTC'nin 83.000 dolar direncini net biçimde kırması",
+        "outcome": "Iska: BTC birkaç kez 83.000-83.400 bandını test etti ancak kalıcı kıramadı, 82.600-83.400 aralığında sıkışık kaldı."
       },
       {
-        "item": "BTC 83.000 dolar direncini yeniden test etti mi",
-        "outcome": "İsabet - fiyat 83.000 doları test etti ancak kıramadı, 81.300-81.500 desteğine geri çekilip şu an 82.000 dolar civarında dengelendi."
+        "item": "Strategy (MSTR) hissesinde golden cross sinyali",
+        "outcome": "İsabet: MSTR 20 Ekim'de 50 günlük hareketli ortalamasının 200 günlük ortalamanın üzerine çıkmasıyla Mart 2023'ten beri ilk golden cross'unu oluşturdu."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "JPMorgan JPM Coin'i Ethereum'a taşıdı",
-        "summary": "JPMorgan, kurumsal mevduat tokeni JPM Coin'i Base'den sonra Ethereum ağına da genişletti; kurumsal müşteriler artık tokenize varlık ödemelerini Ethereum üzerinden 7 gün 24 saat yapabilecek.",
+        "title": "Çip hisselerinde AI harcama endişesiyle yeni satış dalgası",
+        "summary": "Samsung ve SK Hynix hisseleri, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair endişelerle yeniden sert düştü ve küresel risk iştahını baskıladı.",
         "source": {
-          "url": "https://www.pymnts.com/cryptocurrency/2026/jpmorgan-brings-its-deposit-token-to-the-ethereum-blockchain/",
-          "title": "JPMorgan Brings Its Deposit Token to the Ethereum Blockchain",
-          "publisher": "PYMNTS"
+          "url": "https://247wallst.com/investing/2026/10/20/sk-hynix-sinks-4-as-seoul-selloff-revives-ai-spending-fears-sandisk-drops-3-micron-eases/",
+          "title": "SK Hynix Sinks 4% as Seoul Selloff Revives AI Spending Fears",
+          "publisher": "24/7 Wall St."
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Bitcoin ETF'lerinde BlackRock öncülüğünde giriş dönüşü",
+        "summary": "ABD spot Bitcoin ETF'leri 19 Ekim'de iki haftalık net çıkış serisini kırarak 526,6 milyon dolar giriş gördü; girişin tamamı BlackRock'un IBIT'inden gelirken Fidelity ve Grayscale çıkış yaşadı.",
+        "source": {
+          "url": "https://www.coindesk.com/business/2026/10/20/bitcoin-etfs-just-saw-their-biggest-day-in-a-month-thanks-entirely-to-blackrock",
+          "title": "Bitcoin ETFs just saw their biggest day in a month thanks entirely to BlackRock",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin ETF'lerinde akışlar ayrıştı",
-        "summary": "Pazartesi günü BlackRock'ın IBIT'i 665 milyon dolar girişle öne çıkarken Fidelity'nin FBTC'si 83,6 milyon, Grayscale'in GBTC'si 54,9 milyon dolar çıkış gördü; toplamda net giriş yaşandı ama fon bazında tablo karışık.",
+        "title": "Strategy (MSTR) hissesinde golden cross",
+        "summary": "Strategy'nin hissesi 50 günlük ortalamasının 200 günlük ortalamanın üzerine çıkmasıyla Mart 2023'ten beri ilk golden cross sinyalini verdi; analistler zayıf momentum ve finansman maliyetlerine dikkat çekiyor.",
         "source": {
-          "url": "https://en.bloomingbit.io/feed/news/122546",
-          "title": "US Spot-Bitcoin ETFs Draw $526.64 Million of Net Inflows, Led by BlackRock",
-          "publisher": "Bloomingbit"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "Çip hisseleri sekiz günlük düşüşü kırdı",
-        "summary": "Nvidia, AMD ve Micron gibi yarı iletken hisseleri Pazartesi günü sert toparlanarak sekiz işlem günlük kayıp serisini sonlandırdı, bu da genel risk iştahını destekledi.",
-        "source": {
-          "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-futures-rise-113805730.html",
-          "title": "Nasdaq climbs as chip and AI-linked stocks bounce back",
-          "publisher": "Yahoo Finance"
+          "url": "https://www.benzinga.com/trading-ideas/technicals/26/10/62453035/mstr-golden-cross-risks",
+          "title": "MSTR Golden Cross: 2 Risks Bitcoin Bulls Face",
+          "publisher": "Benzinga"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Strategy hissesinde golden cross sinyali yaklaşıyor",
-        "summary": "Bitcoin'in en büyük kurumsal sahiplerinden Strategy'nin (MSTR) hissesi, Bitcoin'in haftalar önce verdiği bullish golden cross sinyaline yaklaşıyor; tarihsel isabet oranı yüzde 50 olduğu için temkinli yorumlanıyor.",
+        "title": "Netflix'te reklam geliri hedefi düşürüldü",
+        "summary": "Netflix üçüncü çeyrekte kârda beklentiyi aştı ancak 2026 reklam gelir tahminini 3 milyar dolardan 2,7 milyar dolara indirdi; hisse işlem sonrası geriledi.",
         "source": {
-          "url": "https://www.coindesk.com/daybook-us/2026/10/19/strategy-on-verge-of-golden-cross-just-weeks-after-bitcoin-flashed-same-bullish-signal",
-          "title": "Strategy (MSTR) on verge of golden cross, just weeks after bitcoin (BTC) did the same",
-          "publisher": "CoinDesk"
+          "url": "https://www.thewrap.com/industry-news/business/netflix-earnings-q3-2026/",
+          "title": "Netflix Revenue, Advertising Slowdown Rattles Wall Street as Growth Concerns Persist",
+          "publisher": "TheWrap"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "15:30",
-        "title": "ABD konut başlangıçları verisi (Eylül)"
+        "timeTr": "23:30",
+        "title": "Meta Q3 bilançosu"
       },
       {
-        "timeTr": "15:30",
-        "title": "GM çeyreklik bilanço çağrısı"
+        "timeTr": "00:30",
+        "title": "Tesla Q3 bilançosu"
       },
       {
-        "timeTr": "23:00",
-        "title": "Netflix çeyreklik bilançosu ve CEO röportajı"
+        "timeTr": null,
+        "title": "AKE token kilidinin açılması (yaklaşık 65 milyon dolar)"
+      },
+      {
+        "timeTr": null,
+        "title": "Çip ve AI harcama haberlerinin risk iştahına etkisi izlenecek"
       }
     ],
     "turkey": {
@@ -141,36 +149,36 @@
       "items": []
     },
     "risks": [
-      "ETF çıkışlarının Fidelity ve Grayscale üzerinden yeniden ağırlık kazanması BTC üzerinde baskı oluşturabilir.",
-      "28 Ekim FOMC kararı öncesi faiz beklentilerindeki oynaklık risk iştahını sınırlayabilir."
+      "AI harcama endişelerinin çip ve teknoloji hisselerinde yeniden derinleşmesi risk iştahını azaltabilir.",
+      "28 Ekim FOMC toplantısı öncesi şahin Fed söylemi risk varlıklarında oynaklığı artırabilir."
     ]
   },
   "followUps": [
-    "GM ve Netflix bilançoları AI çip harcama endişelerini gerçekten yatıştırdı mı",
-    "Bitcoin ETF'lerinde BlackRock öncülüğündeki net giriş kalıcı olacak mı yoksa Fidelity Grayscale çıkışları yeniden ağır basacak mı",
-    "BTC 83.000 dolar direncini net biçimde kırabilecek mi",
-    "Strategy hissesinde golden cross sinyali gerçekleşecek mi"
+    "Meta ve Tesla bilançoları AI harcama endişelerini yatıştıracak mı yoksa derinleştirecek mi",
+    "Bitcoin ETF'lerinde BlackRock öncülüğündeki giriş ikinci güne taşınacak mı",
+    "BTC 83.000-83.400 direnç bandını kalıcı kırabilecek mi",
+    "MSTR golden cross sonrası yükselişini sürdürebilecek mi"
   ],
   "sources": [
     {
-      "url": "https://www.pymnts.com/cryptocurrency/2026/jpmorgan-brings-its-deposit-token-to-the-ethereum-blockchain/",
-      "title": "JPMorgan Brings Its Deposit Token to the Ethereum Blockchain",
-      "publisher": "PYMNTS"
+      "url": "https://247wallst.com/investing/2026/10/20/sk-hynix-sinks-4-as-seoul-selloff-revives-ai-spending-fears-sandisk-drops-3-micron-eases/",
+      "title": "SK Hynix Sinks 4% as Seoul Selloff Revives AI Spending Fears",
+      "publisher": "24/7 Wall St."
     },
     {
-      "url": "https://en.bloomingbit.io/feed/news/122546",
-      "title": "US Spot-Bitcoin ETFs Draw $526.64 Million of Net Inflows, Led by BlackRock",
-      "publisher": "Bloomingbit"
-    },
-    {
-      "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-futures-rise-113805730.html",
-      "title": "Nasdaq climbs as chip and AI-linked stocks bounce back",
-      "publisher": "Yahoo Finance"
-    },
-    {
-      "url": "https://www.coindesk.com/daybook-us/2026/10/19/strategy-on-verge-of-golden-cross-just-weeks-after-bitcoin-flashed-same-bullish-signal",
-      "title": "Strategy (MSTR) on verge of golden cross, just weeks after bitcoin (BTC) did the same",
+      "url": "https://www.coindesk.com/business/2026/10/20/bitcoin-etfs-just-saw-their-biggest-day-in-a-month-thanks-entirely-to-blackrock",
+      "title": "Bitcoin ETFs just saw their biggest day in a month thanks entirely to BlackRock",
       "publisher": "CoinDesk"
+    },
+    {
+      "url": "https://www.benzinga.com/trading-ideas/technicals/26/10/62453035/mstr-golden-cross-risks",
+      "title": "MSTR Golden Cross: 2 Risks Bitcoin Bulls Face",
+      "publisher": "Benzinga"
+    },
+    {
+      "url": "https://www.thewrap.com/industry-news/business/netflix-earnings-q3-2026/",
+      "title": "Netflix Revenue, Advertising Slowdown Rattles Wall Street as Growth Concerns Persist",
+      "publisher": "TheWrap"
     }
   ],
   "assets": {
