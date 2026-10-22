@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-22",
+  "language": "tr",
+  "title": "22 Ekim 2026, Perşembe",
+  "publishedAt": "2026-10-22T07:52:32+03:00",
+  "updatedAt": "2026-10-22T07:52:32+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-22T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 82760,
+        "change24h": 0.06873808073135251
+      },
+      "ETH": {
+        "priceUsd": 2441.08,
+        "change24h": -0.0003275013598201359
+      },
+      "SOL": {
+        "priceUsd": 105.32,
+        "change24h": -0.3555909858622828
+      },
+      "BNB": {
+        "priceUsd": 739.44,
+        "change24h": -0.198100600079927
+      },
+      "XRP": {
+        "priceUsd": 1.35,
+        "change24h": 1.00374325309267
+      }
+    },
+    "btcDominance": 59.531018885795305,
+    "ethDominance": 10.669346297466161,
+    "totalMarketCapUsd": 2784517737297.464,
+    "volume24hUsd": 87450505131.93147,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 68,
+      "label": "Açgözlülük",
+      "previousValue": 63,
+      "weekAgoValue": 53
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "BTC, Meta ve Tesla bilançolarının tetiklediği teknoloji hisse toparlanması ve ABD Hazine Bakanlığı'nın OCC eliyle GENIUS Act kapsamında stablecoin kurallarını kesinleştirmesiyle artan risk iştahı sayesinde 81.000 dolar desteğinden 83.600 dolara kadar yükseldi, ancak direnç bandının üzerinde kalıcı olarak tutunamadı.",
+    "criticalEvents": [
+      {
+        "timeTr": "05:10",
+        "title": "Güney Kore Merkez Bankası faiz kararı"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD haftalık işsizlik başvuruları"
+      },
+      {
+        "timeTr": null,
+        "title": "Meta-Tesla ayrışması ABD vadelilerini aşağı çekti"
+      }
+    ],
+    "mainRisk": "Meta ile Tesla'nın bilançolarda birbirine zıt tepkiler görmesi, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair tedirginliği büyütüp risk iştahını hızla tersine çevirebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Meta ve Tesla bilançoları AI harcama endişelerini yatıştıracak mı yoksa derinleştirecek mi",
+        "outcome": "Ayrıştı: Meta 2026 capex tahminini 135-145 milyar dolara yükseltmesine rağmen hissesi yükseldi, Tesla ise capex beklentisini 20 milyar dolara çekince hissesi işlem sonrası yaklaşık yüzde 3,3 geriledi; endişeler yatışmadı, şirket bazında ikiye bölündü."
+      },
+      {
+        "item": "Bitcoin ETF'lerinde BlackRock öncülüğündeki giriş ikinci güne taşınacak mı",
+        "outcome": "İsabetli: 19 Ekim'deki 665 milyon dolarlık rekor IBIT girişinin ardından 21 Ekim'de toplam spot Bitcoin ETF'leri 526,7 milyon dolar giriş aldı, BlackRock yine 235 milyon dolarla öne çıktı."
+      },
+      {
+        "item": "BTC 83.000-83.400 direnç bandını kalıcı kırabilecek mi",
+        "outcome": "Kısmen: BTC 22 Ekim'de 83.600 dolara kadar çıkıp haftanın zirvesini yaptı ama kalıcı kırılım teyit edilmedi, fiyat yeniden bandın altına sarktı."
+      },
+      {
+        "item": "MSTR golden cross sonrası yükselişini sürdürebilecek mi",
+        "outcome": "Henüz belirsiz: 20 Ekim'de oluşan golden cross teyit edildi ama hisse net bir yön vermedi; tarihsel isabet oranının yalnızca yüzde 50 olduğu hatırlatılıyor."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "OCC, GENIUS Act kapsamında stablecoin kurallarını kesinleştirdi",
+        "summary": "ABD Hazine Bakanı Bessent, OCC'nin kesinleştirdiği stablecoin düzenlemesini 1863 Ulusal Para Yasası'na benzeterek tarihi bir dönüm noktası olarak tanımladı; kurallar Ocak 2027'de yürürlüğe girecek ve BTC, ETH, XRP gibi varlıklarda alım iştahını destekledi.",
+        "source": {
+          "url": "https://cointelegraph.com/news/occ-finalizes-stablecoin-rules-genius-act-bessent",
+          "title": "OCC Finalizes US Stablecoin Rules as Bessent Hails GENIUS Act",
+          "publisher": "Cointelegraph"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin spot ETF'lerine art arda güçlü giriş",
+        "summary": "ABD'li spot Bitcoin ETF'leri 21 Ekim'de 526,7 milyon dolar net giriş aldı, BlackRock'un IBIT'i 235 milyon dolarla öne çıktı; bu, 19 Ekim'deki 665 milyon dolarlık rekor girişin hemen ardından geldi ve kurumsal talebin sürdüğünü gösterdi.",
+        "source": {
+          "url": "https://news.bitcoin.com/bitcoin-etf/blackrock-posts-biggest-2026-inflow-as-bitcoin-etfs-add-527m/",
+          "title": "Blackrock Posts Biggest 2026 Inflow as Bitcoin ETFs Add $527M",
+          "publisher": "Bitcoin.com News"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Meta ve Tesla, AI harcamasında yollarını ayırdı",
+        "summary": "Meta 2026 capex tahminini 135-145 milyar dolara yükseltirken hissesi işlem sonrası yükseldi, Tesla ise capex beklentisini 20 milyar dolara çekince hissesi yaklaşık yüzde 3,3 geriledi; piyasa yapay zeka altyapı harcamasının sürdürülebilirliğini şirket bazında ayrı değerlendirdi.",
+        "source": {
+          "url": "https://www.gurufocus.com/news/9135487/meta-meta-boosts-capital-expenditure-forecast-tesla-tsla-cuts-spending-outlook",
+          "title": "Meta (META) Boosts Capital Expenditure Forecast, Tesla (TSLA) Cuts Spending Outlook",
+          "publisher": "GuruFocus"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "05:10",
+        "title": "Güney Kore Merkez Bankası faiz kararı (sonuçlandı, yüzde 3,00 sabit)"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD haftalık işsizlik başvuruları açıklanacak"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD vadeli piyasalarında Meta-Tesla ayrışmasının etkisi izlenecek"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Meta ve Tesla'nın bilançolarda zıt tepkiler görmesi, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair tedirginliği büyütebilir.",
+      "BTC'nin 83.000-83.600 direncini kalıcı kıramaması, kısa vadede 81.000 dolar desteğine geri çekilme riskini canlı tutuyor."
+    ]
+  },
+  "followUps": [
+    "ABD haftalık işsizlik başvuru verisi beklentinin üzerinde mi geldi",
+    "BTC 83.000-83.600 direncini kalıcı kırdı mı yoksa yeniden 81.000 desteğine mi döndü",
+    "Meta ve Tesla'nın ayrışan hisse tepkisi hafta sonuna kadar sürdü mü",
+    "BlackRock öncülüğündeki Bitcoin ETF girişleri üçüncü güne taşındı mı"
+  ],
+  "sources": [
+    {
+      "url": "https://cointelegraph.com/news/occ-finalizes-stablecoin-rules-genius-act-bessent",
+      "title": "OCC Finalizes US Stablecoin Rules as Bessent Hails GENIUS Act",
+      "publisher": "Cointelegraph"
+    },
+    {
+      "url": "https://news.bitcoin.com/bitcoin-etf/blackrock-posts-biggest-2026-inflow-as-bitcoin-etfs-add-527m/",
+      "title": "Blackrock Posts Biggest 2026 Inflow as Bitcoin ETFs Add $527M",
+      "publisher": "Bitcoin.com News"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9135487/meta-meta-boosts-capital-expenditure-forecast-tesla-tsla-cuts-spending-outlook",
+      "title": "Meta (META) Boosts Capital Expenditure Forecast, Tesla (TSLA) Cuts Spending Outlook",
+      "publisher": "GuruFocus"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

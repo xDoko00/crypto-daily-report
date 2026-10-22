@@ -1,147 +1,133 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-21",
+  "id": "2026-10-22",
   "language": "tr",
-  "title": "21 Ekim 2026, Çarşamba",
-  "publishedAt": "2026-10-21T07:51:01+03:00",
-  "updatedAt": "2026-10-21T07:51:01+03:00",
+  "title": "22 Ekim 2026, Perşembe",
+  "publishedAt": "2026-10-22T07:52:32+03:00",
+  "updatedAt": "2026-10-22T07:52:32+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-21T07:48:03+03:00",
+    "asOf": "2026-10-22T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 82703,
-        "change24h": 0.8264030117459058
+        "priceUsd": 82760,
+        "change24h": 0.06873808073135251
       },
       "ETH": {
-        "priceUsd": 2441.13,
-        "change24h": 1.2304787734945646
+        "priceUsd": 2441.08,
+        "change24h": -0.0003275013598201359
       },
       "SOL": {
-        "priceUsd": 105.7,
-        "change24h": 0.5022211325146282
+        "priceUsd": 105.32,
+        "change24h": -0.3555909858622828
       },
       "BNB": {
-        "priceUsd": 740.96,
-        "change24h": 1.4123079705409423
+        "priceUsd": 739.44,
+        "change24h": -0.198100600079927
       },
       "XRP": {
-        "priceUsd": 1.33,
-        "change24h": 1.9872185564126017
+        "priceUsd": 1.35,
+        "change24h": 1.00374325309267
       }
     },
-    "btcDominance": 59.514662205499526,
-    "ethDominance": 10.678896837403808,
-    "totalMarketCapUsd": 2786820823223.2847,
-    "volume24hUsd": 79648000876.53407,
+    "btcDominance": 59.531018885795305,
+    "ethDominance": 10.669346297466161,
+    "totalMarketCapUsd": 2784517737297.464,
+    "volume24hUsd": 87450505131.93147,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 63,
+      "value": 68,
       "label": "Açgözlülük",
-      "previousValue": 55,
-      "weekAgoValue": 62
+      "previousValue": 63,
+      "weekAgoValue": 53
     }
   },
   "brief": {
-    "mood": "İyimser",
-    "why": "Bitcoin ETF'lerinde BlackRock öncülüğünde iki haftalık çıkış serisini kıran giriş dönüşü ve Strategy hissesindeki golden cross sinyali piyasayı yukarı taşıdı; ancak çip hisselerindeki AI harcama endişelerinin yeniden derinleşmesi kazançları sınırlı tuttu.",
+    "mood": "Temkinli",
+    "why": "BTC, Meta ve Tesla bilançolarının tetiklediği teknoloji hisse toparlanması ve ABD Hazine Bakanlığı'nın OCC eliyle GENIUS Act kapsamında stablecoin kurallarını kesinleştirmesiyle artan risk iştahı sayesinde 81.000 dolar desteğinden 83.600 dolara kadar yükseldi, ancak direnç bandının üzerinde kalıcı olarak tutunamadı.",
     "criticalEvents": [
       {
-        "timeTr": "23:30",
-        "title": "Meta bilançosu"
+        "timeTr": "05:10",
+        "title": "Güney Kore Merkez Bankası faiz kararı"
       },
       {
-        "timeTr": "00:30",
-        "title": "Tesla bilançosu"
+        "timeTr": "15:30",
+        "title": "ABD haftalık işsizlik başvuruları"
       },
       {
         "timeTr": null,
-        "title": "Çip hisselerinde AI harcama satışı sürüyor"
+        "title": "Meta-Tesla ayrışması ABD vadelilerini aşağı çekti"
       }
     ],
-    "mainRisk": "Teknoloji ve çip hisselerindeki AI harcama endişelerinin yeniden derinleşmesi, risk iştahını kripto piyasasına da sıçratabilir."
+    "mainRisk": "Meta ile Tesla'nın bilançolarda birbirine zıt tepkiler görmesi, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair tedirginliği büyütüp risk iştahını hızla tersine çevirebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "GM ve Netflix bilançoları AI çip harcama endişelerini yatıştıracak mı",
-        "outcome": "Hayır: Netflix kârda beklentiyi aşsa da 2026 reklam gelir hedefini düşürdü, Samsung ve SK Hynix hisseleri AI harcama endişeleriyle yeniden sert düştü; GM da kazancı aşmasına rağmen CEO Barra'nın 'yoğunlaşan zorluklar' uyarısı ve daraltılmış rehberlik sonrası hissesi yüzde 7,6 geriledi — endişeler yatışmadı, sürdü."
+        "item": "Meta ve Tesla bilançoları AI harcama endişelerini yatıştıracak mı yoksa derinleştirecek mi",
+        "outcome": "Ayrıştı: Meta 2026 capex tahminini 135-145 milyar dolara yükseltmesine rağmen hissesi yükseldi, Tesla ise capex beklentisini 20 milyar dolara çekince hissesi işlem sonrası yaklaşık yüzde 3,3 geriledi; endişeler yatışmadı, şirket bazında ikiye bölündü."
       },
       {
-        "item": "Bitcoin ETF'lerinde BlackRock öncülüğündeki net girişin kalıcılığı",
-        "outcome": "Kısmen isabet: 19 Ekim'de IBIT 665 milyon dolar girişle iki haftalık çıkış serisini kırdı, Fidelity'nin FBTC'si ve Grayscale'in GBTC'si yine çıkış gördü; ancak ekim ayı toplamında hâlâ yaklaşık 88 milyon dolar net çıkış var, kalıcılık henüz teyit edilmedi."
+        "item": "Bitcoin ETF'lerinde BlackRock öncülüğündeki giriş ikinci güne taşınacak mı",
+        "outcome": "İsabetli: 19 Ekim'deki 665 milyon dolarlık rekor IBIT girişinin ardından 21 Ekim'de toplam spot Bitcoin ETF'leri 526,7 milyon dolar giriş aldı, BlackRock yine 235 milyon dolarla öne çıktı."
       },
       {
-        "item": "BTC'nin 83.000 dolar direncini net biçimde kırması",
-        "outcome": "Iska: BTC birkaç kez 83.000-83.400 bandını test etti ancak kalıcı kıramadı, 82.600-83.400 aralığında sıkışık kaldı."
+        "item": "BTC 83.000-83.400 direnç bandını kalıcı kırabilecek mi",
+        "outcome": "Kısmen: BTC 22 Ekim'de 83.600 dolara kadar çıkıp haftanın zirvesini yaptı ama kalıcı kırılım teyit edilmedi, fiyat yeniden bandın altına sarktı."
       },
       {
-        "item": "Strategy (MSTR) hissesinde golden cross sinyali",
-        "outcome": "İsabet: MSTR 20 Ekim'de 50 günlük hareketli ortalamasının 200 günlük ortalamanın üzerine çıkmasıyla Mart 2023'ten beri ilk golden cross'unu oluşturdu."
+        "item": "MSTR golden cross sonrası yükselişini sürdürebilecek mi",
+        "outcome": "Henüz belirsiz: 20 Ekim'de oluşan golden cross teyit edildi ama hisse net bir yön vermedi; tarihsel isabet oranının yalnızca yüzde 50 olduğu hatırlatılıyor."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Çip hisselerinde AI harcama endişesiyle yeni satış dalgası",
-        "summary": "Samsung ve SK Hynix hisseleri, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair endişelerle yeniden sert düştü ve küresel risk iştahını baskıladı.",
+        "title": "OCC, GENIUS Act kapsamında stablecoin kurallarını kesinleştirdi",
+        "summary": "ABD Hazine Bakanı Bessent, OCC'nin kesinleştirdiği stablecoin düzenlemesini 1863 Ulusal Para Yasası'na benzeterek tarihi bir dönüm noktası olarak tanımladı; kurallar Ocak 2027'de yürürlüğe girecek ve BTC, ETH, XRP gibi varlıklarda alım iştahını destekledi.",
         "source": {
-          "url": "https://247wallst.com/investing/2026/10/20/sk-hynix-sinks-4-as-seoul-selloff-revives-ai-spending-fears-sandisk-drops-3-micron-eases/",
-          "title": "SK Hynix Sinks 4% as Seoul Selloff Revives AI Spending Fears",
-          "publisher": "24/7 Wall St."
-        }
-      },
-      {
-        "importance": "kritik",
-        "title": "Bitcoin ETF'lerinde BlackRock öncülüğünde giriş dönüşü",
-        "summary": "ABD spot Bitcoin ETF'leri 19 Ekim'de iki haftalık net çıkış serisini kırarak 526,6 milyon dolar giriş gördü; girişin tamamı BlackRock'un IBIT'inden gelirken Fidelity ve Grayscale çıkış yaşadı.",
-        "source": {
-          "url": "https://www.coindesk.com/business/2026/10/20/bitcoin-etfs-just-saw-their-biggest-day-in-a-month-thanks-entirely-to-blackrock",
-          "title": "Bitcoin ETFs just saw their biggest day in a month thanks entirely to BlackRock",
-          "publisher": "CoinDesk"
+          "url": "https://cointelegraph.com/news/occ-finalizes-stablecoin-rules-genius-act-bessent",
+          "title": "OCC Finalizes US Stablecoin Rules as Bessent Hails GENIUS Act",
+          "publisher": "Cointelegraph"
         }
       },
       {
         "importance": "onemli",
-        "title": "Strategy (MSTR) hissesinde golden cross",
-        "summary": "Strategy'nin hissesi 50 günlük ortalamasının 200 günlük ortalamanın üzerine çıkmasıyla Mart 2023'ten beri ilk golden cross sinyalini verdi; analistler zayıf momentum ve finansman maliyetlerine dikkat çekiyor.",
+        "title": "Bitcoin spot ETF'lerine art arda güçlü giriş",
+        "summary": "ABD'li spot Bitcoin ETF'leri 21 Ekim'de 526,7 milyon dolar net giriş aldı, BlackRock'un IBIT'i 235 milyon dolarla öne çıktı; bu, 19 Ekim'deki 665 milyon dolarlık rekor girişin hemen ardından geldi ve kurumsal talebin sürdüğünü gösterdi.",
         "source": {
-          "url": "https://www.benzinga.com/trading-ideas/technicals/26/10/62453035/mstr-golden-cross-risks",
-          "title": "MSTR Golden Cross: 2 Risks Bitcoin Bulls Face",
-          "publisher": "Benzinga"
+          "url": "https://news.bitcoin.com/bitcoin-etf/blackrock-posts-biggest-2026-inflow-as-bitcoin-etfs-add-527m/",
+          "title": "Blackrock Posts Biggest 2026 Inflow as Bitcoin ETFs Add $527M",
+          "publisher": "Bitcoin.com News"
         }
       },
       {
-        "importance": "bilgi",
-        "title": "Netflix'te reklam geliri hedefi düşürüldü",
-        "summary": "Netflix üçüncü çeyrekte kârda beklentiyi aştı ancak 2026 reklam gelir tahminini 3 milyar dolardan 2,7 milyar dolara indirdi; hisse işlem sonrası geriledi.",
+        "importance": "onemli",
+        "title": "Meta ve Tesla, AI harcamasında yollarını ayırdı",
+        "summary": "Meta 2026 capex tahminini 135-145 milyar dolara yükseltirken hissesi işlem sonrası yükseldi, Tesla ise capex beklentisini 20 milyar dolara çekince hissesi yaklaşık yüzde 3,3 geriledi; piyasa yapay zeka altyapı harcamasının sürdürülebilirliğini şirket bazında ayrı değerlendirdi.",
         "source": {
-          "url": "https://www.thewrap.com/industry-news/business/netflix-earnings-q3-2026/",
-          "title": "Netflix Revenue, Advertising Slowdown Rattles Wall Street as Growth Concerns Persist",
-          "publisher": "TheWrap"
+          "url": "https://www.gurufocus.com/news/9135487/meta-meta-boosts-capital-expenditure-forecast-tesla-tsla-cuts-spending-outlook",
+          "title": "Meta (META) Boosts Capital Expenditure Forecast, Tesla (TSLA) Cuts Spending Outlook",
+          "publisher": "GuruFocus"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "23:30",
-        "title": "Meta Q3 bilançosu"
+        "timeTr": "05:10",
+        "title": "Güney Kore Merkez Bankası faiz kararı (sonuçlandı, yüzde 3,00 sabit)"
       },
       {
-        "timeTr": "00:30",
-        "title": "Tesla Q3 bilançosu"
-      },
-      {
-        "timeTr": null,
-        "title": "AKE token kilidinin açılması (yaklaşık 65 milyon dolar)"
+        "timeTr": "15:30",
+        "title": "ABD haftalık işsizlik başvuruları açıklanacak"
       },
       {
         "timeTr": null,
-        "title": "Çip ve AI harcama haberlerinin risk iştahına etkisi izlenecek"
+        "title": "ABD vadeli piyasalarında Meta-Tesla ayrışmasının etkisi izlenecek"
       }
     ],
     "turkey": {
@@ -149,36 +135,31 @@
       "items": []
     },
     "risks": [
-      "AI harcama endişelerinin çip ve teknoloji hisselerinde yeniden derinleşmesi risk iştahını azaltabilir.",
-      "28 Ekim FOMC toplantısı öncesi şahin Fed söylemi risk varlıklarında oynaklığı artırabilir."
+      "Meta ve Tesla'nın bilançolarda zıt tepkiler görmesi, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair tedirginliği büyütebilir.",
+      "BTC'nin 83.000-83.600 direncini kalıcı kıramaması, kısa vadede 81.000 dolar desteğine geri çekilme riskini canlı tutuyor."
     ]
   },
   "followUps": [
-    "Meta ve Tesla bilançoları AI harcama endişelerini yatıştıracak mı yoksa derinleştirecek mi",
-    "Bitcoin ETF'lerinde BlackRock öncülüğündeki giriş ikinci güne taşınacak mı",
-    "BTC 83.000-83.400 direnç bandını kalıcı kırabilecek mi",
-    "MSTR golden cross sonrası yükselişini sürdürebilecek mi"
+    "ABD haftalık işsizlik başvuru verisi beklentinin üzerinde mi geldi",
+    "BTC 83.000-83.600 direncini kalıcı kırdı mı yoksa yeniden 81.000 desteğine mi döndü",
+    "Meta ve Tesla'nın ayrışan hisse tepkisi hafta sonuna kadar sürdü mü",
+    "BlackRock öncülüğündeki Bitcoin ETF girişleri üçüncü güne taşındı mı"
   ],
   "sources": [
     {
-      "url": "https://247wallst.com/investing/2026/10/20/sk-hynix-sinks-4-as-seoul-selloff-revives-ai-spending-fears-sandisk-drops-3-micron-eases/",
-      "title": "SK Hynix Sinks 4% as Seoul Selloff Revives AI Spending Fears",
-      "publisher": "24/7 Wall St."
+      "url": "https://cointelegraph.com/news/occ-finalizes-stablecoin-rules-genius-act-bessent",
+      "title": "OCC Finalizes US Stablecoin Rules as Bessent Hails GENIUS Act",
+      "publisher": "Cointelegraph"
     },
     {
-      "url": "https://www.coindesk.com/business/2026/10/20/bitcoin-etfs-just-saw-their-biggest-day-in-a-month-thanks-entirely-to-blackrock",
-      "title": "Bitcoin ETFs just saw their biggest day in a month thanks entirely to BlackRock",
-      "publisher": "CoinDesk"
+      "url": "https://news.bitcoin.com/bitcoin-etf/blackrock-posts-biggest-2026-inflow-as-bitcoin-etfs-add-527m/",
+      "title": "Blackrock Posts Biggest 2026 Inflow as Bitcoin ETFs Add $527M",
+      "publisher": "Bitcoin.com News"
     },
     {
-      "url": "https://www.benzinga.com/trading-ideas/technicals/26/10/62453035/mstr-golden-cross-risks",
-      "title": "MSTR Golden Cross: 2 Risks Bitcoin Bulls Face",
-      "publisher": "Benzinga"
-    },
-    {
-      "url": "https://www.thewrap.com/industry-news/business/netflix-earnings-q3-2026/",
-      "title": "Netflix Revenue, Advertising Slowdown Rattles Wall Street as Growth Concerns Persist",
-      "publisher": "TheWrap"
+      "url": "https://www.gurufocus.com/news/9135487/meta-meta-boosts-capital-expenditure-forecast-tesla-tsla-cuts-spending-outlook",
+      "title": "Meta (META) Boosts Capital Expenditure Forecast, Tesla (TSLA) Cuts Spending Outlook",
+      "publisher": "GuruFocus"
     }
   ],
   "assets": {
