@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-23",
+  "language": "tr",
+  "title": "23 Ekim 2026, Cuma",
+  "publishedAt": "2026-10-23T07:49:54+03:00",
+  "updatedAt": "2026-10-23T07:49:54+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-23T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 81574,
+        "change24h": -1.4481829069842342
+      },
+      "ETH": {
+        "priceUsd": 2396.61,
+        "change24h": -1.8565129897284864
+      },
+      "SOL": {
+        "priceUsd": 103.88,
+        "change24h": -1.4050658586085314
+      },
+      "BNB": {
+        "priceUsd": 738.66,
+        "change24h": -0.14859485197646632
+      },
+      "XRP": {
+        "priceUsd": 1.32,
+        "change24h": -2.078726375375758
+      }
+    },
+    "btcDominance": 59.4581575467457,
+    "ethDominance": 10.61567863489962,
+    "totalMarketCapUsd": 2750257661839.748,
+    "volume24hUsd": 76538643479.23354,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 50,
+      "label": "Nötr",
+      "previousValue": 68,
+      "weekAgoValue": 63
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Meta'nın yapay zeka yatırım bütçesini 135-145 milyar dolara çıkarması ve Tesla'nın harcama planını düşürmesi Wall Street'te AI harcama endişesini körükledi, Nasdaq yüzde 2,6 düştü ve kripto bu satıştan sempatiyle olumsuz etkilendi; Hürmüz Boğazı'ndaki gerginlik ve yükselen petrol fiyatları risk iştahını ayrıca bastırdı.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:45",
+        "title": "ABD imalat ve hizmet PMI verileri"
+      },
+      {
+        "timeTr": "17:00",
+        "title": "Michigan tüketici güven endeksi"
+      },
+      {
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda gerginlik"
+      }
+    ],
+    "mainRisk": "Hürmüz Boğazı'ndaki gerginliğin tırmanması petrol fiyatlarını daha da yükseltip risk iştahını bozabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD haftalık işsizlik başvuru verisi beklentinin üzerinde mi geldi",
+        "outcome": "Iska, beklenti 200 bindi ama başvurular 194 bine geriledi; bu 57 yılın en düşük seviyelerinden biri oldu"
+      },
+      {
+        "item": "BTC 83.000-83.600 direncini kalıcı kırdı mı yoksa yeniden 81.000 desteğine mi döndü",
+        "outcome": "Iska, direnç kalıcı kırılamadı ve BTC yeniden 81.000 dolar desteğine döndü"
+      },
+      {
+        "item": "Meta ve Tesla'nın ayrışan hisse tepkisi hafta sonuna kadar sürdü mü",
+        "outcome": "İsabet, ayrışma sürdü; Meta yüzde 7'ye yakın, Tesla yüzde 3,3 değer kaybetti ve AI harcama endişesi derinleşti"
+      },
+      {
+        "item": "BlackRock öncülüğündeki Bitcoin ETF girişleri üçüncü güne taşındı mı",
+        "outcome": "İsabet, IBIT öncülüğünde net girişler üçüncü güne taşındı ve haftalık toplam 1 milyar doları geçti"
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Meta ve Tesla'nın AI harcama ayrışması teknoloji hisselerini vurdu",
+        "summary": "Meta'nın 2026 AI yatırım bütçesini 145 milyar dolara çıkarması ve Tesla'nın bütçesini 20 milyar dolara düşürmesi yatırım endişesini büyüttü, Nasdaq yüzde 2,6 düştü ve kripto bu satıştan olumsuz etkilendi.",
+        "source": {
+          "url": "https://www.forbes.com/sites/fionariley/2026/10/22/ai-stocks-slide-as-spending-anxiety-festers-after-tesla-meta-earnings/",
+          "title": "AI Stocks Slide As Spending Anxiety Festers After Tesla, Meta Earnings",
+          "publisher": "Forbes"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Hürmüz Boğazı'nda gemilere mayın isabeti petrolü yükseltti",
+        "summary": "Hürmüz Boğazı'nda gemilerin mayına çarptığı bildirilmesiyle Brent petrol 110 doların üzerine çıktı, bu da enflasyon ve risk algısını olumsuz etkiledi.",
+        "source": {
+          "url": "https://www.tradingpedia.com/2026/10/22/wti-crude-surges-past-99-as-middle-east-risks-intensify/",
+          "title": "WTI Crude Surges Past $99 as Middle East Risks Intensify",
+          "publisher": "Tradingpedia"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin spot ETF'lerine üçüncü gün üst üste net giriş",
+        "summary": "ABD spot Bitcoin ETF'leri 22 Ekim'de 528 milyon dolar net giriş aldı, BlackRock ve Fidelity öncülüğünde haftalık toplam 1 milyar doları geçti.",
+        "source": {
+          "url": "https://www.theblock.co/news/markets/2026-10-22-bitcoin-etfs-draw-528-million-as-ether-funds-snap-five-day-outflow-streak-421904",
+          "title": "Bitcoin ETFs draw $528 million as ether funds snap five-day outflow streak",
+          "publisher": "The Block"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Fed'in 27-28 Ekim toplantısında faiz sabit kalma olasılığı yüksek",
+        "summary": "CME FedWatch verilerine göre piyasa Fed'in bu ay faizi sabit tutma olasılığını yüzde 92,8 olarak fiyatlıyor, bu da kripto için volatiliteyi tarihi düşük seviyelerde tutuyor.",
+        "source": {
+          "url": "https://www.theblock.co/news/markets/2026-10-21-bitcoin-volatility-nears-2026-lows-as-traders-brace-for-fed-decision-and-us-midterms-421524",
+          "title": "Bitcoin volatility nears 2026 lows as traders brace for Fed decision and US midterms",
+          "publisher": "The Block"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:45",
+        "title": "ABD flaş imalat ve hizmet PMI verileri"
+      },
+      {
+        "timeTr": "17:00",
+        "title": "Michigan tüketici güven endeksi nihai okuması"
+      },
+      {
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'ndaki gerginliğin petrol fiyatına etkisi takip edilecek"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Teknoloji hisselerindeki AI harcama endişesinin kripto likiditesine sıçraması",
+      "Hürmüz Boğazı'ndaki gerginliğin tırmanıp petrol şoku yaratması"
+    ]
+  },
+  "followUps": [
+    "ABD flaş PMI verileri beklentiyi karşıladı mı",
+    "Bitcoin spot ETF girişleri dördüncü güne taşındı mı",
+    "Hürmüz Boğazı'ndaki gerginlik tırmandı mı yoksa yatıştı mı",
+    "BTC yeniden 83.000 direncini test etmeye başladı mı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.forbes.com/sites/fionariley/2026/10/22/ai-stocks-slide-as-spending-anxiety-festers-after-tesla-meta-earnings/",
+      "title": "AI Stocks Slide As Spending Anxiety Festers After Tesla, Meta Earnings",
+      "publisher": "Forbes"
+    },
+    {
+      "url": "https://www.tradingpedia.com/2026/10/22/wti-crude-surges-past-99-as-middle-east-risks-intensify/",
+      "title": "WTI Crude Surges Past $99 as Middle East Risks Intensify",
+      "publisher": "Tradingpedia"
+    },
+    {
+      "url": "https://www.theblock.co/news/markets/2026-10-22-bitcoin-etfs-draw-528-million-as-ether-funds-snap-five-day-outflow-streak-421904",
+      "title": "Bitcoin ETFs draw $528 million as ether funds snap five-day outflow streak",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://www.theblock.co/news/markets/2026-10-21-bitcoin-volatility-nears-2026-lows-as-traders-brace-for-fed-decision-and-us-midterms-421524",
+      "title": "Bitcoin volatility nears 2026 lows as traders brace for Fed decision and US midterms",
+      "publisher": "The Block"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

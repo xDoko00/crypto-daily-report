@@ -1,133 +1,143 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-22",
+  "id": "2026-10-23",
   "language": "tr",
-  "title": "22 Ekim 2026, Perşembe",
-  "publishedAt": "2026-10-22T07:52:32+03:00",
-  "updatedAt": "2026-10-22T07:52:32+03:00",
+  "title": "23 Ekim 2026, Cuma",
+  "publishedAt": "2026-10-23T07:49:54+03:00",
+  "updatedAt": "2026-10-23T07:49:54+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-22T07:48:00+03:00",
+    "asOf": "2026-10-23T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 82760,
-        "change24h": 0.06873808073135251
+        "priceUsd": 81574,
+        "change24h": -1.4481829069842342
       },
       "ETH": {
-        "priceUsd": 2441.08,
-        "change24h": -0.0003275013598201359
+        "priceUsd": 2396.61,
+        "change24h": -1.8565129897284864
       },
       "SOL": {
-        "priceUsd": 105.32,
-        "change24h": -0.3555909858622828
+        "priceUsd": 103.88,
+        "change24h": -1.4050658586085314
       },
       "BNB": {
-        "priceUsd": 739.44,
-        "change24h": -0.198100600079927
+        "priceUsd": 738.66,
+        "change24h": -0.14859485197646632
       },
       "XRP": {
-        "priceUsd": 1.35,
-        "change24h": 1.00374325309267
+        "priceUsd": 1.32,
+        "change24h": -2.078726375375758
       }
     },
-    "btcDominance": 59.531018885795305,
-    "ethDominance": 10.669346297466161,
-    "totalMarketCapUsd": 2784517737297.464,
-    "volume24hUsd": 87450505131.93147,
+    "btcDominance": 59.4581575467457,
+    "ethDominance": 10.61567863489962,
+    "totalMarketCapUsd": 2750257661839.748,
+    "volume24hUsd": 76538643479.23354,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 68,
-      "label": "Açgözlülük",
-      "previousValue": 63,
-      "weekAgoValue": 53
+      "value": 50,
+      "label": "Nötr",
+      "previousValue": 68,
+      "weekAgoValue": 63
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "BTC, Meta ve Tesla bilançolarının tetiklediği teknoloji hisse toparlanması ve ABD Hazine Bakanlığı'nın OCC eliyle GENIUS Act kapsamında stablecoin kurallarını kesinleştirmesiyle artan risk iştahı sayesinde 81.000 dolar desteğinden 83.600 dolara kadar yükseldi, ancak direnç bandının üzerinde kalıcı olarak tutunamadı.",
+    "why": "Meta'nın yapay zeka yatırım bütçesini 135-145 milyar dolara çıkarması ve Tesla'nın harcama planını düşürmesi Wall Street'te AI harcama endişesini körükledi, Nasdaq yüzde 2,6 düştü ve kripto bu satıştan sempatiyle olumsuz etkilendi; Hürmüz Boğazı'ndaki gerginlik ve yükselen petrol fiyatları risk iştahını ayrıca bastırdı.",
     "criticalEvents": [
       {
-        "timeTr": "05:10",
-        "title": "Güney Kore Merkez Bankası faiz kararı"
+        "timeTr": "16:45",
+        "title": "ABD imalat ve hizmet PMI verileri"
       },
       {
-        "timeTr": "15:30",
-        "title": "ABD haftalık işsizlik başvuruları"
+        "timeTr": "17:00",
+        "title": "Michigan tüketici güven endeksi"
       },
       {
         "timeTr": null,
-        "title": "Meta-Tesla ayrışması ABD vadelilerini aşağı çekti"
+        "title": "Hürmüz Boğazı'nda gerginlik"
       }
     ],
-    "mainRisk": "Meta ile Tesla'nın bilançolarda birbirine zıt tepkiler görmesi, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair tedirginliği büyütüp risk iştahını hızla tersine çevirebilir."
+    "mainRisk": "Hürmüz Boğazı'ndaki gerginliğin tırmanması petrol fiyatlarını daha da yükseltip risk iştahını bozabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Meta ve Tesla bilançoları AI harcama endişelerini yatıştıracak mı yoksa derinleştirecek mi",
-        "outcome": "Ayrıştı: Meta 2026 capex tahminini 135-145 milyar dolara yükseltmesine rağmen hissesi yükseldi, Tesla ise capex beklentisini 20 milyar dolara çekince hissesi işlem sonrası yaklaşık yüzde 3,3 geriledi; endişeler yatışmadı, şirket bazında ikiye bölündü."
+        "item": "ABD haftalık işsizlik başvuru verisi beklentinin üzerinde mi geldi",
+        "outcome": "Iska, beklenti 200 bindi ama başvurular 194 bine geriledi; bu 57 yılın en düşük seviyelerinden biri oldu"
       },
       {
-        "item": "Bitcoin ETF'lerinde BlackRock öncülüğündeki giriş ikinci güne taşınacak mı",
-        "outcome": "İsabetli: 19 Ekim'deki 665 milyon dolarlık rekor IBIT girişinin ardından 21 Ekim'de toplam spot Bitcoin ETF'leri 526,7 milyon dolar giriş aldı, BlackRock yine 235 milyon dolarla öne çıktı."
+        "item": "BTC 83.000-83.600 direncini kalıcı kırdı mı yoksa yeniden 81.000 desteğine mi döndü",
+        "outcome": "Iska, direnç kalıcı kırılamadı ve BTC yeniden 81.000 dolar desteğine döndü"
       },
       {
-        "item": "BTC 83.000-83.400 direnç bandını kalıcı kırabilecek mi",
-        "outcome": "Kısmen: BTC 22 Ekim'de 83.600 dolara kadar çıkıp haftanın zirvesini yaptı ama kalıcı kırılım teyit edilmedi, fiyat yeniden bandın altına sarktı."
+        "item": "Meta ve Tesla'nın ayrışan hisse tepkisi hafta sonuna kadar sürdü mü",
+        "outcome": "İsabet, ayrışma sürdü; Meta yüzde 7'ye yakın, Tesla yüzde 3,3 değer kaybetti ve AI harcama endişesi derinleşti"
       },
       {
-        "item": "MSTR golden cross sonrası yükselişini sürdürebilecek mi",
-        "outcome": "Henüz belirsiz: 20 Ekim'de oluşan golden cross teyit edildi ama hisse net bir yön vermedi; tarihsel isabet oranının yalnızca yüzde 50 olduğu hatırlatılıyor."
+        "item": "BlackRock öncülüğündeki Bitcoin ETF girişleri üçüncü güne taşındı mı",
+        "outcome": "İsabet, IBIT öncülüğünde net girişler üçüncü güne taşındı ve haftalık toplam 1 milyar doları geçti"
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "OCC, GENIUS Act kapsamında stablecoin kurallarını kesinleştirdi",
-        "summary": "ABD Hazine Bakanı Bessent, OCC'nin kesinleştirdiği stablecoin düzenlemesini 1863 Ulusal Para Yasası'na benzeterek tarihi bir dönüm noktası olarak tanımladı; kurallar Ocak 2027'de yürürlüğe girecek ve BTC, ETH, XRP gibi varlıklarda alım iştahını destekledi.",
+        "title": "Meta ve Tesla'nın AI harcama ayrışması teknoloji hisselerini vurdu",
+        "summary": "Meta'nın 2026 AI yatırım bütçesini 145 milyar dolara çıkarması ve Tesla'nın bütçesini 20 milyar dolara düşürmesi yatırım endişesini büyüttü, Nasdaq yüzde 2,6 düştü ve kripto bu satıştan olumsuz etkilendi.",
         "source": {
-          "url": "https://cointelegraph.com/news/occ-finalizes-stablecoin-rules-genius-act-bessent",
-          "title": "OCC Finalizes US Stablecoin Rules as Bessent Hails GENIUS Act",
-          "publisher": "Cointelegraph"
+          "url": "https://www.forbes.com/sites/fionariley/2026/10/22/ai-stocks-slide-as-spending-anxiety-festers-after-tesla-meta-earnings/",
+          "title": "AI Stocks Slide As Spending Anxiety Festers After Tesla, Meta Earnings",
+          "publisher": "Forbes"
         }
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin spot ETF'lerine art arda güçlü giriş",
-        "summary": "ABD'li spot Bitcoin ETF'leri 21 Ekim'de 526,7 milyon dolar net giriş aldı, BlackRock'un IBIT'i 235 milyon dolarla öne çıktı; bu, 19 Ekim'deki 665 milyon dolarlık rekor girişin hemen ardından geldi ve kurumsal talebin sürdüğünü gösterdi.",
+        "title": "Hürmüz Boğazı'nda gemilere mayın isabeti petrolü yükseltti",
+        "summary": "Hürmüz Boğazı'nda gemilerin mayına çarptığı bildirilmesiyle Brent petrol 110 doların üzerine çıktı, bu da enflasyon ve risk algısını olumsuz etkiledi.",
         "source": {
-          "url": "https://news.bitcoin.com/bitcoin-etf/blackrock-posts-biggest-2026-inflow-as-bitcoin-etfs-add-527m/",
-          "title": "Blackrock Posts Biggest 2026 Inflow as Bitcoin ETFs Add $527M",
-          "publisher": "Bitcoin.com News"
+          "url": "https://www.tradingpedia.com/2026/10/22/wti-crude-surges-past-99-as-middle-east-risks-intensify/",
+          "title": "WTI Crude Surges Past $99 as Middle East Risks Intensify",
+          "publisher": "Tradingpedia"
         }
       },
       {
         "importance": "onemli",
-        "title": "Meta ve Tesla, AI harcamasında yollarını ayırdı",
-        "summary": "Meta 2026 capex tahminini 135-145 milyar dolara yükseltirken hissesi işlem sonrası yükseldi, Tesla ise capex beklentisini 20 milyar dolara çekince hissesi yaklaşık yüzde 3,3 geriledi; piyasa yapay zeka altyapı harcamasının sürdürülebilirliğini şirket bazında ayrı değerlendirdi.",
+        "title": "Bitcoin spot ETF'lerine üçüncü gün üst üste net giriş",
+        "summary": "ABD spot Bitcoin ETF'leri 22 Ekim'de 528 milyon dolar net giriş aldı, BlackRock ve Fidelity öncülüğünde haftalık toplam 1 milyar doları geçti.",
         "source": {
-          "url": "https://www.gurufocus.com/news/9135487/meta-meta-boosts-capital-expenditure-forecast-tesla-tsla-cuts-spending-outlook",
-          "title": "Meta (META) Boosts Capital Expenditure Forecast, Tesla (TSLA) Cuts Spending Outlook",
-          "publisher": "GuruFocus"
+          "url": "https://www.theblock.co/news/markets/2026-10-22-bitcoin-etfs-draw-528-million-as-ether-funds-snap-five-day-outflow-streak-421904",
+          "title": "Bitcoin ETFs draw $528 million as ether funds snap five-day outflow streak",
+          "publisher": "The Block"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Fed'in 27-28 Ekim toplantısında faiz sabit kalma olasılığı yüksek",
+        "summary": "CME FedWatch verilerine göre piyasa Fed'in bu ay faizi sabit tutma olasılığını yüzde 92,8 olarak fiyatlıyor, bu da kripto için volatiliteyi tarihi düşük seviyelerde tutuyor.",
+        "source": {
+          "url": "https://www.theblock.co/news/markets/2026-10-21-bitcoin-volatility-nears-2026-lows-as-traders-brace-for-fed-decision-and-us-midterms-421524",
+          "title": "Bitcoin volatility nears 2026 lows as traders brace for Fed decision and US midterms",
+          "publisher": "The Block"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "05:10",
-        "title": "Güney Kore Merkez Bankası faiz kararı (sonuçlandı, yüzde 3,00 sabit)"
+        "timeTr": "16:45",
+        "title": "ABD flaş imalat ve hizmet PMI verileri"
       },
       {
-        "timeTr": "15:30",
-        "title": "ABD haftalık işsizlik başvuruları açıklanacak"
+        "timeTr": "17:00",
+        "title": "Michigan tüketici güven endeksi nihai okuması"
       },
       {
         "timeTr": null,
-        "title": "ABD vadeli piyasalarında Meta-Tesla ayrışmasının etkisi izlenecek"
+        "title": "Hürmüz Boğazı'ndaki gerginliğin petrol fiyatına etkisi takip edilecek"
       }
     ],
     "turkey": {
@@ -135,31 +145,36 @@
       "items": []
     },
     "risks": [
-      "Meta ve Tesla'nın bilançolarda zıt tepkiler görmesi, yapay zeka altyapı harcamalarının sürdürülebilirliğine dair tedirginliği büyütebilir.",
-      "BTC'nin 83.000-83.600 direncini kalıcı kıramaması, kısa vadede 81.000 dolar desteğine geri çekilme riskini canlı tutuyor."
+      "Teknoloji hisselerindeki AI harcama endişesinin kripto likiditesine sıçraması",
+      "Hürmüz Boğazı'ndaki gerginliğin tırmanıp petrol şoku yaratması"
     ]
   },
   "followUps": [
-    "ABD haftalık işsizlik başvuru verisi beklentinin üzerinde mi geldi",
-    "BTC 83.000-83.600 direncini kalıcı kırdı mı yoksa yeniden 81.000 desteğine mi döndü",
-    "Meta ve Tesla'nın ayrışan hisse tepkisi hafta sonuna kadar sürdü mü",
-    "BlackRock öncülüğündeki Bitcoin ETF girişleri üçüncü güne taşındı mı"
+    "ABD flaş PMI verileri beklentiyi karşıladı mı",
+    "Bitcoin spot ETF girişleri dördüncü güne taşındı mı",
+    "Hürmüz Boğazı'ndaki gerginlik tırmandı mı yoksa yatıştı mı",
+    "BTC yeniden 83.000 direncini test etmeye başladı mı"
   ],
   "sources": [
     {
-      "url": "https://cointelegraph.com/news/occ-finalizes-stablecoin-rules-genius-act-bessent",
-      "title": "OCC Finalizes US Stablecoin Rules as Bessent Hails GENIUS Act",
-      "publisher": "Cointelegraph"
+      "url": "https://www.forbes.com/sites/fionariley/2026/10/22/ai-stocks-slide-as-spending-anxiety-festers-after-tesla-meta-earnings/",
+      "title": "AI Stocks Slide As Spending Anxiety Festers After Tesla, Meta Earnings",
+      "publisher": "Forbes"
     },
     {
-      "url": "https://news.bitcoin.com/bitcoin-etf/blackrock-posts-biggest-2026-inflow-as-bitcoin-etfs-add-527m/",
-      "title": "Blackrock Posts Biggest 2026 Inflow as Bitcoin ETFs Add $527M",
-      "publisher": "Bitcoin.com News"
+      "url": "https://www.tradingpedia.com/2026/10/22/wti-crude-surges-past-99-as-middle-east-risks-intensify/",
+      "title": "WTI Crude Surges Past $99 as Middle East Risks Intensify",
+      "publisher": "Tradingpedia"
     },
     {
-      "url": "https://www.gurufocus.com/news/9135487/meta-meta-boosts-capital-expenditure-forecast-tesla-tsla-cuts-spending-outlook",
-      "title": "Meta (META) Boosts Capital Expenditure Forecast, Tesla (TSLA) Cuts Spending Outlook",
-      "publisher": "GuruFocus"
+      "url": "https://www.theblock.co/news/markets/2026-10-22-bitcoin-etfs-draw-528-million-as-ether-funds-snap-five-day-outflow-streak-421904",
+      "title": "Bitcoin ETFs draw $528 million as ether funds snap five-day outflow streak",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://www.theblock.co/news/markets/2026-10-21-bitcoin-volatility-nears-2026-lows-as-traders-brace-for-fed-decision-and-us-midterms-421524",
+      "title": "Bitcoin volatility nears 2026 lows as traders brace for Fed decision and US midterms",
+      "publisher": "The Block"
     }
   ],
   "assets": {
