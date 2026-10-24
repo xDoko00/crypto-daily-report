@@ -1,13 +1,13 @@
 {
  "kanca-sabah": {
-  "gun": "2026-10-23",
-  "onceki": "sabah-sehir/sabah-sehir-02.mp4",
+  "gun": "2026-10-24",
+  "onceki": "istanbul-sabah/istanbul-sabah-02.mp4",
   "secilen": [
-   "istanbul-sabah/istanbul-sabah-02.mp4"
+   "sabah-sehir/sabah-sehir-03.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-10-23",
+  "gun": "2026-10-24",
   "onceki": "piyasa-dusus/piyasa-dusus-03.mp4",
   "secilen": [
    "piyasa-dusus/piyasa-dusus-01.mp4",
@@ -30,17 +30,17 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-10-23",
-  "onceki": "takvim-veri/takvim-veri-02.mp4",
+  "gun": "2026-10-24",
+  "onceki": "takvim-veri/takvim-veri-04.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-04.mp4"
+   "takvim-veri/takvim-veri-01.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-10-23",
-  "onceki": "kapanis/kapanis-03.mp4",
+  "gun": "2026-10-24",
+  "onceki": "kapanis/kapanis-04.mp4",
   "secilen": [
-   "kapanis/kapanis-04.mp4"
+   "kapanis/kapanis-01.mp4"
   ]
  },
  "piyasa-yukselis": {
@@ -59,11 +59,10 @@
   ]
  },
  "etf-kurumsal": {
-  "gun": "2026-10-22",
+  "gun": "2026-10-24",
   "onceki": "etf-kurumsal/etf-kurumsal-02.mp4",
   "secilen": [
-   "etf-kurumsal/etf-kurumsal-01.mp4",
-   "etf-kurumsal/etf-kurumsal-02.mp4"
+   "etf-kurumsal/etf-kurumsal-01.mp4"
   ]
  },
  "sakin-yatay": {
@@ -89,7 +88,7 @@
   ]
  },
  "yapay-zeka-teknoloji": {
-  "gun": "2026-10-23",
+  "gun": "2026-10-24",
   "onceki": "yapay-zeka-teknoloji/yapay-zeka-teknoloji-01.mp4",
   "secilen": [
    "yapay-zeka-teknoloji/yapay-zeka-teknoloji-01.mp4"
