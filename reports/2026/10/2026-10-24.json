@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-24",
+  "language": "tr",
+  "title": "24 Ekim 2026, Cumartesi",
+  "publishedAt": "2026-10-24T07:52:22+03:00",
+  "updatedAt": "2026-10-24T07:52:22+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-24T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 80805,
+        "change24h": -0.9432073439825084
+      },
+      "ETH": {
+        "priceUsd": 2380.47,
+        "change24h": -0.6467985635862168
+      },
+      "SOL": {
+        "priceUsd": 102.63,
+        "change24h": -1.17812089425107
+      },
+      "BNB": {
+        "priceUsd": 739.38,
+        "change24h": 0.11387762500777188
+      },
+      "XRP": {
+        "priceUsd": 1.29,
+        "change24h": -2.0373443979859247
+      }
+    },
+    "btcDominance": 59.44513151983103,
+    "ethDominance": 10.641605913745243,
+    "totalMarketCapUsd": 2726567717921.1094,
+    "volume24hUsd": 64964678919.40336,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 51,
+      "label": "Nötr",
+      "previousValue": 50,
+      "weekAgoValue": 55
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Tesla'nın yatırım harcamasını kesmesi ve Meta'nın yapay zeka altyapı maliyetlerinin serbest nakit akışını negatife çevirmesi Nasdaq'ı %2,6 düşürdü; bu satış kaldıraçlı pozisyonların zorunlu kapanmasıyla kriptoya sıçradı ve aynı gün Bitcoin spot ETF'lerinde 635 milyon dolarlık çıkış üç günlük giriş serisini bozdu.",
+    "criticalEvents": [
+      {
+        "timeTr": "06:00",
+        "title": "NIL ve INIT token kilidi açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda gerginlik takibi"
+      }
+    ],
+    "mainRisk": "Hafta sonu düşük işlem hacminde Hürmüz Boğazı'ndaki saldırıların artması veya yeni bir kaldıraç tasfiyesi fiyat dalgalanmasını büyütebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD flaş PMI verileri beklentiyi karşıladı mı",
+        "outcome": "Kısmen ıska - hizmet PMI 57,9 ile 58,0 beklentisinin hafif altında kaldı, kompozit endeks 58,4'ten 57,6'ya geriledi; büyüme güçlü kalsa da satış fiyatları dört yılın en sert artışını kaydetti"
+      },
+      {
+        "item": "Bitcoin spot ETF girişleri dördüncü güne taşındı mı",
+        "outcome": "Isabetsiz - üç günlük 1,08 milyar dolarlık giriş serisi, 635,6 milyon dolarlık net çıkışla sona erdi"
+      },
+      {
+        "item": "Hürmüz Boğazı'ndaki gerginlik tırmandı mı yoksa yatıştı mı",
+        "outcome": "Tırmandı - Ekim ayında en az 28 saldırı kaydedildi, mart ayından beri en yoğun dönem yaşanıyor ve boğazdaki gemi trafiği neredeyse sıfıra indi"
+      },
+      {
+        "item": "BTC yeniden 83.000 direncini test etmeye başladı mı",
+        "outcome": "Isabetli ama kalıcı olmadı - BTC kısa süreliğine yaklaşık 84.800 dolara kadar yükseldi, ardından Nasdaq kaynaklı satışla 80.800 dolar seviyesine geri düştü"
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Bitcoin ETF'lerinde 635 milyon dolarlık çıkış",
+        "summary": "ABD'deki spot Bitcoin ETF'leri bir önceki günün 528 milyon dolarlık girişini tersine çevirerek Haziran'dan beri en büyük günlük net çıkışı yaşadı; BlackRock IBIT ve Fidelity FBTC çıkışa öncülük etti.",
+        "source": {
+          "url": "https://www.theblock.co/news/markets/2026-10-23-bitcoin-etfs-swing-back-to-net-outflows-erase-previous-day-inflows-426483",
+          "title": "Bitcoin ETFs swing back to net outflows as $636 million in withdrawals erase previous day's inflows",
+          "publisher": "The Block"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Tesla ve Meta'nın yapay zeka harcaması Nasdaq'ı vurdu",
+        "summary": "Tesla yatırım harcaması tahminini düşürürken Meta'nın devasa yapay zeka altyapı maliyetleri serbest nakit akışını negatife çevirdi; Nasdaq'taki satış kaldıraçlı kripto pozisyonlarının zorunlu kapanmasını tetikledi.",
+        "source": {
+          "url": "https://cryptoticker.io/en/crypto-selloff-liquidations-rates/",
+          "title": "Why Bitcoin and Ether Are Falling: The Crypto Selloff",
+          "publisher": "CryptoTicker"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Hürmüz'de Ekim ayı rekor saldırı sayısına ulaştı",
+        "summary": "Ekim ayında bölgede en az 28 saldırı kaydedildi, bu mart ayından beri en yoğun dönem; boğazdaki gemi geçişleri kriz öncesi günlük 85'ten sıfıra yakın seviyeye düştü.",
+        "source": {
+          "url": "https://www.usnews.com/news/world/articles/2026-10-23/ship-attacks-in-strait-of-hormuz-hit-record-high-in-october",
+          "title": "Ship Attacks in Strait of Hormuz Hit Record High in October",
+          "publisher": "U.S. News & World Report"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "OCC, GENIUS Act stablecoin kuralını nihailedi",
+        "summary": "ABD bankacılık düzenleyicisi OCC, ulusal bankalar ve federal kuruluşlar için ödeme stablecoin'i ihracına ilişkin nihai kuralı yayımladı; kural 18 Ocak 2027'de yürürlüğe girecek.",
+        "source": {
+          "url": "https://www.paulhastings.com/insights/ph-fedaction-financial-regulatory-updates-homepage/daily-financial-regulation-update-friday-october-23-2026",
+          "title": "Daily Financial Regulation Update -- Friday, October 23, 2026",
+          "publisher": "Paul Hastings"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "06:00",
+        "title": "NIL ve INIT token kilidi açılışı"
+      },
+      {
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda saldırı ve gerginlik takibi"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likiditede ani fiyat hareketi riski"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Hürmüz Boğazı'ndaki saldırılar Ekim'de rekor seviyede; olası tırmanma risk iştahını baskılayabilir.",
+      "Hafta sonu düşük işlem hacminde kaldıraçlı pozisyonların yeniden tasfiyesi fiyat dalgalanmasını büyütebilir."
+    ]
+  },
+  "followUps": [
+    "Plasma (XPL) ve Humanity (H) token kilidi açılışı (25 Ekim) fiyatları nasıl etkiledi",
+    "Hürmüz Boğazı'nda saldırı sayısı Ekim rekorunu aştı mı yoksa geriledi mi",
+    "BTC hafta sonu 80.000-83.000 bandını korudu mu yoksa yeni bir kırılma oldu mu",
+    "28 Ekim'deki FOMC toplantısı öncesi piyasa pozisyonlanması nasıl şekillendi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.theblock.co/news/markets/2026-10-23-bitcoin-etfs-swing-back-to-net-outflows-erase-previous-day-inflows-426483",
+      "title": "Bitcoin ETFs swing back to net outflows as $636 million in withdrawals erase previous day's inflows",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://cryptoticker.io/en/crypto-selloff-liquidations-rates/",
+      "title": "Why Bitcoin and Ether Are Falling: The Crypto Selloff",
+      "publisher": "CryptoTicker"
+    },
+    {
+      "url": "https://www.usnews.com/news/world/articles/2026-10-23/ship-attacks-in-strait-of-hormuz-hit-record-high-in-october",
+      "title": "Ship Attacks in Strait of Hormuz Hit Record High in October",
+      "publisher": "U.S. News & World Report"
+    },
+    {
+      "url": "https://www.paulhastings.com/insights/ph-fedaction-financial-regulatory-updates-homepage/daily-financial-regulation-update-friday-october-23-2026",
+      "title": "Daily Financial Regulation Update -- Friday, October 23, 2026",
+      "publisher": "Paul Hastings"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
