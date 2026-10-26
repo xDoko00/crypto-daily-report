@@ -1,147 +1,157 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-25",
+  "id": "2026-10-26",
   "language": "tr",
-  "title": "25 Ekim 2026, Pazar",
-  "publishedAt": "2026-10-25T07:53:42+03:00",
-  "updatedAt": "2026-10-25T07:53:42+03:00",
+  "title": "26 Ekim 2026, Pazartesi",
+  "publishedAt": "2026-10-26T07:56:50+03:00",
+  "updatedAt": "2026-10-26T07:56:50+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-25T07:48:00+03:00",
+    "asOf": "2026-10-26T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 80855,
-        "change24h": 0.06277867702459489
+        "priceUsd": 79905,
+        "change24h": -1.174821571980504
       },
       "ETH": {
-        "priceUsd": 2366.33,
-        "change24h": -0.6048107964690466
+        "priceUsd": 2312.09,
+        "change24h": -2.29335617226456
       },
       "SOL": {
-        "priceUsd": 102.56,
-        "change24h": -0.05798460151556776
+        "priceUsd": 100.91,
+        "change24h": -1.6041684815652872
       },
       "BNB": {
-        "priceUsd": 746.94,
-        "change24h": 1.0246627373761454
+        "priceUsd": 740.35,
+        "change24h": -0.8817449499956227
       },
       "XRP": {
-        "priceUsd": 1.31,
-        "change24h": 1.497389597740459
+        "priceUsd": 1.28,
+        "change24h": -2.099135680741825
       }
     },
-    "btcDominance": 59.44799642934904,
-    "ethDominance": 10.571004187670969,
-    "totalMarketCapUsd": 2728601420007.0845,
-    "volume24hUsd": 56384269922.12949,
+    "btcDominance": 60.038633556922186,
+    "ethDominance": 10.558503947123574,
+    "totalMarketCapUsd": 2667545759524.364,
+    "volume24hUsd": 48968805750.563324,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 54,
+      "value": 50,
       "label": "Nötr",
-      "previousValue": 51,
-      "weekAgoValue": 53
+      "previousValue": 54,
+      "weekAgoValue": 59
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "BTC, Cuma ve Cumartesi günlerinde art arda gelen ETF çıkışları ile Hürmüz Boğazı'ndaki saldırıların petrol fiyatlarını yükseltmesi nedeniyle 80.000 doların altına sarktı; FOMC öncesi temkinli pozisyonlanma fiyatı dar bir bantta tutuyor.",
+    "why": "Fed'in 28 Ekim'deki faiz kararına kadar yatırımcılar risk azaltırken, rekor Bitcoin ETF çıkışları ve Hürmüz Boğazı'ndaki gerginliğin sürmesi petrol fiyatlarını yüksek tutup enflasyon kaygısını besliyor; bu ikisi birlikte kriptoda satış baskısını ağırlaştırdı.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "BTC haftalık kapanışta 83.000 dolar testi"
+        "timeTr": "20:00",
+        "title": "ABD 2 yıllık tahvil ihalesi"
       },
       {
         "timeTr": null,
-        "title": "Hürmüz Boğazı'nda saldırı riski"
+        "title": "Hürmüz Boğazı'nda gerginlik"
       },
       {
         "timeTr": null,
-        "title": "FOMC öncesi pozisyonlanma"
+        "title": "FOMC öncesi risk azaltma"
       }
     ],
-    "mainRisk": "Hürmüz Boğazı'ndaki saldırıların tırmanması petrol fiyatlarını ve risk iştahını baskılayabilir."
+    "mainRisk": "Fed'in 28 Ekim'de beklenenden şahin çıkması veya Hürmüz Boğazı'ndaki saldırıların tırmanması riski."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Plasma (XPL) ve Humanity (H) token kilidi açılışı",
-        "outcome": "XPL, kilit açılışı sonrası yaklaşık yüzde 5 geriledi ve 0,074 dolar seviyesine indi; H ise hafif toparlanarak yüzde 2 civarında yükseldi, etki genel olarak sınırlı kaldı"
+        "item": "BTC'nin hafta başında 80.000 dolar seviyesini koruyup korumadığı",
+        "outcome": "Iska - BTC haftaya 80.000 doların altında başladı, gün içi 79.390 dolara kadar indi."
       },
       {
-        "item": "Hürmüz Boğazı'nda saldırı sayısının Ekim rekorunu aşıp aşmadığı",
-        "outcome": "evet aştı; Ekim ayında 28 saldırı kaydedildi, savaşın başladığı 28 Şubat'tan beri toplam 113 saldırıya ulaşıldı ve haftalık saldırı rekoru da kırıldı"
+        "item": "Bitcoin ETF'lerinde çıkışların pazartesi günü sürüp sürmediği",
+        "outcome": "Netleşmedi - ABD seansı henüz kapanmadı, ama son bilinen veride (Cuma) çıkış eğilimi sürüyordu; Perşembe'deki rekor 635,6 milyon dolarlık çıkışın ardından Cuma günü de net çıkış görüldü."
       },
       {
-        "item": "BTC'nin hafta sonu 80.000-83.000 dolar bandını koruyup korumadığı",
-        "outcome": "hayır korunamadı; BTC 83.000 doları tutamayıp 80.000 doların altına sarktı, piyasada 820 milyon dolarlık tasfiye yaşandı"
+        "item": "Hürmüz Boğazı'nda yeni saldırı olup olmadığı ve petrol fiyatlarına etkisi",
+        "outcome": "İsabet - 22 Ekim'de Umman açığında bir LPG tankerine saldırı oldu, boğaz transit trafiği tarihi ortalamanın çok altına indi, yaklaşık 492 gemi dışarıda bekliyor; Brent petrol 110 dolar civarında yüksek seyrini sürdürüyor."
       },
       {
-        "item": "28 Ekim FOMC öncesi piyasa pozisyonlanmasının seyri",
-        "outcome": "pozisyonlanma temkinli şekillendi; ETF'lerden 635,6 milyon dolarlık çıkışla Haziran'dan beri en büyük günlük çıkış görüldü ve 30 Ekim vadeli opsiyonlarda maksimum ağrı noktası 78.000 dolara çekildi"
+        "item": "FOMC öncesi piyasa pozisyonlanmasının yön değiştirip değiştirmediği",
+        "outcome": "İsabet - yön değişmedi, yatırımcılar 28 Ekim Fed kararı öncesi risk azaltmayı sürdürdü, BTC ve ETH'de satış baskısı devam etti."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Hürmüz Boğazı'nda saldırılar Ekim rekoru kırdı",
-        "summary": "Ekim ayında Hürmüz Boğazı ve çevresinde 28 saldırı kaydedildi, savaşın başından bu yana toplam 113'e ulaşıldı; artan saldırılar petrol fiyatlarını ve küresel risk iştahını baskılıyor.",
+        "title": "Bitcoin 80.000 doların altına indi",
+        "summary": "BTC, rekor ETF çıkışları, zayıf kurumsal talep ve Fed kararı öncesi risk azaltma nedeniyle gün içi 79.390 dolara kadar geriledi; kripto genelinde 12 saatte 98 milyon dolarlık tasfiye yaşandı.",
         "source": {
-          "url": "https://www.usnews.com/news/world/articles/2026-10-23/ship-attacks-in-strait-of-hormuz-hit-record-high-in-october",
-          "title": "Ship Attacks in Strait of Hormuz Hit Record High in October",
-          "publisher": "U.S. News & World Report (Reuters)"
+          "url": "https://phemex.com/news/article/bitcoin-drops-below-80k-as-etf-outflows-hit-record-635m-ahead-of-fed-decision-101030",
+          "title": "Bitcoin Drops Below $80K as ETF Outflows Hit Record $635M Ahead of Fed Decision",
+          "publisher": "Phemex"
         }
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin ETF'lerinden Haziran'dan beri en büyük günlük çıkış",
-        "summary": "ABD spot bitcoin ETF'lerinden 23 Ekim'de 635,6 milyon dolar çıkış oldu; bu, Haziran ayından beri görülen en büyük tek günlük çıkış oldu ve BTC üzerindeki satış baskısını artırdı.",
+        "title": "Hürmüz Boğazı'nda tankere saldırı",
+        "summary": "22 Ekim'de Umman açığında bir LPG tankeri bilinmeyen bir mühimmatla vuruldu; boğazdaki transit trafiği tarihi ortalamanın çok altına düştü ve yaklaşık 492 gemi dışarıda bekliyor.",
         "source": {
-          "url": "https://247wallst.com/investing/cryptocurrency/2026/10/24/bitcoin-etfs-just-had-their-biggest-outflow-day-since-june-is-the-selling-over/",
-          "title": "Bitcoin ETFs Just Had Their Biggest Outflow Day Since June. Is the Selling Over?",
-          "publisher": "24/7 Wall St."
+          "url": "https://gulfnews.com/world/mena/strait-of-hormuz-crisis-nearly-500-vessels-face-disruption-amid-new-tanker-attack-1.500723273",
+          "title": "Strait of Hormuz crisis: Nearly 500 vessels delayed amid new tanker attack",
+          "publisher": "Gulf News"
         }
       },
       {
         "importance": "onemli",
-        "title": "BTC 80.000 doların altına indi, piyasada 820 milyon dolarlık tasfiye",
-        "summary": "Bitcoin, ETF çıkışları ve yükselen petrol fiyatlarının etkisiyle 24 Ekim'de 80.000 doların altına sarktı; kripto genelinde 820 milyon dolarlık pozisyon tasfiye edildi, bunun yüzde 83,7'si long pozisyonlardı.",
+        "title": "Bitcoin ETF'lerinde rekor tek günlük çıkış",
+        "summary": "ABD spot Bitcoin ETF'leri Perşembe günü 635,6 milyon dolarlık net çıkışla Haziran'dan beri en büyük tek günlük çıkışını yaşadı; IBIT ve FBTC çıkışlara öncülük etti.",
         "source": {
-          "url": "https://www.cryptotimes.io/2026/10/25/bitcoin-price-today-btc-falls-below-80000-as-820m-crypto-liquidations-hit-longs/",
-          "title": "Bitcoin Price Today: BTC Falls Below $80,000 as $820M Crypto Liquidations Hit Longs",
-          "publisher": "CryptoTimes"
+          "url": "https://www.theblock.co/news/markets/2026-10-23-bitcoin-etfs-swing-back-to-net-outflows-erase-previous-day-inflows-426483",
+          "title": "Bitcoin ETFs swing back to net outflows as $636 million in withdrawals erase previous day's inflows",
+          "publisher": "The Block"
         }
       },
       {
         "importance": "bilgi",
-        "title": "30 Ekim'de 11,1 milyar dolarlık bitcoin opsiyonu sona eriyor",
-        "summary": "Deribit'te 30 Ekim'de süresi dolacak 11,1 milyar dolarlık bitcoin opsiyon pozisyonunda maksimum ağrı noktası 78.000 dolar seviyesinde yoğunlaşıyor; bu da FOMC sonrası oynaklığı artırabilir.",
+        "title": "SEC 2027 denetim önceliklerine tokenizasyon eklendi",
+        "summary": "SEC, 2027 mali yılı denetim önceliklerinde tokenizasyonu, yapay zekayı ve siber güvenliği riskli alanlar olarak belirledi; raporda kripto kelimesi geçmedi.",
         "source": {
-          "url": "https://cryptoquant.com/insights/quicktake/6adab3c27fe3697a52dc23a0-111-Billion-in-Bitcoin-Options-Expire-October-30-With-Max-Pain-at-78000",
-          "title": "$11.1 Billion in Bitcoin Options Expire October 30, With Max Pain at $78,000",
-          "publisher": "CryptoQuant"
+          "url": "https://news.bitcoin.com/regulation-and-legal/sec-targets-tokenization-ai-quantum-computing-2027-priorities/",
+          "title": "SEC Targets Tokenization, AI and Quantum Computing in 2027 Priorities",
+          "publisher": "Bitcoin.com News"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Güney Kore kripto vergisini dördüncü kez erteledi",
+        "summary": "Güney Kore, Ocak 2027'de başlaması planlanan yüzde 22'lik kripto kazanç vergisini dördüncü kez erteledi; sektör altyapı hazırlığının yetersiz olduğunu savunuyor.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/south-korea-delays-cryptocurrency-tax-policy-again-originally-set-for-january-2027",
+          "title": "South Korea Delays Cryptocurrency Tax Policy Again, Originally Set for January 2027",
+          "publisher": "KuCoin News"
         }
       }
     ],
     "today": [
       {
-        "timeTr": null,
-        "title": "BTC haftalık kapanışta 83.000 dolar direncini test ediyor"
+        "timeTr": "15:30",
+        "title": "ABD Eylül ulusal faaliyet endeksi"
+      },
+      {
+        "timeTr": "17:30",
+        "title": "Dallas Fed Ekim imalat endeksi"
+      },
+      {
+        "timeTr": "20:00",
+        "title": "ABD 2 yıllık tahvil ihalesi (69 milyar dolar)"
       },
       {
         "timeTr": null,
-        "title": "Hürmüz Boğazı'nda olası yeni saldırı ve petrol fiyatı seyri"
-      },
-      {
-        "timeTr": null,
-        "title": "Spot bitcoin ETF akışlarında çıkış trendinin sürüp sürmeyeceği"
-      },
-      {
-        "timeTr": null,
-        "title": "FOMC öncesi pozisyonlanmanın yön değiştirip değiştirmediği"
+        "title": "Hürmüz Boğazı'nda seyir ve saldırı takibi"
       }
     ],
     "turkey": {
@@ -149,36 +159,41 @@
       "items": []
     },
     "risks": [
-      "Hürmüz Boğazı'ndaki saldırıların tırmanması petrol fiyatlarını ve risk iştahını baskılayabilir.",
-      "FOMC öncesi ETF çıkışlarının sürmesi BTC'de ek satış baskısı oluşturabilir."
+      "Fed'in 28 Ekim'de beklenenden şahin çıkması riski.",
+      "Hürmüz Boğazı'ndaki saldırıların tırmanıp petrol fiyatlarını daha da yükseltme riski."
     ]
   },
   "followUps": [
-    "BTC'nin hafta başında 80.000 dolar seviyesini koruyup korumadığı",
-    "Bitcoin ETF'lerinde çıkışların pazartesi günü sürüp sürmediği",
+    "FOMC'nin 28 Ekim'de piyasa beklentisiyle (faiz sabit) örtüşüp örtüşmediği",
+    "Bitcoin ETF çıkışlarının pazartesi kapanışında sürüp sürmediği",
     "Hürmüz Boğazı'nda yeni saldırı olup olmadığı ve petrol fiyatlarına etkisi",
-    "FOMC öncesi piyasa pozisyonlanmasının yön değiştirip değiştirmediği"
+    "BTC'nin 80.000 dolar seviyesinin altında kapanıp kapanmadığı"
   ],
   "sources": [
     {
-      "url": "https://www.usnews.com/news/world/articles/2026-10-23/ship-attacks-in-strait-of-hormuz-hit-record-high-in-october",
-      "title": "Ship Attacks in Strait of Hormuz Hit Record High in October",
-      "publisher": "U.S. News & World Report (Reuters)"
+      "url": "https://phemex.com/news/article/bitcoin-drops-below-80k-as-etf-outflows-hit-record-635m-ahead-of-fed-decision-101030",
+      "title": "Bitcoin Drops Below $80K as ETF Outflows Hit Record $635M Ahead of Fed Decision",
+      "publisher": "Phemex"
     },
     {
-      "url": "https://247wallst.com/investing/cryptocurrency/2026/10/24/bitcoin-etfs-just-had-their-biggest-outflow-day-since-june-is-the-selling-over/",
-      "title": "Bitcoin ETFs Just Had Their Biggest Outflow Day Since June. Is the Selling Over?",
-      "publisher": "24/7 Wall St."
+      "url": "https://gulfnews.com/world/mena/strait-of-hormuz-crisis-nearly-500-vessels-face-disruption-amid-new-tanker-attack-1.500723273",
+      "title": "Strait of Hormuz crisis: Nearly 500 vessels delayed amid new tanker attack",
+      "publisher": "Gulf News"
     },
     {
-      "url": "https://www.cryptotimes.io/2026/10/25/bitcoin-price-today-btc-falls-below-80000-as-820m-crypto-liquidations-hit-longs/",
-      "title": "Bitcoin Price Today: BTC Falls Below $80,000 as $820M Crypto Liquidations Hit Longs",
-      "publisher": "CryptoTimes"
+      "url": "https://www.theblock.co/news/markets/2026-10-23-bitcoin-etfs-swing-back-to-net-outflows-erase-previous-day-inflows-426483",
+      "title": "Bitcoin ETFs swing back to net outflows as $636 million in withdrawals erase previous day's inflows",
+      "publisher": "The Block"
     },
     {
-      "url": "https://cryptoquant.com/insights/quicktake/6adab3c27fe3697a52dc23a0-111-Billion-in-Bitcoin-Options-Expire-October-30-With-Max-Pain-at-78000",
-      "title": "$11.1 Billion in Bitcoin Options Expire October 30, With Max Pain at $78,000",
-      "publisher": "CryptoQuant"
+      "url": "https://news.bitcoin.com/regulation-and-legal/sec-targets-tokenization-ai-quantum-computing-2027-priorities/",
+      "title": "SEC Targets Tokenization, AI and Quantum Computing in 2027 Priorities",
+      "publisher": "Bitcoin.com News"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/south-korea-delays-cryptocurrency-tax-policy-again-originally-set-for-january-2027",
+      "title": "South Korea Delays Cryptocurrency Tax Policy Again, Originally Set for January 2027",
+      "publisher": "KuCoin News"
     }
   ],
   "assets": {
