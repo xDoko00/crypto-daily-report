@@ -1,157 +1,139 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-26",
+  "id": "2026-10-27",
   "language": "tr",
-  "title": "26 Ekim 2026, Pazartesi",
-  "publishedAt": "2026-10-26T07:56:50+03:00",
-  "updatedAt": "2026-10-26T07:56:50+03:00",
+  "title": "27 Ekim 2026, Salı",
+  "publishedAt": "2026-10-27T07:50:51+03:00",
+  "updatedAt": "2026-10-27T07:50:51+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-26T07:48:00+03:00",
+    "asOf": "2026-10-27T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 79905,
-        "change24h": -1.174821571980504
+        "priceUsd": 79540,
+        "change24h": -0.43882480952446357
       },
       "ETH": {
-        "priceUsd": 2312.09,
-        "change24h": -2.29335617226456
+        "priceUsd": 2305.77,
+        "change24h": -0.24314569573437406
       },
       "SOL": {
-        "priceUsd": 100.91,
-        "change24h": -1.6041684815652872
+        "priceUsd": 99.85,
+        "change24h": -1.0598465129823154
       },
       "BNB": {
-        "priceUsd": 740.35,
-        "change24h": -0.8817449499956227
+        "priceUsd": 735.89,
+        "change24h": -0.5768369888488755
       },
       "XRP": {
-        "priceUsd": 1.28,
-        "change24h": -2.099135680741825
+        "priceUsd": 1.3,
+        "change24h": 0.9227187924929112
       }
     },
-    "btcDominance": 60.038633556922186,
-    "ethDominance": 10.558503947123574,
-    "totalMarketCapUsd": 2667545759524.364,
-    "volume24hUsd": 48968805750.563324,
+    "btcDominance": 59.39566945821749,
+    "ethDominance": 10.470422455453557,
+    "totalMarketCapUsd": 2685317287079.102,
+    "volume24hUsd": 66844156770.90833,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 50,
+      "value": 48,
       "label": "Nötr",
-      "previousValue": 54,
-      "weekAgoValue": 59
+      "previousValue": 50,
+      "weekAgoValue": 55
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Fed'in 28 Ekim'deki faiz kararına kadar yatırımcılar risk azaltırken, rekor Bitcoin ETF çıkışları ve Hürmüz Boğazı'ndaki gerginliğin sürmesi petrol fiyatlarını yüksek tutup enflasyon kaygısını besliyor; bu ikisi birlikte kriptoda satış baskısını ağırlaştırdı.",
+    "why": "Yatırımcılar yarın açıklanacak Fed kararı öncesinde risk azaltıyor; yapay zeka harcamalarına dair tedirginlik ve süren ETF çıkışları BTC'yi 80.000 doların altına çekti.",
     "criticalEvents": [
       {
-        "timeTr": "20:00",
-        "title": "ABD 2 yıllık tahvil ihalesi"
+        "timeTr": null,
+        "title": "Fed FOMC toplantısı başladı"
       },
       {
         "timeTr": null,
-        "title": "Hürmüz Boğazı'nda gerginlik"
-      },
-      {
-        "timeTr": null,
-        "title": "FOMC öncesi risk azaltma"
+        "title": "Ripple Swell konferansı başlıyor"
       }
     ],
-    "mainRisk": "Fed'in 28 Ekim'de beklenenden şahin çıkması veya Hürmüz Boğazı'ndaki saldırıların tırmanması riski."
+    "mainRisk": "Fed kararı öncesi belirsizlik ve Hürmüz Boğazı'ndaki saldırıların tırmanma riski piyasada ani oynaklık yaratabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "BTC'nin hafta başında 80.000 dolar seviyesini koruyup korumadığı",
-        "outcome": "Iska - BTC haftaya 80.000 doların altında başladı, gün içi 79.390 dolara kadar indi."
+        "item": "FOMC'nin 28 Ekim'de piyasa beklentisiyle (faiz sabit) örtüşüp örtüşmediği",
+        "outcome": "Henüz belli değil; FOMC toplantısı bugün başladı, karar 28 Ekim akşamı (TSİ) açıklanacak ve piyasa büyük oranda faizin 3,75-4,00 aralığında sabit kalmasını bekliyor."
       },
       {
-        "item": "Bitcoin ETF'lerinde çıkışların pazartesi günü sürüp sürmediği",
-        "outcome": "Netleşmedi - ABD seansı henüz kapanmadı, ama son bilinen veride (Cuma) çıkış eğilimi sürüyordu; Perşembe'deki rekor 635,6 milyon dolarlık çıkışın ardından Cuma günü de net çıkış görüldü."
+        "item": "Bitcoin ETF çıkışlarının pazartesi kapanışında sürüp sürmediği",
+        "outcome": "İsabet; pazartesi günü spot BTC ETF'lerinden 169 milyon dolar net çıkış oldu, ancak haftalık bazda giriş pozitif kaldı (yaklaşık 267 milyon dolar)."
       },
       {
         "item": "Hürmüz Boğazı'nda yeni saldırı olup olmadığı ve petrol fiyatlarına etkisi",
-        "outcome": "İsabet - 22 Ekim'de Umman açığında bir LPG tankerine saldırı oldu, boğaz transit trafiği tarihi ortalamanın çok altına indi, yaklaşık 492 gemi dışarıda bekliyor; Brent petrol 110 dolar civarında yüksek seyrini sürdürüyor."
+        "outcome": "İsabet; pazartesi bir tanker bilinmeyen bir mermiyle vurulup devre dışı kaldı, JMIC tehdit seviyesini şiddetli olarak korudu ve petrol fiyatları yüksek seyrini sürdürdü."
       },
       {
-        "item": "FOMC öncesi piyasa pozisyonlanmasının yön değiştirip değiştirmediği",
-        "outcome": "İsabet - yön değişmedi, yatırımcılar 28 Ekim Fed kararı öncesi risk azaltmayı sürdürdü, BTC ve ETH'de satış baskısı devam etti."
+        "item": "BTC'nin 80.000 dolar seviyesinin altında kapanıp kapanmadığı",
+        "outcome": "İsabet; BTC pazartesi günü yaklaşık 79.722 dolardan kapandı, 80.000 doların altında."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Bitcoin 80.000 doların altına indi",
-        "summary": "BTC, rekor ETF çıkışları, zayıf kurumsal talep ve Fed kararı öncesi risk azaltma nedeniyle gün içi 79.390 dolara kadar geriledi; kripto genelinde 12 saatte 98 milyon dolarlık tasfiye yaşandı.",
+        "title": "BTC 80.000 doların altına indi",
+        "summary": "Bitcoin, yapay zeka harcamalarına dair tedirginlik ve Fed kararı öncesi risk azaltma nedeniyle 80.000 doların altına indi; ETF çıkışları sürüyor.",
         "source": {
-          "url": "https://phemex.com/news/article/bitcoin-drops-below-80k-as-etf-outflows-hit-record-635m-ahead-of-fed-decision-101030",
-          "title": "Bitcoin Drops Below $80K as ETF Outflows Hit Record $635M Ahead of Fed Decision",
-          "publisher": "Phemex"
+          "url": "https://www.coindesk.com/markets/2026/10/26/bitcoin-slips-under-usd80-000-as-traders-de-risk-ahead-of-fed-meeting",
+          "title": "Bitcoin Slips Under $80,000 as Traders De-Risk Ahead of Fed Meeting",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "onemli",
-        "title": "Hürmüz Boğazı'nda tankere saldırı",
-        "summary": "22 Ekim'de Umman açığında bir LPG tankeri bilinmeyen bir mühimmatla vuruldu; boğazdaki transit trafiği tarihi ortalamanın çok altına düştü ve yaklaşık 492 gemi dışarıda bekliyor.",
+        "title": "Hürmüz Boğazı'nda tanker vuruldu",
+        "summary": "Bir tanker Hürmüz Boğazı'nda bilinmeyen bir mermiyle vurulup devre dışı kaldı; JMIC bölge için şiddetli tehdit seviyesini korudu.",
         "source": {
-          "url": "https://gulfnews.com/world/mena/strait-of-hormuz-crisis-nearly-500-vessels-face-disruption-amid-new-tanker-attack-1.500723273",
-          "title": "Strait of Hormuz crisis: Nearly 500 vessels delayed amid new tanker attack",
-          "publisher": "Gulf News"
+          "url": "https://gcaptain.com/tanker-disabled-in-strait-of-hormuz-attack-another-vessel-reported-on-fire-in-persian-gulf/",
+          "title": "Tanker Disabled in Strait of Hormuz Attack, Another Vessel Reported on Fire in Persian Gulf",
+          "publisher": "gCaptain"
         }
       },
       {
         "importance": "onemli",
-        "title": "Bitcoin ETF'lerinde rekor tek günlük çıkış",
-        "summary": "ABD spot Bitcoin ETF'leri Perşembe günü 635,6 milyon dolarlık net çıkışla Haziran'dan beri en büyük tek günlük çıkışını yaşadı; IBIT ve FBTC çıkışlara öncülük etti.",
+        "title": "Fed toplantısı başladı, sabit faiz bekleniyor",
+        "summary": "FOMC iki günlük toplantısına başladı; piyasa faizin 3,75-4,00 aralığında sabit tutulmasını büyük oranda bekliyor, karar 28 Ekim'de.",
         "source": {
-          "url": "https://www.theblock.co/news/markets/2026-10-23-bitcoin-etfs-swing-back-to-net-outflows-erase-previous-day-inflows-426483",
-          "title": "Bitcoin ETFs swing back to net outflows as $636 million in withdrawals erase previous day's inflows",
-          "publisher": "The Block"
+          "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026",
+          "title": "Fed Rate Decision October 2026: Hike or Hold on 28 Oct?",
+          "publisher": "Admiral Markets"
         }
       },
       {
         "importance": "bilgi",
-        "title": "SEC 2027 denetim önceliklerine tokenizasyon eklendi",
-        "summary": "SEC, 2027 mali yılı denetim önceliklerinde tokenizasyonu, yapay zekayı ve siber güvenliği riskli alanlar olarak belirledi; raporda kripto kelimesi geçmedi.",
+        "title": "Solana tokenizasyon girişlerinde lider",
+        "summary": "Solana, reel varlık tokenizasyonunda 453,5 milyon dolarlık girişle en çok sermaye çeken zincir oldu; bu, ilk 10 zincire giren toplam girişin yüzde 73'üne denk geliyor.",
         "source": {
-          "url": "https://news.bitcoin.com/regulation-and-legal/sec-targets-tokenization-ai-quantum-computing-2027-priorities/",
-          "title": "SEC Targets Tokenization, AI and Quantum Computing in 2027 Priorities",
-          "publisher": "Bitcoin.com News"
-        }
-      },
-      {
-        "importance": "bilgi",
-        "title": "Güney Kore kripto vergisini dördüncü kez erteledi",
-        "summary": "Güney Kore, Ocak 2027'de başlaması planlanan yüzde 22'lik kripto kazanç vergisini dördüncü kez erteledi; sektör altyapı hazırlığının yetersiz olduğunu savunuyor.",
-        "source": {
-          "url": "https://www.kucoin.com/news/flash/south-korea-delays-cryptocurrency-tax-policy-again-originally-set-for-january-2027",
-          "title": "South Korea Delays Cryptocurrency Tax Policy Again, Originally Set for January 2027",
-          "publisher": "KuCoin News"
+          "url": "https://thecurrencyanalytics.com/breaking-news/solana-tokenized-funds-inflow-ethereum-decline",
+          "title": "Solana Leads RWA Tokenization Inflows in October 2026",
+          "publisher": "The Currency Analytics"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "15:30",
-        "title": "ABD Eylül ulusal faaliyet endeksi"
-      },
-      {
-        "timeTr": "17:30",
-        "title": "Dallas Fed Ekim imalat endeksi"
-      },
-      {
-        "timeTr": "20:00",
-        "title": "ABD 2 yıllık tahvil ihalesi (69 milyar dolar)"
+        "timeTr": null,
+        "title": "Fed FOMC toplantısı 1. gün"
       },
       {
         "timeTr": null,
-        "title": "Hürmüz Boğazı'nda seyir ve saldırı takibi"
+        "title": "Ripple Swell konferansı başlıyor"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD kazanç sezonu yoğunlaşıyor"
       }
     ],
     "turkey": {
@@ -159,41 +141,36 @@
       "items": []
     },
     "risks": [
-      "Fed'in 28 Ekim'de beklenenden şahin çıkması riski.",
-      "Hürmüz Boğazı'ndaki saldırıların tırmanıp petrol fiyatlarını daha da yükseltme riski."
+      "Fed kararı öncesi belirsizlik, olası sürpriz bir kararda ani oynaklık yaratabilir.",
+      "Hürmüz Boğazı'ndaki saldırıların tırmanması petrol fiyatlarını ve risk iştahını baskılayabilir."
     ]
   },
   "followUps": [
-    "FOMC'nin 28 Ekim'de piyasa beklentisiyle (faiz sabit) örtüşüp örtüşmediği",
-    "Bitcoin ETF çıkışlarının pazartesi kapanışında sürüp sürmediği",
-    "Hürmüz Boğazı'nda yeni saldırı olup olmadığı ve petrol fiyatlarına etkisi",
-    "BTC'nin 80.000 dolar seviyesinin altında kapanıp kapanmadığı"
+    "Fed'in 28 Ekim'de faizi sabit tutup tutmadığı ve Powell'ın Aralık sinyali",
+    "BTC'nin Fed kararı sonrası 80.000 dolar direncini geri kazanıp kazanamayacağı",
+    "Hürmüz Boğazı'ndaki saldırıların tırmanıp tırmanmayacağı ve Brent petrolün 100 doların üzerinde kalıp kalmayacağı",
+    "Spot Bitcoin ETF'lerinde çıkışların Fed kararı sonrası devam edip etmeyeceği"
   ],
   "sources": [
     {
-      "url": "https://phemex.com/news/article/bitcoin-drops-below-80k-as-etf-outflows-hit-record-635m-ahead-of-fed-decision-101030",
-      "title": "Bitcoin Drops Below $80K as ETF Outflows Hit Record $635M Ahead of Fed Decision",
-      "publisher": "Phemex"
+      "url": "https://www.coindesk.com/markets/2026/10/26/bitcoin-slips-under-usd80-000-as-traders-de-risk-ahead-of-fed-meeting",
+      "title": "Bitcoin Slips Under $80,000 as Traders De-Risk Ahead of Fed Meeting",
+      "publisher": "CoinDesk"
     },
     {
-      "url": "https://gulfnews.com/world/mena/strait-of-hormuz-crisis-nearly-500-vessels-face-disruption-amid-new-tanker-attack-1.500723273",
-      "title": "Strait of Hormuz crisis: Nearly 500 vessels delayed amid new tanker attack",
-      "publisher": "Gulf News"
+      "url": "https://gcaptain.com/tanker-disabled-in-strait-of-hormuz-attack-another-vessel-reported-on-fire-in-persian-gulf/",
+      "title": "Tanker Disabled in Strait of Hormuz Attack, Another Vessel Reported on Fire in Persian Gulf",
+      "publisher": "gCaptain"
     },
     {
-      "url": "https://www.theblock.co/news/markets/2026-10-23-bitcoin-etfs-swing-back-to-net-outflows-erase-previous-day-inflows-426483",
-      "title": "Bitcoin ETFs swing back to net outflows as $636 million in withdrawals erase previous day's inflows",
-      "publisher": "The Block"
+      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026",
+      "title": "Fed Rate Decision October 2026: Hike or Hold on 28 Oct?",
+      "publisher": "Admiral Markets"
     },
     {
-      "url": "https://news.bitcoin.com/regulation-and-legal/sec-targets-tokenization-ai-quantum-computing-2027-priorities/",
-      "title": "SEC Targets Tokenization, AI and Quantum Computing in 2027 Priorities",
-      "publisher": "Bitcoin.com News"
-    },
-    {
-      "url": "https://www.kucoin.com/news/flash/south-korea-delays-cryptocurrency-tax-policy-again-originally-set-for-january-2027",
-      "title": "South Korea Delays Cryptocurrency Tax Policy Again, Originally Set for January 2027",
-      "publisher": "KuCoin News"
+      "url": "https://thecurrencyanalytics.com/breaking-news/solana-tokenized-funds-inflow-ethereum-decline",
+      "title": "Solana Leads RWA Tokenization Inflows in October 2026",
+      "publisher": "The Currency Analytics"
     }
   ],
   "assets": {
