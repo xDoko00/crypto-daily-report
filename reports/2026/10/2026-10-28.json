@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-28",
+  "language": "tr",
+  "title": "28 Ekim 2026, Çarşamba",
+  "publishedAt": "2026-10-28T07:50:57+03:00",
+  "updatedAt": "2026-10-28T07:50:57+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-28T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 80909,
+        "change24h": 1.685419961587193
+      },
+      "ETH": {
+        "priceUsd": 2354.97,
+        "change24h": 2.0625991866624473
+      },
+      "SOL": {
+        "priceUsd": 102.07,
+        "change24h": 2.189932939807636
+      },
+      "BNB": {
+        "priceUsd": 746.24,
+        "change24h": 1.411289696501912
+      },
+      "XRP": {
+        "priceUsd": 1.33,
+        "change24h": 2.6560466390409756
+      }
+    },
+    "btcDominance": 59.4016073226131,
+    "ethDominance": 10.503609735725156,
+    "totalMarketCapUsd": 2732160643658.289,
+    "volume24hUsd": 63530004699.3418,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 51,
+      "label": "Nötr",
+      "previousValue": 48,
+      "weekAgoValue": 63
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Fed'in beklendiği gibi faizi sabit tutması belirsizliği kısmen giderdi ve BlackRock'ın IBIT fonunda iki günlük çıkışın ardından girişe dönülmesi BTC'de 80.000 doların üzerine toparlanmayı destekledi.",
+    "criticalEvents": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek öncü GDP verisi"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül PCE enflasyon verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda petrol güvenliği gerginliği"
+      }
+    ],
+    "mainRisk": "Hürmüz Boğazı'ndaki saldırıların tırmanmasıyla Brent petrolün 115 doları aşması, enflasyon baskısını ve Fed'in Aralık'ta yeniden faiz artırma olasılığını güçlendiriyor."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Fed'in 28 Ekim'de faizi sabit tutup tutmadığı ve Powell'ın Aralık sinyali",
+        "outcome": "Fed, beklentiyle uyumlu şekilde faizi yüzde 3,75-4,00 aralığında sabit tuttu; artık başkanlık koltuğunda Powell değil Kevin Warsh var ve Warsh Aralık için net taahhüt vermedi ama şahin tonuyla hisse senetlerinde satışı tetikledi - isabet"
+      },
+      {
+        "item": "BTC'nin Fed kararı sonrası 80.000 dolar direncini geri kazanıp kazanamayacağı",
+        "outcome": "BTC, Fed kararı sonrası 80.000 doları geri kazandı ve 80.900 dolara kadar yükseldi, ancak 81.200 dolar direncini kıramadı - kısmi isabet"
+      },
+      {
+        "item": "Hürmüz Boğazı'ndaki saldırıların tırmanıp tırmanmayacağı ve Brent petrolün 100 doların üzerinde kalıp kalmayacağı",
+        "outcome": "Saldırılar tırmandı; Suudi Arabistan'daki bir rafineriye yönelik Husi saldırısı sonrası Brent 115 doların üzerine çıktı - risk gerçekleşti"
+      },
+      {
+        "item": "Spot Bitcoin ETF'lerinde çıkışların Fed kararı sonrası devam edip etmeyeceği",
+        "outcome": "Çıkışlar kesintiye uğradı; BlackRock'ın IBIT fonu iki günlük 773 milyon dolarlık çıkışın ardından 110 milyon dolarlık girişle seriye son verdi, ancak ay genelinde toplam akış hâlâ negatif - kısmi isabet"
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Fed faizi sabit tuttu, Warsh şahin mesaj verdi",
+        "summary": "Fed, yüzde 3,75-4,00 aralığında faizi beklentiyle uyumlu şekilde sabit tuttu; Başkan Kevin Warsh Aralık için önceden taahhüt vermekten kaçınsa da şahin tonu S&P 500 ve Dow'da satışa yol açtı.",
+        "source": {
+          "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-slide-toward-lowest-level-212329075.html",
+          "title": "Stocks slide toward lowest level since July after Warsh's hawkish press conference",
+          "publisher": "Yahoo Finance"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Hürmüz Boğazı'nda saldırılar tırmanıyor, Brent 115 doları aştı",
+        "summary": "Yemen merkezli Husilerin Suudi Arabistan'daki bir rafineriye düzenlediği saldırı sonrası Brent petrol yüzde 1,2 yükselişle 115 doların üzerine çıktı, bölgesel arz güvenliği kaygıları derinleşti.",
+        "source": {
+          "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-october-28-2026-brent-above-115-after-saudi-refinery-attack-revives-supply-fears",
+          "title": "Brent Tops $115 After Reported Saudi Refinery Attack",
+          "publisher": "HDFC Sky"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin ETF'lerinde çıkış serisi kesintiye uğradı",
+        "summary": "BlackRock'ın IBIT fonu iki günde 773 milyon dolarlık çıkışın ardından 110 milyon dolarlık girişle çıkış serisini sonlandırdı, ancak Ekim ayı toplam akışı hâlâ eksi bölgede.",
+        "source": {
+          "url": "https://www.cointribune.com/en/bitcoin-etfs-rebound-with-110m-in-inflows-after-774m-in-outflows/",
+          "title": "Bitcoin: ETFs Rebound With $110M in Inflows After $774M in Outflows",
+          "publisher": "Cointribune"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "ABD ara seçimleri kripto düzenleme gündemini belirleyecek",
+        "summary": "3 Kasım'daki ara seçimlerde Kongre'nin kontrolü CLARITY Yasası'nın geleceğini doğrudan etkileyecek; sektör şimdiden 176 milyon dolar seçim harcaması yaptı.",
+        "source": {
+          "url": "https://crypto.news/crypto-industry-176-million-us-midterm-elections/",
+          "title": "Crypto election spending hits $176M as Fairshake targets US midterms",
+          "publisher": "crypto.news"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek öncü GDP verisi açıklanacak"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül PCE enflasyon verisi açıklanacak"
+      },
+      {
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda tanker güvenliği ve petrol fiyatları takip ediliyor"
+      },
+      {
+        "timeTr": null,
+        "title": "3 Kasım ara seçimleri öncesi kripto politika gelişmeleri izleniyor"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Hürmüz Boğazı'nda tırmanan saldırılar enflasyonist baskıyı ve Fed'in Aralık'ta faiz artırma olasılığını güçlendirebilir.",
+      "GDP ve PCE verilerinin beklentiyi aşması şahin Fed beklentisini güçlendirip risk varlıklarında satışı tetikleyebilir."
+    ]
+  },
+  "followUps": [
+    "ABD 3. çeyrek öncü GDP verisi beklentiyi aştı mı",
+    "PCE enflasyon verisi Fed'in Aralık artırım olasılığını güçlendirdi mi",
+    "Brent petrol 115 dolar seviyesinin üzerinde kalmayı sürdürdü mü",
+    "BTC ETF girişleri IBIT dışında diğer fonlara da yayıldı mı"
+  ],
+  "sources": [
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-slide-toward-lowest-level-212329075.html",
+      "title": "Stocks slide toward lowest level since July after Warsh's hawkish press conference",
+      "publisher": "Yahoo Finance"
+    },
+    {
+      "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-october-28-2026-brent-above-115-after-saudi-refinery-attack-revives-supply-fears",
+      "title": "Brent Tops $115 After Reported Saudi Refinery Attack",
+      "publisher": "HDFC Sky"
+    },
+    {
+      "url": "https://www.cointribune.com/en/bitcoin-etfs-rebound-with-110m-in-inflows-after-774m-in-outflows/",
+      "title": "Bitcoin: ETFs Rebound With $110M in Inflows After $774M in Outflows",
+      "publisher": "Cointribune"
+    },
+    {
+      "url": "https://crypto.news/crypto-industry-176-million-us-midterm-elections/",
+      "title": "Crypto election spending hits $176M as Fairshake targets US midterms",
+      "publisher": "crypto.news"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

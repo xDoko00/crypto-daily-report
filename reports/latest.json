@@ -1,139 +1,147 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-27",
+  "id": "2026-10-28",
   "language": "tr",
-  "title": "27 Ekim 2026, Salı",
-  "publishedAt": "2026-10-27T07:50:51+03:00",
-  "updatedAt": "2026-10-27T07:50:51+03:00",
+  "title": "28 Ekim 2026, Çarşamba",
+  "publishedAt": "2026-10-28T07:50:57+03:00",
+  "updatedAt": "2026-10-28T07:50:57+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-27T07:48:00+03:00",
+    "asOf": "2026-10-28T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 79540,
-        "change24h": -0.43882480952446357
+        "priceUsd": 80909,
+        "change24h": 1.685419961587193
       },
       "ETH": {
-        "priceUsd": 2305.77,
-        "change24h": -0.24314569573437406
+        "priceUsd": 2354.97,
+        "change24h": 2.0625991866624473
       },
       "SOL": {
-        "priceUsd": 99.85,
-        "change24h": -1.0598465129823154
+        "priceUsd": 102.07,
+        "change24h": 2.189932939807636
       },
       "BNB": {
-        "priceUsd": 735.89,
-        "change24h": -0.5768369888488755
+        "priceUsd": 746.24,
+        "change24h": 1.411289696501912
       },
       "XRP": {
-        "priceUsd": 1.3,
-        "change24h": 0.9227187924929112
+        "priceUsd": 1.33,
+        "change24h": 2.6560466390409756
       }
     },
-    "btcDominance": 59.39566945821749,
-    "ethDominance": 10.470422455453557,
-    "totalMarketCapUsd": 2685317287079.102,
-    "volume24hUsd": 66844156770.90833,
+    "btcDominance": 59.4016073226131,
+    "ethDominance": 10.503609735725156,
+    "totalMarketCapUsd": 2732160643658.289,
+    "volume24hUsd": 63530004699.3418,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 48,
+      "value": 51,
       "label": "Nötr",
-      "previousValue": 50,
-      "weekAgoValue": 55
+      "previousValue": 48,
+      "weekAgoValue": 63
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Yatırımcılar yarın açıklanacak Fed kararı öncesinde risk azaltıyor; yapay zeka harcamalarına dair tedirginlik ve süren ETF çıkışları BTC'yi 80.000 doların altına çekti.",
+    "why": "Fed'in beklendiği gibi faizi sabit tutması belirsizliği kısmen giderdi ve BlackRock'ın IBIT fonunda iki günlük çıkışın ardından girişe dönülmesi BTC'de 80.000 doların üzerine toparlanmayı destekledi.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "Fed FOMC toplantısı başladı"
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek öncü GDP verisi"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül PCE enflasyon verisi"
       },
       {
         "timeTr": null,
-        "title": "Ripple Swell konferansı başlıyor"
+        "title": "Hürmüz Boğazı'nda petrol güvenliği gerginliği"
       }
     ],
-    "mainRisk": "Fed kararı öncesi belirsizlik ve Hürmüz Boğazı'ndaki saldırıların tırmanma riski piyasada ani oynaklık yaratabilir."
+    "mainRisk": "Hürmüz Boğazı'ndaki saldırıların tırmanmasıyla Brent petrolün 115 doları aşması, enflasyon baskısını ve Fed'in Aralık'ta yeniden faiz artırma olasılığını güçlendiriyor."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "FOMC'nin 28 Ekim'de piyasa beklentisiyle (faiz sabit) örtüşüp örtüşmediği",
-        "outcome": "Henüz belli değil; FOMC toplantısı bugün başladı, karar 28 Ekim akşamı (TSİ) açıklanacak ve piyasa büyük oranda faizin 3,75-4,00 aralığında sabit kalmasını bekliyor."
+        "item": "Fed'in 28 Ekim'de faizi sabit tutup tutmadığı ve Powell'ın Aralık sinyali",
+        "outcome": "Fed, beklentiyle uyumlu şekilde faizi yüzde 3,75-4,00 aralığında sabit tuttu; artık başkanlık koltuğunda Powell değil Kevin Warsh var ve Warsh Aralık için net taahhüt vermedi ama şahin tonuyla hisse senetlerinde satışı tetikledi - isabet"
       },
       {
-        "item": "Bitcoin ETF çıkışlarının pazartesi kapanışında sürüp sürmediği",
-        "outcome": "İsabet; pazartesi günü spot BTC ETF'lerinden 169 milyon dolar net çıkış oldu, ancak haftalık bazda giriş pozitif kaldı (yaklaşık 267 milyon dolar)."
+        "item": "BTC'nin Fed kararı sonrası 80.000 dolar direncini geri kazanıp kazanamayacağı",
+        "outcome": "BTC, Fed kararı sonrası 80.000 doları geri kazandı ve 80.900 dolara kadar yükseldi, ancak 81.200 dolar direncini kıramadı - kısmi isabet"
       },
       {
-        "item": "Hürmüz Boğazı'nda yeni saldırı olup olmadığı ve petrol fiyatlarına etkisi",
-        "outcome": "İsabet; pazartesi bir tanker bilinmeyen bir mermiyle vurulup devre dışı kaldı, JMIC tehdit seviyesini şiddetli olarak korudu ve petrol fiyatları yüksek seyrini sürdürdü."
+        "item": "Hürmüz Boğazı'ndaki saldırıların tırmanıp tırmanmayacağı ve Brent petrolün 100 doların üzerinde kalıp kalmayacağı",
+        "outcome": "Saldırılar tırmandı; Suudi Arabistan'daki bir rafineriye yönelik Husi saldırısı sonrası Brent 115 doların üzerine çıktı - risk gerçekleşti"
       },
       {
-        "item": "BTC'nin 80.000 dolar seviyesinin altında kapanıp kapanmadığı",
-        "outcome": "İsabet; BTC pazartesi günü yaklaşık 79.722 dolardan kapandı, 80.000 doların altında."
+        "item": "Spot Bitcoin ETF'lerinde çıkışların Fed kararı sonrası devam edip etmeyeceği",
+        "outcome": "Çıkışlar kesintiye uğradı; BlackRock'ın IBIT fonu iki günlük 773 milyon dolarlık çıkışın ardından 110 milyon dolarlık girişle seriye son verdi, ancak ay genelinde toplam akış hâlâ negatif - kısmi isabet"
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "BTC 80.000 doların altına indi",
-        "summary": "Bitcoin, yapay zeka harcamalarına dair tedirginlik ve Fed kararı öncesi risk azaltma nedeniyle 80.000 doların altına indi; ETF çıkışları sürüyor.",
+        "title": "Fed faizi sabit tuttu, Warsh şahin mesaj verdi",
+        "summary": "Fed, yüzde 3,75-4,00 aralığında faizi beklentiyle uyumlu şekilde sabit tuttu; Başkan Kevin Warsh Aralık için önceden taahhüt vermekten kaçınsa da şahin tonu S&P 500 ve Dow'da satışa yol açtı.",
         "source": {
-          "url": "https://www.coindesk.com/markets/2026/10/26/bitcoin-slips-under-usd80-000-as-traders-de-risk-ahead-of-fed-meeting",
-          "title": "Bitcoin Slips Under $80,000 as Traders De-Risk Ahead of Fed Meeting",
-          "publisher": "CoinDesk"
+          "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-slide-toward-lowest-level-212329075.html",
+          "title": "Stocks slide toward lowest level since July after Warsh's hawkish press conference",
+          "publisher": "Yahoo Finance"
         }
       },
       {
         "importance": "onemli",
-        "title": "Hürmüz Boğazı'nda tanker vuruldu",
-        "summary": "Bir tanker Hürmüz Boğazı'nda bilinmeyen bir mermiyle vurulup devre dışı kaldı; JMIC bölge için şiddetli tehdit seviyesini korudu.",
+        "title": "Hürmüz Boğazı'nda saldırılar tırmanıyor, Brent 115 doları aştı",
+        "summary": "Yemen merkezli Husilerin Suudi Arabistan'daki bir rafineriye düzenlediği saldırı sonrası Brent petrol yüzde 1,2 yükselişle 115 doların üzerine çıktı, bölgesel arz güvenliği kaygıları derinleşti.",
         "source": {
-          "url": "https://gcaptain.com/tanker-disabled-in-strait-of-hormuz-attack-another-vessel-reported-on-fire-in-persian-gulf/",
-          "title": "Tanker Disabled in Strait of Hormuz Attack, Another Vessel Reported on Fire in Persian Gulf",
-          "publisher": "gCaptain"
+          "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-october-28-2026-brent-above-115-after-saudi-refinery-attack-revives-supply-fears",
+          "title": "Brent Tops $115 After Reported Saudi Refinery Attack",
+          "publisher": "HDFC Sky"
         }
       },
       {
         "importance": "onemli",
-        "title": "Fed toplantısı başladı, sabit faiz bekleniyor",
-        "summary": "FOMC iki günlük toplantısına başladı; piyasa faizin 3,75-4,00 aralığında sabit tutulmasını büyük oranda bekliyor, karar 28 Ekim'de.",
+        "title": "Bitcoin ETF'lerinde çıkış serisi kesintiye uğradı",
+        "summary": "BlackRock'ın IBIT fonu iki günde 773 milyon dolarlık çıkışın ardından 110 milyon dolarlık girişle çıkış serisini sonlandırdı, ancak Ekim ayı toplam akışı hâlâ eksi bölgede.",
         "source": {
-          "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026",
-          "title": "Fed Rate Decision October 2026: Hike or Hold on 28 Oct?",
-          "publisher": "Admiral Markets"
+          "url": "https://www.cointribune.com/en/bitcoin-etfs-rebound-with-110m-in-inflows-after-774m-in-outflows/",
+          "title": "Bitcoin: ETFs Rebound With $110M in Inflows After $774M in Outflows",
+          "publisher": "Cointribune"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Solana tokenizasyon girişlerinde lider",
-        "summary": "Solana, reel varlık tokenizasyonunda 453,5 milyon dolarlık girişle en çok sermaye çeken zincir oldu; bu, ilk 10 zincire giren toplam girişin yüzde 73'üne denk geliyor.",
+        "title": "ABD ara seçimleri kripto düzenleme gündemini belirleyecek",
+        "summary": "3 Kasım'daki ara seçimlerde Kongre'nin kontrolü CLARITY Yasası'nın geleceğini doğrudan etkileyecek; sektör şimdiden 176 milyon dolar seçim harcaması yaptı.",
         "source": {
-          "url": "https://thecurrencyanalytics.com/breaking-news/solana-tokenized-funds-inflow-ethereum-decline",
-          "title": "Solana Leads RWA Tokenization Inflows in October 2026",
-          "publisher": "The Currency Analytics"
+          "url": "https://crypto.news/crypto-industry-176-million-us-midterm-elections/",
+          "title": "Crypto election spending hits $176M as Fairshake targets US midterms",
+          "publisher": "crypto.news"
         }
       }
     ],
     "today": [
       {
-        "timeTr": null,
-        "title": "Fed FOMC toplantısı 1. gün"
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek öncü GDP verisi açıklanacak"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül PCE enflasyon verisi açıklanacak"
       },
       {
         "timeTr": null,
-        "title": "Ripple Swell konferansı başlıyor"
+        "title": "Hürmüz Boğazı'nda tanker güvenliği ve petrol fiyatları takip ediliyor"
       },
       {
         "timeTr": null,
-        "title": "ABD kazanç sezonu yoğunlaşıyor"
+        "title": "3 Kasım ara seçimleri öncesi kripto politika gelişmeleri izleniyor"
       }
     ],
     "turkey": {
@@ -141,36 +149,36 @@
       "items": []
     },
     "risks": [
-      "Fed kararı öncesi belirsizlik, olası sürpriz bir kararda ani oynaklık yaratabilir.",
-      "Hürmüz Boğazı'ndaki saldırıların tırmanması petrol fiyatlarını ve risk iştahını baskılayabilir."
+      "Hürmüz Boğazı'nda tırmanan saldırılar enflasyonist baskıyı ve Fed'in Aralık'ta faiz artırma olasılığını güçlendirebilir.",
+      "GDP ve PCE verilerinin beklentiyi aşması şahin Fed beklentisini güçlendirip risk varlıklarında satışı tetikleyebilir."
     ]
   },
   "followUps": [
-    "Fed'in 28 Ekim'de faizi sabit tutup tutmadığı ve Powell'ın Aralık sinyali",
-    "BTC'nin Fed kararı sonrası 80.000 dolar direncini geri kazanıp kazanamayacağı",
-    "Hürmüz Boğazı'ndaki saldırıların tırmanıp tırmanmayacağı ve Brent petrolün 100 doların üzerinde kalıp kalmayacağı",
-    "Spot Bitcoin ETF'lerinde çıkışların Fed kararı sonrası devam edip etmeyeceği"
+    "ABD 3. çeyrek öncü GDP verisi beklentiyi aştı mı",
+    "PCE enflasyon verisi Fed'in Aralık artırım olasılığını güçlendirdi mi",
+    "Brent petrol 115 dolar seviyesinin üzerinde kalmayı sürdürdü mü",
+    "BTC ETF girişleri IBIT dışında diğer fonlara da yayıldı mı"
   ],
   "sources": [
     {
-      "url": "https://www.coindesk.com/markets/2026/10/26/bitcoin-slips-under-usd80-000-as-traders-de-risk-ahead-of-fed-meeting",
-      "title": "Bitcoin Slips Under $80,000 as Traders De-Risk Ahead of Fed Meeting",
-      "publisher": "CoinDesk"
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-slide-toward-lowest-level-212329075.html",
+      "title": "Stocks slide toward lowest level since July after Warsh's hawkish press conference",
+      "publisher": "Yahoo Finance"
     },
     {
-      "url": "https://gcaptain.com/tanker-disabled-in-strait-of-hormuz-attack-another-vessel-reported-on-fire-in-persian-gulf/",
-      "title": "Tanker Disabled in Strait of Hormuz Attack, Another Vessel Reported on Fire in Persian Gulf",
-      "publisher": "gCaptain"
+      "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-october-28-2026-brent-above-115-after-saudi-refinery-attack-revives-supply-fears",
+      "title": "Brent Tops $115 After Reported Saudi Refinery Attack",
+      "publisher": "HDFC Sky"
     },
     {
-      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026",
-      "title": "Fed Rate Decision October 2026: Hike or Hold on 28 Oct?",
-      "publisher": "Admiral Markets"
+      "url": "https://www.cointribune.com/en/bitcoin-etfs-rebound-with-110m-in-inflows-after-774m-in-outflows/",
+      "title": "Bitcoin: ETFs Rebound With $110M in Inflows After $774M in Outflows",
+      "publisher": "Cointribune"
     },
     {
-      "url": "https://thecurrencyanalytics.com/breaking-news/solana-tokenized-funds-inflow-ethereum-decline",
-      "title": "Solana Leads RWA Tokenization Inflows in October 2026",
-      "publisher": "The Currency Analytics"
+      "url": "https://crypto.news/crypto-industry-176-million-us-midterm-elections/",
+      "title": "Crypto election spending hits $176M as Fairshake targets US midterms",
+      "publisher": "crypto.news"
     }
   ],
   "assets": {
