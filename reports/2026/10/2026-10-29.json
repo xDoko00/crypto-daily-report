@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-29",
+  "language": "tr",
+  "title": "29 Ekim 2026, Perşembe",
+  "publishedAt": "2026-10-29T07:52:41+03:00",
+  "updatedAt": "2026-10-29T07:52:41+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-29T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 79992,
+        "change24h": -1.1318893776325103
+      },
+      "ETH": {
+        "priceUsd": 2316.7,
+        "change24h": -1.6060705560410042
+      },
+      "SOL": {
+        "priceUsd": 99.95,
+        "change24h": -2.0341289744415816
+      },
+      "BNB": {
+        "priceUsd": 752.09,
+        "change24h": 0.8089303428852735
+      },
+      "XRP": {
+        "priceUsd": 1.29,
+        "change24h": -2.726047876575728
+      }
+    },
+    "btcDominance": 59.4451275242259,
+    "ethDominance": 10.462316446158896,
+    "totalMarketCapUsd": 2701016212222.548,
+    "volume24hUsd": 71853947323.71179,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 51,
+      "label": "Nötr",
+      "previousValue": 51,
+      "weekAgoValue": 68
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Fed, 28 Ekim toplantısında faizi %3.75-4.00 aralığında sabit tuttu ama iki üyenin artış için muhalefet etmesiyle şahin bir ton sergiledi; Aralık ayında faiz artışı olasılığı piyasada %85'e yükseldi ve bu, yüksek hazine tahvili getirileriyle birlikte riskli varlıklarda satışı derinleştirdi.",
+    "criticalEvents": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek öncü GDP verisi"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül PCE enflasyon verisi"
+      }
+    ],
+    "mainRisk": "Aralık ayında faiz artışı olasılığının %85'e çıkmış olması, bugünkü GDP ve PCE verileriyle birlikte risk varlıklarındaki baskıyı daha da derinleştirebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD 3. çeyrek öncü GDP verisi beklentiyi aştı mı",
+        "outcome": "Henüz belli değil; veri bugün (29 Ekim) TSİ 15:30'da açıklanacak, piyasa yıllık %3.2 büyüme bekliyor"
+      },
+      {
+        "item": "PCE enflasyon verisi Fed'in Aralık artırım olasılığını güçlendirdi mi",
+        "outcome": "Eylül PCE verisi de bugün 15:30 TSİ'de GDP ile birlikte açıklanacak; Fed dünkü toplantıda zaten şahin sinyal verdi ve Aralık artış ihtimali piyasada %85'e yükseldi"
+      },
+      {
+        "item": "Brent petrol 115 dolar seviyesinin üzerinde kalmayı sürdürdü mü",
+        "outcome": "Kısmen ıska; çarşamba günü 115 doların üzerine çıktı ama bugün 114.28 dolara geri çekildi, seviyeyi tam koruyamadı"
+      },
+      {
+        "item": "BTC ETF girişleri IBIT dışında diğer fonlara da yayıldı mı",
+        "outcome": "Işka; 28 Ekim girişlerinin büyük kısmı yine IBIT'e gitti, ay genelinde diğer 11 fon toplamda net çıkış yaşadı"
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Fed faizi sabit tuttu, iki üye artış istedi",
+        "summary": "Fed 28 Ekim'de faizi %3.75-4.00 aralığında sabit tuttu; Fed Guvernörü Lisa Cook ve Cleveland Fed Başkanı Beth Hammack çeyrek puanlık artış için muhalefet etti. Karar sonrası Aralık ayında faiz artışı olasılığı piyasada %85'e yükseldi.",
+        "source": {
+          "url": "https://www.mitrade.com/insights/more/Central-Banks/fed-holds-two-dissent-december-85-20261029J1055",
+          "title": "The Fed held at 3.75%-4.00% - and two officials voted to hike. December is now 85% priced",
+          "publisher": "Mitrade"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "ETH ETF'lerinde yılın en büyük aylık çıkışı",
+        "summary": "ABD spot Ethereum ETF'lerinden Ekim ayında 1,2 milyar dolara yakın net çıkış oldu, yılın en ağır aylık çıkışı. Aynı dönemde borsalardan da 169.770 ETH çekildi.",
+        "source": {
+          "url": "https://www.itechguides.com/ethereum-sees-biggest-exchange-withdrawal-in-four-months-as-october-etf-losses-top-1-billion/",
+          "title": "Ethereum Exchange Outflow Hits 169,770 ETH as October ETF Losses Top $1.2B",
+          "publisher": "iTech Guides"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "BTC spot ETF'leri IBIT ağırlıklı giriş kaydetti",
+        "summary": "ABD spot Bitcoin ETF'leri 26-27 Ekim'de toplam 286 milyon dolar giriş alarak ayın net çıkışını 26 milyon dolara kadar daralttı, ancak girişler büyük oranda BlackRock'un IBIT fonunda yoğunlaştı.",
+        "source": {
+          "url": "https://www.cryptopolitan.com/bitcoin-etfs-shrink-october-outflows-26m/",
+          "title": "Bitcoin ETFs shrink October outflows to $26M",
+          "publisher": "Cryptopolitan"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek öncü GDP verisi"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD Eylül PCE enflasyon verisi"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Aralık FOMC'de faiz artışı olasılığının yüksek kalması risk varlıklarında baskıyı sürdürebilir",
+      "ETH ETF çıkışlarının sürmesi Ethereum'da zayıf seyri derinleştirebilir"
+    ]
+  },
+  "followUps": [
+    "ABD 3. çeyrek GDP verisi %3.2 büyüme beklentisini aştı mı",
+    "Eylül PCE enflasyonu Fed'in Aralık artış ihtimalini daha da güçlendirdi mi",
+    "BTC spot ETF girişleri IBIT dışına yayılmayı sürdürdü mü",
+    "Aralık FOMC faiz artış ihtimali (%85) GDP ve PCE sonrası değişti mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.mitrade.com/insights/more/Central-Banks/fed-holds-two-dissent-december-85-20261029J1055",
+      "title": "The Fed held at 3.75%-4.00% - and two officials voted to hike. December is now 85% priced",
+      "publisher": "Mitrade"
+    },
+    {
+      "url": "https://www.itechguides.com/ethereum-sees-biggest-exchange-withdrawal-in-four-months-as-october-etf-losses-top-1-billion/",
+      "title": "Ethereum Exchange Outflow Hits 169,770 ETH as October ETF Losses Top $1.2B",
+      "publisher": "iTech Guides"
+    },
+    {
+      "url": "https://www.cryptopolitan.com/bitcoin-etfs-shrink-october-outflows-26m/",
+      "title": "Bitcoin ETFs shrink October outflows to $26M",
+      "publisher": "Cryptopolitan"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
