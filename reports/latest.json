@@ -1,125 +1,151 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-29",
+  "id": "2026-10-30",
   "language": "tr",
-  "title": "29 Ekim 2026, Perşembe",
-  "publishedAt": "2026-10-29T07:52:41+03:00",
-  "updatedAt": "2026-10-29T07:52:41+03:00",
+  "title": "30 Ekim 2026, Cuma",
+  "publishedAt": "2026-10-30T07:50:17+03:00",
+  "updatedAt": "2026-10-30T07:50:17+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-29T07:48:00+03:00",
+    "asOf": "2026-10-30T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 79992,
-        "change24h": -1.1318893776325103
+        "priceUsd": 78222,
+        "change24h": -2.323558905291444
       },
       "ETH": {
-        "priceUsd": 2316.7,
-        "change24h": -1.6060705560410042
+        "priceUsd": 2242.85,
+        "change24h": -3.267046524931118
       },
       "SOL": {
-        "priceUsd": 99.95,
-        "change24h": -2.0341289744415816
+        "priceUsd": 97.12,
+        "change24h": -2.862587504332092
       },
       "BNB": {
-        "priceUsd": 752.09,
-        "change24h": 0.8089303428852735
+        "priceUsd": 716.03,
+        "change24h": -4.819323928609042
       },
       "XRP": {
-        "priceUsd": 1.29,
-        "change24h": -2.726047876575728
+        "priceUsd": 1.25,
+        "change24h": -3.381342821528008
       }
     },
-    "btcDominance": 59.4451275242259,
-    "ethDominance": 10.462316446158896,
-    "totalMarketCapUsd": 2701016212222.548,
-    "volume24hUsd": 71853947323.71179,
+    "btcDominance": 59.31174764798337,
+    "ethDominance": 10.337461051637346,
+    "totalMarketCapUsd": 2641292354497.6787,
+    "volume24hUsd": 138322058459.83353,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 51,
-      "label": "Nötr",
+      "value": 30,
+      "label": "Korku",
       "previousValue": 51,
-      "weekAgoValue": 68
+      "weekAgoValue": 50
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "Fed, 28 Ekim toplantısında faizi %3.75-4.00 aralığında sabit tuttu ama iki üyenin artış için muhalefet etmesiyle şahin bir ton sergiledi; Aralık ayında faiz artışı olasılığı piyasada %85'e yükseldi ve bu, yüksek hazine tahvili getirileriyle birlikte riskli varlıklarda satışı derinleştirdi.",
+    "mood": "Riskli",
+    "why": "BTC ve diğer büyük coinler, Binance'in 29 Ekim'de açıkladığı ve toplam etkisi 6,3 milyar dolara ulaşabilecek güvenlik ihlali sonrası sert düştü; borsanın 3 milyar dolarlık varlığı dondurması ve kaldıraçlı pozisyonların zorunlu tasfiyesi panik satışını tetikledi.",
     "criticalEvents": [
       {
-        "timeTr": "15:30",
-        "title": "ABD 3. çeyrek öncü GDP verisi"
+        "timeTr": null,
+        "title": "Binance güvenlik ihlali"
       },
       {
         "timeTr": "15:30",
-        "title": "ABD Eylül PCE enflasyon verisi"
+        "title": "ABD işgücü maliyeti endeksi"
+      },
+      {
+        "timeTr": null,
+        "title": "MiCA stablecoin geçiş süresi doluyor"
       }
     ],
-    "mainRisk": "Aralık ayında faiz artışı olasılığının %85'e çıkmış olması, bugünkü GDP ve PCE verileriyle birlikte risk varlıklarındaki baskıyı daha da derinleştirebilir."
+    "mainRisk": "Binance soruşturmasının büyümesi ve ek varlık dondurmaları borsaya olan güveni daha da zayıflatıp volatiliteyi artırabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "ABD 3. çeyrek öncü GDP verisi beklentiyi aştı mı",
-        "outcome": "Henüz belli değil; veri bugün (29 Ekim) TSİ 15:30'da açıklanacak, piyasa yıllık %3.2 büyüme bekliyor"
+        "item": "ABD 3. çeyrek GDP verisi %3.2 büyüme beklentisini aştı mı",
+        "outcome": "Evet, BEA'nın öncü tahminine göre ekonomi yıllık %3.4 büyüdü, %3.2 beklentisinin üzerinde."
       },
       {
-        "item": "PCE enflasyon verisi Fed'in Aralık artırım olasılığını güçlendirdi mi",
-        "outcome": "Eylül PCE verisi de bugün 15:30 TSİ'de GDP ile birlikte açıklanacak; Fed dünkü toplantıda zaten şahin sinyal verdi ve Aralık artış ihtimali piyasada %85'e yükseldi"
+        "item": "Eylül PCE enflasyonu Fed'in Aralık artış ihtimalini daha da güçlendirdi mi",
+        "outcome": "Çekirdek PCE %3.1 ile beklentiyle aynı geldi; belirgin bir sürpriz olmadı ama enflasyon hedefin üzerinde kalıcılığını sürdürdü."
       },
       {
-        "item": "Brent petrol 115 dolar seviyesinin üzerinde kalmayı sürdürdü mü",
-        "outcome": "Kısmen ıska; çarşamba günü 115 doların üzerine çıktı ama bugün 114.28 dolara geri çekildi, seviyeyi tam koruyamadı"
+        "item": "BTC spot ETF girişleri IBIT dışına yayılmayı sürdürdü mü",
+        "outcome": "Hayır, 28 Ekim'deki 137,3 milyon dolarlık girişin neredeyse tamamı yine IBIT'ten geldi."
       },
       {
-        "item": "BTC ETF girişleri IBIT dışında diğer fonlara da yayıldı mı",
-        "outcome": "Işka; 28 Ekim girişlerinin büyük kısmı yine IBIT'e gitti, ay genelinde diğer 11 fon toplamda net çıkış yaşadı"
+        "item": "Aralık FOMC faiz artış ihtimali (%85) GDP ve PCE sonrası değişti mi",
+        "outcome": "Belirgin değişmedi; platforma göre %75-85 bandında yüksek kalmaya devam ediyor."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Fed faizi sabit tuttu, iki üye artış istedi",
-        "summary": "Fed 28 Ekim'de faizi %3.75-4.00 aralığında sabit tuttu; Fed Guvernörü Lisa Cook ve Cleveland Fed Başkanı Beth Hammack çeyrek puanlık artış için muhalefet etti. Karar sonrası Aralık ayında faiz artışı olasılığı piyasada %85'e yükseldi.",
+        "title": "Binance'de güvenlik ihlali, 3 milyar dolar donduruldu",
+        "summary": "Binance, bir DevOps mühendisinin cihazının ele geçirilmesiyle yetkisiz çekimler yapıldığını ve toplam etkinin 6,3 milyar dolara ulaşabileceğini açıkladı; Tether ve Circle sırasıyla yaklaşık 971 ve 823 milyon dolarlık varlığı dondurdu.",
         "source": {
-          "url": "https://www.mitrade.com/insights/more/Central-Banks/fed-holds-two-dissent-december-85-20261029J1055",
-          "title": "The Fed held at 3.75%-4.00% - and two officials voted to hike. December is now 85% priced",
-          "publisher": "Mitrade"
+          "url": "https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html",
+          "title": "Billions in crypto frozen in Binance hack. Here's what happens next",
+          "publisher": "CNBC"
         }
       },
       {
         "importance": "onemli",
-        "title": "ETH ETF'lerinde yılın en büyük aylık çıkışı",
-        "summary": "ABD spot Ethereum ETF'lerinden Ekim ayında 1,2 milyar dolara yakın net çıkış oldu, yılın en ağır aylık çıkışı. Aynı dönemde borsalardan da 169.770 ETH çekildi.",
+        "title": "ABD 3. çeyrek GDP'si %3.4 ile beklentiyi aştı",
+        "summary": "BEA'nın öncü tahminine göre ABD ekonomisi 3. çeyrekte yıllık %3,4 büyüdü; tüketici harcamaları ve yatırımdaki artış büyümeyi destekledi.",
         "source": {
-          "url": "https://www.itechguides.com/ethereum-sees-biggest-exchange-withdrawal-in-four-months-as-october-etf-losses-top-1-billion/",
-          "title": "Ethereum Exchange Outflow Hits 169,770 ETH as October ETF Losses Top $1.2B",
-          "publisher": "iTech Guides"
+          "url": "https://www.stocktitan.net/articles/q3-2026-gdp-growth-advance-estimate",
+          "title": "GDP Report: US GDP Grew 3.4% in the Third Quarter as Price Increases Slowed",
+          "publisher": "StockTitan"
         }
       },
       {
         "importance": "onemli",
-        "title": "BTC spot ETF'leri IBIT ağırlıklı giriş kaydetti",
-        "summary": "ABD spot Bitcoin ETF'leri 26-27 Ekim'de toplam 286 milyon dolar giriş alarak ayın net çıkışını 26 milyon dolara kadar daralttı, ancak girişler büyük oranda BlackRock'un IBIT fonunda yoğunlaştı.",
+        "title": "Eylül çekirdek PCE %3,1 ile Fed hedefinin üzerinde kaldı",
+        "summary": "Fed'in izlediği enflasyon göstergesi çekirdek PCE Eylül'de yıllık %3,1'e yükseldi, beklentilerle uyumlu geldi ve Fed'in %2 hedefinin hâlâ belirgin üzerinde.",
         "source": {
-          "url": "https://www.cryptopolitan.com/bitcoin-etfs-shrink-october-outflows-26m/",
-          "title": "Bitcoin ETFs shrink October outflows to $26M",
-          "publisher": "Cryptopolitan"
+          "url": "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
+          "title": "PCE inflation report September 2026",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Coinbase'in MiCA stablecoin geçiş süresi bugün doluyor",
+        "summary": "Coinbase, AEA'daki kullanıcıların MiCA'ya uyumlu olmayan USDT dahil 14 stabilcoin'i 30 Ekim'e kadar çekmesi gerektiğini, sonrasında kalan bakiyelerin otomatik USDC'ye çevrileceğini duyurdu.",
+        "source": {
+          "url": "https://cryptoslate.com/coinbase-sets-3-day-mica-deadline-for-usdt-paypal-and-trump-linked-stablecoins/",
+          "title": "Coinbase sets 3-day MiCA deadline for USDT, PayPal and Trump-linked stablecoins",
+          "publisher": "CryptoSlate"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "15:30",
-        "title": "ABD 3. çeyrek öncü GDP verisi"
+        "timeTr": null,
+        "title": "Binance hack soruşturmasında yeni açıklamalar"
       },
       {
         "timeTr": "15:30",
-        "title": "ABD Eylül PCE enflasyon verisi"
+        "title": "ABD 3. çeyrek işgücü maliyeti endeksi"
+      },
+      {
+        "timeTr": "16:45",
+        "title": "ABD Ekim Chicago PMI"
+      },
+      {
+        "timeTr": null,
+        "title": "Güney Kore kripto vergisi kararına dair parti açıklaması"
+      },
+      {
+        "timeTr": null,
+        "title": "MiCA kapsamında stablecoin çekim süresinin dolması"
       }
     ],
     "turkey": {
@@ -127,31 +153,36 @@
       "items": []
     },
     "risks": [
-      "Aralık FOMC'de faiz artışı olasılığının yüksek kalması risk varlıklarında baskıyı sürdürebilir",
-      "ETH ETF çıkışlarının sürmesi Ethereum'da zayıf seyri derinleştirebilir"
+      "Binance'deki ihlalin nihai kayıp tutarı ve kapsamı henüz belirsiz.",
+      "Aralık FOMC öncesi güçlü büyüme ve yapışkan enflasyon faiz artış ihtimalini canlı tutuyor."
     ]
   },
   "followUps": [
-    "ABD 3. çeyrek GDP verisi %3.2 büyüme beklentisini aştı mı",
-    "Eylül PCE enflasyonu Fed'in Aralık artış ihtimalini daha da güçlendirdi mi",
-    "BTC spot ETF girişleri IBIT dışına yayılmayı sürdürdü mü",
-    "Aralık FOMC faiz artış ihtimali (%85) GDP ve PCE sonrası değişti mi"
+    "Binance'in nihai kayıp tutarı ve donan varlıkların iadesi açıklanacak mı",
+    "BTC, Binance haberi sonrası 77.000-78.000 dolar desteğini koruyabilecek mi",
+    "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda pozisyonunu açıklayacak mı",
+    "Spot BTC ETF'lerinde IBIT dışına yayılma bu hafta başlayacak mı"
   ],
   "sources": [
     {
-      "url": "https://www.mitrade.com/insights/more/Central-Banks/fed-holds-two-dissent-december-85-20261029J1055",
-      "title": "The Fed held at 3.75%-4.00% - and two officials voted to hike. December is now 85% priced",
-      "publisher": "Mitrade"
+      "url": "https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html",
+      "title": "Billions in crypto frozen in Binance hack. Here's what happens next",
+      "publisher": "CNBC"
     },
     {
-      "url": "https://www.itechguides.com/ethereum-sees-biggest-exchange-withdrawal-in-four-months-as-october-etf-losses-top-1-billion/",
-      "title": "Ethereum Exchange Outflow Hits 169,770 ETH as October ETF Losses Top $1.2B",
-      "publisher": "iTech Guides"
+      "url": "https://www.stocktitan.net/articles/q3-2026-gdp-growth-advance-estimate",
+      "title": "GDP Report: US GDP Grew 3.4% in the Third Quarter as Price Increases Slowed",
+      "publisher": "StockTitan"
     },
     {
-      "url": "https://www.cryptopolitan.com/bitcoin-etfs-shrink-october-outflows-26m/",
-      "title": "Bitcoin ETFs shrink October outflows to $26M",
-      "publisher": "Cryptopolitan"
+      "url": "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
+      "title": "PCE inflation report September 2026",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://cryptoslate.com/coinbase-sets-3-day-mica-deadline-for-usdt-paypal-and-trump-linked-stablecoins/",
+      "title": "Coinbase sets 3-day MiCA deadline for USDT, PayPal and Trump-linked stablecoins",
+      "publisher": "CryptoSlate"
     }
   ],
   "assets": {

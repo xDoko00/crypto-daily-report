@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-30",
+  "language": "tr",
+  "title": "30 Ekim 2026, Cuma",
+  "publishedAt": "2026-10-30T07:50:17+03:00",
+  "updatedAt": "2026-10-30T07:50:17+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-30T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 78222,
+        "change24h": -2.323558905291444
+      },
+      "ETH": {
+        "priceUsd": 2242.85,
+        "change24h": -3.267046524931118
+      },
+      "SOL": {
+        "priceUsd": 97.12,
+        "change24h": -2.862587504332092
+      },
+      "BNB": {
+        "priceUsd": 716.03,
+        "change24h": -4.819323928609042
+      },
+      "XRP": {
+        "priceUsd": 1.25,
+        "change24h": -3.381342821528008
+      }
+    },
+    "btcDominance": 59.31174764798337,
+    "ethDominance": 10.337461051637346,
+    "totalMarketCapUsd": 2641292354497.6787,
+    "volume24hUsd": 138322058459.83353,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 30,
+      "label": "Korku",
+      "previousValue": 51,
+      "weekAgoValue": 50
+    }
+  },
+  "brief": {
+    "mood": "Riskli",
+    "why": "BTC ve diğer büyük coinler, Binance'in 29 Ekim'de açıkladığı ve toplam etkisi 6,3 milyar dolara ulaşabilecek güvenlik ihlali sonrası sert düştü; borsanın 3 milyar dolarlık varlığı dondurması ve kaldıraçlı pozisyonların zorunlu tasfiyesi panik satışını tetikledi.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Binance güvenlik ihlali"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD işgücü maliyeti endeksi"
+      },
+      {
+        "timeTr": null,
+        "title": "MiCA stablecoin geçiş süresi doluyor"
+      }
+    ],
+    "mainRisk": "Binance soruşturmasının büyümesi ve ek varlık dondurmaları borsaya olan güveni daha da zayıflatıp volatiliteyi artırabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD 3. çeyrek GDP verisi %3.2 büyüme beklentisini aştı mı",
+        "outcome": "Evet, BEA'nın öncü tahminine göre ekonomi yıllık %3.4 büyüdü, %3.2 beklentisinin üzerinde."
+      },
+      {
+        "item": "Eylül PCE enflasyonu Fed'in Aralık artış ihtimalini daha da güçlendirdi mi",
+        "outcome": "Çekirdek PCE %3.1 ile beklentiyle aynı geldi; belirgin bir sürpriz olmadı ama enflasyon hedefin üzerinde kalıcılığını sürdürdü."
+      },
+      {
+        "item": "BTC spot ETF girişleri IBIT dışına yayılmayı sürdürdü mü",
+        "outcome": "Hayır, 28 Ekim'deki 137,3 milyon dolarlık girişin neredeyse tamamı yine IBIT'ten geldi."
+      },
+      {
+        "item": "Aralık FOMC faiz artış ihtimali (%85) GDP ve PCE sonrası değişti mi",
+        "outcome": "Belirgin değişmedi; platforma göre %75-85 bandında yüksek kalmaya devam ediyor."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Binance'de güvenlik ihlali, 3 milyar dolar donduruldu",
+        "summary": "Binance, bir DevOps mühendisinin cihazının ele geçirilmesiyle yetkisiz çekimler yapıldığını ve toplam etkinin 6,3 milyar dolara ulaşabileceğini açıkladı; Tether ve Circle sırasıyla yaklaşık 971 ve 823 milyon dolarlık varlığı dondurdu.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html",
+          "title": "Billions in crypto frozen in Binance hack. Here's what happens next",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "ABD 3. çeyrek GDP'si %3.4 ile beklentiyi aştı",
+        "summary": "BEA'nın öncü tahminine göre ABD ekonomisi 3. çeyrekte yıllık %3,4 büyüdü; tüketici harcamaları ve yatırımdaki artış büyümeyi destekledi.",
+        "source": {
+          "url": "https://www.stocktitan.net/articles/q3-2026-gdp-growth-advance-estimate",
+          "title": "GDP Report: US GDP Grew 3.4% in the Third Quarter as Price Increases Slowed",
+          "publisher": "StockTitan"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Eylül çekirdek PCE %3,1 ile Fed hedefinin üzerinde kaldı",
+        "summary": "Fed'in izlediği enflasyon göstergesi çekirdek PCE Eylül'de yıllık %3,1'e yükseldi, beklentilerle uyumlu geldi ve Fed'in %2 hedefinin hâlâ belirgin üzerinde.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
+          "title": "PCE inflation report September 2026",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Coinbase'in MiCA stablecoin geçiş süresi bugün doluyor",
+        "summary": "Coinbase, AEA'daki kullanıcıların MiCA'ya uyumlu olmayan USDT dahil 14 stabilcoin'i 30 Ekim'e kadar çekmesi gerektiğini, sonrasında kalan bakiyelerin otomatik USDC'ye çevrileceğini duyurdu.",
+        "source": {
+          "url": "https://cryptoslate.com/coinbase-sets-3-day-mica-deadline-for-usdt-paypal-and-trump-linked-stablecoins/",
+          "title": "Coinbase sets 3-day MiCA deadline for USDT, PayPal and Trump-linked stablecoins",
+          "publisher": "CryptoSlate"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Binance hack soruşturmasında yeni açıklamalar"
+      },
+      {
+        "timeTr": "15:30",
+        "title": "ABD 3. çeyrek işgücü maliyeti endeksi"
+      },
+      {
+        "timeTr": "16:45",
+        "title": "ABD Ekim Chicago PMI"
+      },
+      {
+        "timeTr": null,
+        "title": "Güney Kore kripto vergisi kararına dair parti açıklaması"
+      },
+      {
+        "timeTr": null,
+        "title": "MiCA kapsamında stablecoin çekim süresinin dolması"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Binance'deki ihlalin nihai kayıp tutarı ve kapsamı henüz belirsiz.",
+      "Aralık FOMC öncesi güçlü büyüme ve yapışkan enflasyon faiz artış ihtimalini canlı tutuyor."
+    ]
+  },
+  "followUps": [
+    "Binance'in nihai kayıp tutarı ve donan varlıkların iadesi açıklanacak mı",
+    "BTC, Binance haberi sonrası 77.000-78.000 dolar desteğini koruyabilecek mi",
+    "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda pozisyonunu açıklayacak mı",
+    "Spot BTC ETF'lerinde IBIT dışına yayılma bu hafta başlayacak mı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html",
+      "title": "Billions in crypto frozen in Binance hack. Here's what happens next",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.stocktitan.net/articles/q3-2026-gdp-growth-advance-estimate",
+      "title": "GDP Report: US GDP Grew 3.4% in the Third Quarter as Price Increases Slowed",
+      "publisher": "StockTitan"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
+      "title": "PCE inflation report September 2026",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://cryptoslate.com/coinbase-sets-3-day-mica-deadline-for-usdt-paypal-and-trump-linked-stablecoins/",
+      "title": "Coinbase sets 3-day MiCA deadline for USDT, PayPal and Trump-linked stablecoins",
+      "publisher": "CryptoSlate"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
