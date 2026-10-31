@@ -1,13 +1,13 @@
 {
  "kanca-sabah": {
-  "gun": "2026-10-30",
-  "onceki": "sabah-sehir/sabah-sehir-03.mp4",
+  "gun": "2026-10-31",
+  "onceki": "sabah-sehir/sabah-sehir-01.mp4",
   "secilen": [
-   "sabah-sehir/sabah-sehir-01.mp4"
+   "istanbul-sabah/istanbul-sabah-01.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-10-30",
+  "gun": "2026-10-31",
   "onceki": "piyasa-dusus/piyasa-dusus-03.mp4",
   "secilen": [
    "piyasa-dusus/piyasa-dusus-01.mp4",
@@ -16,9 +16,10 @@
   ]
  },
  "hack-guvenlik": {
-  "gun": "2026-10-28",
-  "onceki": "hack-guvenlik/hack-guvenlik-02.mp4",
+  "gun": "2026-10-31",
+  "onceki": "hack-guvenlik/hack-guvenlik-01.mp4",
   "secilen": [
+   "hack-guvenlik/hack-guvenlik-02.mp4",
    "hack-guvenlik/hack-guvenlik-01.mp4"
   ]
  },
@@ -30,17 +31,17 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-10-30",
-  "onceki": "takvim-veri/takvim-veri-04.mp4",
+  "gun": "2026-10-31",
+  "onceki": "takvim-veri/takvim-veri-01.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-01.mp4"
+   "takvim-veri/takvim-veri-02.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-10-30",
-  "onceki": "kapanis/kapanis-04.mp4",
+  "gun": "2026-10-31",
+  "onceki": "kapanis/kapanis-01.mp4",
   "secilen": [
-   "kapanis/kapanis-01.mp4"
+   "kapanis/kapanis-03.mp4"
   ]
  },
  "piyasa-yukselis": {
