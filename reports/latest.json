@@ -1,151 +1,139 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-30",
+  "id": "2026-10-31",
   "language": "tr",
-  "title": "30 Ekim 2026, Cuma",
-  "publishedAt": "2026-10-30T07:50:17+03:00",
-  "updatedAt": "2026-10-30T07:50:17+03:00",
+  "title": "31 Ekim 2026, Cumartesi",
+  "publishedAt": "2026-10-31T07:50:21+03:00",
+  "updatedAt": "2026-10-31T07:50:21+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-30T07:48:00+03:00",
+    "asOf": "2026-10-31T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 78222,
-        "change24h": -2.323558905291444
+        "priceUsd": 77085,
+        "change24h": -1.505829358591962
       },
       "ETH": {
-        "priceUsd": 2242.85,
-        "change24h": -3.267046524931118
+        "priceUsd": 2236.38,
+        "change24h": -0.3134091613595152
       },
       "SOL": {
-        "priceUsd": 97.12,
-        "change24h": -2.862587504332092
+        "priceUsd": 95.69,
+        "change24h": -1.5805560806413574
       },
       "BNB": {
-        "priceUsd": 716.03,
-        "change24h": -4.819323928609042
+        "priceUsd": 700.54,
+        "change24h": -2.256210914479256
       },
       "XRP": {
-        "priceUsd": 1.25,
-        "change24h": -3.381342821528008
+        "priceUsd": 1.24,
+        "change24h": -0.67301698853639
       }
     },
-    "btcDominance": 59.31174764798337,
-    "ethDominance": 10.337461051637346,
-    "totalMarketCapUsd": 2641292354497.6787,
-    "volume24hUsd": 138322058459.83353,
+    "btcDominance": 59.22286946837134,
+    "ethDominance": 10.413066556577997,
+    "totalMarketCapUsd": 2614519881411.122,
+    "volume24hUsd": 87160580632.16263,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
       "value": 30,
       "label": "Korku",
-      "previousValue": 51,
-      "weekAgoValue": 50
+      "previousValue": 30,
+      "weekAgoValue": 51
     }
   },
   "brief": {
-    "mood": "Riskli",
-    "why": "BTC ve diğer büyük coinler, Binance'in 29 Ekim'de açıkladığı ve toplam etkisi 6,3 milyar dolara ulaşabilecek güvenlik ihlali sonrası sert düştü; borsanın 3 milyar dolarlık varlığı dondurması ve kaldıraçlı pozisyonların zorunlu tasfiyesi panik satışını tetikledi.",
+    "mood": "Temkinli",
+    "why": "Binance'te tespit edilen 6,3 milyar dolarlık rekor hack'in piyasada yarattığı güven kaybı ve Fed'in 28 Ekim'deki şahin tonlu faiz sabitleme kararının etkisi sürüyor; piyasa kısmen sakinleşse de Fear&Greed 30 seviyesinde kalarak baskıyı koruyor.",
     "criticalEvents": [
       {
         "timeTr": null,
-        "title": "Binance güvenlik ihlali"
-      },
-      {
-        "timeTr": "15:30",
-        "title": "ABD işgücü maliyeti endeksi"
+        "title": "Binance para çekmeyi yeniden açmaya hazırlanıyor"
       },
       {
         "timeTr": null,
-        "title": "MiCA stablecoin geçiş süresi doluyor"
+        "title": "Güney Kore'de kripto vergisi erteleme kararı bekleniyor"
       }
     ],
-    "mainRisk": "Binance soruşturmasının büyümesi ve ek varlık dondurmaları borsaya olan güveni daha da zayıflatıp volatiliteyi artırabilir."
+    "mainRisk": "Binance'in para çekmeyi güvenli şekilde yeniden açamaması veya hack kaynaklı güven kaybının borsa dışına taşarak satışları derinleştirmesi."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "ABD 3. çeyrek GDP verisi %3.2 büyüme beklentisini aştı mı",
-        "outcome": "Evet, BEA'nın öncü tahminine göre ekonomi yıllık %3.4 büyüdü, %3.2 beklentisinin üzerinde."
+        "item": "Binance'in nihai kayıp tutarı ve donan varlıkların iadesi açıklanacak mı",
+        "outcome": "Kayıp 6,3-6,34 milyar dolar olarak netleşti ve kripto tarihinin en büyük hack'i oldu; Binance tutarı kendi rezervinden karşılayacağını ve çalınanın yaklaşık %80'ini zaten telafi ettiğini açıkladı, ancak kullanıcılara fiili para çekme erişimi henüz tam açılmadı, hedef 1 Kasım."
       },
       {
-        "item": "Eylül PCE enflasyonu Fed'in Aralık artış ihtimalini daha da güçlendirdi mi",
-        "outcome": "Çekirdek PCE %3.1 ile beklentiyle aynı geldi; belirgin bir sürpriz olmadı ama enflasyon hedefin üzerinde kalıcılığını sürdürdü."
+        "item": "BTC, Binance haberi sonrası 77.000-78.000 dolar desteğini koruyabilecek mi",
+        "outcome": "Destek büyük ölçüde korundu; BTC kısa süreliğine 76.500 dolara sarkmasına rağmen güncel olarak 77.000 dolar civarında dengelendi, isabetli bir takip oldu."
       },
       {
-        "item": "BTC spot ETF girişleri IBIT dışına yayılmayı sürdürdü mü",
-        "outcome": "Hayır, 28 Ekim'deki 137,3 milyon dolarlık girişin neredeyse tamamı yine IBIT'ten geldi."
+        "item": "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda pozisyonunu açıklayacak mı",
+        "outcome": "Henüz resmi karar çıkmadı; hükümet ve iktidar partisi dördüncü kez anlaşamadı, vergiyi 2027'den 2029'a çekme ihtimali öne çıkıyor ama nihai karar Kasım sonu-Aralık başına kaldı."
       },
       {
-        "item": "Aralık FOMC faiz artış ihtimali (%85) GDP ve PCE sonrası değişti mi",
-        "outcome": "Belirgin değişmedi; platforma göre %75-85 bandında yüksek kalmaya devam ediyor."
+        "item": "Spot BTC ETF'lerinde IBIT dışına yayılma bu hafta başlayacak mı",
+        "outcome": "Kısmen başladı; 28 Ekim'de 12 fonun hiçbirinde net çıkış olmadı ve BITB gibi küçük fonlara da giriş görüldü, ancak akışın ağırlığı hâlâ büyük oranda IBIT'te."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Binance'de güvenlik ihlali, 3 milyar dolar donduruldu",
-        "summary": "Binance, bir DevOps mühendisinin cihazının ele geçirilmesiyle yetkisiz çekimler yapıldığını ve toplam etkinin 6,3 milyar dolara ulaşabileceğini açıkladı; Tether ve Circle sırasıyla yaklaşık 971 ve 823 milyon dolarlık varlığı dondurdu.",
+        "title": "Binance'te kripto tarihinin en büyük hack'i: 6,3 milyar dolar",
+        "summary": "Binance'in sıcak cüzdanlarından 60'tan fazla varlıkta anormal transferler tespit edildi; saldırı bir DevOps mühendisinin ele geçirilen dizüstü bilgisayarına bağlandı ve para çekme işlemleri askıya alındı.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html",
-          "title": "Billions in crypto frozen in Binance hack. Here's what happens next",
+          "url": "https://www.cnbc.com/2026/10/30/binance-hack-stolen-crypto-recovery.html",
+          "title": "Binance hack: Investigators in a 'cat and mouse game' to recover $6.3 billion in stolen funds",
           "publisher": "CNBC"
         }
       },
       {
         "importance": "onemli",
-        "title": "ABD 3. çeyrek GDP'si %3.4 ile beklentiyi aştı",
-        "summary": "BEA'nın öncü tahminine göre ABD ekonomisi 3. çeyrekte yıllık %3,4 büyüdü; tüketici harcamaları ve yatırımdaki artış büyümeyi destekledi.",
+        "title": "Saldırı Kuzey Kore bağlantılı TraderTraitor grubuna atfedildi",
+        "summary": "Blockchain istihbarat şirketleri TRM Labs ve Chainalysis, saldırının yüksek güvenle Kuzey Kore destekli TraderTraitor/Lazarus grubuna ait olduğunu belirledi; grup daha önce Bybit'teki 1,5 milyar dolarlık hack'le de ilişkilendirilmişti.",
         "source": {
-          "url": "https://www.stocktitan.net/articles/q3-2026-gdp-growth-advance-estimate",
-          "title": "GDP Report: US GDP Grew 3.4% in the Third Quarter as Price Increases Slowed",
-          "publisher": "StockTitan"
+          "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
+          "title": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History",
+          "publisher": "TRM Labs"
         }
       },
       {
         "importance": "onemli",
-        "title": "Eylül çekirdek PCE %3,1 ile Fed hedefinin üzerinde kaldı",
-        "summary": "Fed'in izlediği enflasyon göstergesi çekirdek PCE Eylül'de yıllık %3,1'e yükseldi, beklentilerle uyumlu geldi ve Fed'in %2 hedefinin hâlâ belirgin üzerinde.",
+        "title": "Binance 6,34 milyar dolarlık rezerv ayırdı, para çekme için takvim verdi",
+        "summary": "Binance, kullanıcı kayıplarını kendi fonlarından birebir karşılayacağını açıkladı; para çekme işlemlerinin 1 Kasım'da kademeli olarak yeniden açılması ve 2 Kasım'da tam kanıt-of-rezerv raporunun yayımlanması hedefleniyor.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
-          "title": "PCE inflation report September 2026",
-          "publisher": "CNBC"
+          "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack",
+          "title": "Binance arranges $6.34 billion to cover losses from biggest crypto hack ever",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Coinbase'in MiCA stablecoin geçiş süresi bugün doluyor",
-        "summary": "Coinbase, AEA'daki kullanıcıların MiCA'ya uyumlu olmayan USDT dahil 14 stabilcoin'i 30 Ekim'e kadar çekmesi gerektiğini, sonrasında kalan bakiyelerin otomatik USDC'ye çevrileceğini duyurdu.",
+        "title": "Hack sonrası piyasada 1,5 milyar dolardan fazla likidasyon",
+        "summary": "Binance kaynaklı satış dalgası kripto genelinde 1,5 milyar doları aşan pozisyonun likide olmasına yol açtı; piyasa 31 Ekim'de kısmen sakinleşerek dengelenmeye çalışıyor.",
         "source": {
-          "url": "https://cryptoslate.com/coinbase-sets-3-day-mica-deadline-for-usdt-paypal-and-trump-linked-stablecoins/",
-          "title": "Coinbase sets 3-day MiCA deadline for USDT, PayPal and Trump-linked stablecoins",
-          "publisher": "CryptoSlate"
+          "url": "https://crypto.news/bitcoin-ethereum-xrp-crash-as-crypto-liquidations-top-1-5b/",
+          "title": "Bitcoin, Ethereum, XRP crash as crypto liquidations top $1.5B",
+          "publisher": "Crypto.news"
         }
       }
     ],
     "today": [
       {
         "timeTr": null,
-        "title": "Binance hack soruşturmasında yeni açıklamalar"
-      },
-      {
-        "timeTr": "15:30",
-        "title": "ABD 3. çeyrek işgücü maliyeti endeksi"
-      },
-      {
-        "timeTr": "16:45",
-        "title": "ABD Ekim Chicago PMI"
+        "title": "Binance'de para çekme için güvenlik testleri ve hazırlık sürüyor"
       },
       {
         "timeTr": null,
-        "title": "Güney Kore kripto vergisi kararına dair parti açıklaması"
+        "title": "FLOCK token kilidi açılıyor, dolaşımdaki arzın yaklaşık %41'i"
       },
       {
         "timeTr": null,
-        "title": "MiCA kapsamında stablecoin çekim süresinin dolması"
+        "title": "Piyasada hack sonrası dengelenme denemesi sürüyor"
       }
     ],
     "turkey": {
@@ -153,36 +141,36 @@
       "items": []
     },
     "risks": [
-      "Binance'deki ihlalin nihai kayıp tutarı ve kapsamı henüz belirsiz.",
-      "Aralık FOMC öncesi güçlü büyüme ve yapışkan enflasyon faiz artış ihtimalini canlı tutuyor."
+      "Binance kaynaklı hack'in borsa dışı güven kaybına dönüşerek daha geniş çaplı satışı tetikleme riski",
+      "Güney Kore vergi ertelemesindeki belirsizliğin sürmesi bölgesel yatırımcı güvenini zayıflatabilir"
     ]
   },
   "followUps": [
-    "Binance'in nihai kayıp tutarı ve donan varlıkların iadesi açıklanacak mı",
-    "BTC, Binance haberi sonrası 77.000-78.000 dolar desteğini koruyabilecek mi",
-    "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda pozisyonunu açıklayacak mı",
-    "Spot BTC ETF'lerinde IBIT dışına yayılma bu hafta başlayacak mı"
+    "Binance para çekme işlemleri 1 Kasım'da planlandığı gibi yeniden açıldı mı",
+    "Binance 2 Kasım'da yayımlayacağı kanıt-of-rezerv raporunda tam şeffaflık sağladı mı",
+    "BTC 76.500-77.000 dolar destek bölgesini korumayı sürdürüyor mu",
+    "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda somut bir karar aldı mı"
   ],
   "sources": [
     {
-      "url": "https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html",
-      "title": "Billions in crypto frozen in Binance hack. Here's what happens next",
+      "url": "https://www.cnbc.com/2026/10/30/binance-hack-stolen-crypto-recovery.html",
+      "title": "Binance hack: Investigators in a 'cat and mouse game' to recover $6.3 billion in stolen funds",
       "publisher": "CNBC"
     },
     {
-      "url": "https://www.stocktitan.net/articles/q3-2026-gdp-growth-advance-estimate",
-      "title": "GDP Report: US GDP Grew 3.4% in the Third Quarter as Price Increases Slowed",
-      "publisher": "StockTitan"
+      "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
+      "title": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History",
+      "publisher": "TRM Labs"
     },
     {
-      "url": "https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html",
-      "title": "PCE inflation report September 2026",
-      "publisher": "CNBC"
+      "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack",
+      "title": "Binance arranges $6.34 billion to cover losses from biggest crypto hack ever",
+      "publisher": "CoinDesk"
     },
     {
-      "url": "https://cryptoslate.com/coinbase-sets-3-day-mica-deadline-for-usdt-paypal-and-trump-linked-stablecoins/",
-      "title": "Coinbase sets 3-day MiCA deadline for USDT, PayPal and Trump-linked stablecoins",
-      "publisher": "CryptoSlate"
+      "url": "https://crypto.news/bitcoin-ethereum-xrp-crash-as-crypto-liquidations-top-1-5b/",
+      "title": "Bitcoin, Ethereum, XRP crash as crypto liquidations top $1.5B",
+      "publisher": "Crypto.news"
     }
   ],
   "assets": {

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-10-31",
+  "language": "tr",
+  "title": "31 Ekim 2026, Cumartesi",
+  "publishedAt": "2026-10-31T07:50:21+03:00",
+  "updatedAt": "2026-10-31T07:50:21+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-10-31T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 77085,
+        "change24h": -1.505829358591962
+      },
+      "ETH": {
+        "priceUsd": 2236.38,
+        "change24h": -0.3134091613595152
+      },
+      "SOL": {
+        "priceUsd": 95.69,
+        "change24h": -1.5805560806413574
+      },
+      "BNB": {
+        "priceUsd": 700.54,
+        "change24h": -2.256210914479256
+      },
+      "XRP": {
+        "priceUsd": 1.24,
+        "change24h": -0.67301698853639
+      }
+    },
+    "btcDominance": 59.22286946837134,
+    "ethDominance": 10.413066556577997,
+    "totalMarketCapUsd": 2614519881411.122,
+    "volume24hUsd": 87160580632.16263,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 30,
+      "label": "Korku",
+      "previousValue": 30,
+      "weekAgoValue": 51
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Binance'te tespit edilen 6,3 milyar dolarlık rekor hack'in piyasada yarattığı güven kaybı ve Fed'in 28 Ekim'deki şahin tonlu faiz sabitleme kararının etkisi sürüyor; piyasa kısmen sakinleşse de Fear&Greed 30 seviyesinde kalarak baskıyı koruyor.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Binance para çekmeyi yeniden açmaya hazırlanıyor"
+      },
+      {
+        "timeTr": null,
+        "title": "Güney Kore'de kripto vergisi erteleme kararı bekleniyor"
+      }
+    ],
+    "mainRisk": "Binance'in para çekmeyi güvenli şekilde yeniden açamaması veya hack kaynaklı güven kaybının borsa dışına taşarak satışları derinleştirmesi."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Binance'in nihai kayıp tutarı ve donan varlıkların iadesi açıklanacak mı",
+        "outcome": "Kayıp 6,3-6,34 milyar dolar olarak netleşti ve kripto tarihinin en büyük hack'i oldu; Binance tutarı kendi rezervinden karşılayacağını ve çalınanın yaklaşık %80'ini zaten telafi ettiğini açıkladı, ancak kullanıcılara fiili para çekme erişimi henüz tam açılmadı, hedef 1 Kasım."
+      },
+      {
+        "item": "BTC, Binance haberi sonrası 77.000-78.000 dolar desteğini koruyabilecek mi",
+        "outcome": "Destek büyük ölçüde korundu; BTC kısa süreliğine 76.500 dolara sarkmasına rağmen güncel olarak 77.000 dolar civarında dengelendi, isabetli bir takip oldu."
+      },
+      {
+        "item": "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda pozisyonunu açıklayacak mı",
+        "outcome": "Henüz resmi karar çıkmadı; hükümet ve iktidar partisi dördüncü kez anlaşamadı, vergiyi 2027'den 2029'a çekme ihtimali öne çıkıyor ama nihai karar Kasım sonu-Aralık başına kaldı."
+      },
+      {
+        "item": "Spot BTC ETF'lerinde IBIT dışına yayılma bu hafta başlayacak mı",
+        "outcome": "Kısmen başladı; 28 Ekim'de 12 fonun hiçbirinde net çıkış olmadı ve BITB gibi küçük fonlara da giriş görüldü, ancak akışın ağırlığı hâlâ büyük oranda IBIT'te."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Binance'te kripto tarihinin en büyük hack'i: 6,3 milyar dolar",
+        "summary": "Binance'in sıcak cüzdanlarından 60'tan fazla varlıkta anormal transferler tespit edildi; saldırı bir DevOps mühendisinin ele geçirilen dizüstü bilgisayarına bağlandı ve para çekme işlemleri askıya alındı.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/10/30/binance-hack-stolen-crypto-recovery.html",
+          "title": "Binance hack: Investigators in a 'cat and mouse game' to recover $6.3 billion in stolen funds",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Saldırı Kuzey Kore bağlantılı TraderTraitor grubuna atfedildi",
+        "summary": "Blockchain istihbarat şirketleri TRM Labs ve Chainalysis, saldırının yüksek güvenle Kuzey Kore destekli TraderTraitor/Lazarus grubuna ait olduğunu belirledi; grup daha önce Bybit'teki 1,5 milyar dolarlık hack'le de ilişkilendirilmişti.",
+        "source": {
+          "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
+          "title": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History",
+          "publisher": "TRM Labs"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Binance 6,34 milyar dolarlık rezerv ayırdı, para çekme için takvim verdi",
+        "summary": "Binance, kullanıcı kayıplarını kendi fonlarından birebir karşılayacağını açıkladı; para çekme işlemlerinin 1 Kasım'da kademeli olarak yeniden açılması ve 2 Kasım'da tam kanıt-of-rezerv raporunun yayımlanması hedefleniyor.",
+        "source": {
+          "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack",
+          "title": "Binance arranges $6.34 billion to cover losses from biggest crypto hack ever",
+          "publisher": "CoinDesk"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Hack sonrası piyasada 1,5 milyar dolardan fazla likidasyon",
+        "summary": "Binance kaynaklı satış dalgası kripto genelinde 1,5 milyar doları aşan pozisyonun likide olmasına yol açtı; piyasa 31 Ekim'de kısmen sakinleşerek dengelenmeye çalışıyor.",
+        "source": {
+          "url": "https://crypto.news/bitcoin-ethereum-xrp-crash-as-crypto-liquidations-top-1-5b/",
+          "title": "Bitcoin, Ethereum, XRP crash as crypto liquidations top $1.5B",
+          "publisher": "Crypto.news"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Binance'de para çekme için güvenlik testleri ve hazırlık sürüyor"
+      },
+      {
+        "timeTr": null,
+        "title": "FLOCK token kilidi açılıyor, dolaşımdaki arzın yaklaşık %41'i"
+      },
+      {
+        "timeTr": null,
+        "title": "Piyasada hack sonrası dengelenme denemesi sürüyor"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Binance kaynaklı hack'in borsa dışı güven kaybına dönüşerek daha geniş çaplı satışı tetikleme riski",
+      "Güney Kore vergi ertelemesindeki belirsizliğin sürmesi bölgesel yatırımcı güvenini zayıflatabilir"
+    ]
+  },
+  "followUps": [
+    "Binance para çekme işlemleri 1 Kasım'da planlandığı gibi yeniden açıldı mı",
+    "Binance 2 Kasım'da yayımlayacağı kanıt-of-rezerv raporunda tam şeffaflık sağladı mı",
+    "BTC 76.500-77.000 dolar destek bölgesini korumayı sürdürüyor mu",
+    "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda somut bir karar aldı mı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cnbc.com/2026/10/30/binance-hack-stolen-crypto-recovery.html",
+      "title": "Binance hack: Investigators in a 'cat and mouse game' to recover $6.3 billion in stolen funds",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
+      "title": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History",
+      "publisher": "TRM Labs"
+    },
+    {
+      "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack",
+      "title": "Binance arranges $6.34 billion to cover losses from biggest crypto hack ever",
+      "publisher": "CoinDesk"
+    },
+    {
+      "url": "https://crypto.news/bitcoin-ethereum-xrp-crash-as-crypto-liquidations-top-1-5b/",
+      "title": "Bitcoin, Ethereum, XRP crash as crypto liquidations top $1.5B",
+      "publisher": "Crypto.news"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
