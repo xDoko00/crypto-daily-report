@@ -1,139 +1,135 @@
 {
   "schemaVersion": 1,
-  "id": "2026-10-31",
+  "id": "2026-11-01",
   "language": "tr",
-  "title": "31 Ekim 2026, Cumartesi",
-  "publishedAt": "2026-10-31T07:50:21+03:00",
-  "updatedAt": "2026-10-31T07:50:21+03:00",
+  "title": "1 Kasım 2026, Pazar",
+  "publishedAt": "2026-11-01T07:50:16+03:00",
+  "updatedAt": "2026-11-01T07:50:16+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-10-31T07:48:00+03:00",
+    "asOf": "2026-11-01T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 77085,
-        "change24h": -1.505829358591962
+        "priceUsd": 77754,
+        "change24h": 0.8690200404259484
       },
       "ETH": {
-        "priceUsd": 2236.38,
-        "change24h": -0.3134091613595152
+        "priceUsd": 2266.08,
+        "change24h": 1.3190903292563876
       },
       "SOL": {
-        "priceUsd": 95.69,
-        "change24h": -1.5805560806413574
+        "priceUsd": 95.44,
+        "change24h": -0.2265000508751934
       },
       "BNB": {
-        "priceUsd": 700.54,
-        "change24h": -2.256210914479256
+        "priceUsd": 704.83,
+        "change24h": 0.6168210809089202
       },
       "XRP": {
-        "priceUsd": 1.24,
-        "change24h": -0.67301698853639
+        "priceUsd": 1.25,
+        "change24h": 0.6164207638541953
       }
     },
-    "btcDominance": 59.22286946837134,
-    "ethDominance": 10.413066556577997,
-    "totalMarketCapUsd": 2614519881411.122,
-    "volume24hUsd": 87160580632.16263,
+    "btcDominance": 59.286442719301306,
+    "ethDominance": 10.482480887902906,
+    "totalMarketCapUsd": 2632344112507.8086,
+    "volume24hUsd": 69339909410.90489,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 30,
+      "value": 34,
       "label": "Korku",
       "previousValue": 30,
-      "weekAgoValue": 51
+      "weekAgoValue": 54
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Binance'te tespit edilen 6,3 milyar dolarlık rekor hack'in piyasada yarattığı güven kaybı ve Fed'in 28 Ekim'deki şahin tonlu faiz sabitleme kararının etkisi sürüyor; piyasa kısmen sakinleşse de Fear&Greed 30 seviyesinde kalarak baskıyı koruyor.",
+    "why": "Binance'in 6,3 milyar dolarlık hack sonrası para çekme işlemlerini planlandığı gibi yeniden açması ve rezerv güvencesi vermesi piyasadaki panik satışını hafifletti; bu da BTC ve ETH'de ılımlı bir toparlanmaya yol açtı, ancak Fed'in şahin tonu ve hack sonrası güven kaygısı Fear&Greed endeksini korku bölgesinde tutuyor.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "Binance para çekmeyi yeniden açmaya hazırlanıyor"
+        "timeTr": "09:00",
+        "title": "Binance 1. aşama para çekme açılışı"
       },
       {
         "timeTr": null,
-        "title": "Güney Kore'de kripto vergisi erteleme kararı bekleniyor"
+        "title": "Binance rezerv raporu beklentisi"
       }
     ],
-    "mainRisk": "Binance'in para çekmeyi güvenli şekilde yeniden açamaması veya hack kaynaklı güven kaybının borsa dışına taşarak satışları derinleştirmesi."
+    "mainRisk": "Binance'in kanıt-of-rezerv raporunda beklenmeyen bir açık çıkması, hack sonrası güven krizini derinleştirip piyasada ani bir satış dalgasını tetikleyebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Binance'in nihai kayıp tutarı ve donan varlıkların iadesi açıklanacak mı",
-        "outcome": "Kayıp 6,3-6,34 milyar dolar olarak netleşti ve kripto tarihinin en büyük hack'i oldu; Binance tutarı kendi rezervinden karşılayacağını ve çalınanın yaklaşık %80'ini zaten telafi ettiğini açıkladı, ancak kullanıcılara fiili para çekme erişimi henüz tam açılmadı, hedef 1 Kasım."
+        "item": "Binance para çekme işlemlerinin 1 Kasım'da planlandığı gibi yeniden açılması",
+        "outcome": "İsabet: Binance 1. aşama para çekmelerini 1 Kasım'da 14:00-17:00 (UTC+8) aralığında planlandığı gibi başlattı."
       },
       {
-        "item": "BTC, Binance haberi sonrası 77.000-78.000 dolar desteğini koruyabilecek mi",
-        "outcome": "Destek büyük ölçüde korundu; BTC kısa süreliğine 76.500 dolara sarkmasına rağmen güncel olarak 77.000 dolar civarında dengelendi, isabetli bir takip oldu."
+        "item": "Binance'in 2 Kasım'da yayımlayacağı kanıt-of-rezerv raporunda tam şeffaflık sağlanması",
+        "outcome": "Henüz netleşmedi: CEO Richard Teng raporun 2 Kasım Pazartesi yayımlanacağını teyit etti, ancak şeffaflık düzeyi henüz görülmedi."
       },
       {
-        "item": "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda pozisyonunu açıklayacak mı",
-        "outcome": "Henüz resmi karar çıkmadı; hükümet ve iktidar partisi dördüncü kez anlaşamadı, vergiyi 2027'den 2029'a çekme ihtimali öne çıkıyor ama nihai karar Kasım sonu-Aralık başına kaldı."
+        "item": "BTC'nin 76.500-77.000 dolar destek bölgesini koruması",
+        "outcome": "İsabet: BTC hack sonrası 76.400 dolara kadar geri çekilse de toparlanıp 77.500-77.750 dolar bandına yükseldi, destek bölgesi korunuyor."
       },
       {
-        "item": "Spot BTC ETF'lerinde IBIT dışına yayılma bu hafta başlayacak mı",
-        "outcome": "Kısmen başladı; 28 Ekim'de 12 fonun hiçbirinde net çıkış olmadı ve BITB gibi küçük fonlara da giriş görüldü, ancak akışın ağırlığı hâlâ büyük oranda IBIT'te."
+        "item": "Güney Kore iktidar partisinin kripto vergisi ertelemesi konusunda somut karar alması",
+        "outcome": "Iska: Parti ve hükümet dördüncü kez anlaşamadı, nihai karar Kasım sonuna kaldı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Binance'te kripto tarihinin en büyük hack'i: 6,3 milyar dolar",
-        "summary": "Binance'in sıcak cüzdanlarından 60'tan fazla varlıkta anormal transferler tespit edildi; saldırı bir DevOps mühendisinin ele geçirilen dizüstü bilgisayarına bağlandı ve para çekme işlemleri askıya alındı.",
+        "title": "Binance hack'inde Kuzey Kore bağlantısı doğrulandı",
+        "summary": "FBI, 29 Ekim'de Binance'in sıcak cüzdanlarından çalınan 6,3 milyar doların Kuzey Kore bağlantılı Lazarus/TraderTraitor grubunun işi olduğunu doğruladı; bu, kripto tarihinin en büyük borsa hack'i oldu.",
         "source": {
-          "url": "https://www.cnbc.com/2026/10/30/binance-hack-stolen-crypto-recovery.html",
-          "title": "Binance hack: Investigators in a 'cat and mouse game' to recover $6.3 billion in stolen funds",
-          "publisher": "CNBC"
+          "url": "https://techcrunch.com/2026/10/30/north-korean-hackers-blamed-for-stealing-record-6-3b-in-binance-breach/",
+          "title": "North Korean hackers blamed for stealing record $6.3B in Binance breach",
+          "publisher": "TechCrunch"
         }
       },
       {
         "importance": "onemli",
-        "title": "Saldırı Kuzey Kore bağlantılı TraderTraitor grubuna atfedildi",
-        "summary": "Blockchain istihbarat şirketleri TRM Labs ve Chainalysis, saldırının yüksek güvenle Kuzey Kore destekli TraderTraitor/Lazarus grubuna ait olduğunu belirledi; grup daha önce Bybit'teki 1,5 milyar dolarlık hack'le de ilişkilendirilmişti.",
+        "title": "Binance para çekmeleri yeniden açıldı, rezerv raporu Pazartesi'de",
+        "summary": "Binance, çalınan varlıkların %90'ını karşıladığını duyurup 1 Kasım'da 1. aşama para çekme işlemlerini başlattı; CEO Teng tam kanıt-of-rezerv raporunun 2 Kasım'da yayımlanacağını söyledi.",
         "source": {
-          "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
-          "title": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History",
-          "publisher": "TRM Labs"
+          "url": "https://www.cryptotimes.io/2026/11/01/binance-targets-november-1-withdrawal-reopening-after-90-replenishment/",
+          "title": "Binance Targets November 1 Withdrawal Reopening After 90% Replenishment",
+          "publisher": "CryptoTimes"
         }
       },
       {
         "importance": "onemli",
-        "title": "Binance 6,34 milyar dolarlık rezerv ayırdı, para çekme için takvim verdi",
-        "summary": "Binance, kullanıcı kayıplarını kendi fonlarından birebir karşılayacağını açıkladı; para çekme işlemlerinin 1 Kasım'da kademeli olarak yeniden açılması ve 2 Kasım'da tam kanıt-of-rezerv raporunun yayımlanması hedefleniyor.",
+        "title": "Fed şahin ayrışmayla faizi sabit tuttu",
+        "summary": "Fed 28 Ekim'de faizleri sabit tuttu ancak oylama 10-2 şahin ayrışmayla sonuçlandı; CME FedWatch Aralık ayı faiz artışı olasılığını %81,6'ya yükseltti, bu da risk iştahını bastırıyor.",
         "source": {
-          "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack",
-          "title": "Binance arranges $6.34 billion to cover losses from biggest crypto hack ever",
-          "publisher": "CoinDesk"
+          "url": "https://cryptovot.com/fed-rate-decision-october-2026-hawkish-split-as-bitcoin-defends-81k",
+          "title": "Fed Rate Decision October 2026: Hawkish Split as Bitcoin Defends $81K",
+          "publisher": "CryptoVot"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Hack sonrası piyasada 1,5 milyar dolardan fazla likidasyon",
-        "summary": "Binance kaynaklı satış dalgası kripto genelinde 1,5 milyar doları aşan pozisyonun likide olmasına yol açtı; piyasa 31 Ekim'de kısmen sakinleşerek dengelenmeye çalışıyor.",
+        "title": "Güney Kore kripto vergisi ertelemesi Kasım sonuna kaldı",
+        "summary": "Güney Kore'de iktidar Demokrat Parti ve hükümet, %22'lik kripto vergisinin 2029'a ertelenmesi konusunda dördüncü kez anlaşamadı; nihai karar Kasım ayı sonunda bekleniyor.",
         "source": {
-          "url": "https://crypto.news/bitcoin-ethereum-xrp-crash-as-crypto-liquidations-top-1-5b/",
-          "title": "Bitcoin, Ethereum, XRP crash as crypto liquidations top $1.5B",
-          "publisher": "Crypto.news"
+          "url": "https://www.koreajoongangdaily.com/business/korea-weighs-fourth-crypto-tax-delay/12945362",
+          "title": "South Korea weighs fourth delay to crypto tax over overseas trading data gaps",
+          "publisher": "Korea JoongAng Daily"
         }
       }
     ],
     "today": [
       {
-        "timeTr": null,
-        "title": "Binance'de para çekme için güvenlik testleri ve hazırlık sürüyor"
+        "timeTr": "09:00",
+        "title": "Binance 1. aşama para çekme penceresi"
       },
       {
         "timeTr": null,
-        "title": "FLOCK token kilidi açılıyor, dolaşımdaki arzın yaklaşık %41'i"
-      },
-      {
-        "timeTr": null,
-        "title": "Piyasada hack sonrası dengelenme denemesi sürüyor"
+        "title": "Binance tam kanıt-of-rezerv raporu öncesi piyasa takibi"
       }
     ],
     "turkey": {
@@ -141,36 +137,36 @@
       "items": []
     },
     "risks": [
-      "Binance kaynaklı hack'in borsa dışı güven kaybına dönüşerek daha geniş çaplı satışı tetikleme riski",
-      "Güney Kore vergi ertelemesindeki belirsizliğin sürmesi bölgesel yatırımcı güvenini zayıflatabilir"
+      "Binance'in rezerv raporunda beklenmeyen bir açık çıkması güven krizini derinleştirebilir.",
+      "Fed'in şahin tonu ve yükselen Aralık faiz artışı ihtimali risk iştahını baskılayabilir."
     ]
   },
   "followUps": [
-    "Binance para çekme işlemleri 1 Kasım'da planlandığı gibi yeniden açıldı mı",
-    "Binance 2 Kasım'da yayımlayacağı kanıt-of-rezerv raporunda tam şeffaflık sağladı mı",
-    "BTC 76.500-77.000 dolar destek bölgesini korumayı sürdürüyor mu",
-    "Güney Kore iktidar partisi kripto vergisi ertelemesi konusunda somut bir karar aldı mı"
+    "Binance'in tam kanıt-of-rezerv raporu 2 Kasım'da şeffaf ve eksiksiz yayımlanacak mı",
+    "BTC 76.500-77.000 dolar destek bölgesini korumayı sürdürecek mi",
+    "Güney Kore iktidar partisi kripto vergisi ertelemesinde somut karara yaklaşacak mı",
+    "Fed'in şahin tonu sonrası Aralık faiz artışı beklentisi piyasada baskı yaratmaya devam edecek mi"
   ],
   "sources": [
     {
-      "url": "https://www.cnbc.com/2026/10/30/binance-hack-stolen-crypto-recovery.html",
-      "title": "Binance hack: Investigators in a 'cat and mouse game' to recover $6.3 billion in stolen funds",
-      "publisher": "CNBC"
+      "url": "https://techcrunch.com/2026/10/30/north-korean-hackers-blamed-for-stealing-record-6-3b-in-binance-breach/",
+      "title": "North Korean hackers blamed for stealing record $6.3B in Binance breach",
+      "publisher": "TechCrunch"
     },
     {
-      "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
-      "title": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History",
-      "publisher": "TRM Labs"
+      "url": "https://www.cryptotimes.io/2026/11/01/binance-targets-november-1-withdrawal-reopening-after-90-replenishment/",
+      "title": "Binance Targets November 1 Withdrawal Reopening After 90% Replenishment",
+      "publisher": "CryptoTimes"
     },
     {
-      "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack",
-      "title": "Binance arranges $6.34 billion to cover losses from biggest crypto hack ever",
-      "publisher": "CoinDesk"
+      "url": "https://cryptovot.com/fed-rate-decision-october-2026-hawkish-split-as-bitcoin-defends-81k",
+      "title": "Fed Rate Decision October 2026: Hawkish Split as Bitcoin Defends $81K",
+      "publisher": "CryptoVot"
     },
     {
-      "url": "https://crypto.news/bitcoin-ethereum-xrp-crash-as-crypto-liquidations-top-1-5b/",
-      "title": "Bitcoin, Ethereum, XRP crash as crypto liquidations top $1.5B",
-      "publisher": "Crypto.news"
+      "url": "https://www.koreajoongangdaily.com/business/korea-weighs-fourth-crypto-tax-delay/12945362",
+      "title": "South Korea weighs fourth delay to crypto tax over overseas trading data gaps",
+      "publisher": "Korea JoongAng Daily"
     }
   ],
   "assets": {
