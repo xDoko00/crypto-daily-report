@@ -1,157 +1,147 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-02",
+  "id": "2026-11-03",
   "language": "tr",
-  "title": "2 Kasım 2026, Pazartesi",
-  "publishedAt": "2026-11-02T07:50:40+03:00",
-  "updatedAt": "2026-11-02T07:50:40+03:00",
+  "title": "3 Kasım 2026, Salı",
+  "publishedAt": "2026-11-03T07:51:38+03:00",
+  "updatedAt": "2026-11-03T07:51:38+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-02T07:48:00+03:00",
+    "asOf": "2026-11-03T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 78438,
-        "change24h": 0.8798970543647674
+        "priceUsd": 76887,
+        "change24h": -1.9504420647540262
       },
       "ETH": {
-        "priceUsd": 2300.21,
-        "change24h": 1.508756070897294
+        "priceUsd": 2253.54,
+        "change24h": -2.053474702631084
       },
       "SOL": {
-        "priceUsd": 95.11,
-        "change24h": -0.34059844295654923
+        "priceUsd": 92.22,
+        "change24h": -3.0729217658348342
       },
       "BNB": {
-        "priceUsd": 711.75,
-        "change24h": 1.0083509173335523
+        "priceUsd": 696.0,
+        "change24h": -2.2147153257657384
       },
       "XRP": {
         "priceUsd": 1.25,
-        "change24h": 0.4118975263646799
+        "change24h": -0.18277621111174486
       }
     },
-    "btcDominance": 60.021086944040455,
-    "ethDominance": 10.671599990894826,
-    "totalMarketCapUsd": 2624547503913.9907,
-    "volume24hUsd": 107508789070.64294,
+    "btcDominance": 59.30343011782115,
+    "ethDominance": 10.565307611123812,
+    "totalMarketCapUsd": 2601239523014.1963,
+    "volume24hUsd": 68192895557.996475,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 37,
+      "value": 26,
       "label": "Korku",
-      "previousValue": 34,
-      "weekAgoValue": 50
+      "previousValue": 37,
+      "weekAgoValue": 48
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "BTC, Binance hack sonrası sakinleşen likidasyonlar ve 76.000-76.600 dolar destek bandının tutmasıyla toparlandı; ancak FBI'ın saldırıyı Kuzey Kore'ye bağlaması ve ETF çıkışları risk iştahını sınırlı tutuyor.",
+    "mood": "Riskli",
+    "why": "Binance'teki 6,3 milyar dolarlık hackin likidite ve güven üzerindeki etkisi sürerken, ABD ara seçimleri öncesi risk iştahının azalması ve ABD borsalarındaki teknoloji satışı kriptoya sıçradı; Fear&Greed endeksi bir günde 37'den 26'ya indi.",
     "criticalEvents": [
       {
         "timeTr": "18:00",
-        "title": "ABD ISM İmalat PMI"
+        "title": "ABD JOLTS iş ilanları verisi"
       },
       {
         "timeTr": null,
-        "title": "Fed'den Goolsbee konuşması"
+        "title": "ABD ara seçimleri sonuçları"
       },
       {
         "timeTr": null,
-        "title": "Binance kanıt-of-rezerv raporu bekleniyor"
+        "title": "AMD ve Block çeyrek bilançoları"
       }
     ],
-    "mainRisk": "Fed'in Aralık'ta faiz artırma olasılığının yüksek kalması (yüzde 83-88) risk iştahını bastırmaya devam edebilir."
+    "mainRisk": "ABD ara seçim sonuçları netleşene kadar risk iştahı düşük kalabilir ve Binance'ten çıkışların sürmesi ek satış baskısı oluşturabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Binance'in tam kanıt-of-rezerv raporu 2 Kasım'da şeffaf ve eksiksiz yayımlanacak mı",
-        "outcome": "Iska. Rapor, sıfır bilgi ispatı hesaplamasının 40-50 saat sürmesi nedeniyle 3 Kasım'a (UTC) kaydırıldı ve yalnızca tam karşılıklı 10 token'ı kapsayacak."
+        "item": "Binance'in tam kanıt-of-rezerv raporu 3 Kasım'da şeffaf şekilde yayımlanacak mı",
+        "outcome": "Evet, Binance 31 Ekim anlık görüntüsü için sıfır bilgi kanıtını planlanandan önce tamamladı ve 10 token için rezerv doğrulamasını kullanıcılara açtı; daha kapsamlı görüntü 4 Kasım'a planlandı. İsabet."
       },
       {
-        "item": "BTC 76.500-77.000 dolar destek bölgesini korumayı sürdürecek mi",
-        "outcome": "Isabet. BTC, hafta içinde 76.141 dolara kadar test ettiği destek bandını korudu ve 78.438 dolara toparlandı."
+        "item": "BTC 76.000-76.600 dolar destek bandını korumayı sürdürecek mi",
+        "outcome": "Evet, BTC bu bandı dördüncü kez destek olarak kullanarak tuttu; güncel fiyat 76.887 dolar ile bandın hemen üzerinde. İsabet."
       },
       {
-        "item": "Güney Kore iktidar partisi kripto vergisi ertelemesinde somut karara yaklaşacak mı",
-        "outcome": "Iska. Taraflar 28 Ekim'deki görüşmede dördüncü kez uzlaşamadı, karar Kasım ayındaki üst düzey görüşmelere kaldı."
+        "item": "ABD ara seçimleri piyasa risk iştahını nasıl etkileyecek",
+        "outcome": "Seçimler bugün gerçekleşiyor; sonuçlar henüz netleşmedi ancak öncesinde risk iştahı zaten zayıfladı, Fear&Greed 37'den 26'ya düştü. Sonuç yarına kalan açık madde."
       },
       {
-        "item": "Fed'in şahin tonu sonrası Aralık faiz artışı beklentisi piyasada baskı yaratmaya devam edecek mi",
-        "outcome": "Isabet. Aralık faiz artırım olasılığı yüzde 83-88 aralığında kalarak spot Bitcoin ve Ethereum ETF'lerinde çıkışları tetikledi."
+        "item": "Güney Kore'de kripto vergisi ertelemesinde Kasım ayı üst düzey görüşmelerinde karara ulaşılacak mı",
+        "outcome": "Henüz nihai karar yok; iktidar partisi maliye komisyonu vergiyi 2029'a kadar ertelemeyi önerme konusunda çoğunluk görüşüne ulaştı, ancak parti liderliği onayı ve nihai karar kasım sonu veya aralık başına sarkıyor. Kısmi ilerleme."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "FBI, Binance hackini Kuzey Kore'ye bağladı",
-        "summary": "FBI, 29 Ekim'de Binance'ten çalınan 6,3 milyar dolarlık rekor kripto hırsızlığının Kuzey Kore bağlantılı TraderTraitor (Lazarus Group) tarafından gerçekleştirildiğini açıkladı; varlıkların çoğu yaklaşık 20 dakika içinde transfer edildi.",
+        "title": "Binance kanıt-of-rezerv sürecini tamamladı",
+        "summary": "Binance, 6,3 milyar dolarlık hackin ardından 31 Ekim anlık görüntüsü için sıfır bilgi kanıtını planlanandan önce tamamladı; kullanıcılar 10 büyük token için bakiyelerinin en az 1:1 karşılandığını doğrulayabiliyor. Daha kapsamlı bir token anlık görüntüsü 4 Kasım'da planlanıyor.",
         "source": {
-          "url": "https://www.bleepingcomputer.com/news/security/fbi-links-63-billion-binance-crypto-heist-to-north-korean-hackers/",
-          "title": "FBI links $6.3 billion Binance crypto heist to North Korean hackers",
-          "publisher": "BleepingComputer"
+          "url": "https://crypto.news/binance-completes-reserve-proof-for-10-tokens-after-6-3b-hack/",
+          "title": "Binance completes reserve proof for 10 tokens after $6.3B hack",
+          "publisher": "crypto.news"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin ETF'lerinden 643 milyon dolarlık çıkış",
+        "summary": "ABD'li spot bitcoin ETF'leri Binance hackinin etkisiyle 643,3 milyon dolar net çıkış kaydetti; toplam yönetilen varlık 100 milyar doların altına indi ve yılın net girişinin yüzde 63,6'sı silindi.",
+        "source": {
+          "url": "https://www.coindesk.com/markets/2026/11/02/bitcoin-etfs-lost-usd643-million-in-outflows-friday-and-2026-is-barely-green-now",
+          "title": "Bitcoin ETFs lost $643 million in outflows Friday, and 2026 is barely green now",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "kritik",
-        "title": "Binance'in tam kanıt-of-rezerv raporu bir gün geciktirildi",
-        "summary": "Binance, pazartesi için söz verdiği tam kanıt-of-rezerv raporunu sıfır bilgi ispatı hesaplamasının uzun sürmesi nedeniyle 3 Kasım'a kaydırdı; ilk 9,5 saatte işlenen çekimler varlıkların yüzde 2,1'ine denk gelen 3,64 milyar dolar net çıkışa ulaştı.",
+        "title": "ABD ara seçimleri bugün sandıkta",
+        "summary": "Kripto sektörü 2026 ara seçimlerinde 200 milyon doları aşan siyasi harcamayla tarihinin en büyük kampanya yatırımını yaptı; Kongre'nin kontrolü bekleyen kripto düzenleme yasalarının kaderini şekillendirecek.",
         "source": {
-          "url": "https://www.theblock.co/news/business/2026-11-01-binance-sees-3-64-billion-in-net-outflows-after-reopening-withdrawals-following-record-hack-432259",
-          "title": "Binance sees $3.64 billion in net outflows after reopening withdrawals following record hack",
-          "publisher": "The Block"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "Spot Bitcoin ETF'lerinde dört ayın en büyük günlük çıkışı",
-        "summary": "Binance hackinin ardından spot Bitcoin ETF'leri cuma günü 643,3 milyon dolar net çıkış gördü, bu haziran ayından beri en büyük günlük çıkış oldu; Ethereum ETF'lerinde de 155,9 milyon dolar çıkış kaydedildi.",
-        "source": {
-          "url": "https://www.theblock.co/news/markets/2026-11-01-spot-bitcoin-etfs-largest-four-months-following-binance-hack-432270",
-          "title": "Spot bitcoin ETFs see largest daily outflows in four months following record Binance hack",
-          "publisher": "The Block"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "Güney Kore'de kripto vergisi erteleme kararı dördüncü kez askıda kaldı",
-        "summary": "Güney Kore'nin iktidar partisi ile hükümet, Ocak 2027'de başlayacak kripto kazanç vergisinin ertelenmesi konusunda 28 Ekim'deki görüşmede yurt içi ve yurt dışı borsa kullanıcıları arasındaki vergi adaleti kaygıları nedeniyle uzlaşamadı.",
-        "source": {
-          "url": "https://www.koreatimes.co.kr/economy/cryptocurrency/20261028/ruling-party-govt-fail-to-agree-on-delay-of-cryptocurrency-tax",
-          "title": "Ruling party, gov't fail to agree on delay of cryptocurrency tax",
-          "publisher": "The Korea Times"
+          "url": "https://coindesk.com/policy/2026/11/01/the-crypto-reader-s-guide-to-the-2026-midterm-election-state-of-crypto",
+          "title": "The crypto reader's guide to the 2026 midterm election: State of Crypto",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Fed'in bölünmüş oylaması Aralık faiz artırım ihtimalini güçlendirdi",
-        "summary": "Fed, 28 Ekim'de politika faizini 10-2 oyla yüzde 3,75-4,00 aralığında sabit tutarken iki üye hemen faiz artışından yana oy kullandı; piyasalar Aralık toplantısında yüzde 83-88 ihtimalle bir artış fiyatlıyor.",
+        "title": "Strategy hackin ortasında BTC almayı sürdürdü",
+        "summary": "Strategy (MSTR), iki haftalık aradan sonra ortalama 80.846 dolardan 811 BTC (yaklaşık 65,5 milyon dolar) alarak hack kaynaklı düşüşte birikimini sürdürdüğünü gösterdi.",
         "source": {
-          "url": "https://cryptoslate.com/feds-divided-rate-decision-threatens-bitcoins-comeback-as-december-hike-looms/",
-          "title": "Fed's divided rate decision threatens Bitcoin's comeback as December hike looms",
-          "publisher": "CryptoSlate"
+          "url": "https://finance.yahoo.com/markets/crypto/articles/crypto-market-today-nov-2-223501665.html",
+          "title": "Crypto Market Today, Nov. 2: Bitcoin and Altcoins Retreat as Binance Withdrawals Spark Fresh Concerns",
+          "publisher": "Yahoo Finance"
         }
       }
     ],
     "today": [
       {
         "timeTr": "18:00",
-        "title": "ABD ISM İmalat PMI açıklanacak"
+        "title": "ABD JOLTS iş ilanları verisi (Eylül)"
       },
       {
         "timeTr": null,
-        "title": "Chicago Fed Başkanı Goolsbee konuşma yapacak"
+        "title": "AMD çeyrek bilançosu açıklanacak"
       },
       {
         "timeTr": null,
-        "title": "Binance'in zorunlu kanıt-of-rezerv raporu için geri sayım sürüyor"
+        "title": "Block çeyrek bilançosu açıklanacak"
       },
       {
         "timeTr": null,
-        "title": "ABD ara seçimleri öncesi piyasalarda pozisyonlanma sürecek"
+        "title": "ABD ara seçimleri ilk sonuçları gelmeye başlayacak"
       }
     ],
     "turkey": {
@@ -159,41 +149,36 @@
       "items": []
     },
     "risks": [
-      "Fed'in Aralık faiz artırımı ihtimalinin yüksek kalması risk iştahını bastırabilir.",
-      "Binance'teki net çıkışların sürmesi ve kanıt-of-rezerv raporunun gecikmesi güven endişelerini derinleştirebilir."
+      "ABD ara seçim sonuçları borsalarda ve kriptoda ek oynaklık yaratabilir.",
+      "Binance'ten devam eden çıkışlar ve güven kaybı likiditeyi zorlayabilir."
     ]
   },
   "followUps": [
-    "Binance'in tam kanıt-of-rezerv raporu 3 Kasım'da şeffaf şekilde yayımlanacak mı",
-    "BTC 76.000-76.600 dolar destek bandını korumayı sürdürecek mi",
-    "ABD ara seçimleri piyasa risk iştahını nasıl etkileyecek",
-    "Güney Kore'de kripto vergisi ertelemesinde Kasım ayı üst düzey görüşmelerinde karara ulaşılacak mı"
+    "ABD ara seçim sonuçları netleşti mi ve piyasa tepkisi ne oldu",
+    "BTC 76.000-76.600 destek bandını korudu mu",
+    "ABD JOLTS verisi beklentiyi aştı mı",
+    "Binance'in 4 Kasım'daki geniş token anlık görüntüsü şeffaf şekilde yayımlandı mı"
   ],
   "sources": [
     {
-      "url": "https://www.bleepingcomputer.com/news/security/fbi-links-63-billion-binance-crypto-heist-to-north-korean-hackers/",
-      "title": "FBI links $6.3 billion Binance crypto heist to North Korean hackers",
-      "publisher": "BleepingComputer"
+      "url": "https://crypto.news/binance-completes-reserve-proof-for-10-tokens-after-6-3b-hack/",
+      "title": "Binance completes reserve proof for 10 tokens after $6.3B hack",
+      "publisher": "crypto.news"
     },
     {
-      "url": "https://www.theblock.co/news/business/2026-11-01-binance-sees-3-64-billion-in-net-outflows-after-reopening-withdrawals-following-record-hack-432259",
-      "title": "Binance sees $3.64 billion in net outflows after reopening withdrawals following record hack",
-      "publisher": "The Block"
+      "url": "https://www.coindesk.com/markets/2026/11/02/bitcoin-etfs-lost-usd643-million-in-outflows-friday-and-2026-is-barely-green-now",
+      "title": "Bitcoin ETFs lost $643 million in outflows Friday, and 2026 is barely green now",
+      "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.theblock.co/news/markets/2026-11-01-spot-bitcoin-etfs-largest-four-months-following-binance-hack-432270",
-      "title": "Spot bitcoin ETFs see largest daily outflows in four months following record Binance hack",
-      "publisher": "The Block"
+      "url": "https://coindesk.com/policy/2026/11/01/the-crypto-reader-s-guide-to-the-2026-midterm-election-state-of-crypto",
+      "title": "The crypto reader's guide to the 2026 midterm election: State of Crypto",
+      "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.koreatimes.co.kr/economy/cryptocurrency/20261028/ruling-party-govt-fail-to-agree-on-delay-of-cryptocurrency-tax",
-      "title": "Ruling party, gov't fail to agree on delay of cryptocurrency tax",
-      "publisher": "The Korea Times"
-    },
-    {
-      "url": "https://cryptoslate.com/feds-divided-rate-decision-threatens-bitcoins-comeback-as-december-hike-looms/",
-      "title": "Fed's divided rate decision threatens Bitcoin's comeback as December hike looms",
-      "publisher": "CryptoSlate"
+      "url": "https://finance.yahoo.com/markets/crypto/articles/crypto-market-today-nov-2-223501665.html",
+      "title": "Crypto Market Today, Nov. 2: Bitcoin and Altcoins Retreat as Binance Withdrawals Spark Fresh Concerns",
+      "publisher": "Yahoo Finance"
     }
   ],
   "assets": {
