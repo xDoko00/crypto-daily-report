@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-04",
+  "language": "tr",
+  "title": "4 Kasım 2026, Çarşamba",
+  "publishedAt": "2026-11-04T07:50:32+03:00",
+  "updatedAt": "2026-11-04T07:50:32+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-04T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 76892,
+        "change24h": -0.01767448554685167
+      },
+      "ETH": {
+        "priceUsd": 2264.56,
+        "change24h": 0.45077400117312405
+      },
+      "SOL": {
+        "priceUsd": 91.61,
+        "change24h": -0.7174004682830148
+      },
+      "BNB": {
+        "priceUsd": 690.43,
+        "change24h": -0.8245615412324412
+      },
+      "XRP": {
+        "priceUsd": 1.27,
+        "change24h": 1.0170231573975241
+      }
+    },
+    "btcDominance": 59.27303501541383,
+    "ethDominance": 10.609919232016289,
+    "totalMarketCapUsd": 2602904269536.958,
+    "volume24hUsd": 68689105647.52661,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 34,
+      "label": "Korku",
+      "previousValue": 26,
+      "weekAgoValue": 51
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "ABD ara seçimlerinde Demokratların Senato'yu kazanıp Meclis'te de öne geçmesi kripto düzenlemelerine dair risk algısını artırdı; bu durum sürmekte olan Bitcoin ETF çıkışlarıyla birleşince BTC kısa süreliğine yedi haftanın dibine indi, güçlü JOLTS verisiyle kısmen toparlandı.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:15",
+        "title": "ABD ADP istihdam verisi"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD ISM hizmet PMI verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Meclis çoğunluğunun resmi netleşmesi"
+      }
+    ],
+    "mainRisk": "Demokrat çoğunluklu Kongre'nin kripto piyasa yapısı düzenlemelerini (CLARITY Act) sürüncemede bırakması ve Binance hack'i sonrası güven kaybının sürmesi."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD ara seçim sonuçları netleşti mi ve piyasa tepkisi ne oldu",
+        "outcome": "İsabet: Demokratlar Senato'yu kazandı ve Meclis'te de öne geçti; seçim gecesi BTC geri çekildi, ABD vadeli işlemleri düştü, dolar ve tahvil getirileri zayıfladı."
+      },
+      {
+        "item": "BTC 76.000-76.600 destek bandını korudu mu",
+        "outcome": "Kısmen ıska: BTC seçim gecesi ve ETF çıkışlarıyla kısa süreliğine 75.630 dolara kadar sarkıp bandı kırdı, ardından güçlü JOLTS verisiyle toparlanıp bandın üzerine döndü."
+      },
+      {
+        "item": "ABD JOLTS verisi beklentiyi aştı mı",
+        "outcome": "İsabet: Açık iş sayısı 7,52 milyona çıkarak 7,16 milyonluk beklentiyi aştı; işe alımlar Mart'tan beri en yüksek seviyeye ulaştı."
+      },
+      {
+        "item": "Binance'in 4 Kasım'daki geniş token anlık görüntüsü şeffaf şekilde yayımlandı mı",
+        "outcome": "Henüz belirsiz: Anlık görüntü alındı ancak zk-SNARK kanıtının üretilmesi 40-50 saat sürecek, sonuç henüz yayımlanmadı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Demokratlar Senato ve Meclis'te öne geçti",
+        "summary": "ABD ara seçimlerinde Demokratlar Senato'yu kazandı ve Meclis'te de çoğunluğa yaklaştı; sonuç CLARITY Act gibi kripto piyasa yapısı düzenlemelerinin akıbetini belirsizleştirdi.",
+        "source": {
+          "url": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/",
+          "title": "Midterms 2026 election results and live updates",
+          "publisher": "CBS News"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "BTC seçim gecesi yedi haftanın dibine indi",
+        "summary": "Bitcoin, Demokrat çoğunluk beklentisi ve sürmekte olan ETF çıkışlarıyla Asya seansında 75.630 dolara kadar geriledi; bu, Eylül ortasından beri en düşük seviyeydi.",
+        "source": {
+          "url": "https://www.bloomberg.com/news/articles/2026-11-04/bitcoin-slips-as-democratic-sweep-bets-threaten-crypto-agenda",
+          "title": "Bitcoin Slides as Democratic Sweep Bets Threaten Crypto Agenda",
+          "publisher": "Bloomberg"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Binance genişletilmiş rezerv anlık görüntüsü aldı",
+        "summary": "Binance, 6,3 milyar dolarlık hack sonrası güven inşası için 4 Kasım'da daha fazla token içeren yeni bir zk-SNARK rezerv anlık görüntüsü aldı; kanıtın yayımlanması 40-50 saat sürecek.",
+        "source": {
+          "url": "https://crypto.news/binance-completes-reserve-proof-for-10-tokens-after-6-3b-hack/",
+          "title": "Binance completes reserve proof for 10 tokens after $6.3B hack",
+          "publisher": "crypto.news"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "JOLTS verisi beklentiyi aştı",
+        "summary": "Eylül ayı açık iş sayısı 7,52 milyona çıkarak 7,16 milyonluk piyasa beklentisinin üzerinde geldi; bu da Fed'in Aralık faiz indirim patikasına dair belirsizliği artırdı.",
+        "source": {
+          "url": "https://tradingeconomics.com/united-states/job-offers",
+          "title": "United States Job Openings",
+          "publisher": "Trading Economics"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:15",
+        "title": "ABD ADP istihdam verisi"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD ISM hizmet PMI verisi"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Demokrat çoğunluklu Kongre'nin CLARITY Act gibi kripto düzenlemelerini yıllara yayma riski",
+      "Binance hack sonrası güven kaybının ve olası ek token çıkışlarının sürmesi",
+      "ETF çıkışları sürerse BTC'nin 76.000 desteğini kalıcı kırma riski"
+    ]
+  },
+  "followUps": [
+    "Binance'in 4 Kasım anlık görüntüsünün zk-proof sonucu yayımlandı mı ve rezerv oranları yüzde yüzün üzerinde çıktı mı",
+    "ABD Temsilciler Meclisi'nde çoğunluk resmi olarak Demokratlara mı geçti",
+    "BTC 76.000-76.600 destek bandını kapanışta korudu mu",
+    "ADP ve ISM PMI verileri sonrası Fed'in Aralık faiz indirimi beklentisi değişti mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/",
+      "title": "Midterms 2026 election results and live updates",
+      "publisher": "CBS News"
+    },
+    {
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/bitcoin-slips-as-democratic-sweep-bets-threaten-crypto-agenda",
+      "title": "Bitcoin Slides as Democratic Sweep Bets Threaten Crypto Agenda",
+      "publisher": "Bloomberg"
+    },
+    {
+      "url": "https://crypto.news/binance-completes-reserve-proof-for-10-tokens-after-6-3b-hack/",
+      "title": "Binance completes reserve proof for 10 tokens after $6.3B hack",
+      "publisher": "crypto.news"
+    },
+    {
+      "url": "https://tradingeconomics.com/united-states/job-offers",
+      "title": "United States Job Openings",
+      "publisher": "Trading Economics"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
