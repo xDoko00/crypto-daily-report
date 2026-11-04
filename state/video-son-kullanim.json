@@ -1,18 +1,16 @@
 {
  "kanca-sabah": {
-  "gun": "2026-11-03",
-  "onceki": "istanbul-sabah/istanbul-sabah-02.mp4",
+  "gun": "2026-11-04",
+  "onceki": "sabah-sehir/sabah-sehir-03.mp4",
   "secilen": [
-   "sabah-sehir/sabah-sehir-03.mp4"
+   "sabah-sehir/sabah-sehir-01.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-11-03",
+  "gun": "2026-11-04",
   "onceki": "piyasa-dusus/piyasa-dusus-02.mp4",
   "secilen": [
-   "piyasa-dusus/piyasa-dusus-03.mp4",
-   "piyasa-dusus/piyasa-dusus-01.mp4",
-   "piyasa-dusus/piyasa-dusus-02.mp4"
+   "piyasa-dusus/piyasa-dusus-03.mp4"
   ]
  },
  "hack-guvenlik": {
@@ -31,17 +29,17 @@
   ]
  },
  "takvim-veri": {
-  "gun": "2026-11-03",
-  "onceki": "takvim-veri/takvim-veri-01.mp4",
+  "gun": "2026-11-04",
+  "onceki": "takvim-veri/takvim-veri-02.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-02.mp4"
+   "takvim-veri/takvim-veri-04.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-11-03",
-  "onceki": "kapanis/kapanis-01.mp4",
+  "gun": "2026-11-04",
+  "onceki": "kapanis/kapanis-03.mp4",
   "secilen": [
-   "kapanis/kapanis-03.mp4"
+   "kapanis/kapanis-04.mp4"
   ]
  },
  "piyasa-yukselis": {
@@ -60,24 +58,25 @@
   ]
  },
  "etf-kurumsal": {
-  "gun": "2026-10-29",
-  "onceki": "etf-kurumsal/etf-kurumsal-02.mp4",
+  "gun": "2026-11-04",
+  "onceki": "etf-kurumsal/etf-kurumsal-01.mp4",
   "secilen": [
-   "etf-kurumsal/etf-kurumsal-01.mp4"
+   "etf-kurumsal/etf-kurumsal-02.mp4"
   ]
  },
  "sakin-yatay": {
-  "gun": "2026-10-30",
-  "onceki": "sakin-yatay/sakin-yatay-03.mp4",
+  "gun": "2026-11-04",
+  "onceki": "sakin-yatay/sakin-yatay-04.mp4",
   "secilen": [
-   "sakin-yatay/sakin-yatay-04.mp4"
+   "sakin-yatay/sakin-yatay-01.mp4",
+   "sakin-yatay/sakin-yatay-02.mp4"
   ]
  },
  "regulasyon-hukuk": {
-  "gun": "2026-10-12",
-  "onceki": "regulasyon-hukuk/regulasyon-hukuk-02.mp4",
+  "gun": "2026-11-04",
+  "onceki": "regulasyon-hukuk/regulasyon-hukuk-01.mp4",
   "secilen": [
-   "regulasyon-hukuk/regulasyon-hukuk-01.mp4"
+   "regulasyon-hukuk/regulasyon-hukuk-02.mp4"
   ]
  },
  "jeopolitik": {
