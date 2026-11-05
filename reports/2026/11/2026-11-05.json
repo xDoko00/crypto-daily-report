@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-05",
+  "language": "tr",
+  "title": "5 Kasım 2026, Perşembe",
+  "publishedAt": "2026-11-05T07:50:51+03:00",
+  "updatedAt": "2026-11-05T07:50:51+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-05T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 80633,
+        "change24h": 4.790468164823071
+      },
+      "ETH": {
+        "priceUsd": 2428.67,
+        "change24h": 7.197049274036847
+      },
+      "SOL": {
+        "priceUsd": 96.37,
+        "change24h": 5.017921552299827
+      },
+      "BNB": {
+        "priceUsd": 715.96,
+        "change24h": 3.6364907530883728
+      },
+      "XRP": {
+        "priceUsd": 1.31,
+        "change24h": 3.5568086385388518
+      }
+    },
+    "btcDominance": 59.554536049613446,
+    "ethDominance": 10.901469411369755,
+    "totalMarketCapUsd": 2719527918375.318,
+    "volume24hUsd": 91658623139.62236,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 50,
+      "label": "Nötr",
+      "previousValue": 34,
+      "weekAgoValue": 51
+    }
+  },
+  "brief": {
+    "mood": "Kararsız",
+    "why": "Demokratların Kongre'nin her iki kanadını da kazanması siyasi belirsizliği azaltıp short pozisyonların kapanmasıyla güçlü bir toparlanma getirdi; ancak ETF çıkışlarının sürmesi ve Fed'in Aralık'ta faiz artırabileceği beklentisi ralliyi sınırlıyor.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD haftalık işsizlik başvuruları"
+      },
+      {
+        "timeTr": "17:10",
+        "title": "Fed'den Barkin konuşması"
+      },
+      {
+        "timeTr": null,
+        "title": "Kripto piyasa yapısı yasası tartışmaları"
+      }
+    ],
+    "mainRisk": "Fed'in Aralık toplantısında beklenenden daha güçlü bir faiz artırımı sinyali vermesi, risk varlıklarında yeni bir satış dalgasını tetikleyebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Binance'in 4 Kasım anlık görüntüsünün zk-proof sonucu yayımlandı mı ve rezerv oranları yüzde yüzün üzerinde çıktı mı",
+        "outcome": "Kısmen: 4 Kasım anlık görüntüsü alındı ve kapsam 44 token'a çıkarıldı, ancak zk-proof hesaplaması 50-60 saat sürecek ve sonuç bu sabah itibarıyla henüz yayımlanmadı. Önceki 31 Ekim anlık görüntüsünde BTC yüzde 100,04, ETH ve USDT yüzde 100, BNB yüzde 101,30 rezerv oranıyla tam karşılanmış görünüyordu."
+      },
+      {
+        "item": "ABD Temsilciler Meclisi'nde çoğunluk resmi olarak Demokratlara mı geçti",
+        "outcome": "İsabetli: Demokratlar Temsilciler Meclisi çoğunluğunu kazandı, kesinleşmemiş sayımlarla 260 sandalyeye yaklaşabilirler ve Hakeem Jeffries'in Meclis Başkanı olması bekleniyor; Senato kontrolü de Demokratlara geçti."
+      },
+      {
+        "item": "BTC 76.000-76.600 destek bandını kapanışta korudu mu",
+        "outcome": "Kısmen ıska: BTC gün içi 75.600-75.700 dolara kadar düşerek destek bandını kırdı, ancak kapanış 77.450-78.250 dolar bandında toparlandı ve bugün 80.000 doların üzerine çıktı."
+      },
+      {
+        "item": "ADP ve ISM PMI verileri sonrası Fed'in Aralık faiz indirimi beklentisi değişti mi",
+        "outcome": "Beklenti tam tersi yönde değişti: güçlü ADP (+86 bin) ve ISM imalat (55,5) verileri sonrası CME FedWatch, Aralık toplantısında faiz indirimi değil artırımı olasılığını yaklaşık yüzde 82-85'e yükseltti."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Demokratlar Kongre'nin tamamını kazandı",
+        "summary": "ABD ara seçimlerinde Demokratlar Temsilciler Meclisi ve Senato'nun kontrolünü ele geçirdi; siyasi belirsizliğin azalması risk iştahını artırarak kripto piyasasında güçlü bir toparlanmayı tetikledi.",
+        "source": {
+          "url": "https://www.aljazeera.com/news/2026/11/4/democrats-win-control-of-house-and-senate-key-us-midterms-takeaways",
+          "title": "Democrats win control of House and Senate: Key US midterms takeaways",
+          "publisher": "Al Jazeera"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Demokratlardan SEC yetkisini genişletecek yeni kripto yasası",
+        "summary": "Kongre çoğunluğunu alan Demokratlar, SEC'in yetkisini artıracak ve Trump'ın kripto faaliyetlerini sınırlayacak daha kapsamlı bir piyasa yapısı yasası hazırlığında; metin henüz kamuoyuna açıklanmadı.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/11/05/democrats-weigh-broader-crypto-market-structure-bill-for-next-congress/",
+          "title": "Democrats Weigh Broader Crypto Market Structure Bill for Next Congress",
+          "publisher": "CryptoTimes"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Fed Aralık'ta faiz artırımına hazırlanıyor",
+        "summary": "Güçlü ADP istihdam ve ISM imalat verileri sonrası CME FedWatch, Aralık ayı toplantısında faiz artırımı olasılığını yaklaşık yüzde 82-85'e yükseltti; piyasa indirim değil artış fiyatlıyor.",
+        "source": {
+          "url": "https://www.fxstreet.com/news/federal-reserve-one-more-2026-hike-then-murkier-path-bny-202611031159",
+          "title": "Federal Reserve: One more 2026 hike then murkier path",
+          "publisher": "FXStreet"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Zcash'in NU7 yükseltmesi devreye girdi",
+        "summary": "Zcash ağında blok süresini 25 saniyeye indiren NU7 yükseltmesi 5 Kasım'da canlıya alındı; ZEC, Grayscale'in ZCSH ETF'ine gelen 362 milyon dolarlık girişin ardından güçlü yükselişini sürdürüyor.",
+        "source": {
+          "url": "https://startupfortune.com/zcashs-nu7-upgrade-goes-live-as-zec-holds-gains-from-its-1500-rally/",
+          "title": "Zcash's NU7 Upgrade Goes Live as ZEC Holds Gains From Its 1,500% Rally",
+          "publisher": "Startup Fortune"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD haftalık işsizlik maaşı başvuruları"
+      },
+      {
+        "timeTr": "17:10",
+        "title": "Fed'den Barkin konuşması"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD Çeyrek 3 verimlilik verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Challenger işten çıkarma raporu"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Fed'in Aralık'ta beklenmedik faiz artırımı risk varlıklarında yeni bir satış dalgası tetikleyebilir",
+      "Spot BTC ETF'lerinden çıkışların üçüncü güne taşınması toparlanmanın sürdürülebilirliğini zayıflatıyor",
+      "Demokratların SEC yetkisini genişletecek yeni düzenleme teklifi borsalar ve token projeleri için belirsizlik yaratıyor"
+    ]
+  },
+  "followUps": [
+    "Binance'in genişletilmiş (44 token) zk-proof kanıtı yayımlanacak mı ve rezerv oranları yüzde yüzün üzerinde çıkacak mı",
+    "CME FedWatch Aralık faiz artırım olasılığı yüzde 85'in üzerine çıkacak mı yoksa gerileyecek mi",
+    "Yarınki ABD tarım dışı istihdam (NFP) verisi beklentiyi aşacak mı",
+    "BTC 80.000 doların üzerinde kapanışı koruyabilecek mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.aljazeera.com/news/2026/11/4/democrats-win-control-of-house-and-senate-key-us-midterms-takeaways",
+      "title": "Democrats win control of House and Senate: Key US midterms takeaways",
+      "publisher": "Al Jazeera"
+    },
+    {
+      "url": "https://www.cryptotimes.io/2026/11/05/democrats-weigh-broader-crypto-market-structure-bill-for-next-congress/",
+      "title": "Democrats Weigh Broader Crypto Market Structure Bill for Next Congress",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://www.fxstreet.com/news/federal-reserve-one-more-2026-hike-then-murkier-path-bny-202611031159",
+      "title": "Federal Reserve: One more 2026 hike then murkier path",
+      "publisher": "FXStreet"
+    },
+    {
+      "url": "https://startupfortune.com/zcashs-nu7-upgrade-goes-live-as-zec-holds-gains-from-its-1500-rally/",
+      "title": "Zcash's NU7 Upgrade Goes Live as ZEC Holds Gains From Its 1,500% Rally",
+      "publisher": "Startup Fortune"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
