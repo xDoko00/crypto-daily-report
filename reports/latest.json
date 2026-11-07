@@ -1,104 +1,90 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-06",
+  "id": "2026-11-07",
   "language": "tr",
-  "title": "6 Kasım 2026, Cuma",
-  "publishedAt": "2026-11-06T07:50:42+03:00",
-  "updatedAt": "2026-11-06T07:50:42+03:00",
+  "title": "7 Kasım 2026, Cumartesi",
+  "publishedAt": "2026-11-07T07:50:44+03:00",
+  "updatedAt": "2026-11-07T07:50:44+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-06T07:48:00+03:00",
+    "asOf": "2026-11-07T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 75692,
-        "change24h": -6.115881524143893
+        "priceUsd": 75793,
+        "change24h": 0.0946376437442773
       },
       "ETH": {
-        "priceUsd": 2230.56,
-        "change24h": -8.141041646090326
+        "priceUsd": 2240.61,
+        "change24h": 0.4370300358720268
       },
       "SOL": {
-        "priceUsd": 89.39,
-        "change24h": -7.221436012074543
+        "priceUsd": 89.87,
+        "change24h": 0.5161939285273527
       },
       "BNB": {
-        "priceUsd": 692.27,
-        "change24h": -3.2903381530902416
+        "priceUsd": 694.21,
+        "change24h": 0.2765855083768317
       },
       "XRP": {
-        "priceUsd": 1.2,
-        "change24h": -8.147228530565764
+        "priceUsd": 1.15,
+        "change24h": -4.375672096387998
       }
     },
-    "btcDominance": 59.17066609317661,
-    "ethDominance": 10.59443743778988,
-    "totalMarketCapUsd": 2571077221932.0483,
-    "volume24hUsd": 105246657566.23085,
+    "btcDominance": 59.27528219233865,
+    "ethDominance": 10.64853152760519,
+    "totalMarketCapUsd": 2565979928103.469,
+    "volume24hUsd": 66057369100.29578,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 28,
-      "label": "Korku",
-      "previousValue": 50,
+      "value": 25,
+      "label": "Aşırı Korku",
+      "previousValue": 28,
       "weekAgoValue": 30
     }
   },
   "brief": {
-    "mood": "Riskli",
-    "why": "Son 24 saatteki düşüşün kaynağı kripto piyasasının kendisi değil Wall Street oldu: yapay zeka ve çip hisselerindeki sert satış Nasdaq'ı yaklaşık on sekiz ayın en kötü gününe sürükledi, bu da kaldıraçlı kripto pozisyonlarında bir milyar doları aşan zorunlu likidasyona yol açtı ve BTC seçim sonrası kazancını sildi.",
+    "mood": "Temkinli",
+    "why": "Wall Street'teki risk azaltma hareketi kripto piyasasına sıçradı; dün açıklanan güçlü ABD istihdam verisi Fed'in Aralık toplantısında faiz artırımı olasılığını yaklaşık yüzde 85-88'e yükseltti ve bu risk iştahını bastırdı.",
     "criticalEvents": [
       {
-        "timeTr": "11:00",
-        "title": "2,65 milyar dolarlık BTC opsiyon vadesi"
+        "timeTr": null,
+        "title": "Fed Aralık faiz artırımı beklentisi"
       },
       {
-        "timeTr": "16:30",
-        "title": "ABD Ekim ayı NFP istihdam verisi"
-      },
-      {
-        "timeTr": "17:10",
-        "title": "Fed yetkilileri konuşmaları"
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite riski"
       }
     ],
-    "mainRisk": "Bugün açıklanacak istihdam verisi ile 2,65 milyar dolarlık opsiyon vade sonunun çakışması, kaldıraçlı pozisyonlarda yeni bir likidasyon dalgasını tetikleyebilir."
+    "mainRisk": "Hafta sonu düşük likiditeli ortamda, Fed'in faiz artırımı ihtimaliyle birleşen ani ve sert fiyat hareketleri riski."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Binance'in genişletilmiş (44 token) zk-proof kanıtının yayımlanması ve rezerv oranlarının yüzde yüzün üzerinde çıkması",
-        "outcome": "Henüz açıklanmadı. 4 Kasım görüntüsüyle kapsam 10 tokendan 44 tokene çıkarıldı ancak zk-SNARK hesaplamasının tamamlanması 50-60 saat sürüyor, sonuç henüz yayımlanmadı."
+        "item": "ABD NFP verisi 65 bin beklentisini aştı mı, Fed Aralık artırım olasılığı nasıl değişti",
+        "outcome": "Evet, veri beklentiyi aştı ve Fed'in Aralık'ta faiz artıracağı olasılığı yüzde 65-77 bandından yüzde 85-88'e yükseldi, isabet."
       },
       {
-        "item": "CME FedWatch'a göre Aralık faiz artırım olasılığının yüzde 85'in üzerine çıkması",
-        "outcome": "Hayır, yüzde 85'i aşmadı. Olasılık şu anda yüzde 68,7 seviyesinde; faizin sabit kalma olasılığı yüzde 31,3."
+        "item": "BTC 75.000-76.000 dolar destek bandını koruyabildi mi",
+        "outcome": "Kısmen; fiyat yedi haftanın dibine kısa süreli sarktı ama bant yeniden kazanıldı, şu an 75.793 dolarla bandın içinde, isabet."
       },
       {
-        "item": "ABD tarım dışı istihdam (NFP) verisinin beklentiyi aşması",
-        "outcome": "Henüz belli değil. Veri bugün TSİ 16.30'da açıklanacak, piyasa beklentisi 65 bin kişi."
+        "item": "Binance'in 44 tokenlık zk-proof sonucu yayımlandı mı, rezerv oranları yüzde yüzün üzerinde mi",
+        "outcome": "Evet, 6 Kasım'da yayımlandı; 44 tokende rezervlerin en az bire bir karşılandığı doğrulandı, isabet."
       },
       {
-        "item": "BTC'nin 80.000 doların üzerinde kapanışı koruması",
-        "outcome": "Hayır, korunamadı. BTC seviyeyi kaybederek 75.000-76.000 dolar bandına geriledi."
+        "item": "Opsiyon vade sonrası BTC, 79.000 dolarlık max pain seviyesine yaklaştı mı",
+        "outcome": "Hayır, fiyat 75.800 dolar civarında kalarak max pain seviyesinin belirgin altında kapandı, ıska."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Wall Street'teki çip ve yapay zeka hissesi satışı kriptoyu vurdu",
-        "summary": "Nasdaq'taki sert düşüş kaldıraçlı kripto pozisyonlarında bir milyar doları aşan zorunlu likidasyona yol açtı, BTC seçim sonrası kazancını tamamen sildi.",
-        "source": {
-          "url": "https://www.coindesk.com/markets/2026/11/05/bitcoin-crypto-stocks-caught-in-ai-trade-meltdown-but-wintermute-trader-sees-glass-half-full",
-          "title": "Bitcoin tumbles to $76,000 as collapsing AI trade drags stocks sharply lower",
-          "publisher": "CoinDesk"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "Binance rezerv kanıtını 44 tokene genişletti",
-        "summary": "Ekim ayındaki hack sonrası varlıkların yüzde 98'i tamamlandı; yeni zk-SNARK tabanlı rezerv görüntüsü 10 tokenden 44 tokene çıkarıldı, kanıt hesaplaması sürüyor.",
+        "title": "Binance'de hack kaynaklı kayıpların yüzde 98'i karşılandı",
+        "summary": "Binance, Ekim ayındaki 6,3 milyar dolarlık Kuzey Kore kaynaklı hack sonrası kayıpların yüzde 98'ini kapattığını ve 44 tokeni kapsayan yeni zk-proof rezerv kanıtını yayımladığını duyurdu.",
         "source": {
           "url": "https://dailycoin.com/binance-hack-recovery-proof-of-reserves-expands-tokens",
           "title": "Binance Hack Recovery Hits 98%, Proof of Reserves Expands to 44 Tokens",
@@ -106,46 +92,52 @@
         }
       },
       {
-        "importance": "onemli",
-        "title": "Beyaz Saray SEC'in kripto aracı kurum kuralını inceliyor",
-        "summary": "SEC, kripto varlıklarla çalışan aracı kurumlar için sermaye ve müşteri varlığı koruma kurallarını gözden geçiren bir teklifi 3 Kasım'da Beyaz Saray'a gönderdi.",
+        "importance": "kritik",
+        "title": "Güçlü istihdam verisi Fed artırım olasılığını yükseltti",
+        "summary": "Beklentinin üzerinde gelen ABD istihdam verisi, Fed'in Aralık toplantısında faiz artıracağı olasılığını belirgin şekilde yükseltti ve risk varlıklarında satış baskısı yarattı.",
         "source": {
-          "url": "https://coingape.com/white-house-reviews-sec-proposal-to-ease-regulatory-requirements-for-crypto-brokers/",
-          "title": "White House Reviews SEC Proposal to Ease Regulatory Requirements for Crypto Brokers",
-          "publisher": "CoinGape"
+          "url": "https://www.fxstreet.com/news/gold-dives-below-4-100-as-blowout-nfp-underpins-fed-hike-odds-202611061839",
+          "title": "Gold dives below $4,100 as blowout NFP underpins Fed hike odds",
+          "publisher": "FXStreet"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "XRP 11 haftanın dibine sarktı",
+        "summary": "XRP, Wall Street'teki geniş çaplı satışın kripto piyasasına sıçramasıyla yüzde 9'un üzerinde değer kaybederek 11 haftanın en düşük seviyesine indi.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/11/06/xrp-price-today-long-traders-lose-21-8m-as-token-falls-9-4-to-1-18/",
+          "title": "XRP Price Today: Long Traders Lose $21.8M as Token Falls 9.4% to $1.18",
+          "publisher": "CryptoTimes"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Yunanistan kripto kazançlarına yüzde 10 vergi getirdi",
-        "summary": "Yunan parlamentosu kripto varlık kazançları için ilk kapsamlı yasal çerçeveyi onayladı; yıllık 500 avroya kadar kazanç vergiden muaf.",
+        "title": "SEC kripto ETF opsiyon kuralı kararını erteledi",
+        "summary": "SEC, spot kripto ETF'leri için opsiyon işlemlerine ilişkin evrensel kural kararını 11 Kasım'a erteledi.",
         "source": {
-          "url": "https://bitcoinmagazine.com/news/greece-approves-10-crypto-gains-tax",
-          "title": "Greece Approves 10% Crypto Capital Gains Tax",
-          "publisher": "Bitcoin Magazine"
+          "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+          "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+          "publisher": "CryptoVot"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "11:00",
-        "title": "2,65 milyar dolarlık BTC/ETH opsiyon vadesi (Deribit)"
+        "timeTr": null,
+        "title": "Bitcoin Korea Konferansı 2026"
       },
       {
-        "timeTr": "16:30",
-        "title": "ABD Ekim ayı tarım dışı istihdam verisi (NFP)"
+        "timeTr": null,
+        "title": "Binance hack sonrası kurtarılan varlık oranının takibi"
       },
       {
-        "timeTr": "17:10",
-        "title": "Fed üyesi Musalem'in konuşması"
+        "timeTr": null,
+        "title": "SEC'in ETF opsiyon kuralı kararına geri sayım (11 Kasım)"
       },
       {
-        "timeTr": "18:00",
-        "title": "Michigan tüketici güveni endeksi (öncü)"
-      },
-      {
-        "timeTr": "20:15",
-        "title": "Fed üyesi Bowman'ın konuşması"
+        "timeTr": null,
+        "title": "Hafta sonu düşük hacimde ani fiyat hareketi riski"
       }
     ],
     "turkey": {
@@ -153,36 +145,36 @@
       "items": []
     },
     "risks": [
-      "NFP verisi beklentiden belirgin sapırsa faiz artırım fiyatlaması yeniden şekillenebilir ve volatilite artabilir.",
-      "2,65 milyar dolarlık opsiyon vade sonu, kaldıraçlı pozisyonların tetiklediği likidasyon zincirini uzatabilir."
+      "Hafta sonu düşük likidite nedeniyle ani ve sert fiyat hareketleri riski.",
+      "Fed'in Aralık'ta faiz artırımına gitme olasılığının yükselmesi risk iştahını bastırabilir."
     ]
   },
   "followUps": [
-    "ABD NFP verisi 65 bin beklentisini aştı mı, Fed Aralık artırım olasılığı nasıl değişti",
-    "BTC 75.000-76.000 dolar destek bandını koruyabildi mi",
-    "Binance'in 44 tokenlık zk-proof sonucu yayımlandı mı, rezerv oranları yüzde yüzün üzerinde mi",
-    "Opsiyon vade sonrası BTC, 79.000 dolarlık max pain seviyesine yaklaştı mı"
+    "SEC'in ETF opsiyon kuralı kararı 11 Kasım'da çıkacak mı",
+    "BTC 75.000 dolar destek bandını hafta sonu düşük likiditede koruyabilecek mi",
+    "Fed Aralık artırım olasılığı yüzde 85-88 seviyesinde kalıcı mı yoksa geri çekilecek mi",
+    "XRP 1,10 dolar seviyesine sarkış gerçekleşecek mi"
   ],
   "sources": [
-    {
-      "url": "https://www.coindesk.com/markets/2026/11/05/bitcoin-crypto-stocks-caught-in-ai-trade-meltdown-but-wintermute-trader-sees-glass-half-full",
-      "title": "Bitcoin tumbles to $76,000 as collapsing AI trade drags stocks sharply lower",
-      "publisher": "CoinDesk"
-    },
     {
       "url": "https://dailycoin.com/binance-hack-recovery-proof-of-reserves-expands-tokens",
       "title": "Binance Hack Recovery Hits 98%, Proof of Reserves Expands to 44 Tokens",
       "publisher": "DailyCoin"
     },
     {
-      "url": "https://coingape.com/white-house-reviews-sec-proposal-to-ease-regulatory-requirements-for-crypto-brokers/",
-      "title": "White House Reviews SEC Proposal to Ease Regulatory Requirements for Crypto Brokers",
-      "publisher": "CoinGape"
+      "url": "https://www.fxstreet.com/news/gold-dives-below-4-100-as-blowout-nfp-underpins-fed-hike-odds-202611061839",
+      "title": "Gold dives below $4,100 as blowout NFP underpins Fed hike odds",
+      "publisher": "FXStreet"
     },
     {
-      "url": "https://bitcoinmagazine.com/news/greece-approves-10-crypto-gains-tax",
-      "title": "Greece Approves 10% Crypto Capital Gains Tax",
-      "publisher": "Bitcoin Magazine"
+      "url": "https://www.cryptotimes.io/2026/11/06/xrp-price-today-long-traders-lose-21-8m-as-token-falls-9-4-to-1-18/",
+      "title": "XRP Price Today: Long Traders Lose $21.8M as Token Falls 9.4% to $1.18",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+      "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+      "publisher": "CryptoVot"
     }
   ],
   "assets": {

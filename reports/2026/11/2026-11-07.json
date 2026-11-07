@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-07",
+  "language": "tr",
+  "title": "7 Kasım 2026, Cumartesi",
+  "publishedAt": "2026-11-07T07:50:44+03:00",
+  "updatedAt": "2026-11-07T07:50:44+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-07T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 75793,
+        "change24h": 0.0946376437442773
+      },
+      "ETH": {
+        "priceUsd": 2240.61,
+        "change24h": 0.4370300358720268
+      },
+      "SOL": {
+        "priceUsd": 89.87,
+        "change24h": 0.5161939285273527
+      },
+      "BNB": {
+        "priceUsd": 694.21,
+        "change24h": 0.2765855083768317
+      },
+      "XRP": {
+        "priceUsd": 1.15,
+        "change24h": -4.375672096387998
+      }
+    },
+    "btcDominance": 59.27528219233865,
+    "ethDominance": 10.64853152760519,
+    "totalMarketCapUsd": 2565979928103.469,
+    "volume24hUsd": 66057369100.29578,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 25,
+      "label": "Aşırı Korku",
+      "previousValue": 28,
+      "weekAgoValue": 30
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Wall Street'teki risk azaltma hareketi kripto piyasasına sıçradı; dün açıklanan güçlü ABD istihdam verisi Fed'in Aralık toplantısında faiz artırımı olasılığını yaklaşık yüzde 85-88'e yükseltti ve bu risk iştahını bastırdı.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Fed Aralık faiz artırımı beklentisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite riski"
+      }
+    ],
+    "mainRisk": "Hafta sonu düşük likiditeli ortamda, Fed'in faiz artırımı ihtimaliyle birleşen ani ve sert fiyat hareketleri riski."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD NFP verisi 65 bin beklentisini aştı mı, Fed Aralık artırım olasılığı nasıl değişti",
+        "outcome": "Evet, veri beklentiyi aştı ve Fed'in Aralık'ta faiz artıracağı olasılığı yüzde 65-77 bandından yüzde 85-88'e yükseldi, isabet."
+      },
+      {
+        "item": "BTC 75.000-76.000 dolar destek bandını koruyabildi mi",
+        "outcome": "Kısmen; fiyat yedi haftanın dibine kısa süreli sarktı ama bant yeniden kazanıldı, şu an 75.793 dolarla bandın içinde, isabet."
+      },
+      {
+        "item": "Binance'in 44 tokenlık zk-proof sonucu yayımlandı mı, rezerv oranları yüzde yüzün üzerinde mi",
+        "outcome": "Evet, 6 Kasım'da yayımlandı; 44 tokende rezervlerin en az bire bir karşılandığı doğrulandı, isabet."
+      },
+      {
+        "item": "Opsiyon vade sonrası BTC, 79.000 dolarlık max pain seviyesine yaklaştı mı",
+        "outcome": "Hayır, fiyat 75.800 dolar civarında kalarak max pain seviyesinin belirgin altında kapandı, ıska."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Binance'de hack kaynaklı kayıpların yüzde 98'i karşılandı",
+        "summary": "Binance, Ekim ayındaki 6,3 milyar dolarlık Kuzey Kore kaynaklı hack sonrası kayıpların yüzde 98'ini kapattığını ve 44 tokeni kapsayan yeni zk-proof rezerv kanıtını yayımladığını duyurdu.",
+        "source": {
+          "url": "https://dailycoin.com/binance-hack-recovery-proof-of-reserves-expands-tokens",
+          "title": "Binance Hack Recovery Hits 98%, Proof of Reserves Expands to 44 Tokens",
+          "publisher": "DailyCoin"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Güçlü istihdam verisi Fed artırım olasılığını yükseltti",
+        "summary": "Beklentinin üzerinde gelen ABD istihdam verisi, Fed'in Aralık toplantısında faiz artıracağı olasılığını belirgin şekilde yükseltti ve risk varlıklarında satış baskısı yarattı.",
+        "source": {
+          "url": "https://www.fxstreet.com/news/gold-dives-below-4-100-as-blowout-nfp-underpins-fed-hike-odds-202611061839",
+          "title": "Gold dives below $4,100 as blowout NFP underpins Fed hike odds",
+          "publisher": "FXStreet"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "XRP 11 haftanın dibine sarktı",
+        "summary": "XRP, Wall Street'teki geniş çaplı satışın kripto piyasasına sıçramasıyla yüzde 9'un üzerinde değer kaybederek 11 haftanın en düşük seviyesine indi.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/11/06/xrp-price-today-long-traders-lose-21-8m-as-token-falls-9-4-to-1-18/",
+          "title": "XRP Price Today: Long Traders Lose $21.8M as Token Falls 9.4% to $1.18",
+          "publisher": "CryptoTimes"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "SEC kripto ETF opsiyon kuralı kararını erteledi",
+        "summary": "SEC, spot kripto ETF'leri için opsiyon işlemlerine ilişkin evrensel kural kararını 11 Kasım'a erteledi.",
+        "source": {
+          "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+          "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+          "publisher": "CryptoVot"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Bitcoin Korea Konferansı 2026"
+      },
+      {
+        "timeTr": null,
+        "title": "Binance hack sonrası kurtarılan varlık oranının takibi"
+      },
+      {
+        "timeTr": null,
+        "title": "SEC'in ETF opsiyon kuralı kararına geri sayım (11 Kasım)"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük hacimde ani fiyat hareketi riski"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Hafta sonu düşük likidite nedeniyle ani ve sert fiyat hareketleri riski.",
+      "Fed'in Aralık'ta faiz artırımına gitme olasılığının yükselmesi risk iştahını bastırabilir."
+    ]
+  },
+  "followUps": [
+    "SEC'in ETF opsiyon kuralı kararı 11 Kasım'da çıkacak mı",
+    "BTC 75.000 dolar destek bandını hafta sonu düşük likiditede koruyabilecek mi",
+    "Fed Aralık artırım olasılığı yüzde 85-88 seviyesinde kalıcı mı yoksa geri çekilecek mi",
+    "XRP 1,10 dolar seviyesine sarkış gerçekleşecek mi"
+  ],
+  "sources": [
+    {
+      "url": "https://dailycoin.com/binance-hack-recovery-proof-of-reserves-expands-tokens",
+      "title": "Binance Hack Recovery Hits 98%, Proof of Reserves Expands to 44 Tokens",
+      "publisher": "DailyCoin"
+    },
+    {
+      "url": "https://www.fxstreet.com/news/gold-dives-below-4-100-as-blowout-nfp-underpins-fed-hike-odds-202611061839",
+      "title": "Gold dives below $4,100 as blowout NFP underpins Fed hike odds",
+      "publisher": "FXStreet"
+    },
+    {
+      "url": "https://www.cryptotimes.io/2026/11/06/xrp-price-today-long-traders-lose-21-8m-as-token-falls-9-4-to-1-18/",
+      "title": "XRP Price Today: Long Traders Lose $21.8M as Token Falls 9.4% to $1.18",
+      "publisher": "CryptoTimes"
+    },
+    {
+      "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+      "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+      "publisher": "CryptoVot"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
