@@ -1,143 +1,133 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-07",
+  "id": "2026-11-08",
   "language": "tr",
-  "title": "7 Kasım 2026, Cumartesi",
-  "publishedAt": "2026-11-07T07:50:44+03:00",
-  "updatedAt": "2026-11-07T07:50:44+03:00",
+  "title": "8 Kasım 2026, Pazar",
+  "publishedAt": "2026-11-08T07:51:04+03:00",
+  "updatedAt": "2026-11-08T07:51:04+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-07T07:48:00+03:00",
+    "asOf": "2026-11-08T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 75793,
-        "change24h": 0.0946376437442773
+        "priceUsd": 75816,
+        "change24h": 0.040221467441232735
       },
       "ETH": {
-        "priceUsd": 2240.61,
-        "change24h": 0.4370300358720268
+        "priceUsd": 2233.72,
+        "change24h": -0.2890181167575493
       },
       "SOL": {
-        "priceUsd": 89.87,
-        "change24h": 0.5161939285273527
+        "priceUsd": 88.96,
+        "change24h": -0.9804866758178274
       },
       "BNB": {
-        "priceUsd": 694.21,
-        "change24h": 0.2765855083768317
+        "priceUsd": 695.28,
+        "change24h": 0.1561587589256764
       },
       "XRP": {
-        "priceUsd": 1.15,
-        "change24h": -4.375672096387998
+        "priceUsd": 1.16,
+        "change24h": 0.6522271747815993
       }
     },
-    "btcDominance": 59.27528219233865,
-    "ethDominance": 10.64853152760519,
-    "totalMarketCapUsd": 2565979928103.469,
-    "volume24hUsd": 66057369100.29578,
+    "btcDominance": 59.35129979606941,
+    "ethDominance": 10.626804904098211,
+    "totalMarketCapUsd": 2561713520377.4634,
+    "volume24hUsd": 29966267110.62667,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 25,
-      "label": "Aşırı Korku",
-      "previousValue": 28,
-      "weekAgoValue": 30
+      "value": 28,
+      "label": "Korku",
+      "previousValue": 25,
+      "weekAgoValue": 34
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Wall Street'teki risk azaltma hareketi kripto piyasasına sıçradı; dün açıklanan güçlü ABD istihdam verisi Fed'in Aralık toplantısında faiz artırımı olasılığını yaklaşık yüzde 85-88'e yükseltti ve bu risk iştahını bastırdı.",
+    "why": "Geçen hafta süren yoğun satışın ve ETF çıkışlarının ardından piyasa bugün BTC'de yatay seyirle durulma sinyali veriyor; Korku-Açgözlülük endeksi dünün Aşırı Korku bandından Korku'ya hafif yükseldi ama toparlanma için tek bir net katalizör yok.",
     "criticalEvents": [
       {
         "timeTr": null,
-        "title": "Fed Aralık faiz artırımı beklentisi"
+        "title": "BTC 75.000 dolar destek testi"
       },
       {
         "timeTr": null,
         "title": "Hafta sonu düşük likidite riski"
       }
     ],
-    "mainRisk": "Hafta sonu düşük likiditeli ortamda, Fed'in faiz artırımı ihtimaliyle birleşen ani ve sert fiyat hareketleri riski."
+    "mainRisk": "Hafta sonu düşük likiditede küçük satış emirleri BTC'yi 75.000 doların altına itebilir ve son dönemdeki kaldıraçlı tasfiye dalgasını yeniden tetikleyebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "ABD NFP verisi 65 bin beklentisini aştı mı, Fed Aralık artırım olasılığı nasıl değişti",
-        "outcome": "Evet, veri beklentiyi aştı ve Fed'in Aralık'ta faiz artıracağı olasılığı yüzde 65-77 bandından yüzde 85-88'e yükseldi, isabet."
+        "item": "SEC'in ETF opsiyon kuralı kararı 11 Kasım'da çıkacak mı",
+        "outcome": "Henüz çıkmadı; Nasdaq ISE'nin kripto ETF opsiyon kuralı için 11 Kasım tarihi hâlâ geçerli, karar üç gün sonra bekleniyor."
       },
       {
-        "item": "BTC 75.000-76.000 dolar destek bandını koruyabildi mi",
-        "outcome": "Kısmen; fiyat yedi haftanın dibine kısa süreli sarktı ama bant yeniden kazanıldı, şu an 75.793 dolarla bandın içinde, isabet."
+        "item": "BTC 75.000 dolar destek bandını hafta sonu düşük likiditede koruyabilecek mi",
+        "outcome": "Evet, BTC hafta sonu boyunca 75.000-76.000 dolar bandını korudu, destek şimdilik tuttu."
       },
       {
-        "item": "Binance'in 44 tokenlık zk-proof sonucu yayımlandı mı, rezerv oranları yüzde yüzün üzerinde mi",
-        "outcome": "Evet, 6 Kasım'da yayımlandı; 44 tokende rezervlerin en az bire bir karşılandığı doğrulandı, isabet."
+        "item": "Fed Aralık artırım olasılığı yüzde 85-88 seviyesinde kalıcı mı yoksa geri çekilecek mi",
+        "outcome": "Geri çekildi; piyasa fiyatlaması yüzde 73-78 bandına indi."
       },
       {
-        "item": "Opsiyon vade sonrası BTC, 79.000 dolarlık max pain seviyesine yaklaştı mı",
-        "outcome": "Hayır, fiyat 75.800 dolar civarında kalarak max pain seviyesinin belirgin altında kapandı, ıska."
+        "item": "XRP 1,10 dolar seviyesine sarkış gerçekleşecek mi",
+        "outcome": "Henüz değil; XRP 1,16-1,17 dolar bandında tutunuyor, 1,10 dolar hâlâ bir alt hedef olarak izleniyor."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Binance'de hack kaynaklı kayıpların yüzde 98'i karşılandı",
-        "summary": "Binance, Ekim ayındaki 6,3 milyar dolarlık Kuzey Kore kaynaklı hack sonrası kayıpların yüzde 98'ini kapattığını ve 44 tokeni kapsayan yeni zk-proof rezerv kanıtını yayımladığını duyurdu.",
+        "title": "Bitcoin'de 1,27 milyar dolarlık tasfiye dalgası",
+        "summary": "Bitcoin ABD borsalarındaki satış dalgasıyla birlikte yedi haftanın dibi olan 75.600 dolara geldi; 24 saatte 1,27 milyar dolarlık kaldıraçlı pozisyon tasfiye oldu ve bunun büyük kısmı long pozisyonlardı.",
         "source": {
-          "url": "https://dailycoin.com/binance-hack-recovery-proof-of-reserves-expands-tokens",
-          "title": "Binance Hack Recovery Hits 98%, Proof of Reserves Expands to 44 Tokens",
-          "publisher": "DailyCoin"
-        }
-      },
-      {
-        "importance": "kritik",
-        "title": "Güçlü istihdam verisi Fed artırım olasılığını yükseltti",
-        "summary": "Beklentinin üzerinde gelen ABD istihdam verisi, Fed'in Aralık toplantısında faiz artıracağı olasılığını belirgin şekilde yükseltti ve risk varlıklarında satış baskısı yarattı.",
-        "source": {
-          "url": "https://www.fxstreet.com/news/gold-dives-below-4-100-as-blowout-nfp-underpins-fed-hike-odds-202611061839",
-          "title": "Gold dives below $4,100 as blowout NFP underpins Fed hike odds",
-          "publisher": "FXStreet"
+          "url": "https://www.forexcrunch.com/blog/2026/11/07/bitcoin-falls-to-seven-week-low-as-over-1-billion-in-crypto-longs-liquidated/",
+          "title": "Bitcoin sinks to seven-week low as $1.27bn longs liquidated",
+          "publisher": "ForexCrunch"
         }
       },
       {
         "importance": "onemli",
-        "title": "XRP 11 haftanın dibine sarktı",
-        "summary": "XRP, Wall Street'teki geniş çaplı satışın kripto piyasasına sıçramasıyla yüzde 9'un üzerinde değer kaybederek 11 haftanın en düşük seviyesine indi.",
+        "title": "ABD Hazinesi MEXC borsasını finans sisteminden kesti",
+        "summary": "FinCEN, MEXC Global'i Mayıs 2021-Mayıs 2026 arasında İran, Rusya ve Kuzey Kore'ye bağlı yaptırım ihlalleriyle ilişkilendirilen en az 16 milyar dolarlık işlem nedeniyle ABD finans sisteminden çıkardı.",
         "source": {
-          "url": "https://www.cryptotimes.io/2026/11/06/xrp-price-today-long-traders-lose-21-8m-as-token-falls-9-4-to-1-18/",
-          "title": "XRP Price Today: Long Traders Lose $21.8M as Token Falls 9.4% to $1.18",
-          "publisher": "CryptoTimes"
+          "url": "https://cryptobriefing.com/mexc-financial-sanctions-illicit-transactions/",
+          "title": "US Treasury cuts off MEXC from financial system over $16B in illicit transactions",
+          "publisher": "Crypto Briefing"
         }
       },
       {
-        "importance": "bilgi",
-        "title": "SEC kripto ETF opsiyon kuralı kararını erteledi",
-        "summary": "SEC, spot kripto ETF'leri için opsiyon işlemlerine ilişkin evrensel kural kararını 11 Kasım'a erteledi.",
+        "importance": "onemli",
+        "title": "Warren'ın Senato Bankacılık Komitesi'ne yürümesi",
+        "summary": "Demokratların Kongre'nin iki kanadını da almasının ardından kriptoya sert eleştirileriyle tanınan Elizabeth Warren'ın Senato Bankacılık Komitesi'ne başkanlık etmesi bekleniyor; bu durum borsa ve stabilcoin düzenlemelerinde sıkılaşma riskini artırıyor.",
         "source": {
-          "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
-          "title": "SEC Crypto ETF Options Rule Delayed to November 11",
-          "publisher": "CryptoVot"
+          "url": "https://crypto.news/elizabeth-warren-senate-banking-crypto-regulation/",
+          "title": "Crypto critic Elizabeth Warren expected to chair Senate Banking, likely to focus on crypto rules",
+          "publisher": "crypto.news"
         }
       }
     ],
     "today": [
       {
         "timeTr": null,
-        "title": "Bitcoin Korea Konferansı 2026"
+        "title": "BTC vadeli piyasalarda hafta sonu pozisyon kapanışları"
       },
       {
         "timeTr": null,
-        "title": "Binance hack sonrası kurtarılan varlık oranının takibi"
+        "title": "Pazartesi ABD borsa açılışı öncesi risk iştahı testi"
       },
       {
         "timeTr": null,
-        "title": "SEC'in ETF opsiyon kuralı kararına geri sayım (11 Kasım)"
+        "title": "10 Kasım ABD TÜFE verisine yönelik pozisyonlanma"
       },
       {
         "timeTr": null,
-        "title": "Hafta sonu düşük hacimde ani fiyat hareketi riski"
+        "title": "11 Kasım SEC kripto ETF opsiyon kuralı kararı"
       }
     ],
     "turkey": {
@@ -145,36 +135,32 @@
       "items": []
     },
     "risks": [
-      "Hafta sonu düşük likidite nedeniyle ani ve sert fiyat hareketleri riski.",
-      "Fed'in Aralık'ta faiz artırımına gitme olasılığının yükselmesi risk iştahını bastırabilir."
+      "Hafta sonu düşük likidite, küçük satış emirlerinin BTC'yi 75.000 dolar desteğinin altına itme riskini büyütüyor.",
+      "ABD'de Demokratların Senato'yu almasıyla kripto düzenlemesinde sıkılaşma riski arttı.",
+      "MEXC'e yönelik Hazine yaptırımı, benzer borsalara yönelik soruşturma riskini canlı tutuyor."
     ]
   },
   "followUps": [
-    "SEC'in ETF opsiyon kuralı kararı 11 Kasım'da çıkacak mı",
-    "BTC 75.000 dolar destek bandını hafta sonu düşük likiditede koruyabilecek mi",
-    "Fed Aralık artırım olasılığı yüzde 85-88 seviyesinde kalıcı mı yoksa geri çekilecek mi",
-    "XRP 1,10 dolar seviyesine sarkış gerçekleşecek mi"
+    "BTC 75.000 dolar desteğini Pazartesi New York açılışında da koruyabilecek mi",
+    "10 Kasım ABD TÜFE verisi beklentiyi aştı mı",
+    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıkacak mı",
+    "XRP 1,10 dolar seviyesine sarkacak mı"
   ],
   "sources": [
     {
-      "url": "https://dailycoin.com/binance-hack-recovery-proof-of-reserves-expands-tokens",
-      "title": "Binance Hack Recovery Hits 98%, Proof of Reserves Expands to 44 Tokens",
-      "publisher": "DailyCoin"
+      "url": "https://www.forexcrunch.com/blog/2026/11/07/bitcoin-falls-to-seven-week-low-as-over-1-billion-in-crypto-longs-liquidated/",
+      "title": "Bitcoin sinks to seven-week low as $1.27bn longs liquidated",
+      "publisher": "ForexCrunch"
     },
     {
-      "url": "https://www.fxstreet.com/news/gold-dives-below-4-100-as-blowout-nfp-underpins-fed-hike-odds-202611061839",
-      "title": "Gold dives below $4,100 as blowout NFP underpins Fed hike odds",
-      "publisher": "FXStreet"
+      "url": "https://cryptobriefing.com/mexc-financial-sanctions-illicit-transactions/",
+      "title": "US Treasury cuts off MEXC from financial system over $16B in illicit transactions",
+      "publisher": "Crypto Briefing"
     },
     {
-      "url": "https://www.cryptotimes.io/2026/11/06/xrp-price-today-long-traders-lose-21-8m-as-token-falls-9-4-to-1-18/",
-      "title": "XRP Price Today: Long Traders Lose $21.8M as Token Falls 9.4% to $1.18",
-      "publisher": "CryptoTimes"
-    },
-    {
-      "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
-      "title": "SEC Crypto ETF Options Rule Delayed to November 11",
-      "publisher": "CryptoVot"
+      "url": "https://crypto.news/elizabeth-warren-senate-banking-crypto-regulation/",
+      "title": "Crypto critic Elizabeth Warren expected to chair Senate Banking, likely to focus on crypto rules",
+      "publisher": "crypto.news"
     }
   ],
   "assets": {

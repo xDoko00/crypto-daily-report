@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-08",
+  "language": "tr",
+  "title": "8 Kasım 2026, Pazar",
+  "publishedAt": "2026-11-08T07:51:04+03:00",
+  "updatedAt": "2026-11-08T07:51:04+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-08T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 75816,
+        "change24h": 0.040221467441232735
+      },
+      "ETH": {
+        "priceUsd": 2233.72,
+        "change24h": -0.2890181167575493
+      },
+      "SOL": {
+        "priceUsd": 88.96,
+        "change24h": -0.9804866758178274
+      },
+      "BNB": {
+        "priceUsd": 695.28,
+        "change24h": 0.1561587589256764
+      },
+      "XRP": {
+        "priceUsd": 1.16,
+        "change24h": 0.6522271747815993
+      }
+    },
+    "btcDominance": 59.35129979606941,
+    "ethDominance": 10.626804904098211,
+    "totalMarketCapUsd": 2561713520377.4634,
+    "volume24hUsd": 29966267110.62667,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 28,
+      "label": "Korku",
+      "previousValue": 25,
+      "weekAgoValue": 34
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Geçen hafta süren yoğun satışın ve ETF çıkışlarının ardından piyasa bugün BTC'de yatay seyirle durulma sinyali veriyor; Korku-Açgözlülük endeksi dünün Aşırı Korku bandından Korku'ya hafif yükseldi ama toparlanma için tek bir net katalizör yok.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "BTC 75.000 dolar destek testi"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite riski"
+      }
+    ],
+    "mainRisk": "Hafta sonu düşük likiditede küçük satış emirleri BTC'yi 75.000 doların altına itebilir ve son dönemdeki kaldıraçlı tasfiye dalgasını yeniden tetikleyebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "SEC'in ETF opsiyon kuralı kararı 11 Kasım'da çıkacak mı",
+        "outcome": "Henüz çıkmadı; Nasdaq ISE'nin kripto ETF opsiyon kuralı için 11 Kasım tarihi hâlâ geçerli, karar üç gün sonra bekleniyor."
+      },
+      {
+        "item": "BTC 75.000 dolar destek bandını hafta sonu düşük likiditede koruyabilecek mi",
+        "outcome": "Evet, BTC hafta sonu boyunca 75.000-76.000 dolar bandını korudu, destek şimdilik tuttu."
+      },
+      {
+        "item": "Fed Aralık artırım olasılığı yüzde 85-88 seviyesinde kalıcı mı yoksa geri çekilecek mi",
+        "outcome": "Geri çekildi; piyasa fiyatlaması yüzde 73-78 bandına indi."
+      },
+      {
+        "item": "XRP 1,10 dolar seviyesine sarkış gerçekleşecek mi",
+        "outcome": "Henüz değil; XRP 1,16-1,17 dolar bandında tutunuyor, 1,10 dolar hâlâ bir alt hedef olarak izleniyor."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Bitcoin'de 1,27 milyar dolarlık tasfiye dalgası",
+        "summary": "Bitcoin ABD borsalarındaki satış dalgasıyla birlikte yedi haftanın dibi olan 75.600 dolara geldi; 24 saatte 1,27 milyar dolarlık kaldıraçlı pozisyon tasfiye oldu ve bunun büyük kısmı long pozisyonlardı.",
+        "source": {
+          "url": "https://www.forexcrunch.com/blog/2026/11/07/bitcoin-falls-to-seven-week-low-as-over-1-billion-in-crypto-longs-liquidated/",
+          "title": "Bitcoin sinks to seven-week low as $1.27bn longs liquidated",
+          "publisher": "ForexCrunch"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "ABD Hazinesi MEXC borsasını finans sisteminden kesti",
+        "summary": "FinCEN, MEXC Global'i Mayıs 2021-Mayıs 2026 arasında İran, Rusya ve Kuzey Kore'ye bağlı yaptırım ihlalleriyle ilişkilendirilen en az 16 milyar dolarlık işlem nedeniyle ABD finans sisteminden çıkardı.",
+        "source": {
+          "url": "https://cryptobriefing.com/mexc-financial-sanctions-illicit-transactions/",
+          "title": "US Treasury cuts off MEXC from financial system over $16B in illicit transactions",
+          "publisher": "Crypto Briefing"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Warren'ın Senato Bankacılık Komitesi'ne yürümesi",
+        "summary": "Demokratların Kongre'nin iki kanadını da almasının ardından kriptoya sert eleştirileriyle tanınan Elizabeth Warren'ın Senato Bankacılık Komitesi'ne başkanlık etmesi bekleniyor; bu durum borsa ve stabilcoin düzenlemelerinde sıkılaşma riskini artırıyor.",
+        "source": {
+          "url": "https://crypto.news/elizabeth-warren-senate-banking-crypto-regulation/",
+          "title": "Crypto critic Elizabeth Warren expected to chair Senate Banking, likely to focus on crypto rules",
+          "publisher": "crypto.news"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "BTC vadeli piyasalarda hafta sonu pozisyon kapanışları"
+      },
+      {
+        "timeTr": null,
+        "title": "Pazartesi ABD borsa açılışı öncesi risk iştahı testi"
+      },
+      {
+        "timeTr": null,
+        "title": "10 Kasım ABD TÜFE verisine yönelik pozisyonlanma"
+      },
+      {
+        "timeTr": null,
+        "title": "11 Kasım SEC kripto ETF opsiyon kuralı kararı"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Hafta sonu düşük likidite, küçük satış emirlerinin BTC'yi 75.000 dolar desteğinin altına itme riskini büyütüyor.",
+      "ABD'de Demokratların Senato'yu almasıyla kripto düzenlemesinde sıkılaşma riski arttı.",
+      "MEXC'e yönelik Hazine yaptırımı, benzer borsalara yönelik soruşturma riskini canlı tutuyor."
+    ]
+  },
+  "followUps": [
+    "BTC 75.000 dolar desteğini Pazartesi New York açılışında da koruyabilecek mi",
+    "10 Kasım ABD TÜFE verisi beklentiyi aştı mı",
+    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıkacak mı",
+    "XRP 1,10 dolar seviyesine sarkacak mı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.forexcrunch.com/blog/2026/11/07/bitcoin-falls-to-seven-week-low-as-over-1-billion-in-crypto-longs-liquidated/",
+      "title": "Bitcoin sinks to seven-week low as $1.27bn longs liquidated",
+      "publisher": "ForexCrunch"
+    },
+    {
+      "url": "https://cryptobriefing.com/mexc-financial-sanctions-illicit-transactions/",
+      "title": "US Treasury cuts off MEXC from financial system over $16B in illicit transactions",
+      "publisher": "Crypto Briefing"
+    },
+    {
+      "url": "https://crypto.news/elizabeth-warren-senate-banking-crypto-regulation/",
+      "title": "Crypto critic Elizabeth Warren expected to chair Senate Banking, likely to focus on crypto rules",
+      "publisher": "crypto.news"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
