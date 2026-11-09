@@ -1,133 +1,151 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-08",
+  "id": "2026-11-09",
   "language": "tr",
-  "title": "8 Kasım 2026, Pazar",
-  "publishedAt": "2026-11-08T07:51:04+03:00",
-  "updatedAt": "2026-11-08T07:51:04+03:00",
+  "title": "9 Kasım 2026, Pazartesi",
+  "publishedAt": "2026-11-09T07:51:06+03:00",
+  "updatedAt": "2026-11-09T07:51:06+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-08T07:48:00+03:00",
+    "asOf": "2026-11-09T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 75816,
-        "change24h": 0.040221467441232735
+        "priceUsd": 74894,
+        "change24h": -1.1931486937473412
       },
       "ETH": {
-        "priceUsd": 2233.72,
-        "change24h": -0.2890181167575493
+        "priceUsd": 2138.67,
+        "change24h": -4.2458651396382985
       },
       "SOL": {
-        "priceUsd": 88.96,
-        "change24h": -0.9804866758178274
+        "priceUsd": 87.46,
+        "change24h": -1.6681557147190675
       },
       "BNB": {
-        "priceUsd": 695.28,
-        "change24h": 0.1561587589256764
+        "priceUsd": 687.85,
+        "change24h": -1.0549604599072706
       },
       "XRP": {
-        "priceUsd": 1.16,
-        "change24h": 0.6522271747815993
+        "priceUsd": 1.11,
+        "change24h": -4.666779092059118
       }
     },
-    "btcDominance": 59.35129979606941,
-    "ethDominance": 10.626804904098211,
-    "totalMarketCapUsd": 2561713520377.4634,
-    "volume24hUsd": 29966267110.62667,
+    "btcDominance": 60.18716506137343,
+    "ethDominance": 10.447786048828757,
+    "totalMarketCapUsd": 2489910640154.528,
+    "volume24hUsd": 54963762933.627235,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 28,
+      "value": 29,
       "label": "Korku",
-      "previousValue": 25,
-      "weekAgoValue": 34
+      "previousValue": 28,
+      "weekAgoValue": 37
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "Geçen hafta süren yoğun satışın ve ETF çıkışlarının ardından piyasa bugün BTC'de yatay seyirle durulma sinyali veriyor; Korku-Açgözlülük endeksi dünün Aşırı Korku bandından Korku'ya hafif yükseldi ama toparlanma için tek bir net katalizör yok.",
+    "mood": "Riskli",
+    "why": "Nvidia CEO'su Jensen Huang'ın iddia edilen bir Çin istihbarat operasyonuyla ilişkisinin soruşturulması AI hisselerinde sert satışı tetikledi ve bu risk iştahı daralması kriptoya da yayıldı; üstüne ABD spot BTC ETF'lerinde haziran'dan beri en kötü haftalık çıkışlar ile kaldıraçlı pozisyonlardaki zorunlu tasfiyeler düşüşü hızlandırdı.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "BTC 75.000 dolar destek testi"
+        "timeTr": "17:30",
+        "title": "ABD borsaları açılışı"
       },
       {
-        "timeTr": null,
-        "title": "Hafta sonu düşük likidite riski"
+        "timeTr": "19:00",
+        "title": "NY Fed enflasyon beklentisi anketi"
+      },
+      {
+        "timeTr": "21:00",
+        "title": "ABD 3 yıllık tahvil ihalesi"
       }
     ],
-    "mainRisk": "Hafta sonu düşük likiditede küçük satış emirleri BTC'yi 75.000 doların altına itebilir ve son dönemdeki kaldıraçlı tasfiye dalgasını yeniden tetikleyebilir."
+    "mainRisk": "Yarın gelecek ABD TÜFE verisi beklentiyi aşarsa Fed'in Aralık'ta faiz indirimini erteleme riski güçlenir ve risk varlıklarındaki satış derinleşebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "SEC'in ETF opsiyon kuralı kararı 11 Kasım'da çıkacak mı",
-        "outcome": "Henüz çıkmadı; Nasdaq ISE'nin kripto ETF opsiyon kuralı için 11 Kasım tarihi hâlâ geçerli, karar üç gün sonra bekleniyor."
+        "item": "BTC 75.000 dolar desteğini Pazartesi New York açılışında da koruyabilecek mi",
+        "outcome": "Iska - BTC sabah erken saatlerde 73.500 dolar bölgesine kadar sarktı, destek net biçimde kırıldı ve toparlanma 75.000 doların altında kaldı."
       },
       {
-        "item": "BTC 75.000 dolar destek bandını hafta sonu düşük likiditede koruyabilecek mi",
-        "outcome": "Evet, BTC hafta sonu boyunca 75.000-76.000 dolar bandını korudu, destek şimdilik tuttu."
+        "item": "10 Kasım ABD TÜFE verisi beklentiyi aştı mı",
+        "outcome": "Henüz belli değil - veri yarın (10 Kasım) 16:30 TSİ'de açıklanacak, sonuç bekleniyor."
       },
       {
-        "item": "Fed Aralık artırım olasılığı yüzde 85-88 seviyesinde kalıcı mı yoksa geri çekilecek mi",
-        "outcome": "Geri çekildi; piyasa fiyatlaması yüzde 73-78 bandına indi."
+        "item": "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıkacak mı",
+        "outcome": "Henüz belli değil - SEC'in Nasdaq ISE başvurusuna ilişkin kararı 11 Kasım'a ertelendi, karar tarihi henüz gelmedi."
       },
       {
-        "item": "XRP 1,10 dolar seviyesine sarkış gerçekleşecek mi",
-        "outcome": "Henüz değil; XRP 1,16-1,17 dolar bandında tutunuyor, 1,10 dolar hâlâ bir alt hedef olarak izleniyor."
+        "item": "XRP 1,10 dolar seviyesine sarkacak mı",
+        "outcome": "İsabet etti - XRP geniş çaplı satış dalgasında 1,10 dolar bölgesine kadar sarktı ve şu an bu seviyeyi savunmaya çalışıyor."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Bitcoin'de 1,27 milyar dolarlık tasfiye dalgası",
-        "summary": "Bitcoin ABD borsalarındaki satış dalgasıyla birlikte yedi haftanın dibi olan 75.600 dolara geldi; 24 saatte 1,27 milyar dolarlık kaldıraçlı pozisyon tasfiye oldu ve bunun büyük kısmı long pozisyonlardı.",
+        "title": "Nvidia CEO'su hakkında casusluk soruşturması AI hisselerini sarstı",
+        "summary": "Nvidia yönetim kurulu, CEO Jensen Huang'ın iddia edilen bir Çinli istihbarat operasyonuyla ilişkisini bağımsız şekilde soruşturmaya aldı; haber AI hisselerinde satışı hızlandırdı ve bu dalga risk iştahı üzerinden kriptoya da yansıdı.",
         "source": {
-          "url": "https://www.forexcrunch.com/blog/2026/11/07/bitcoin-falls-to-seven-week-low-as-over-1-billion-in-crypto-longs-liquidated/",
-          "title": "Bitcoin sinks to seven-week low as $1.27bn longs liquidated",
-          "publisher": "ForexCrunch"
+          "url": "https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html",
+          "title": "Nvidia investigates CEO Jensen Huang's relationship with alleged Chinese spy",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "BTC ve ETH'de 800 milyon dolarlık likidasyon dalgası",
+        "summary": "Pazartesi sabahı küresel risk iştahının zayıflamasıyla BTC kısa süreliğine 73.500 dolara kadar sarktı; yaklaşık dört saatte 803 milyon dolarlık kaldıraçlı pozisyon, çoğu long, zorunlu olarak tasfiye oldu.",
+        "source": {
+          "url": "https://www.kucoin.com/news/articles/crypto-daily-market-report-november-9-2026",
+          "title": "Crypto Daily Market Report",
+          "publisher": "KuCoin News"
         }
       },
       {
         "importance": "onemli",
-        "title": "ABD Hazinesi MEXC borsasını finans sisteminden kesti",
-        "summary": "FinCEN, MEXC Global'i Mayıs 2021-Mayıs 2026 arasında İran, Rusya ve Kuzey Kore'ye bağlı yaptırım ihlalleriyle ilişkilendirilen en az 16 milyar dolarlık işlem nedeniyle ABD finans sisteminden çıkardı.",
+        "title": "BTC spot ETF'lerinde haziran'dan beri en kötü haftalık çıkış",
+        "summary": "ABD'deki spot bitcoin ETF'leri 2-6 Kasım haftasında 1,28 milyar dolar net çıkış gördü ve yılbaşından bu yana net kazançlarını sildi; BlackRock'ın IBIT fonu çıkışların büyük bölümünü oluşturdu.",
         "source": {
-          "url": "https://cryptobriefing.com/mexc-financial-sanctions-illicit-transactions/",
-          "title": "US Treasury cuts off MEXC from financial system over $16B in illicit transactions",
-          "publisher": "Crypto Briefing"
+          "url": "https://www.theblock.co/news/markets/2026-11-07-bitcoin-etfs-flip-negative-for-2026-after-1-28-billion-outflow-week-worst-since-june-435984",
+          "title": "Bitcoin ETFs flip negative for 2026 after $1.28 billion outflow week, worst since June",
+          "publisher": "The Block"
         }
       },
       {
         "importance": "onemli",
-        "title": "Warren'ın Senato Bankacılık Komitesi'ne yürümesi",
-        "summary": "Demokratların Kongre'nin iki kanadını da almasının ardından kriptoya sert eleştirileriyle tanınan Elizabeth Warren'ın Senato Bankacılık Komitesi'ne başkanlık etmesi bekleniyor; bu durum borsa ve stabilcoin düzenlemelerinde sıkılaşma riskini artırıyor.",
+        "title": "FinCEN, MEXC Global'in ABD bankacılık erişimini kesti",
+        "summary": "ABD Hazinesi'nin FinCEN birimi, MEXC Global'in 2021-2026 arasında İran, Kuzey Kore ve Rusya'ya yönelik yaptırım ihlalleriyle bağlantılı en az 16 milyar dolarlık işleme aracılık ettiğini belirterek borsanın dolar kanallarını ABD bankacılık sisteminden kesti.",
         "source": {
-          "url": "https://crypto.news/elizabeth-warren-senate-banking-crypto-regulation/",
-          "title": "Crypto critic Elizabeth Warren expected to chair Senate Banking, likely to focus on crypto rules",
-          "publisher": "crypto.news"
+          "url": "https://www.fincen.gov/news/news-releases/operation-economic-outcast-severs-mexc-globals-access-us-financial-system",
+          "title": "Operation Economic Outcast Severs MEXC Global's Access to the U.S. Financial System",
+          "publisher": "FinCEN - U.S. Department of the Treasury"
         }
       }
     ],
     "today": [
       {
-        "timeTr": null,
-        "title": "BTC vadeli piyasalarda hafta sonu pozisyon kapanışları"
+        "timeTr": "17:30",
+        "title": "ABD borsaları açılışı"
       },
       {
-        "timeTr": null,
-        "title": "Pazartesi ABD borsa açılışı öncesi risk iştahı testi"
+        "timeTr": "18:30",
+        "title": "Atlanta Fed GDPNow büyüme tahmini"
       },
       {
-        "timeTr": null,
-        "title": "10 Kasım ABD TÜFE verisine yönelik pozisyonlanma"
+        "timeTr": "19:00",
+        "title": "NY Fed enflasyon beklentisi anketi"
       },
       {
-        "timeTr": null,
-        "title": "11 Kasım SEC kripto ETF opsiyon kuralı kararı"
+        "timeTr": "20:15",
+        "title": "Richmond Fed Başkanı Barkin'in konuşması"
+      },
+      {
+        "timeTr": "21:00",
+        "title": "ABD 3 yıllık tahvil ihalesi"
       }
     ],
     "turkey": {
@@ -135,32 +153,36 @@
       "items": []
     },
     "risks": [
-      "Hafta sonu düşük likidite, küçük satış emirlerinin BTC'yi 75.000 dolar desteğinin altına itme riskini büyütüyor.",
-      "ABD'de Demokratların Senato'yu almasıyla kripto düzenlemesinde sıkılaşma riski arttı.",
-      "MEXC'e yönelik Hazine yaptırımı, benzer borsalara yönelik soruşturma riskini canlı tutuyor."
+      "Kaldıraçlı pozisyonlardaki zorunlu tasfiyeler sürerse BTC'de 73.500 dolar altı yeni testler görülebilir.",
+      "Nvidia soruşturmasına ilişkin belirsizlik derinleşirse AI hisseleri üzerinden risk iştahı geniş çaplı zayıflayabilir."
     ]
   },
   "followUps": [
-    "BTC 75.000 dolar desteğini Pazartesi New York açılışında da koruyabilecek mi",
-    "10 Kasım ABD TÜFE verisi beklentiyi aştı mı",
-    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıkacak mı",
-    "XRP 1,10 dolar seviyesine sarkacak mı"
+    "ABD TÜFE verisi (10 Kasım) beklentiyi aştı mı",
+    "BTC 75.000 doları yeniden kazanabildi mi",
+    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıktı mı",
+    "MEXC'nin ABD banka erişimi kesintisi borsalardan çıkışları hızlandırdı mı"
   ],
   "sources": [
     {
-      "url": "https://www.forexcrunch.com/blog/2026/11/07/bitcoin-falls-to-seven-week-low-as-over-1-billion-in-crypto-longs-liquidated/",
-      "title": "Bitcoin sinks to seven-week low as $1.27bn longs liquidated",
-      "publisher": "ForexCrunch"
+      "url": "https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html",
+      "title": "Nvidia investigates CEO Jensen Huang's relationship with alleged Chinese spy",
+      "publisher": "CNBC"
     },
     {
-      "url": "https://cryptobriefing.com/mexc-financial-sanctions-illicit-transactions/",
-      "title": "US Treasury cuts off MEXC from financial system over $16B in illicit transactions",
-      "publisher": "Crypto Briefing"
+      "url": "https://www.kucoin.com/news/articles/crypto-daily-market-report-november-9-2026",
+      "title": "Crypto Daily Market Report",
+      "publisher": "KuCoin News"
     },
     {
-      "url": "https://crypto.news/elizabeth-warren-senate-banking-crypto-regulation/",
-      "title": "Crypto critic Elizabeth Warren expected to chair Senate Banking, likely to focus on crypto rules",
-      "publisher": "crypto.news"
+      "url": "https://www.theblock.co/news/markets/2026-11-07-bitcoin-etfs-flip-negative-for-2026-after-1-28-billion-outflow-week-worst-since-june-435984",
+      "title": "Bitcoin ETFs flip negative for 2026 after $1.28 billion outflow week, worst since June",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://www.fincen.gov/news/news-releases/operation-economic-outcast-severs-mexc-globals-access-us-financial-system",
+      "title": "Operation Economic Outcast Severs MEXC Global's Access to the U.S. Financial System",
+      "publisher": "FinCEN - U.S. Department of the Treasury"
     }
   ],
   "assets": {
