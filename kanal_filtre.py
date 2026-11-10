@@ -57,6 +57,10 @@ _SINYAL_RE = re.compile(
 # Brief kalıbı (render.brief_html): sabit satır başları.
 _KALIP_ZORUNLU = ("📊 <b>GÜNAYDIN", "⚡ <b>60 SANİYE</b>", "🌡️ Hava:", "₿ BTC",
                   "🔑 <b>Neden:</b>", "⏰ <b>Kritik:</b>", "⚠️ <b>Risk:</b>")
+# İsteğe bağlı SON satır (report.haftanin_videosu_satiri): tek YouTube kısa linki.
+VIDEO_SATIR_ON_EK = "🎬 Haftanın videosu:"
+_VIDEO_SATIR_RE = re.compile(r"^🎬 Haftanın videosu: [^\n]{3,140} https://youtu\.be/[A-Za-z0-9_-]{11}$")
+_YT_LINK_RE = re.compile(r"https://youtu\.be/[A-Za-z0-9_-]{11}")
 
 
 def em_tire_temizle(metin):
@@ -85,12 +89,19 @@ def kontrol(metin):
     if eksik:
         return False, "kalıp dışı: eksik satır " + ", ".join(eksik)
     satir = [s for s in m.splitlines() if s.strip()]
-    if len(satir) != len(_KALIP_ZORUNLU):
-        return False, f"kalıp dışı: {len(satir)} dolu satır (beklenen {len(_KALIP_ZORUNLU)})"
+    beklenen = len(_KALIP_ZORUNLU)
+    if satir and satir[-1].startswith(VIDEO_SATIR_ON_EK):
+        if not _VIDEO_SATIR_RE.match(satir[-1].strip()):
+            return False, "kalıp dışı: haftanın videosu satırı biçimi bozuk"
+        beklenen += 1
+    if len(satir) != beklenen:
+        return False, f"kalıp dışı: {len(satir)} dolu satır (beklenen {beklenen})"
     if len(m) > 1024:
         return False, f"kalıp dışı: {len(m)} karakter (kart altyazısı en çok 1024)"
     if "—" in m:
         return False, "em tire var"
+    # Video linkinin kendisi (rastgele 11 karakter) kelime denetimine girmesin.
+    duz = _YT_LINK_RE.sub(" ", duz)
 
     for k in _KOK_RE.finditer(duz):
         # Not: tüm metni lower() yapıp indeksle bakma; 'İ'.lower() 2 karakter

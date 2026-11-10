@@ -882,8 +882,42 @@ def kanal_tek_gonderi_mi():
     return os.environ.get("KANAL_TEK_GONDERI", "1").strip() != "0"
 
 
-def kanal_brief_hazirla(brief):
-    """Kanal çıkış filtresi (kanal_filtre.py). (temiz_metin | None, sebep)."""
+def haftanin_videosu_satiri(simdi=None, videolar=None):
+    """Brief'in alt satırı: '🎬 Haftanın videosu: <başlık> https://youtu.be/<id>'.
+
+    Kaynak YouTube RSS (youtube_rss.py), son 7 günün Pazartesi uzun videosu.
+    HAFTANIN_VIDEOSU=0 kapatır. Video yoksa/RSS düşerse '' (rapor etkilenmez)."""
+    if os.environ.get("HAFTANIN_VIDEOSU", "1").strip() == "0":
+        return ""
+    try:
+        import youtube_rss
+        if videolar is None:
+            videolar = youtube_rss.videolari_cek()
+        v = youtube_rss.son_pazartesi_videosu(videolar, simdi=simdi)
+        if not v:
+            return ""
+        baslik = re.sub(r"\s+", " ", v["baslik"]).strip()
+        if len(baslik) > 110:
+            baslik = baslik[:107].rstrip() + "..."
+        return (f"{kanal_filtre.VIDEO_SATIR_ON_EK} {html.escape(baslik, quote=False)} "
+                f"{youtube_rss.kisa_link(v['id'])}")
+    except Exception as e:                           # noqa: BLE001
+        print(f"[uyarı] Haftanın videosu alınamadı: {_gizle(e)}", file=sys.stderr)
+        return ""
+
+
+def kanal_brief_hazirla(brief, video_satiri=""):
+    """Kanal çıkış filtresi (kanal_filtre.py). (temiz_metin | None, sebep).
+
+    video_satiri verilirse önce brief + video satırı denenir; satır yüzünden
+    geçmezse (ör. başlıkta yasak kelime, 1024 aşımı) satır düşer, brief tek
+    başına denetlenir. Video satırı hiçbir zaman raporu engellemez."""
+    if video_satiri:
+        aday = kanal_filtre.em_tire_temizle(f"{brief}\n\n{video_satiri}")
+        ok, sebep = kanal_filtre.kontrol(aday)
+        if ok:
+            return aday, ""
+        print(f"[uyarı] Haftanın videosu satırı düştü: {sebep}", file=sys.stderr)
     return kanal_filtre.hazirla(brief)
 
 
@@ -968,8 +1002,9 @@ def main():
         # tam metin gider.
         kanal_var = any(ad == "kanal" for ad, _ in hedefler)
         kanal_brief, filtre_sebebi = None, ""
+        video_satiri = haftanin_videosu_satiri() if kanal_var else ""
         if kanal_var:
-            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor))
+            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor), video_satiri)
             if kanal_brief is None:
                 print(f"[uyarı] Kanal filtresi engelledi: {filtre_sebebi} — bir kez yeniden üretiliyor.",
                       file=sys.stderr)
@@ -981,7 +1016,8 @@ def main():
                         simdi_iso=sema.simdi_iso(datetime.now(IST)),
                         onceki_rapor=sema.rapor_oku(tarih_id))
                     sema.dogrula(rapor)
-                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor))
+                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor),
+                                                                     video_satiri)
                 except Exception as ye:               # noqa: BLE001
                     filtre_sebebi = f"{filtre_sebebi}; yeniden üretim başarısız: {_gizle(ye)[:200]}"
         kanal_engellendi = kanal_var and kanal_brief is None
