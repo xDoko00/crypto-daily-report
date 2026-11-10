@@ -1,0 +1,89 @@
+name: Video Duyurusu
+
+# Pazartesi 20:00 TSİ YouTube yayınından sonra t.me/DogukanLive + sohbet grubu.
+# KAPALI başlar: repo değişkeni VIDEO_DUYURU_AKTIF=1 olmadan zamanlanmış tur
+# hiçbir şey yapmaz. Mod: VIDEO_DUYURU_MOD = taslak (varsayılan, önce
+# Doğukan'a taslak) | sinif (şablona uyan duyuru doğrudan gider).
+on:
+  schedule:
+    - cron: "*/10 17-20 * * 1"   # Pzt 20:00-23:50 TSİ: yeni video -> ilk duyuru
+    - cron: "*/10 17-21 * * 2"   # Sal 20:00-00:50 TSİ: 24. saat ikinci dokunuş
+  workflow_dispatch:
+    inputs:
+      islem:
+        description: "calis (tur) / onayla (taslağı kanala gönder) / kuru (gönderim YOK, yalnız log)"
+        type: choice
+        options: [calis, onayla, kuru]
+        default: kuru
+      video:
+        description: "YouTube video kimliği (onayla için)"
+        type: string
+        default: ""
+      asama:
+        description: "ilk / ikinci"
+        type: choice
+        options: [ilk, ikinci]
+        default: ilk
+      metin:
+        description: "İsteğe bağlı: şablon yerine bu metin (filtreden yine geçer)"
+        type: string
+        default: ""
+
+concurrency:
+  group: video-duyuru
+  cancel-in-progress: false
+
+jobs:
+  duyuru:
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.VIDEO_DUYURU_AKTIF == '1' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 10
+    env:
+      TELEGRAM_BOT_TOKEN:     ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID:       ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+      TELEGRAM_SOHBET_ID:     ${{ vars.TELEGRAM_SOHBET_ID || '@DogukanLiveSohbet' }}
+      VIDEO_DUYURU_AKTIF:     ${{ vars.VIDEO_DUYURU_AKTIF || '0' }}
+      DUYURU_MOD:             ${{ vars.VIDEO_DUYURU_MOD || 'taslak' }}
+      DUYURU_REKLAM_VEREN:    ${{ vars.DUYURU_REKLAM_VEREN || '' }}
+      DUYURU_SABITLE:         "1"
+      DUYURU_IKINCI:          "1"
+      DUYURU_IKINCI_GRUP:     "0"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Duyuru turu
+        env:
+          ISLEM: ${{ inputs.islem || 'calis' }}
+          VIDEO: ${{ inputs.video }}
+          ASAMA: ${{ inputs.asama || 'ilk' }}
+          METIN: ${{ inputs.metin }}
+        run: |
+          case "$ISLEM" in
+            onayla)
+              if [ -n "$METIN" ]; then printf '%s' "$METIN" > "$RUNNER_TEMP/metin.txt"; EK="--metin-dosya $RUNNER_TEMP/metin.txt"; fi
+              python video_duyuru.py onayla --video "$VIDEO" --asama "$ASAMA" $EK ;;
+            kuru)
+              VIDEO_DUYURU_AKTIF=1 python video_duyuru.py calis --kuru ;;
+            *)
+              python video_duyuru.py calis ;;
+          esac
+      - name: Durumu kaydet
+        if: ${{ inputs.islem != 'kuru' }}
+        run: |
+          git add state/video-duyuru.json 2>/dev/null || true
+          [ -f state/duyuru-filtre-log.jsonl ] && git add state/duyuru-filtre-log.jsonl || true
+          if git diff --cached --quiet; then echo "degisiklik yok"; else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: video duyuru durumu"
+            git pull --rebase --autostash origin main || true
+            git push || echo "push basarisiz"
+          fi
