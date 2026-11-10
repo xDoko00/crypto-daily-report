@@ -91,6 +91,9 @@ jobs:
           # Klon sesli özet (ElevenLabs). Hata olursa ses atlanır, rapor yine gider.
           ELEVENLABS_API_KEY:      ${{ secrets.ELEVENLABS_API_KEY }}
           SESLI_OZET_ELEVENLABS:   "1"
+          # Kanala günde TEK gönderi (kart + brief). "0" = eski 3 mesaj (kart+brief, ses, detay).
+          # Kanal çıkış filtresi (kanal_filtre.py) her iki durumda da açıktır.
+          KANAL_TEK_GONDERI:       "1"
           # Dikey video burada ÜRETİLMEZ: report.py raporu bu dosyaya yazar,
           # video aşağıdaki ayrı adımda rapor commit'inden SONRA çalışır.
           VIDEO_RAPOR_DOSYASI:     ${{ runner.temp }}/video-rapor.json
@@ -120,6 +123,7 @@ jobs:
           # takip.json'ı yine de commit'lemeliyiz: yoksa nöbetçi kilidi kaydedilmez
           # ve ertesi gün ikinci rapor gider.
           git add state/takip.json || true
+          [ -f state/kanal-filtre-log.jsonl ] && git add state/kanal-filtre-log.jsonl || true
           [ -f state/video-son-kullanim.json ] && git add state/video-son-kullanim.json || true
           [ -d reports ] && git add reports || true
           if git diff --cached --quiet; then
