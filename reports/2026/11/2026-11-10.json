@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-10",
+  "language": "tr",
+  "title": "10 Kasım 2026, Salı",
+  "publishedAt": "2026-11-10T07:50:36+03:00",
+  "updatedAt": "2026-11-10T07:50:36+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-10T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 74627,
+        "change24h": -0.343824119651527
+      },
+      "ETH": {
+        "priceUsd": 2117.44,
+        "change24h": -0.9924234069682514
+      },
+      "SOL": {
+        "priceUsd": 85.82,
+        "change24h": -1.8780516376357026
+      },
+      "BNB": {
+        "priceUsd": 688.61,
+        "change24h": 0.11078505842037575
+      },
+      "XRP": {
+        "priceUsd": 1.093,
+        "change24h": -1.1581843507954077
+      }
+    },
+    "btcDominance": 59.62664822178938,
+    "ethDominance": 10.28143424393766,
+    "totalMarketCapUsd": 2510198319429.9526,
+    "volume24hUsd": 73587491505.45984,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 32,
+      "label": "Korku",
+      "previousValue": 29,
+      "weekAgoValue": 26
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Piyasa bugün açıklanacak ABD Ekim TÜFE verisi öncesi temkinli pozisyon alıyor; art arda gelen spot Bitcoin ETF çıkışları ve Aralık ayı Fed faiz artırım beklentisinin güçlenmesi risk iştahını bastırıyor.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD Ekim TÜFE verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "Fed Başkanı Waller'ın konuşması"
+      }
+    ],
+    "mainRisk": "TÜFE beklentiden sıcak gelirse Aralık faiz artırımı ihtimali güçlenir ve kaldıraçlı pozisyonlarda yeni tasfiye dalgası tetiklenebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD TÜFE verisi beklentiyi aştı mı",
+        "outcome": "Henüz belli değil, rapor bu veri açıklanmadan önce hazırlandı; BLS raporu bugün TSİ 16:30'da yayınlanacak."
+      },
+      {
+        "item": "BTC 75.000 doları yeniden kazanabildi mi",
+        "outcome": "Kısmen ıska, BTC son 24 saatte 74.600-75.400 dolar bandında dalgalandı, kalıcı bir kazanım yok ve destek seviyesi test ediliyor."
+      },
+      {
+        "item": "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıktı mı",
+        "outcome": "Henüz çıkmadı, karar tarihi yarın; bugün için netlik yok."
+      },
+      {
+        "item": "MEXC'nin ABD banka erişimi kesintisi borsalardan çıkışları hızlandırdı mı",
+        "outcome": "Kısmen isabet, OKX kullanıcılarını MEXC'den doğrudan transfer yapmaması konusunda uyardı ve bazı USDT transferleri donduruluyor, ancak resmi 30 günlük kesinti süreci Federal Register ilanı yapılmadığı için henüz başlamadı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "FinCEN'in MEXC kararı borsalar arası transferleri karıştırdı",
+        "summary": "ABD Hazinesi'nin MEXC'yi 16,7 milyar dolarlık yasa dışı fon akışı nedeniyle ABD bankacılık sisteminden kesmesinin ardından OKX kurucusu kullanıcılarını MEXC'den doğrudan transfer yapmamaları konusunda uyardı, bazı USDT transferleri donduruluyor.",
+        "source": {
+          "url": "https://www.tokenpost.com/news/regulation/52607",
+          "title": "OKX Warns Users Against Direct MEXC-to-OKX Transfers After FinCEN Order",
+          "publisher": "TokenPost"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Spot Bitcoin ETF'lerinden rekor haftalık çıkış",
+        "summary": "ABD spot Bitcoin ETF'leri 2-6 Kasım haftasında 1,28 milyar dolar net çıkış kaydetti, BlackRock'ın IBIT'i tek günde 405 milyon dolar kaybetti ve bu çıkışlar Bitcoin'in 2026 yılı kazançlarını sildi.",
+        "source": {
+          "url": "https://www.interactivecrypto.com/record-spot-etf-outflows-wipe-out-bitcoin-s-2026-institutional-gains",
+          "title": "Record Spot ETF Outflows Wipe Out Bitcoin's 2026 Institutional Gains",
+          "publisher": "Interactive Crypto"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "SEC kripto ETF opsiyon kuralı kararını 11 Kasım'a erteledi",
+        "summary": "Nasdaq ISE'nin spot kripto ETF opsiyonları için evrensel listeleme kriteri önerisinde SEC 90 günlük uzatma sürecini işletti, karar tarihi yarına sarktı.",
+        "source": {
+          "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+          "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+          "publisher": "CryptoVot"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Aralık ayı Fed faiz artırım ihtimali belirgin yükseldi",
+        "summary": "Güçlü Ekim istihdam verisi sonrası piyasa fiyatlaması, Aralık ayında 25 baz puanlık faiz artırımı ihtimalini belirgin biçimde yukarı taşıdı ve bu durum risk varlıklarını baskılıyor.",
+        "source": {
+          "url": "https://www.fxstreet.com/news/federal-reserve-december-rate-hike-view-reinforced-commerzbank-202611090801",
+          "title": "Federal Reserve: December rate hike view reinforced",
+          "publisher": "FXStreet"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD Ekim TÜFE verisi açıklanacak"
+      },
+      {
+        "timeTr": null,
+        "title": "Fed Başkanı Christopher Waller'ın açıklamaları"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "TÜFE beklentiden sıcak gelirse Aralık faiz artırımı ihtimali güçlenir ve kaldıraçlı pozisyonlarda yeni tasfiye riski oluşur.",
+      "MEXC'den borsalar arası transfer donmaları sürerse likidite sıkışıklığı diğer platformlara da yayılabilir."
+    ]
+  },
+  "followUps": [
+    "ABD Ekim TÜFE verisi beklentiyi aştı mı",
+    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten açıklandı mı",
+    "MEXC'nin ABD bankacılık kesintisi için 30 günlük resmi süre Federal Register ilanıyla başladı mı",
+    "BTC, TÜFE sonrası 75.000 doları kalıcı olarak koruyabildi mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.tokenpost.com/news/regulation/52607",
+      "title": "OKX Warns Users Against Direct MEXC-to-OKX Transfers After FinCEN Order",
+      "publisher": "TokenPost"
+    },
+    {
+      "url": "https://www.interactivecrypto.com/record-spot-etf-outflows-wipe-out-bitcoin-s-2026-institutional-gains",
+      "title": "Record Spot ETF Outflows Wipe Out Bitcoin's 2026 Institutional Gains",
+      "publisher": "Interactive Crypto"
+    },
+    {
+      "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+      "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+      "publisher": "CryptoVot"
+    },
+    {
+      "url": "https://www.fxstreet.com/news/federal-reserve-december-rate-hike-view-reinforced-commerzbank-202611090801",
+      "title": "Federal Reserve: December rate hike view reinforced",
+      "publisher": "FXStreet"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

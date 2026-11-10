@@ -1,151 +1,135 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-09",
+  "id": "2026-11-10",
   "language": "tr",
-  "title": "9 Kasım 2026, Pazartesi",
-  "publishedAt": "2026-11-09T07:51:06+03:00",
-  "updatedAt": "2026-11-09T07:51:06+03:00",
+  "title": "10 Kasım 2026, Salı",
+  "publishedAt": "2026-11-10T07:50:36+03:00",
+  "updatedAt": "2026-11-10T07:50:36+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-09T07:48:00+03:00",
+    "asOf": "2026-11-10T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 74894,
-        "change24h": -1.1931486937473412
+        "priceUsd": 74627,
+        "change24h": -0.343824119651527
       },
       "ETH": {
-        "priceUsd": 2138.67,
-        "change24h": -4.2458651396382985
+        "priceUsd": 2117.44,
+        "change24h": -0.9924234069682514
       },
       "SOL": {
-        "priceUsd": 87.46,
-        "change24h": -1.6681557147190675
+        "priceUsd": 85.82,
+        "change24h": -1.8780516376357026
       },
       "BNB": {
-        "priceUsd": 687.85,
-        "change24h": -1.0549604599072706
+        "priceUsd": 688.61,
+        "change24h": 0.11078505842037575
       },
       "XRP": {
-        "priceUsd": 1.11,
-        "change24h": -4.666779092059118
+        "priceUsd": 1.093,
+        "change24h": -1.1581843507954077
       }
     },
-    "btcDominance": 60.18716506137343,
-    "ethDominance": 10.447786048828757,
-    "totalMarketCapUsd": 2489910640154.528,
-    "volume24hUsd": 54963762933.627235,
+    "btcDominance": 59.62664822178938,
+    "ethDominance": 10.28143424393766,
+    "totalMarketCapUsd": 2510198319429.9526,
+    "volume24hUsd": 73587491505.45984,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 29,
+      "value": 32,
       "label": "Korku",
-      "previousValue": 28,
-      "weekAgoValue": 37
+      "previousValue": 29,
+      "weekAgoValue": 26
     }
   },
   "brief": {
-    "mood": "Riskli",
-    "why": "Nvidia CEO'su Jensen Huang'ın iddia edilen bir Çin istihbarat operasyonuyla ilişkisinin soruşturulması AI hisselerinde sert satışı tetikledi ve bu risk iştahı daralması kriptoya da yayıldı; üstüne ABD spot BTC ETF'lerinde haziran'dan beri en kötü haftalık çıkışlar ile kaldıraçlı pozisyonlardaki zorunlu tasfiyeler düşüşü hızlandırdı.",
+    "mood": "Temkinli",
+    "why": "Piyasa bugün açıklanacak ABD Ekim TÜFE verisi öncesi temkinli pozisyon alıyor; art arda gelen spot Bitcoin ETF çıkışları ve Aralık ayı Fed faiz artırım beklentisinin güçlenmesi risk iştahını bastırıyor.",
     "criticalEvents": [
       {
-        "timeTr": "17:30",
-        "title": "ABD borsaları açılışı"
+        "timeTr": "16:30",
+        "title": "ABD Ekim TÜFE verisi"
       },
       {
-        "timeTr": "19:00",
-        "title": "NY Fed enflasyon beklentisi anketi"
-      },
-      {
-        "timeTr": "21:00",
-        "title": "ABD 3 yıllık tahvil ihalesi"
+        "timeTr": null,
+        "title": "Fed Başkanı Waller'ın konuşması"
       }
     ],
-    "mainRisk": "Yarın gelecek ABD TÜFE verisi beklentiyi aşarsa Fed'in Aralık'ta faiz indirimini erteleme riski güçlenir ve risk varlıklarındaki satış derinleşebilir."
+    "mainRisk": "TÜFE beklentiden sıcak gelirse Aralık faiz artırımı ihtimali güçlenir ve kaldıraçlı pozisyonlarda yeni tasfiye dalgası tetiklenebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "BTC 75.000 dolar desteğini Pazartesi New York açılışında da koruyabilecek mi",
-        "outcome": "Iska - BTC sabah erken saatlerde 73.500 dolar bölgesine kadar sarktı, destek net biçimde kırıldı ve toparlanma 75.000 doların altında kaldı."
+        "item": "ABD TÜFE verisi beklentiyi aştı mı",
+        "outcome": "Henüz belli değil, rapor bu veri açıklanmadan önce hazırlandı; BLS raporu bugün TSİ 16:30'da yayınlanacak."
       },
       {
-        "item": "10 Kasım ABD TÜFE verisi beklentiyi aştı mı",
-        "outcome": "Henüz belli değil - veri yarın (10 Kasım) 16:30 TSİ'de açıklanacak, sonuç bekleniyor."
+        "item": "BTC 75.000 doları yeniden kazanabildi mi",
+        "outcome": "Kısmen ıska, BTC son 24 saatte 74.600-75.400 dolar bandında dalgalandı, kalıcı bir kazanım yok ve destek seviyesi test ediliyor."
       },
       {
-        "item": "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıkacak mı",
-        "outcome": "Henüz belli değil - SEC'in Nasdaq ISE başvurusuna ilişkin kararı 11 Kasım'a ertelendi, karar tarihi henüz gelmedi."
+        "item": "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıktı mı",
+        "outcome": "Henüz çıkmadı, karar tarihi yarın; bugün için netlik yok."
       },
       {
-        "item": "XRP 1,10 dolar seviyesine sarkacak mı",
-        "outcome": "İsabet etti - XRP geniş çaplı satış dalgasında 1,10 dolar bölgesine kadar sarktı ve şu an bu seviyeyi savunmaya çalışıyor."
+        "item": "MEXC'nin ABD banka erişimi kesintisi borsalardan çıkışları hızlandırdı mı",
+        "outcome": "Kısmen isabet, OKX kullanıcılarını MEXC'den doğrudan transfer yapmaması konusunda uyardı ve bazı USDT transferleri donduruluyor, ancak resmi 30 günlük kesinti süreci Federal Register ilanı yapılmadığı için henüz başlamadı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Nvidia CEO'su hakkında casusluk soruşturması AI hisselerini sarstı",
-        "summary": "Nvidia yönetim kurulu, CEO Jensen Huang'ın iddia edilen bir Çinli istihbarat operasyonuyla ilişkisini bağımsız şekilde soruşturmaya aldı; haber AI hisselerinde satışı hızlandırdı ve bu dalga risk iştahı üzerinden kriptoya da yansıdı.",
+        "title": "FinCEN'in MEXC kararı borsalar arası transferleri karıştırdı",
+        "summary": "ABD Hazinesi'nin MEXC'yi 16,7 milyar dolarlık yasa dışı fon akışı nedeniyle ABD bankacılık sisteminden kesmesinin ardından OKX kurucusu kullanıcılarını MEXC'den doğrudan transfer yapmamaları konusunda uyardı, bazı USDT transferleri donduruluyor.",
         "source": {
-          "url": "https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html",
-          "title": "Nvidia investigates CEO Jensen Huang's relationship with alleged Chinese spy",
-          "publisher": "CNBC"
+          "url": "https://www.tokenpost.com/news/regulation/52607",
+          "title": "OKX Warns Users Against Direct MEXC-to-OKX Transfers After FinCEN Order",
+          "publisher": "TokenPost"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Spot Bitcoin ETF'lerinden rekor haftalık çıkış",
+        "summary": "ABD spot Bitcoin ETF'leri 2-6 Kasım haftasında 1,28 milyar dolar net çıkış kaydetti, BlackRock'ın IBIT'i tek günde 405 milyon dolar kaybetti ve bu çıkışlar Bitcoin'in 2026 yılı kazançlarını sildi.",
+        "source": {
+          "url": "https://www.interactivecrypto.com/record-spot-etf-outflows-wipe-out-bitcoin-s-2026-institutional-gains",
+          "title": "Record Spot ETF Outflows Wipe Out Bitcoin's 2026 Institutional Gains",
+          "publisher": "Interactive Crypto"
         }
       },
       {
         "importance": "kritik",
-        "title": "BTC ve ETH'de 800 milyon dolarlık likidasyon dalgası",
-        "summary": "Pazartesi sabahı küresel risk iştahının zayıflamasıyla BTC kısa süreliğine 73.500 dolara kadar sarktı; yaklaşık dört saatte 803 milyon dolarlık kaldıraçlı pozisyon, çoğu long, zorunlu olarak tasfiye oldu.",
+        "title": "SEC kripto ETF opsiyon kuralı kararını 11 Kasım'a erteledi",
+        "summary": "Nasdaq ISE'nin spot kripto ETF opsiyonları için evrensel listeleme kriteri önerisinde SEC 90 günlük uzatma sürecini işletti, karar tarihi yarına sarktı.",
         "source": {
-          "url": "https://www.kucoin.com/news/articles/crypto-daily-market-report-november-9-2026",
-          "title": "Crypto Daily Market Report",
-          "publisher": "KuCoin News"
+          "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+          "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+          "publisher": "CryptoVot"
         }
       },
       {
         "importance": "onemli",
-        "title": "BTC spot ETF'lerinde haziran'dan beri en kötü haftalık çıkış",
-        "summary": "ABD'deki spot bitcoin ETF'leri 2-6 Kasım haftasında 1,28 milyar dolar net çıkış gördü ve yılbaşından bu yana net kazançlarını sildi; BlackRock'ın IBIT fonu çıkışların büyük bölümünü oluşturdu.",
+        "title": "Aralık ayı Fed faiz artırım ihtimali belirgin yükseldi",
+        "summary": "Güçlü Ekim istihdam verisi sonrası piyasa fiyatlaması, Aralık ayında 25 baz puanlık faiz artırımı ihtimalini belirgin biçimde yukarı taşıdı ve bu durum risk varlıklarını baskılıyor.",
         "source": {
-          "url": "https://www.theblock.co/news/markets/2026-11-07-bitcoin-etfs-flip-negative-for-2026-after-1-28-billion-outflow-week-worst-since-june-435984",
-          "title": "Bitcoin ETFs flip negative for 2026 after $1.28 billion outflow week, worst since June",
-          "publisher": "The Block"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "FinCEN, MEXC Global'in ABD bankacılık erişimini kesti",
-        "summary": "ABD Hazinesi'nin FinCEN birimi, MEXC Global'in 2021-2026 arasında İran, Kuzey Kore ve Rusya'ya yönelik yaptırım ihlalleriyle bağlantılı en az 16 milyar dolarlık işleme aracılık ettiğini belirterek borsanın dolar kanallarını ABD bankacılık sisteminden kesti.",
-        "source": {
-          "url": "https://www.fincen.gov/news/news-releases/operation-economic-outcast-severs-mexc-globals-access-us-financial-system",
-          "title": "Operation Economic Outcast Severs MEXC Global's Access to the U.S. Financial System",
-          "publisher": "FinCEN - U.S. Department of the Treasury"
+          "url": "https://www.fxstreet.com/news/federal-reserve-december-rate-hike-view-reinforced-commerzbank-202611090801",
+          "title": "Federal Reserve: December rate hike view reinforced",
+          "publisher": "FXStreet"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "17:30",
-        "title": "ABD borsaları açılışı"
+        "timeTr": "16:30",
+        "title": "ABD Ekim TÜFE verisi açıklanacak"
       },
       {
-        "timeTr": "18:30",
-        "title": "Atlanta Fed GDPNow büyüme tahmini"
-      },
-      {
-        "timeTr": "19:00",
-        "title": "NY Fed enflasyon beklentisi anketi"
-      },
-      {
-        "timeTr": "20:15",
-        "title": "Richmond Fed Başkanı Barkin'in konuşması"
-      },
-      {
-        "timeTr": "21:00",
-        "title": "ABD 3 yıllık tahvil ihalesi"
+        "timeTr": null,
+        "title": "Fed Başkanı Christopher Waller'ın açıklamaları"
       }
     ],
     "turkey": {
@@ -153,36 +137,36 @@
       "items": []
     },
     "risks": [
-      "Kaldıraçlı pozisyonlardaki zorunlu tasfiyeler sürerse BTC'de 73.500 dolar altı yeni testler görülebilir.",
-      "Nvidia soruşturmasına ilişkin belirsizlik derinleşirse AI hisseleri üzerinden risk iştahı geniş çaplı zayıflayabilir."
+      "TÜFE beklentiden sıcak gelirse Aralık faiz artırımı ihtimali güçlenir ve kaldıraçlı pozisyonlarda yeni tasfiye riski oluşur.",
+      "MEXC'den borsalar arası transfer donmaları sürerse likidite sıkışıklığı diğer platformlara da yayılabilir."
     ]
   },
   "followUps": [
-    "ABD TÜFE verisi (10 Kasım) beklentiyi aştı mı",
-    "BTC 75.000 doları yeniden kazanabildi mi",
-    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten çıktı mı",
-    "MEXC'nin ABD banka erişimi kesintisi borsalardan çıkışları hızlandırdı mı"
+    "ABD Ekim TÜFE verisi beklentiyi aştı mı",
+    "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten açıklandı mı",
+    "MEXC'nin ABD bankacılık kesintisi için 30 günlük resmi süre Federal Register ilanıyla başladı mı",
+    "BTC, TÜFE sonrası 75.000 doları kalıcı olarak koruyabildi mi"
   ],
   "sources": [
     {
-      "url": "https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html",
-      "title": "Nvidia investigates CEO Jensen Huang's relationship with alleged Chinese spy",
-      "publisher": "CNBC"
+      "url": "https://www.tokenpost.com/news/regulation/52607",
+      "title": "OKX Warns Users Against Direct MEXC-to-OKX Transfers After FinCEN Order",
+      "publisher": "TokenPost"
     },
     {
-      "url": "https://www.kucoin.com/news/articles/crypto-daily-market-report-november-9-2026",
-      "title": "Crypto Daily Market Report",
-      "publisher": "KuCoin News"
+      "url": "https://www.interactivecrypto.com/record-spot-etf-outflows-wipe-out-bitcoin-s-2026-institutional-gains",
+      "title": "Record Spot ETF Outflows Wipe Out Bitcoin's 2026 Institutional Gains",
+      "publisher": "Interactive Crypto"
     },
     {
-      "url": "https://www.theblock.co/news/markets/2026-11-07-bitcoin-etfs-flip-negative-for-2026-after-1-28-billion-outflow-week-worst-since-june-435984",
-      "title": "Bitcoin ETFs flip negative for 2026 after $1.28 billion outflow week, worst since June",
-      "publisher": "The Block"
+      "url": "https://cryptovot.com/sec-crypto-etf-options-rule-delayed-to-november-11",
+      "title": "SEC Crypto ETF Options Rule Delayed to November 11",
+      "publisher": "CryptoVot"
     },
     {
-      "url": "https://www.fincen.gov/news/news-releases/operation-economic-outcast-severs-mexc-globals-access-us-financial-system",
-      "title": "Operation Economic Outcast Severs MEXC Global's Access to the U.S. Financial System",
-      "publisher": "FinCEN - U.S. Department of the Treasury"
+      "url": "https://www.fxstreet.com/news/federal-reserve-december-rate-hike-view-reinforced-commerzbank-202611090801",
+      "title": "Federal Reserve: December rate hike view reinforced",
+      "publisher": "FXStreet"
     }
   ],
   "assets": {
