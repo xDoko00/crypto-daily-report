@@ -51,6 +51,7 @@ import requests
 import render
 import sema
 import yazim
+import kanal_filtre
 
 # --------------------------------------------------------------------------- #
 # Sabitler
@@ -155,7 +156,14 @@ ALAN KURALLARI:
 - Doğrulayamadığın hiçbir bilgiyi yazma.
 - Metin alanlarında HTML etiketi, markdown veya emoji KULLANMA — düz Türkçe metin yaz. Biçimlendirmeyi sistem yapıyor.
 - Türkçe karakterleri (ç, ğ, ı, İ, ö, ş, ü) eksiksiz kullan; metni ASCII'ye çevirme ("icin", "Hurmuz Bogazi" değil; "için", "Hürmüz Boğazı").
-- Metinler kısa ve yoğun olsun; "summary" 1-2 cümleyi geçmesin."""
+- Metinler kısa ve yoğun olsun; "summary" 1-2 cümleyi geçmesin.
+- Metin alanlarında uzun tire (—) KULLANMA; yerine virgül, iki nokta ya da kısa tire (-) kullan.
+- Kâr vaadi, "kesin kazanç", al/sat sinyali, fiyat hedefi YAZMA.
+
+KANALA SIZINTI YASAĞI (çok önemli — bu metin doğrudan herkese açık kanala gider):
+- Kendi çalışman hakkında HİÇBİR şey yazma: "rapor hazır", "işte rapor", "şablona uyuyor", araç/izin/bash/karakter sayımı notu, hata ya da durum mesajı, İngilizce açıklama YOK.
+- Metin alanlarına dosya yolu, komut, iş/zamanlayıcı adı, iç ekip ya da ajan adı yazma.
+- Bir bilgiyi doğrulayamadıysan alanı kısa ve sade Türkçe doldur ("belirgin tek sebep yok" gibi); neden doğrulayamadığını AÇIKLAMA."""
 
 
 # --------------------------------------------------------------------------- #
@@ -868,6 +876,26 @@ def ses_gonder(bot_token, chat_id, ogg_bytes):
     raise RuntimeError(f"Ses gönderimi {MAX_RETRY} denemede başarısız: {_gizle(last_err)}")
 
 
+def kanal_tek_gonderi_mi():
+    """Kanala günde TEK gönderi (kart + brief altyazısı). Doğukan, 10 Kas 2026.
+    KANAL_TEK_GONDERI=0 eski 3 mesajlı düzene (kart+brief, ses, detay) döner."""
+    return os.environ.get("KANAL_TEK_GONDERI", "1").strip() != "0"
+
+
+def kanal_brief_hazirla(brief):
+    """Kanal çıkış filtresi (kanal_filtre.py). (temiz_metin | None, sebep)."""
+    return kanal_filtre.hazirla(brief)
+
+
+def kanala_gonder(bot_token, chat_id, png, kanal_brief):
+    """Kanala TEK mesaj: kart varsa kart + altyazı, yoksa yalnız brief metni.
+    kanal_brief filtreden geçmiş, <=1024 karakterlik metindir; bölünmez."""
+    if png is not None:
+        foto_gonder(bot_token, chat_id, png, caption=kanal_brief)
+    else:
+        telegram_gonder(bot_token, chat_id, kanal_brief)
+
+
 def main():
     test_modu = "--test" in sys.argv
     onizleme = "--onizleme" in sys.argv  # sadece admin, etiketsiz (önizleme)
@@ -932,6 +960,38 @@ def main():
             onceki_rapor=sema.rapor_oku(tarih_id),
         )
         sema.dogrula(rapor)
+
+        # --- KANAL ÇIKIŞ FİLTRESİ (kod, model değil) ---
+        # Kanala gidecek metin kalıba uymuyor ya da iç işaret taşıyorsa bir kez
+        # yeniden üret; yine geçmezse bugün kanala/siteye/e-postaya HİÇBİR ŞEY
+        # gitmez, sebep state/kanal-filtre-log.jsonl'a yazılır, admin'e özelden
+        # tam metin gider.
+        kanal_var = any(ad == "kanal" for ad, _ in hedefler)
+        kanal_brief, filtre_sebebi = None, ""
+        if kanal_var:
+            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor))
+            if kanal_brief is None:
+                print(f"[uyarı] Kanal filtresi engelledi: {filtre_sebebi} — bir kez yeniden üretiliyor.",
+                      file=sys.stderr)
+                try:
+                    llm_ciktisi = llm_ciktisi_uret(market_data, dun_takip)
+                    rapor = sema.rapor_kur(
+                        market=market, llm_ciktisi=llm_ciktisi, tarih_id=tarih_id,
+                        baslik=tarih_basligi(),
+                        simdi_iso=sema.simdi_iso(datetime.now(IST)),
+                        onceki_rapor=sema.rapor_oku(tarih_id))
+                    sema.dogrula(rapor)
+                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor))
+                except Exception as ye:               # noqa: BLE001
+                    filtre_sebebi = f"{filtre_sebebi}; yeniden üretim başarısız: {_gizle(ye)[:200]}"
+        kanal_engellendi = kanal_var and kanal_brief is None
+        if kanal_engellendi:
+            mesaj = (f"Kanal filtresi bugünkü raporu ENGELLEDİ, kanala gönderilmedi: "
+                     f"{filtre_sebebi}\n\nMetin:\n{_html_temizle(render.brief_html(rapor))}")
+            _actions_uyari("Kanal filtresi engelledi", f"sebep: {filtre_sebebi}")
+            admin_hata_bildir(mesaj)
+            hedefler = [(ad, hid) for ad, hid in hedefler if ad != "kanal"]
+
         bugun_takip = rapor["followUps"]
 
         # --- Adım 4: aynı JSON'dan Telegram / kart / ses üret ---
@@ -983,7 +1043,7 @@ def main():
         # Uzak kontrolden SONRA yazıyoruz: erken çıkan nöbetçi, gönderen
         # nöbetçinin raporunun üzerine kendi sürümünü commit'lemesin.
         # Test/önizlemede arşivi hiç kirletmiyoruz.
-        if not test_modu and not onizleme:
+        if not test_modu and not onizleme and not kanal_engellendi:
             try:
                 arsiv, _latest = sema.rapor_yaz(rapor)
                 print(f"[bilgi] Rapor yazıldı → "
@@ -1004,11 +1064,19 @@ def main():
                     print(f"[uyarı] Web sesli özet yazılamadı: {web_hata}", file=sys.stderr)
 
         for ad, hid in hedefler:
-            # 1) İLK MESAJ = kart + brief (görsel ilk mesaja bağlı). Kart yoksa brief metin.
-            if png is not None and len(brief) <= 1024:
-                foto_gonder(bot_token, hid, png, caption=brief)
+            if ad == "kanal" and kanal_tek_gonderi_mi():
+                kanala_gonder(bot_token, hid, png, kanal_brief)
+                print("[başarılı] 'kanal' hedefine TEK gönderi (kart + brief).", file=sys.stderr)
+                continue
+            if ad == "kanal":
+                brief_bu = kanal_brief
             else:
-                raporu_yolla(bot_token, hid, brief)
+                brief_bu = brief
+            # 1) İLK MESAJ = kart + brief (görsel ilk mesaja bağlı). Kart yoksa brief metin.
+            if png is not None and len(brief_bu) <= 1024:
+                foto_gonder(bot_token, hid, png, caption=brief_bu)
+            else:
+                raporu_yolla(bot_token, hid, brief_bu)
                 if png is not None:
                     foto_gonder(bot_token, hid, png)
             # 2) Sesli özet
@@ -1024,7 +1092,7 @@ def main():
         # --- E-posta bülteni (best-effort) ---
         # Telegram gönderimi bittikten SONRA çalışır: e-posta servisi düşse
         # bile kanal raporu almış olur (brief §6.6 — hedefler bağımsız).
-        if not test_modu and not onizleme:
+        if not test_modu and not onizleme and not kanal_engellendi:
             try:
                 import eposta
                 ok, mesaj = eposta.gonder(rapor)
@@ -1050,7 +1118,10 @@ def main():
         # o dosyaya yazılır, video ayrı iş akışı adımında rapor commit'inden
         # SONRA çalışır — rapor JSON'u videoyu beklemesin diye.
         video_dosyasi = os.environ.get("VIDEO_RAPOR_DOSYASI", "").strip()
-        if video_dosyasi:
+        if kanal_engellendi:
+            # Filtreden geçmeyen rapor video/ManyChat/sosyal medyaya da gitmesin.
+            print("[bilgi] Kanal filtresi engellediği için video/sosyal atlandı.", file=sys.stderr)
+        elif video_dosyasi:
             try:
                 with open(video_dosyasi, "w", encoding="utf-8") as f:
                     json.dump(rapor, f, ensure_ascii=False)
