@@ -906,14 +906,100 @@ def haftanin_videosu_satiri(simdi=None, videolar=None):
         return ""
 
 
-def kanal_brief_hazirla(brief, video_satiri=""):
+SITE_RAPOR_URL = "https://dogukanlive.com/gunluk-raporlar/{id}/"
+
+
+def rapor_linki_satiri(rapor_id):
+    """Kanal mesajının EN ALT satırı: sitenin o günkü TARİHLİ rapor sayfası.
+
+    Doğukan, 11 Kas 2026. /bugun/ değil tarihli adres: eski gönderilerin linki
+    ertesi gün başka raporu göstermesin. UTM yok. Fotoğraf altyazısında link
+    önizlemesi oluşmaz (kart bozulmaz); kartsız metin yolunda
+    telegram_gonder zaten disable_web_page_preview=True gönderir.
+    KANAL_RAPOR_LINKI=0 kapatır. Tarih geçersizse '' (rapor etkilenmez)."""
+    if os.environ.get("KANAL_RAPOR_LINKI", "1").strip() == "0":
+        return ""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(rapor_id or "")):
+        return ""
+    return f"{kanal_filtre.RAPOR_LINKI_ON_EK} {SITE_RAPOR_URL.format(id=rapor_id)}"
+
+
+_KISALTILABILIR = ("🔑 <b>Neden:</b> ", "⚠️ <b>Risk:</b> ")
+
+
+def brief_kisalt(brief, sinir):
+    """Brief'i `sinir` karaktere sığdırır: yalnız Neden ve Risk satırlarının
+    metni kelime sınırından kesilip '...' ile biter (en uzun olan önce).
+    Satır başları ve diğer satırlar korunur, böylece filtre kalıbı bozulmaz.
+    Sığdıramazsa elinden gelen en kısa hâli döndürür."""
+    if len(brief) <= sinir:
+        return brief
+    satirlar = brief.split("\n")
+    while len("\n".join(satirlar)) > sinir:
+        adaylar = [(len(st), i) for i, st in enumerate(satirlar)
+                   if any(st.startswith(b) for b in _KISALTILABILIR)]
+        if not adaylar:
+            break
+        _, i = max(adaylar)
+        bas = next(b for b in _KISALTILABILIR if satirlar[i].startswith(b))
+        govde = satirlar[i][len(bas):]
+        if govde.endswith("..."):
+            govde = govde[:-3]
+        fazla = len("\n".join(satirlar)) - sinir
+        hedef = max(20, len(govde) - fazla - 3)
+        if hedef >= len(govde):
+            hedef = len(govde) - 10
+        if hedef < 20:
+            break
+        kes = govde[:hedef]
+        if " " in kes:
+            kes = kes.rsplit(" ", 1)[0]
+        # HTML varlığını (&amp; vb.) ortadan bölme
+        amp = kes.rfind("&")
+        if amp != -1 and ";" not in kes[amp:]:
+            kes = kes[:amp]
+        satirlar[i] = bas + kes.rstrip(" ,;:.") + "..."
+    return "\n".join(satirlar)
+
+
+def kanal_brief_hazirla(brief, video_satiri="", link_satiri=""):
     """Kanal çıkış filtresi (kanal_filtre.py). (temiz_metin | None, sebep).
 
-    video_satiri verilirse önce brief + video satırı denenir; satır yüzünden
-    geçmezse (ör. başlıkta yasak kelime, 1024 aşımı) satır düşer, brief tek
-    başına denetlenir. Video satırı hiçbir zaman raporu engellemez."""
+    Sıra: brief, (video satırı), (rapor linki). Link satırı HER ZAMAN en
+    altta kalır; 1024 sınırı aşılırsa önce video satırı düşer, yine sığmazsa
+    brief'in Neden/Risk metni kısaltılır. Video satırı hiçbir zaman raporu
+    engellemez; link satırı da engellemez (biçimi bozuksa link düşer,
+    brief yine denetlenip gider)."""
+    def _birlestir(*parcalar):
+        return kanal_filtre.em_tire_temizle("\n\n".join(p for p in parcalar if p))
+
+    if link_satiri:
+        adaylar = []
+        if video_satiri:
+            adaylar.append(("video+link", _birlestir(brief, video_satiri, link_satiri)))
+        adaylar.append(("link", _birlestir(brief, link_satiri)))
+        govde = kanal_filtre.em_tire_temizle(brief)
+        sinir = 1024 - len(link_satiri) - 2
+        if len(govde) > sinir:
+            adaylar.append(("kisa+link", _birlestir(brief_kisalt(govde, sinir), link_satiri)))
+        sebep = ""
+        for ad, aday in adaylar:
+            ok, sebep = kanal_filtre.kontrol(aday)
+            if ok:
+                if ad != "video+link" and video_satiri:
+                    print("[uyarı] Haftanın videosu satırı düştü (link satırı kaldı).",
+                          file=sys.stderr)
+                if ad == "kisa+link":
+                    print("[uyarı] Brief 1024 sınırı için kısaltıldı (link satırı kaldı).",
+                          file=sys.stderr)
+                return aday, ""
+        print(f"[uyarı] Link satırıyla filtre geçmedi: {sebep}", file=sys.stderr)
+        # Sebep linkten bağımsızsa (iç işaret vb.) aşağıdaki denetim de engeller.
+        ok_link_siz, _ = kanal_filtre.kontrol(_birlestir(brief))
+        if ok_link_siz:
+            print("[uyarı] Rapor linki satırı düştü.", file=sys.stderr)
     if video_satiri:
-        aday = kanal_filtre.em_tire_temizle(f"{brief}\n\n{video_satiri}")
+        aday = _birlestir(brief, video_satiri)
         ok, sebep = kanal_filtre.kontrol(aday)
         if ok:
             return aday, ""
@@ -1004,7 +1090,8 @@ def main():
         kanal_brief, filtre_sebebi = None, ""
         video_satiri = haftanin_videosu_satiri() if kanal_var else ""
         if kanal_var:
-            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor), video_satiri)
+            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor), video_satiri,
+                                                             rapor_linki_satiri(rapor["id"]))
             if kanal_brief is None:
                 print(f"[uyarı] Kanal filtresi engelledi: {filtre_sebebi} — bir kez yeniden üretiliyor.",
                       file=sys.stderr)
@@ -1016,8 +1103,8 @@ def main():
                         simdi_iso=sema.simdi_iso(datetime.now(IST)),
                         onceki_rapor=sema.rapor_oku(tarih_id))
                     sema.dogrula(rapor)
-                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor),
-                                                                     video_satiri)
+                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(
+                        render.brief_html(rapor), video_satiri, rapor_linki_satiri(rapor["id"]))
                 except Exception as ye:               # noqa: BLE001
                     filtre_sebebi = f"{filtre_sebebi}; yeniden üretim başarısız: {_gizle(ye)[:200]}"
         kanal_engellendi = kanal_var and kanal_brief is None
