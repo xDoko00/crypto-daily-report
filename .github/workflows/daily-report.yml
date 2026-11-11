@@ -33,7 +33,11 @@ on:
         type: boolean
         default: false
 
-# Aynı anda tek çalışma yeter; üst üste binmeyi engelle.
+# Aynı anda tek çalışma yeter; üst üste binmeyi engelle. Kanal mesajı site
+# sayfası hazır olana kadar (tavan KANAL_SITE_BEKLE_DK) beklerken tetiklenen
+# yedek cron'lar / rapor-tetik bu grupta SIRAYA girer; sıra gelince takip.json'da
+# bugünü görüp çıkar. Bu yüzden cancel-in-progress KAPALI kalmalı (çift gönderi
+# koruması buna dayanıyor).
 concurrency:
   group: daily-report
   cancel-in-progress: false
@@ -47,7 +51,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    timeout-minutes: 300  # erken nöbetçinin 08:00'e kadar beklemesini kapsar
+    # Erken nöbetçi (04:07) 08:00'e kadar bekler + site sayfası beklemesi
+    # (tavan 45 dk) + video/sosyal (~20 dk). 300 dk buna yetmiyordu.
+    timeout-minutes: 360
     env:
       # Sosyal taslak testi (yalnız elle tetiklemede true olabilir; zamanlanmışta boş).
       SOSYAL_TASLAK: ${{ inputs.sosyal_taslak_testi && '1' || '' }}
@@ -94,6 +100,10 @@ jobs:
           # Kanala günde TEK gönderi (kart + brief). "0" = eski 3 mesaj (kart+brief, ses, detay).
           # Kanal çıkış filtresi (kanal_filtre.py) her iki durumda da açıktır.
           KANAL_TEK_GONDERI:       "1"
+          # Kanal mesajı, sitenin tarihli sayfası (gunluk-raporlar/<gün>/) HTTP 200 +
+          # bugünün içeriğiyle yayında olunca gider; 60 sn arayla yoklar. Tavan (dk)
+          # dolarsa yine gönderir (link tarihli kalır, iş özetine uyarı). 0 = beklemez.
+          KANAL_SITE_BEKLE_DK:     ${{ vars.KANAL_SITE_BEKLE_DK || '45' }}
           # Dikey video burada ÜRETİLMEZ: report.py raporu bu dosyaya yazar,
           # video aşağıdaki ayrı adımda rapor commit'inden SONRA çalışır.
           VIDEO_RAPOR_DOSYASI:     ${{ runner.temp }}/video-rapor.json

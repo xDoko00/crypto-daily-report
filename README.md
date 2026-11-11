@@ -158,7 +158,8 @@ Saati değiştirmek için workflow'daki `DELIVER_AT_TR` değerini (ve istersen c
 ├── report.py            # Ana akış: veri → JSON rapor → kart + brief + ses + detay gönderimi
 ├── sema.py              # Kanonik rapor şeması, doğrulama, reports/ yazma
 ├── render.py            # JSON → Telegram HTML / sesli özet metni / kart verisi
-├── kart.py              # Paylaşılabilir sabah kartı (Pillow)
+├── kart.py              # Paylaşılabilir sabah kartı (Pillow, Montserrat; KART_TASARIM=sari|vitrin|serit|klasik)
+├── fonts/               # Montserrat-VF.ttf + OFL lisansı (kart yazı tipi)
 ├── ses.py               # 45 sn sesli özet (edge-tts + ffmpeg)
 ├── setup.py             # Kurulum sihirbazı (chat_id, test, .env, GitHub)
 ├── requirements.txt     # requests, Pillow, edge-tts, tzdata, jsonschema

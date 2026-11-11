@@ -906,14 +906,220 @@ def haftanin_videosu_satiri(simdi=None, videolar=None):
         return ""
 
 
-def kanal_brief_hazirla(brief, video_satiri=""):
+SITE_RAPOR_URL = "https://dogukanlive.com/gunluk-raporlar/{id}/"
+
+
+def rapor_linki_satiri(rapor_id):
+    """Kanal mesajının EN ALT satırı: sitenin o günkü TARİHLİ rapor sayfası.
+
+    Doğukan, 11 Kas 2026. /bugun/ değil tarihli adres: eski gönderilerin linki
+    ertesi gün başka raporu göstermesin. UTM yok. Fotoğraf altyazısında link
+    önizlemesi oluşmaz (kart bozulmaz); kartsız metin yolunda
+    telegram_gonder zaten disable_web_page_preview=True gönderir.
+    KANAL_RAPOR_LINKI=0 kapatır. Tarih geçersizse '' (rapor etkilenmez)."""
+    if os.environ.get("KANAL_RAPOR_LINKI", "1").strip() == "0":
+        return ""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(rapor_id or "")):
+        return ""
+    return f"{kanal_filtre.RAPOR_LINKI_ON_EK} {SITE_RAPOR_URL.format(id=rapor_id)}"
+
+
+# --- Kanal mesajı site hazır olunca gider (Doğukan, 11 Kas 2026) ----------- #
+# Mesajın son satırı tarihli site sayfası; site o sayfayı ~08:10'da yayınlıyor
+# (akademi site-tetik 08:10/08:35, reports/latest.json bugünün id'sini taşıyınca).
+# Kanal gönderiminden hemen önce sayfa yoklanır: HTTP 200 + sayfada o günün
+# kanonik adresi (+ web sesi yazıldıysa /ses/<id>.mp3). 60 sn arayla, tavan
+# KANAL_SITE_BEKLE_DK (vars. 45). Tavan dolarsa YİNE GÖNDERİLİR (kanal günü
+# kaçırmaz), link aynı tarihli adres kalır, loga yalnız durum kodu düşer.
+SITE_BEKLE_VARSAYILAN_DK = 45
+SITE_BEKLE_ARALIK_SN = 60
+
+
+def site_bekle_dk():
+    """KANAL_SITE_BEKLE_DK (dakika). 0 = bekleme kapalı. Geçersizse varsayılan."""
+    ham = os.environ.get("KANAL_SITE_BEKLE_DK", "").strip()
+    if not ham:
+        return SITE_BEKLE_VARSAYILAN_DK
+    try:
+        return max(0.0, float(ham))
+    except ValueError:
+        return SITE_BEKLE_VARSAYILAN_DK
+
+
+def site_bekleme_aktif_mi():
+    """Yalnız GitHub Actions'ta (yerel/kuru koşu ağa çıkıp beklemesin), link
+    satırı açıkken ve tavan > 0 iken."""
+    return (os.environ.get("GITHUB_ACTIONS") == "true"
+            and os.environ.get("KANAL_RAPOR_LINKI", "1").strip() != "0"
+            and site_bekle_dk() > 0)
+
+
+def site_sayfasi_hazir_mi(rapor_id, ses_bekleniyor=False, get=None):
+    """(hazır_mı, kısa_durum). Durum yalnız kod/etiket taşır, sayfa metni değil."""
+    get = get or requests.get
+    url = SITE_RAPOR_URL.format(id=rapor_id)
+    try:
+        r = get(url, timeout=20, allow_redirects=True,
+                headers={"Cache-Control": "no-cache", "User-Agent": "crypto-daily-report/site-bekle"})
+    except Exception as e:                           # noqa: BLE001
+        return False, f"ag hatasi {type(e).__name__}"
+    if r.status_code != 200:
+        return False, f"http {r.status_code}"
+    metin = r.text or ""
+    if f"/gunluk-raporlar/{rapor_id}/" not in metin:
+        return False, "http 200, tarih yok"
+    if ses_bekleniyor and f"/ses/{rapor_id}.mp3" not in metin:
+        return False, "http 200, ses yok"
+    return True, "hazir"
+
+
+def site_hazir_bekle(rapor_id, ses_bekleniyor=False, tavan_dk=None,
+                     aralik_sn=SITE_BEKLE_ARALIK_SN, kontrol=None,
+                     uyu=None, saat=None):
+    """Tarihli sayfa hazır olana kadar bekler. True = hazır, False = tavan doldu
+    (çağıran yine gönderir). Asla fırlatmaz."""
+    kontrol = kontrol or site_sayfasi_hazir_mi
+    uyu = uyu or time.sleep
+    saat = saat or time.monotonic
+    tavan_sn = (site_bekle_dk() if tavan_dk is None else tavan_dk) * 60
+    bas = saat()
+    deneme = 0
+    durum = ""
+    while True:
+        deneme += 1
+        try:
+            hazir, durum = kontrol(rapor_id, ses_bekleniyor)
+        except Exception as e:                       # noqa: BLE001
+            hazir, durum = False, f"kontrol hatasi {type(e).__name__}"
+        gecen = saat() - bas
+        if hazir:
+            print(f"[bilgi] Site tarihli sayfası hazır ({deneme}. yoklama, {int(gecen)} sn).",
+                  file=sys.stderr)
+            return True
+        if gecen + aralik_sn > tavan_sn:
+            uyari = (f"Site tarihli sayfası {int(tavan_sn // 60)} dk içinde hazır olmadı "
+                     f"(son durum: {durum}, {deneme} yoklama); kanal mesajı yine gönderiliyor, "
+                     f"link aynı tarihli adres.")
+            print(f"[uyarı] {uyari}", file=sys.stderr)
+            _actions_uyari("Site sayfası hazır değil", uyari)
+            return False
+        if deneme == 1 or deneme % 5 == 0:
+            print(f"[bilgi] Site sayfası henüz hazır değil ({durum}); {aralik_sn} sn sonra "
+                  f"yeniden yoklanacak (tavan {int(tavan_sn // 60)} dk).", file=sys.stderr)
+        uyu(aralik_sn)
+
+
+def raporu_onden_yayinla(rapor_id):
+    """Kanal beklemesinden ÖNCE reports/ (JSON + web sesi) main'e push edilir;
+    site-tetik 08:10'da latest.json'da bugünün id'sini görüp siteyi yayınlasın.
+    state/takip.json (gün kilidi) BURADA push edilmez: kilit ancak gönderimden
+    sonra yazılır. Yalnız Actions'ta; best-effort, asla fırlatmaz."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return False
+    kimlik = ["-c", "user.name=github-actions[bot]",
+              "-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com"]
+    try:
+        def git(*arg, sure=60):
+            return subprocess.run(["git", *kimlik, *arg], capture_output=True, text=True,
+                                  timeout=sure)
+        git("add", "reports")
+        if git("diff", "--cached", "--quiet").returncode == 0:
+            print("[bilgi] Ön yayın: reports/ değişikliği yok.", file=sys.stderr)
+            return True
+        if git("commit", "-m", f"chore: gunluk rapor {rapor_id} (kanal oncesi)").returncode != 0:
+            print("[uyarı] Ön yayın commit başarısız.", file=sys.stderr)
+            return False
+        r = git("pull", "--rebase", "--autostash", "origin", "main", sure=90)
+        if r.returncode != 0:
+            git("rebase", "--abort")
+            print("[uyarı] Ön yayın rebase başarısız (rapor yine gönderilecek).", file=sys.stderr)
+            return False
+        if git("push", "origin", "HEAD:main", sure=90).returncode != 0:
+            print("[uyarı] Ön yayın push başarısız (rapor yine gönderilecek).", file=sys.stderr)
+            return False
+        print("[bilgi] Rapor siteye ön yayınlandı (reports/ main'de).", file=sys.stderr)
+        return True
+    except Exception as e:                           # noqa: BLE001
+        print(f"[uyarı] Ön yayın atlandı: {type(e).__name__}", file=sys.stderr)
+        return False
+
+
+_KISALTILABILIR = ("🔑 <b>Neden:</b> ", "⚠️ <b>Risk:</b> ")
+
+
+def brief_kisalt(brief, sinir):
+    """Brief'i `sinir` karaktere sığdırır: yalnız Neden ve Risk satırlarının
+    metni kelime sınırından kesilip '...' ile biter (en uzun olan önce).
+    Satır başları ve diğer satırlar korunur, böylece filtre kalıbı bozulmaz.
+    Sığdıramazsa elinden gelen en kısa hâli döndürür."""
+    if len(brief) <= sinir:
+        return brief
+    satirlar = brief.split("\n")
+    while len("\n".join(satirlar)) > sinir:
+        adaylar = [(len(st), i) for i, st in enumerate(satirlar)
+                   if any(st.startswith(b) for b in _KISALTILABILIR)]
+        if not adaylar:
+            break
+        _, i = max(adaylar)
+        bas = next(b for b in _KISALTILABILIR if satirlar[i].startswith(b))
+        govde = satirlar[i][len(bas):]
+        if govde.endswith("..."):
+            govde = govde[:-3]
+        fazla = len("\n".join(satirlar)) - sinir
+        hedef = max(20, len(govde) - fazla - 3)
+        if hedef >= len(govde):
+            hedef = len(govde) - 10
+        if hedef < 20:
+            break
+        kes = govde[:hedef]
+        if " " in kes:
+            kes = kes.rsplit(" ", 1)[0]
+        # HTML varlığını (&amp; vb.) ortadan bölme
+        amp = kes.rfind("&")
+        if amp != -1 and ";" not in kes[amp:]:
+            kes = kes[:amp]
+        satirlar[i] = bas + kes.rstrip(" ,;:.") + "..."
+    return "\n".join(satirlar)
+
+
+def kanal_brief_hazirla(brief, video_satiri="", link_satiri=""):
     """Kanal çıkış filtresi (kanal_filtre.py). (temiz_metin | None, sebep).
 
-    video_satiri verilirse önce brief + video satırı denenir; satır yüzünden
-    geçmezse (ör. başlıkta yasak kelime, 1024 aşımı) satır düşer, brief tek
-    başına denetlenir. Video satırı hiçbir zaman raporu engellemez."""
+    Sıra: brief, (video satırı), (rapor linki). Link satırı HER ZAMAN en
+    altta kalır; 1024 sınırı aşılırsa önce video satırı düşer, yine sığmazsa
+    brief'in Neden/Risk metni kısaltılır. Video satırı hiçbir zaman raporu
+    engellemez; link satırı da engellemez (biçimi bozuksa link düşer,
+    brief yine denetlenip gider)."""
+    def _birlestir(*parcalar):
+        return kanal_filtre.em_tire_temizle("\n\n".join(p for p in parcalar if p))
+
+    if link_satiri:
+        adaylar = []
+        if video_satiri:
+            adaylar.append(("video+link", _birlestir(brief, video_satiri, link_satiri)))
+        adaylar.append(("link", _birlestir(brief, link_satiri)))
+        govde = kanal_filtre.em_tire_temizle(brief)
+        sinir = 1024 - len(link_satiri) - 2
+        if len(govde) > sinir:
+            adaylar.append(("kisa+link", _birlestir(brief_kisalt(govde, sinir), link_satiri)))
+        sebep = ""
+        for ad, aday in adaylar:
+            ok, sebep = kanal_filtre.kontrol(aday)
+            if ok:
+                if ad != "video+link" and video_satiri:
+                    print("[uyarı] Haftanın videosu satırı düştü (link satırı kaldı).",
+                          file=sys.stderr)
+                if ad == "kisa+link":
+                    print("[uyarı] Brief 1024 sınırı için kısaltıldı (link satırı kaldı).",
+                          file=sys.stderr)
+                return aday, ""
+        print(f"[uyarı] Link satırıyla filtre geçmedi: {sebep}", file=sys.stderr)
+        # Sebep linkten bağımsızsa (iç işaret vb.) aşağıdaki denetim de engeller.
+        ok_link_siz, _ = kanal_filtre.kontrol(_birlestir(brief))
+        if ok_link_siz:
+            print("[uyarı] Rapor linki satırı düştü.", file=sys.stderr)
     if video_satiri:
-        aday = kanal_filtre.em_tire_temizle(f"{brief}\n\n{video_satiri}")
+        aday = _birlestir(brief, video_satiri)
         ok, sebep = kanal_filtre.kontrol(aday)
         if ok:
             return aday, ""
@@ -1004,7 +1210,8 @@ def main():
         kanal_brief, filtre_sebebi = None, ""
         video_satiri = haftanin_videosu_satiri() if kanal_var else ""
         if kanal_var:
-            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor), video_satiri)
+            kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor), video_satiri,
+                                                             rapor_linki_satiri(rapor["id"]))
             if kanal_brief is None:
                 print(f"[uyarı] Kanal filtresi engelledi: {filtre_sebebi} — bir kez yeniden üretiliyor.",
                       file=sys.stderr)
@@ -1016,8 +1223,8 @@ def main():
                         simdi_iso=sema.simdi_iso(datetime.now(IST)),
                         onceki_rapor=sema.rapor_oku(tarih_id))
                     sema.dogrula(rapor)
-                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(render.brief_html(rapor),
-                                                                     video_satiri)
+                    kanal_brief, filtre_sebebi = kanal_brief_hazirla(
+                        render.brief_html(rapor), video_satiri, rapor_linki_satiri(rapor["id"]))
                 except Exception as ye:               # noqa: BLE001
                     filtre_sebebi = f"{filtre_sebebi}; yeniden üretim başarısız: {_gizle(ye)[:200]}"
         kanal_engellendi = kanal_var and kanal_brief is None
@@ -1056,6 +1263,7 @@ def main():
         # Sesli özeti bir kez üret (best-effort — hata olsa rapor yine gider)
         ogg = None
         ham_mp3 = None   # klon sesin ham MP3'ü: web sürümü (reports/ses/) bundan
+        web_ses_yolu = None
         try:
             import ses_klon
             if ses_klon.aktif_mi():
@@ -1095,9 +1303,26 @@ def main():
             if ham_mp3:
                 try:
                     import ses_klon
-                    ses_klon.web_ses_yaz(rapor["id"], ham_mp3)
+                    web_ses_yolu = ses_klon.web_ses_yaz(rapor["id"], ham_mp3)
                 except Exception as web_hata:         # noqa: BLE001
                     print(f"[uyarı] Web sesli özet yazılamadı: {web_hata}", file=sys.stderr)
+
+        # --- KANAL MESAJI SİTE HAZIR OLUNCA GİDER (Doğukan, 11 Kas 2026) ---
+        # Mesajın son satırı tarihli site sayfası. Önce reports/ main'e push
+        # edilir (site-tetik bunu görüp yayınlar), sonra sayfa yoklanır; tavan
+        # dolarsa yine gönderilir. Çift gönderi yok: daily-report concurrency
+        # grubu yedek cron'ları/rapor-tetik'i bu koşu bitene kadar sıraya alır
+        # (onlar sonra takip.json'da bugünü görüp çıkar); bekleme sonunda uzak
+        # kilit bir kez daha yoklanır.
+        kanal_hedefte = any(ad == "kanal" for ad, _ in hedefler)
+        if (kanal_hedefte and not test_modu and not onizleme
+                and site_bekleme_aktif_mi()):
+            raporu_onden_yayinla(rapor["id"])
+            site_hazir_bekle(rapor["id"], ses_bekleniyor=bool(web_ses_yolu))
+            if _uzaktan_gonderilmis_mi():
+                print("[bilgi] Site beklenirken başka nöbetçi göndermiş (uzak kontrol) — çıkılıyor.",
+                      file=sys.stderr)
+                return
 
         for ad, hid in hedefler:
             if ad == "kanal" and kanal_tek_gonderi_mi():

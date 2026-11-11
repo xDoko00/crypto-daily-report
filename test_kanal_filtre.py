@@ -147,5 +147,150 @@ class KanalTekGonderiTest(unittest.TestCase):
             self.assertEqual(ses.call_count, 0)
 
 
+LINK = ("📊 Detaylı haberler ve günlük grafik analizi burada 👉 "
+        "https://dogukanlive.com/gunluk-raporlar/2026-08-17/")
+VIDEO = "🎬 Haftanın videosu: Bu Kadın Gerçek Değil https://youtu.be/iIaKZM0HyP0"
+
+
+class RaporLinkiTest(unittest.TestCase):
+    """Kanal mesajının en altındaki site rapor linki (Doğukan, 11 Kas 2026)."""
+
+    def setUp(self):
+        import report
+        self.report = report
+        self.tmp = tempfile.mkdtemp()
+        self.log_yama = mock.patch.object(kanal_filtre, "LOG_YOL",
+                                          os.path.join(self.tmp, "l.jsonl"))
+        self.log_yama.start()
+        self.addCleanup(self.log_yama.stop)
+
+    def test_satir_tarihli_ve_utm_yok(self):
+        os.environ.pop("KANAL_RAPOR_LINKI", None)
+        s = self.report.rapor_linki_satiri("2026-08-17")
+        self.assertEqual(s, LINK)
+        self.assertNotIn("utm", s)
+        self.assertNotIn("?", s)
+        self.assertEqual(self.report.rapor_linki_satiri("bozuk"), "")
+        with mock.patch.dict(os.environ, {"KANAL_RAPOR_LINKI": "0"}):
+            self.assertEqual(self.report.rapor_linki_satiri("2026-08-17"), "")
+
+    def test_filtre_link_satirini_gecirir(self):
+        ok, sebep = kanal_filtre.kontrol(kanal_filtre.em_tire_temizle(NORMAL) + "\n\n" + LINK)
+        self.assertTrue(ok, sebep)
+        bugun = LINK.replace("gunluk-raporlar/2026-08-17/", "bugun/")
+        ok, sebep = kanal_filtre.kontrol(kanal_filtre.em_tire_temizle(NORMAL) + "\n\n" + bugun)
+        self.assertTrue(ok, sebep)
+
+    def test_filtre_yabanci_link_ve_utm_engeller(self):
+        temel = kanal_filtre.em_tire_temizle(NORMAL) + "\n\n"
+        for kotu in (LINK.replace("dogukanlive.com", "evil.com"),
+                     LINK + "?utm_source=telegram",
+                     LINK.replace("2026-08-17/", "2026-08-17/../x"),
+                     "📊 Detaylı haberler ve günlük grafik analizi burada 👉 http://dogukanlive.com/bugun/"):
+            with self.subTest(kotu=kotu):
+                ok, _ = kanal_filtre.kontrol(temel + kotu)
+                self.assertFalse(ok)
+
+    def test_link_en_altta_video_ustunde(self):
+        metin, sebep = self.report.kanal_brief_hazirla(NORMAL, VIDEO, LINK)
+        self.assertEqual(sebep, "")
+        satirlar = [x for x in metin.splitlines() if x.strip()]
+        self.assertEqual(satirlar[-1], LINK)
+        self.assertEqual(satirlar[-2], VIDEO)
+        self.assertEqual(len(satirlar), 9)
+
+    def test_caption_siniri_link_her_zaman_kalir(self):
+        uzun = _govde_ile("Piyasada temkinli bekleyiş sürüyor ve " * 25)
+        self.assertGreater(len(uzun), 1024)
+        metin, sebep = self.report.kanal_brief_hazirla(uzun, VIDEO, LINK)
+        self.assertIsNotNone(metin, sebep)
+        self.assertLessEqual(len(metin), 1024)
+        self.assertTrue(metin.endswith(LINK))
+        self.assertNotIn("Haftanın videosu", metin)
+        self.assertIn("🔑 <b>Neden:</b> Piyasada", metin)
+        self.assertIn("...", metin)
+
+    def test_video_sigmazsa_duser_link_kalir(self):
+        orta = _govde_ile("Piyasada temkinli bekleyiş sürüyor ve " * 15)
+        self.assertLess(len(orta) + len(LINK) + 2, 1024)
+        self.assertGreater(len(orta) + len(LINK) + len(VIDEO) + 4, 1024)
+        metin, _ = self.report.kanal_brief_hazirla(orta, VIDEO, LINK)
+        self.assertTrue(metin.endswith(LINK))
+        self.assertNotIn("Haftanın videosu", metin)
+        self.assertNotIn("...", metin)
+
+    def test_sizinti_link_varken_de_engellenir(self):
+        metin, sebep = self.report.kanal_brief_hazirla(SIZINTI_1948, "", LINK)
+        self.assertIsNone(metin)
+
+    def test_gercek_rapor_link_ile_1024_altinda(self):
+        yol = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports", "latest.json")
+        if not os.path.exists(yol):
+            self.skipTest("reports/latest.json yok")
+        with open(yol, encoding="utf-8") as f:
+            rapor = json.load(f)
+        os.environ.pop("KANAL_RAPOR_LINKI", None)
+        metin, sebep = self.report.kanal_brief_hazirla(
+            render.brief_html(rapor), VIDEO, self.report.rapor_linki_satiri(rapor["id"]))
+        self.assertIsNotNone(metin, sebep)
+        self.assertLessEqual(len(metin), 1024)
+        self.assertTrue(metin.endswith(f"/gunluk-raporlar/{rapor['id']}/"))
+
+
+class KartTest(unittest.TestCase):
+    """Kart üretimi: her tasarım 1080x1350 PNG, eksik/uç veride çökmez."""
+
+    VERI = {"btc": {"fiyat": 73711, "degisim": -1.18}, "eth": {"fiyat": 2066.31, "degisim": 2.4},
+            "sol": {"fiyat": 83.0, "degisim": -3.2}, "bnb": {"fiyat": 681.18, "degisim": 0.0},
+            "xrp": {"fiyat": 1.055, "degisim": -3.3}, "btc_dom": 59.7, "eth_dom": 10.2,
+            "hacim": 8.1e10, "fng_deger": 29, "fng_etiket": "Korku", "fng_dun": 32}
+
+    def _boyut(self, png):
+        from PIL import Image
+        import io
+        im = Image.open(io.BytesIO(png))
+        return im.format, im.size
+
+    def test_tum_tasarimlar(self):
+        import kart
+        for ad in kart.TASARIMLAR:
+            with self.subTest(tasarim=ad):
+                png = kart.kart_olustur(self.VERI, "Temkinli", "Fed kararı oynaklık getirebilir.",
+                                        "11 Kasım 2026, Çarşamba", tasarim=ad)
+                self.assertEqual(self._boyut(png), ("PNG", (1080, 1350)))
+
+    def test_varsayilan_ve_ortam_secimi(self):
+        import kart
+        os.environ.pop("KART_TASARIM", None)
+        self.assertEqual(kart.tasarim_sec(), kart.VARSAYILAN_TASARIM)
+        with mock.patch.dict(os.environ, {"KART_TASARIM": "klasik"}):
+            self.assertEqual(kart.tasarim_sec(), "klasik")
+        with mock.patch.dict(os.environ, {"KART_TASARIM": "yok-boyle"}):
+            self.assertEqual(kart.tasarim_sec(), kart.VARSAYILAN_TASARIM)
+
+    def test_eksik_ve_uc_veri(self):
+        import kart
+        uc = [{}, {"btc": {"fiyat": None, "degisim": None}, "fng_deger": None},
+              dict(self.VERI, btc={"fiyat": 123456.0, "degisim": 12.5}, fng_deger=100),
+              dict(self.VERI, fng_deger=0, xrp={"fiyat": 0.0042, "degisim": -0.01})]
+        for ad in kart.TASARIMLAR:
+            for i, veri in enumerate(uc):
+                with self.subTest(tasarim=ad, ornek=i):
+                    png = kart.kart_olustur(veri, "", "", "", tasarim=ad)
+                    self.assertEqual(self._boyut(png)[1], (1080, 1350))
+
+    def test_font_repoda_ve_turkce_karakter_var(self):
+        import kart
+        self.assertTrue(os.path.exists(kart.FONT_VF))
+        fnt = kart._f(800, 40)
+        for harf in "ĞÜŞİÖÇğüşıöç":
+            self.assertGreater(fnt.getmask(harf).size[0], 0, harf)
+
+    def test_tr_buyuk_harf(self):
+        import kart
+        self.assertEqual(kart._tr_buyuk("Temkinli"), "TEMKİNLİ")
+        self.assertEqual(kart._tr_buyuk("Aşırı Korku"), "AŞIRI KORKU")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
