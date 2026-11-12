@@ -1,110 +1,114 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-11",
+  "id": "2026-11-12",
   "language": "tr",
-  "title": "11 Kasım 2026, Çarşamba",
-  "publishedAt": "2026-11-11T07:50:39+03:00",
-  "updatedAt": "2026-11-11T07:50:39+03:00",
+  "title": "12 Kasım 2026, Perşembe",
+  "publishedAt": "2026-11-12T07:52:20+03:00",
+  "updatedAt": "2026-11-12T07:52:20+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-11T07:48:00+03:00",
+    "asOf": "2026-11-12T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 73711,
-        "change24h": -1.1815154052274064
+        "priceUsd": 73662,
+        "change24h": -0.0686455532001157
       },
       "ETH": {
-        "priceUsd": 2066.31,
-        "change24h": -2.3947094919591168
+        "priceUsd": 2048.76,
+        "change24h": -0.8525512855680669
       },
       "SOL": {
-        "priceUsd": 83.0,
-        "change24h": -3.226972136882525
+        "priceUsd": 83.01,
+        "change24h": 0.0019145821002569375
       },
       "BNB": {
-        "priceUsd": 681.18,
-        "change24h": -1.0465830286827658
+        "priceUsd": 676.29,
+        "change24h": -0.7232630290848436
       },
       "XRP": {
-        "priceUsd": 1.055,
-        "change24h": -3.319139034732287
+        "priceUsd": 1.044,
+        "change24h": -1.0202844189053062
       }
     },
-    "btcDominance": 59.72862782662449,
-    "ethDominance": 10.175908672641283,
-    "totalMarketCapUsd": 2478359208818.5186,
-    "volume24hUsd": 81303385645.62552,
+    "btcDominance": 59.871404228265476,
+    "ethDominance": 10.117616937846726,
+    "totalMarketCapUsd": 2470315210952.2837,
+    "volume24hUsd": 63821281015.27018,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 29,
+      "value": 28,
       "label": "Korku",
-      "previousValue": 32,
-      "weekAgoValue": 34
+      "previousValue": 29,
+      "weekAgoValue": 50
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "Beklenenden sıcak gelen ABD Ekim TÜFE verisi ve Fed'in Aralık'ta faiz artırma, hatta büyük adım atma olasılığının güçlenmesi risk iştahını zayıflattı; BTC üç aylık dibi gördükten sonra kısmi toparlanma çabasında.",
+    "why": "Fiyatlardaki hafif gerileme tek bir ani gelişmeden değil, dört gündür süren Bitcoin ETF çıkışları ile sert TÜFE verisi sonrası Fed'in Aralık'ta faiz artırma ihtimalinin güçlenmesinin risk iştahını baskılamasından kaynaklanıyor.",
     "criticalEvents": [
       {
-        "timeTr": null,
-        "title": "CoreWeave bilançosu"
+        "timeTr": "16:30",
+        "title": "ABD haftalık işsizlik başvuruları"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD ikinci el ev satışları"
       },
       {
         "timeTr": null,
-        "title": "ALLO ve PUMP token kilit açılışları"
+        "title": "Fed yetkilileri konuşmaları"
       }
     ],
-    "mainRisk": "Fed'in Aralık toplantısında beklenenden büyük bir faiz artışına işaret etmesi risk iştahını yeniden bastırabilir."
+    "mainRisk": "Aralık FOMC toplantısı öncesi güçlenen faiz artış beklentisi, ETF çıkışlarını ve risksiz varlıklara kaçışı hızlandırabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "ABD Ekim TÜFE verisi beklentiyi aştı mı",
-        "outcome": "Evet, aylık TÜFE yüzde 0,4 ile beklentinin üzerinde geldi ve BTC sert düştü"
+        "item": "BTC 75.000 dolar direncini kalıcı olarak geri kazanabilecek mi",
+        "outcome": "Hayır, BTC 75.000 doların altında sıkışık kaldı, dirence yaklaşsa da kalıcı bir kırılım gerçekleşmedi."
       },
       {
-        "item": "SEC'in kripto ETF opsiyon kuralı kararı 11 Kasım'da gerçekten açıklandı mı",
-        "outcome": "Evet, SEC Nasdaq ISE'ye dijital emtia ETP'lerinde opsiyon işlemi için onay verdi"
+        "item": "Fed yetkilileri Aralık toplantısı öncesi 50 baz puanlık artış sinyalini güçlendirecek mi",
+        "outcome": "Kısmen, sert TÜFE verisi sonrası 50 baz puanlık artış olasılığı geçici olarak yükseldi ama ana senaryo yüzde 88,8 ile yine 25 baz puan oldu."
       },
       {
-        "item": "MEXC'nin ABD bankacılık kesintisi için 30 günlük resmi süre Federal Register ilanıyla başladı mı",
-        "outcome": "Evet, karar 10 Kasım'da Federal Register'da yayımlandı, süreç 10 Aralık'ta sona erecek"
+        "item": "MEXC'den borsa çekilişleri 30 günlük süreç boyunca hız kazanacak mı",
+        "outcome": "Evet, FinCEN kararı sonrası çekilişler hızlandı; borsa işlemlerin normal sürdüğünü söylese de Binance ve OKX MEXC'ye transferleri kısıtladı."
       },
       {
-        "item": "BTC, TÜFE sonrası 75.000 doları kalıcı olarak koruyabildi mi",
-        "outcome": "Hayır, kısa süreliğine 72.700 dolara kadar geriledi ve üç aylık dip gördü, şimdi kısmen toparlanıyor"
+        "item": "SEC'in dijital emtia ETP opsiyon kuralı sonrası yeni ürün başvuruları gelecek mi",
+        "outcome": "Evet, SEC Nasdaq ISE'ye 19 varlığı kapsayan dijital emtia ETP'leri için opsiyon listeleme yetkisi verdi."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Sıcak TÜFE verisi BTC'yi üç aylık dibe çekti",
-        "summary": "Beklenenden yüksek gelen ABD Ekim TÜFE verisi sonrası BTC 72.700 dolara kadar geriledi, Fed'in Aralık'ta faiz artırma olasılığı fiyatlandı.",
+        "title": "FinCEN MEXC'yi ABD finans sisteminden kesti",
+        "summary": "Hazine'nin FinCEN birimi, İran, Kuzey Kore ve Rusya bağlantılı milyarlarca dolarlık işlem iddiasıyla MEXC Global'i kara para aklama riski ilan ederek ABD finans sistemine erişimini kesti; borsa normal işlediğini ve FinCEN'le iş birliği yaptığını açıkladı.",
         "source": {
-          "url": "https://www.coindesk.com/markets/2026/11/10/live-news-traders-price-in-fed-rate-hike-for-december-as-bitcoin-and-gold-retreat",
-          "title": "Live news: Bitcoin falls to nearly three-month low after disappointing inflation data",
-          "publisher": "CoinDesk"
+          "url": "https://www.tokenpost.com/news/regulation/53634",
+          "title": "MEXC CEO Says FinCEN Confirmed Receipt of Written Request",
+          "publisher": "TokenPost"
         }
       },
       {
         "importance": "kritik",
-        "title": "FinCEN, MEXC'yi ABD bankacılık sisteminden kesti",
-        "summary": "ABD Hazinesi'nin FinCEN birimi, 16,7 milyar dolarlık şüpheli fon akışı iddiasıyla MEXC Global'e yönelik fon transferi yasağını Federal Register'da yayımladı; yasak 10 Aralık'ta yürürlüğe girecek.",
+        "title": "Sert TÜFE sonrası Fed'de Aralık artış ihtimali yükseldi",
+        "summary": "Beklentilerin üzerinde gelen ekim ayı ABD TÜFE verisi sonrası CME FedWatch'a göre Aralık'ta 25 baz puanlık artış olasılığı yüzde 88,8'e çıktı, 50 baz puanlık artış ihtimali de yüzde 11,2'ye yükseldi.",
         "source": {
-          "url": "https://www.federalregister.gov/documents/2026/11/10/2026-22962/imposition-of-special-measure-prohibiting-the-transmittal-of-funds-involving-mexc-global",
-          "title": "Imposition of Special Measure Prohibiting the Transmittal of Funds Involving MEXC Global",
-          "publisher": "Federal Register"
+          "url": "https://www.investing.com/news/economy-news/fed-rate-hike-odds-in-december-at-88-after-hot-cpi-cme-fedwatch-5017585",
+          "title": "Fed rate hike odds in December at 88% after hot CPI - CME Fedwatch",
+          "publisher": "Investing.com"
         }
       },
       {
         "importance": "onemli",
-        "title": "SEC kripto ETF opsiyon kuralını onayladı",
-        "summary": "SEC, Nasdaq ISE'nin dijital emtia bazlı ETP'ler üzerine her ürün için ayrı başvuru gerekmeden opsiyon işlemi açmasına izin verdi, bu adım türev piyasasını Bitcoin ve Ether'in ötesine taşıyor.",
+        "title": "SEC kripto ETP opsiyonlarını 19 varlığa genişletti",
+        "summary": "SEC, Nasdaq ISE'nin 19 dijital emtiayı kapsayan borsa yatırım ürünleri üzerine opsiyon listeleme başvurusunu onayladı; Bitcoin ve Ether'in yanı sıra Solana, Cardano ve Chainlink gibi varlıklar da opsiyon piyasasına dahil oldu.",
         "source": {
           "url": "https://genfinity.io/2026/11/10/sec-clears-nasdaq-ise-options-digital-commodity-etps/",
           "title": "SEC Clears Nasdaq ISE to List Options on Digital Commodity ETPs, Extending Derivatives Beyond Bitcoin and Ether",
@@ -112,55 +116,73 @@
         }
       },
       {
-        "importance": "bilgi",
-        "title": "MARA borç ödemek için 1,1 milyar dolarlık BTC sattı",
-        "summary": "MARA Holdings, Bitcoin'e dayalı kredilerini tamamen kapatmak için 13.597 BTC sattı; çeyrek karı 634 milyon dolara çıkarken gelirleri yüzde 35 geriledi.",
+        "importance": "onemli",
+        "title": "Bitcoin ETF'lerinden dördüncü gün çıkış",
+        "summary": "ABD spot Bitcoin ETF'leri 10 Kasım'da 95 milyon dolarlık net çıkışla dördüncü gün üst üste çıkış kaydetti; Ether ve XRP ETF'lerinde de küçük çaplı çıkışlar görüldü, toplam çıkış 104 milyon dolara yaklaştı.",
         "source": {
-          "url": "https://www.theblock.co/news/business/2026-11-09-mara-q3-earnings-net-profit-bitcoin-sale-ai-pivot-436950",
-          "title": "MARA posts $634 million Q3 net profit on bitcoin gains, sells 13,597 BTC to pay off loans",
-          "publisher": "The Block"
+          "url": "https://gokhshtein.com/news/2026-11-11--etf-flows-spot-btc-eth-and-xrp-etfs-saw-net-outflows-on",
+          "title": "Bitcoin ETFs Post $95M Outflow as BTC Slides to $73,760",
+          "publisher": "Gokhshtein Media"
         }
       }
     ],
     "today": [
       {
-        "timeTr": null,
-        "title": "CoreWeave üçüncü çeyrek bilançosu"
+        "timeTr": "16:30",
+        "title": "ABD haftalık işsizlik başvuruları"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD ikinci el ev satışları"
+      },
+      {
+        "timeTr": "19:30",
+        "title": "Chicago Fed Başkanı Goolsbee konuşması"
+      },
+      {
+        "timeTr": "21:10",
+        "title": "San Francisco Fed Başkanı Daly konuşması"
       },
       {
         "timeTr": null,
-        "title": "ALLO token kilit açılışı, dolaşımdaki arzın yüzde 88,51'i"
-      },
-      {
-        "timeTr": null,
-        "title": "PUMP token kilit açılışı, yaklaşık 27 milyon dolar"
+        "title": "RAIN token kilidi açılıyor, arzın yaklaşık yüzde 5'i"
       }
     ],
     "turkey": {
-      "hasNews": false,
-      "items": []
+      "hasNews": true,
+      "items": [
+        {
+          "title": "FSB, Türkiye'ye stablecoin düzenlemesi çağrısı yaptı",
+          "summary": "Finansal İstikrar Kurulu, Türkiye değerlendirme raporunda stablecoin ihraççıları için şeffaf rezerv ve geri ödeme hakkı kuralları getirilmesini, kripto platformları için lisans takviminin açıklanmasını ve yurt dışı kaynaklı stabilcoinlerin daha yakından izlenmesini önerdi.",
+          "source": {
+            "url": "https://www.fsb.org/2026/11/peer-review-of-turkiye/",
+            "title": "Peer Review of Türkiye",
+            "publisher": "Financial Stability Board"
+          }
+        }
+      ]
     },
     "risks": [
-      "Fed'in Aralık'ta 50 baz puanlık artışa gitme olasılığı risk iştahını daha da bastırabilir",
-      "MEXC'ye yönelik ABD yaptırımı, diğer borsalarda da güven ve likidite kaybına yol açabilir"
+      "Aralık FOMC'de beklenenden büyük bir faiz artışı risk iştahını daha da azaltabilir.",
+      "MEXC merkezli kara para aklama soruşturması diğer borsalara güven kaybı olarak sıçrayabilir."
     ]
   },
   "followUps": [
-    "BTC 75.000 dolar direncini kalıcı olarak geri kazanabilecek mi",
-    "Fed yetkilileri Aralık toplantısı öncesi 50 baz puanlık artış sinyalini güçlendirecek mi",
-    "MEXC'den borsa çekilişleri 30 günlük süreç boyunca hız kazanacak mı",
-    "SEC'in dijital emtia ETP opsiyon kuralı sonrası yeni ürün başvuruları gelecek mi"
+    "ABD haftalık işsizlik başvuruları beklentiyi aştı mı",
+    "Bitcoin ETF'lerinde çıkış serisi beşinci güne taşındı mı",
+    "BTC 75.000 dolar direncine yeniden yaklaştı mı",
+    "FinCEN'in MEXC kararına karşı başka borsalar da transfer kısıtlaması getirdi mi"
   ],
   "sources": [
     {
-      "url": "https://www.coindesk.com/markets/2026/11/10/live-news-traders-price-in-fed-rate-hike-for-december-as-bitcoin-and-gold-retreat",
-      "title": "Live news: Bitcoin falls to nearly three-month low after disappointing inflation data",
-      "publisher": "CoinDesk"
+      "url": "https://www.tokenpost.com/news/regulation/53634",
+      "title": "MEXC CEO Says FinCEN Confirmed Receipt of Written Request",
+      "publisher": "TokenPost"
     },
     {
-      "url": "https://www.federalregister.gov/documents/2026/11/10/2026-22962/imposition-of-special-measure-prohibiting-the-transmittal-of-funds-involving-mexc-global",
-      "title": "Imposition of Special Measure Prohibiting the Transmittal of Funds Involving MEXC Global",
-      "publisher": "Federal Register"
+      "url": "https://www.investing.com/news/economy-news/fed-rate-hike-odds-in-december-at-88-after-hot-cpi-cme-fedwatch-5017585",
+      "title": "Fed rate hike odds in December at 88% after hot CPI - CME Fedwatch",
+      "publisher": "Investing.com"
     },
     {
       "url": "https://genfinity.io/2026/11/10/sec-clears-nasdaq-ise-options-digital-commodity-etps/",
@@ -168,9 +190,14 @@
       "publisher": "Genfinity"
     },
     {
-      "url": "https://www.theblock.co/news/business/2026-11-09-mara-q3-earnings-net-profit-bitcoin-sale-ai-pivot-436950",
-      "title": "MARA posts $634 million Q3 net profit on bitcoin gains, sells 13,597 BTC to pay off loans",
-      "publisher": "The Block"
+      "url": "https://gokhshtein.com/news/2026-11-11--etf-flows-spot-btc-eth-and-xrp-etfs-saw-net-outflows-on",
+      "title": "Bitcoin ETFs Post $95M Outflow as BTC Slides to $73,760",
+      "publisher": "Gokhshtein Media"
+    },
+    {
+      "url": "https://www.fsb.org/2026/11/peer-review-of-turkiye/",
+      "title": "Peer Review of Türkiye",
+      "publisher": "Financial Stability Board"
     }
   ],
   "assets": {
