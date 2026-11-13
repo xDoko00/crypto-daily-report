@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-13",
+  "language": "tr",
+  "title": "13 Kasım 2026, Cuma",
+  "publishedAt": "2026-11-13T07:50:41+03:00",
+  "updatedAt": "2026-11-13T07:50:41+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-13T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 68593,
+        "change24h": -6.90190939762917
+      },
+      "ETH": {
+        "priceUsd": 1923.41,
+        "change24h": -6.1378343432398035
+      },
+      "SOL": {
+        "priceUsd": 78.26,
+        "change24h": -5.7166856876754855
+      },
+      "BNB": {
+        "priceUsd": 631.2,
+        "change24h": -6.6727920937525065
+      },
+      "XRP": {
+        "priceUsd": 1.003,
+        "change24h": -3.9988032098831074
+      }
+    },
+    "btcDominance": 59.17940347082088,
+    "ethDominance": 10.070166450860457,
+    "totalMarketCapUsd": 2329996022945.2227,
+    "volume24hUsd": 82991487754.31607,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 20,
+      "label": "Aşırı Korku",
+      "previousValue": 28,
+      "weekAgoValue": 28
+    }
+  },
+  "brief": {
+    "mood": "Riskli",
+    "why": "Nvidia CEO'su Jensen Huang'ın bir casusluk skandalı nedeniyle istifa etmesi yapay zeka ve teknoloji hisselerinde sert satışı tetikledi; bu dalga artan Bitcoin ETF çıkışları ve şahin Fed açıklamalarıyla birleşince kripto piyasasında geniş çaplı likidasyona yol açtı.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD ÜFE verisi"
+      },
+      {
+        "timeTr": "21:30",
+        "title": "Fed'den Williams konuşması"
+      }
+    ],
+    "mainRisk": "Teknoloji hisselerindeki çalkantının sürmesi ve ETF çıkışlarının devam etmesi, yüksek kaldıraçlı pozisyonlarda yeni bir likidasyon dalgasını tetikleyebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ABD haftalık işsizlik başvuruları beklentiyi aştı mı",
+        "outcome": "Evet, başvurular 194 bin beklentisinin üzerinde 200 bine yükseldi; önceki hafta verisi de yukarı revize edildi."
+      },
+      {
+        "item": "Bitcoin ETF'lerinde çıkış serisi beşinci güne taşındı mı",
+        "outcome": "Evet, ETF'ler beşinci işlem gününde toplam 1,44 milyar dolar çıkışla seriyi uzattı."
+      },
+      {
+        "item": "BTC 75.000 dolar direncine yeniden yaklaştı mı",
+        "outcome": "Yaklaştı ama kıramadı; direnci aşamayan BTC bugün sert düşüşle 70.000 doların altına indi."
+      },
+      {
+        "item": "FinCEN'in MEXC kararına karşı başka borsalar da transfer kısıtlaması getirdi mi",
+        "outcome": "Evet, Binance ve OKX, MEXC'den gelen transferlere ek uyum kontrolü ve kısıtlama getirdiğini açıkladı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Nvidia CEO'su istifa etti, teknoloji hisseleri sarsıldı",
+        "summary": "Jensen Huang, bir casusluk iddiasıyla bağlantılı skandalın ardından Nvidia CEO'luğundan istifa etti; haber yapay zeka ve teknoloji hisselerinde satışı tetikleyerek kripto piyasasına da sert şekilde yayıldı.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html",
+          "title": "Nvidia CEO Jensen Huang resigns: Live updates",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Bitcoin ETF'lerinde çıkış serisi beşinci güne ulaştı",
+        "summary": "ABD'deki spot Bitcoin ETF'leri beş işlem günü üst üste net çıkış kaydederek toplam 1,44 milyar dolar fon kaybetti; bu durum piyasadaki risk azaltma eğilimini güçlendirdi.",
+        "source": {
+          "url": "https://www.newsbtc.com/bitcoin-news/bitcoin-etf-outflows-november-11-2026-five-sessions",
+          "title": "Bitcoin ETFs Lose $299.8M as Five-Session Outflow Streak Reaches $1.44B",
+          "publisher": "NewsBTC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "FinCEN'in MEXC kararı borsalar arasında zincirleme etkiler yarattı",
+        "summary": "ABD Hazine'sinin MEXC'yi finans sisteminden kesmesinin ardından Binance ve OKX, bu borsadan gelen transferlere ek uyum kontrolü ve kısıtlama getirdi.",
+        "source": {
+          "url": "https://crypto.news/binance-blocks-mexc-transfers-after-fincens-16b-crackdown/",
+          "title": "Binance blocks MEXC transfers after FinCEN's $16B crackdown",
+          "publisher": "crypto.news"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "ABD işsizlik başvuruları beklentinin üzerinde geldi",
+        "summary": "Haftalık işsizlik başvuruları 194 bin beklentisine karşın 200 bine yükseldi; veri, Fed'in sıkı duruşunu sürdüreceği beklentisini güçlendirerek risk iştahını baskıladı.",
+        "source": {
+          "url": "https://www.aa.com.tr/en/economy/us-weekly-jobless-claims-rise-to-200-000-above-expectations/4122947",
+          "title": "US weekly jobless claims rise to 200,000, above expectations",
+          "publisher": "Anadolu Ajansı"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Beyaz Saray, SEC ve CFTC için yeni isimleri Senato'ya gönderdi",
+        "summary": "Beyaz Saray, dijital varlık düzenlemelerini şekillendirecek SEC ve CFTC'deki boş üyelikler için iki partili dört aday ismini onay için Senato'ya sundu.",
+        "source": {
+          "url": "https://www.tokenpost.com/news/regulation/56031",
+          "title": "White House Sends Four SEC and CFTC Nominees to the Senate",
+          "publisher": "TokenPost"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD ÜFE verisi açıklanacak"
+      },
+      {
+        "timeTr": "21:30",
+        "title": "Fed yetkilisi Williams'tan konuşma"
+      }
+    ],
+    "turkey": {
+      "hasNews": true,
+      "items": [
+        {
+          "title": "FSB'den Türkiye'ye stablecoin düzenlemesi çağrısı",
+          "summary": "Finansal İstikrar Kurulu, Türkiye raporunda stablecoin ihraççıları için rezerv şeffaflığı, zamanında geri ödeme hakkı ve yurt dışı ihraçlara yönelik denetim şartlarının güçlendirilmesini önerdi.",
+          "source": {
+            "url": "https://coin-turk.com/fsbden-turkiyeye-stablecoin-cagrisi-yeni-kurallar-mi-geliyor",
+            "title": "FSB'den Türkiye'ye stablecoin çağrısı: Yeni kurallar mı geliyor?",
+            "publisher": "CoinTurk"
+          }
+        }
+      ]
+    },
+    "risks": [
+      "Teknoloji ve yapay zeka hisselerindeki çalkantının risk iştahını baskılamaya devam etmesi",
+      "Yüksek kaldıraçlı pozisyonlarda yeni likidasyon dalgası riski"
+    ]
+  },
+  "followUps": [
+    "ABD ÜFE verisinin enflasyon beklentilerini ne yönde etkilediği",
+    "Bitcoin ETF çıkış serisinin altıncı güne taşınıp taşınmadığı",
+    "BTC'nin 68.000 dolar seviyesini destek olarak koruyup koruyamadığı",
+    "MEXC'den diğer borsalara geçişlerde yeni kısıtlama kararlarının gelip gelmediği"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html",
+      "title": "Nvidia CEO Jensen Huang resigns: Live updates",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.newsbtc.com/bitcoin-news/bitcoin-etf-outflows-november-11-2026-five-sessions",
+      "title": "Bitcoin ETFs Lose $299.8M as Five-Session Outflow Streak Reaches $1.44B",
+      "publisher": "NewsBTC"
+    },
+    {
+      "url": "https://crypto.news/binance-blocks-mexc-transfers-after-fincens-16b-crackdown/",
+      "title": "Binance blocks MEXC transfers after FinCEN's $16B crackdown",
+      "publisher": "crypto.news"
+    },
+    {
+      "url": "https://www.aa.com.tr/en/economy/us-weekly-jobless-claims-rise-to-200-000-above-expectations/4122947",
+      "title": "US weekly jobless claims rise to 200,000, above expectations",
+      "publisher": "Anadolu Ajansı"
+    },
+    {
+      "url": "https://www.tokenpost.com/news/regulation/56031",
+      "title": "White House Sends Four SEC and CFTC Nominees to the Senate",
+      "publisher": "TokenPost"
+    },
+    {
+      "url": "https://coin-turk.com/fsbden-turkiyeye-stablecoin-cagrisi-yeni-kurallar-mi-geliyor",
+      "title": "FSB'den Türkiye'ye stablecoin çağrısı: Yeni kurallar mı geliyor?",
+      "publisher": "CoinTurk"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
