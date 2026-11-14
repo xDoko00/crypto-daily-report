@@ -1,202 +1,195 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-13",
+  "id": "2026-11-14",
   "language": "tr",
-  "title": "13 Kasım 2026, Cuma",
-  "publishedAt": "2026-11-13T07:50:41+03:00",
-  "updatedAt": "2026-11-13T07:50:41+03:00",
+  "title": "14 Kasım 2026, Cumartesi",
+  "publishedAt": "2026-11-14T07:57:18+03:00",
+  "updatedAt": "2026-11-14T07:57:18+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-13T07:48:00+03:00",
+    "asOf": "2026-11-14T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 68593,
-        "change24h": -6.90190939762917
+        "priceUsd": 67069,
+        "change24h": -2.3217329108626497
       },
       "ETH": {
-        "priceUsd": 1923.41,
-        "change24h": -6.1378343432398035
+        "priceUsd": 1899.33,
+        "change24h": -1.3519870680939317
       },
       "SOL": {
-        "priceUsd": 78.26,
-        "change24h": -5.7166856876754855
+        "priceUsd": 75.54,
+        "change24h": -3.5718672599429095
       },
       "BNB": {
-        "priceUsd": 631.2,
-        "change24h": -6.6727920937525065
+        "priceUsd": 616.74,
+        "change24h": -2.3777066783587704
       },
       "XRP": {
-        "priceUsd": 1.003,
-        "change24h": -3.9988032098831074
+        "priceUsd": 0.994158,
+        "change24h": -0.9480517710170413
       }
     },
-    "btcDominance": 59.17940347082088,
-    "ethDominance": 10.070166450860457,
-    "totalMarketCapUsd": 2329996022945.2227,
-    "volume24hUsd": 82991487754.31607,
+    "btcDominance": 58.77075583893701,
+    "ethDominance": 10.10928357946316,
+    "totalMarketCapUsd": 2293914470357.13,
+    "volume24hUsd": 89732340308.23448,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 20,
+      "value": 13,
       "label": "Aşırı Korku",
-      "previousValue": 28,
-      "weekAgoValue": 28
+      "previousValue": 20,
+      "weekAgoValue": 25
     }
   },
   "brief": {
     "mood": "Riskli",
-    "why": "Nvidia CEO'su Jensen Huang'ın bir casusluk skandalı nedeniyle istifa etmesi yapay zeka ve teknoloji hisselerinde sert satışı tetikledi; bu dalga artan Bitcoin ETF çıkışları ve şahin Fed açıklamalarıyla birleşince kripto piyasasında geniş çaplı likidasyona yol açtı.",
+    "why": "BTC, Aralık ayında Fed faiz artışı olasılığını güçlendiren güçlü ABD ÜFE verisi, Bitcoin ETF'lerinde altı güne yayılan net çıkış serisi ve 1,2 milyar doları aşan kaldıraçlı tasfiyelerin bir araya gelmesiyle düştü; Nvidia CEO'sunun istifasının tetiklediği teknoloji hisseleri satışı da riskten kaçışı güçlendirdi.",
     "criticalEvents": [
       {
-        "timeTr": "16:30",
-        "title": "ABD ÜFE verisi"
+        "timeTr": null,
+        "title": "Hafta sonu ince likidite, oynaklık riski"
       },
       {
-        "timeTr": "21:30",
-        "title": "Fed'den Williams konuşması"
+        "timeTr": null,
+        "title": "Kaldıraçlı tasfiye dalgası sürüyor"
       }
     ],
-    "mainRisk": "Teknoloji hisselerindeki çalkantının sürmesi ve ETF çıkışlarının devam etmesi, yüksek kaldıraçlı pozisyonlarda yeni bir likidasyon dalgasını tetikleyebilir."
+    "mainRisk": "Hafta sonu düşük işlem hacminde yeni bir tasfiye dalgasının fiyatları daha da aşağı çekmesi riski."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "ABD haftalık işsizlik başvuruları beklentiyi aştı mı",
-        "outcome": "Evet, başvurular 194 bin beklentisinin üzerinde 200 bine yükseldi; önceki hafta verisi de yukarı revize edildi."
+        "item": "ABD ÜFE verisinin enflasyon beklentilerini ne yönde etkilediği",
+        "outcome": "ÜFE yıllık bazda yüzde 6,5'e çıkarak 2022'den beri en yüksek seviyeye ulaştı, bu da Fed'in Aralık'ta faiz artırma olasılığını güçlendirdi, isabetli çıktı."
       },
       {
-        "item": "Bitcoin ETF'lerinde çıkış serisi beşinci güne taşındı mı",
-        "outcome": "Evet, ETF'ler beşinci işlem gününde toplam 1,44 milyar dolar çıkışla seriyi uzattı."
+        "item": "Bitcoin ETF çıkış serisinin altıncı güne taşınıp taşınmadığı",
+        "outcome": "Evet, ABD spot Bitcoin ETF'leri 5-12 Kasım arasında altı gün üst üste net çıkış kaydetti, isabetli çıktı."
       },
       {
-        "item": "BTC 75.000 dolar direncine yeniden yaklaştı mı",
-        "outcome": "Yaklaştı ama kıramadı; direnci aşamayan BTC bugün sert düşüşle 70.000 doların altına indi."
+        "item": "BTC'nin 68.000 dolar seviyesini destek olarak koruyup koruyamadığı",
+        "outcome": "Hayır, destek kırıldı; BTC 13 Kasım'da 68.000 doların altına indi ve bugün 67.000 dolar bandına geriledi."
       },
       {
-        "item": "FinCEN'in MEXC kararına karşı başka borsalar da transfer kısıtlaması getirdi mi",
-        "outcome": "Evet, Binance ve OKX, MEXC'den gelen transferlere ek uyum kontrolü ve kısıtlama getirdiğini açıkladı."
+        "item": "MEXC'den diğer borsalara geçişlerde yeni kısıtlama kararlarının gelip gelmediği",
+        "outcome": "Yeni bir karar gelmedi; Binance'in 10 Kasım'da başlattığı transfer kısıtlaması son 24 saatte de aynen sürüyor."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Nvidia CEO'su istifa etti, teknoloji hisseleri sarsıldı",
-        "summary": "Jensen Huang, bir casusluk iddiasıyla bağlantılı skandalın ardından Nvidia CEO'luğundan istifa etti; haber yapay zeka ve teknoloji hisselerinde satışı tetikleyerek kripto piyasasına da sert şekilde yayıldı.",
+        "title": "Nvidia CEO'su Huang'ın istifası risk iştahını vurdu",
+        "summary": "Nvidia CEO'su Jensen Huang, bir yöneticiyle yaşadığı ve istihbarat bağlantısı şüphesi taşıyan ilişki sonrası istifa etti; hisse düşüşü teknoloji ve kripto piyasalarında satışı tetikledi.",
         "source": {
-          "url": "https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html",
-          "title": "Nvidia CEO Jensen Huang resigns: Live updates",
+          "url": "https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html",
+          "title": "Nvidia stock closes down over 4% after CEO Jensen Huang announces resignation",
           "publisher": "CNBC"
         }
       },
       {
+        "importance": "onemli",
+        "title": "Bitcoin ETF'lerinde altı günlük çıkış serisi",
+        "summary": "ABD spot Bitcoin ETF'leri 5-12 Kasım arasında altı gün üst üste net çıkış kaydetti, BlackRock'un IBIT'i çıkışların büyük kısmını oluşturdu.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-record-sixth-consecutive-day-of-outflows-as-btc-drops-nearly-5",
+          "title": "Bitcoin ETFs Record Sixth Consecutive Day of Outflows as BTC Drops Nearly 5%",
+          "publisher": "KuCoin News"
+        }
+      },
+      {
         "importance": "kritik",
-        "title": "Bitcoin ETF'lerinde çıkış serisi beşinci güne ulaştı",
-        "summary": "ABD'deki spot Bitcoin ETF'leri beş işlem günü üst üste net çıkış kaydederek toplam 1,44 milyar dolar fon kaybetti; bu durum piyasadaki risk azaltma eğilimini güçlendirdi.",
+        "title": "ABD ÜFE verisi Fed faiz artış beklentisini güçlendirdi",
+        "summary": "Ekim ayı ÜFE'si yıllık yüzde 6,5 ile 2022'den beri en yüksek seviyeye çıktı; tahmin piyasaları Aralık'ta çeyrek puanlık faiz artışına yüzde 90'ın üzerinde olasılık veriyor.",
         "source": {
-          "url": "https://www.newsbtc.com/bitcoin-news/bitcoin-etf-outflows-november-11-2026-five-sessions",
-          "title": "Bitcoin ETFs Lose $299.8M as Five-Session Outflow Streak Reaches $1.44B",
-          "publisher": "NewsBTC"
+          "url": "https://www.riotimesonline.com/fed-hike-odds-90-hold-bets-fade-2026/",
+          "title": "Fed Hike Odds Reach 90.5% as Hold Fades",
+          "publisher": "Rio Times"
         }
       },
       {
         "importance": "onemli",
-        "title": "FinCEN'in MEXC kararı borsalar arasında zincirleme etkiler yarattı",
-        "summary": "ABD Hazine'sinin MEXC'yi finans sisteminden kesmesinin ardından Binance ve OKX, bu borsadan gelen transferlere ek uyum kontrolü ve kısıtlama getirdi.",
+        "title": "MEXC'ye ABD'den finansal ambargo genişliyor",
+        "summary": "FinCEN, MEXC'yi birincil kara para aklama riski ilan etti ve Binance borsaya yönelik transferleri durdurdu; resmi kısıtlama Federal Sicil'de yayımdan 30 gün sonra yürürlüğe girecek.",
         "source": {
-          "url": "https://crypto.news/binance-blocks-mexc-transfers-after-fincens-16b-crackdown/",
-          "title": "Binance blocks MEXC transfers after FinCEN's $16B crackdown",
-          "publisher": "crypto.news"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "ABD işsizlik başvuruları beklentinin üzerinde geldi",
-        "summary": "Haftalık işsizlik başvuruları 194 bin beklentisine karşın 200 bine yükseldi; veri, Fed'in sıkı duruşunu sürdüreceği beklentisini güçlendirerek risk iştahını baskıladı.",
-        "source": {
-          "url": "https://www.aa.com.tr/en/economy/us-weekly-jobless-claims-rise-to-200-000-above-expectations/4122947",
-          "title": "US weekly jobless claims rise to 200,000, above expectations",
-          "publisher": "Anadolu Ajansı"
-        }
-      },
-      {
-        "importance": "bilgi",
-        "title": "Beyaz Saray, SEC ve CFTC için yeni isimleri Senato'ya gönderdi",
-        "summary": "Beyaz Saray, dijital varlık düzenlemelerini şekillendirecek SEC ve CFTC'deki boş üyelikler için iki partili dört aday ismini onay için Senato'ya sundu.",
-        "source": {
-          "url": "https://www.tokenpost.com/news/regulation/56031",
-          "title": "White House Sends Four SEC and CFTC Nominees to the Senate",
-          "publisher": "TokenPost"
+          "url": "https://decrypt.co/382926/binance-halts-mexc-transfers-as-fincen-cuts-exchange-off-from-us-financial-system",
+          "title": "Binance Halts MEXC Transfers as FinCEN Cuts Exchange Off From US Financial System",
+          "publisher": "Decrypt"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "16:30",
-        "title": "ABD ÜFE verisi açıklanacak"
+        "timeTr": null,
+        "title": "Hafta sonu ince likidite, ani fiyat hareketi riski"
       },
       {
-        "timeTr": "21:30",
-        "title": "Fed yetkilisi Williams'tan konuşma"
+        "timeTr": null,
+        "title": "Kaldıraçlı pozisyonlarda tasfiye takibi sürüyor"
+      },
+      {
+        "timeTr": null,
+        "title": "Nvidia/Huang soruşturmasına ilişkin yeni açıklamalar"
+      },
+      {
+        "timeTr": null,
+        "title": "Bitcoin ETF akış verileri Pazartesi açıklanacak"
       }
     ],
     "turkey": {
       "hasNews": true,
       "items": [
         {
-          "title": "FSB'den Türkiye'ye stablecoin düzenlemesi çağrısı",
-          "summary": "Finansal İstikrar Kurulu, Türkiye raporunda stablecoin ihraççıları için rezerv şeffaflığı, zamanında geri ödeme hakkı ve yurt dışı ihraçlara yönelik denetim şartlarının güçlendirilmesini önerdi.",
+          "title": "TCMB kripto varlıkları ödemeler dengesi istatistiklerine dahil etti",
+          "summary": "TCMB, Merkezi Kayıt Kuruluşu verilerini kullanarak kripto varlık işlemlerini ilk kez resmi ödemeler dengesi istatistiklerine ekledi; Eylül'de yerleşikler net 21 milyon dolarlık kripto satışı yaparken 49 milyon dolarlık stabilcoin aldı.",
           "source": {
-            "url": "https://coin-turk.com/fsbden-turkiyeye-stablecoin-cagrisi-yeni-kurallar-mi-geliyor",
-            "title": "FSB'den Türkiye'ye stablecoin çağrısı: Yeni kurallar mı geliyor?",
-            "publisher": "CoinTurk"
+            "url": "https://fintechtime.com/2026/11/tcmb-kripto-varliklari-odemeler-dengesi-istatistiklerine-dahil-etti/",
+            "title": "TCMB Kripto Varlıkları Ödemeler Dengesi İstatistiklerine Dahil Etti",
+            "publisher": "FinTech Time"
           }
         }
       ]
     },
     "risks": [
-      "Teknoloji ve yapay zeka hisselerindeki çalkantının risk iştahını baskılamaya devam etmesi",
-      "Yüksek kaldıraçlı pozisyonlarda yeni likidasyon dalgası riski"
+      "Hafta sonu düşük hacimde yeni bir tasfiye dalgasının satışları hızlandırması riski.",
+      "Aralık Fed toplantısına kadar faiz artış bahislerinin risk iştahını daha da bastırması riski."
     ]
   },
   "followUps": [
-    "ABD ÜFE verisinin enflasyon beklentilerini ne yönde etkilediği",
-    "Bitcoin ETF çıkış serisinin altıncı güne taşınıp taşınmadığı",
-    "BTC'nin 68.000 dolar seviyesini destek olarak koruyup koruyamadığı",
-    "MEXC'den diğer borsalara geçişlerde yeni kısıtlama kararlarının gelip gelmediği"
+    "BTC ETF çıkış serisi Pazartesi yedinci güne taşınacak mı",
+    "BTC 67.000 dolar bandını destek olarak koruyabilecek mi",
+    "Nvidia'nın geçici CEO'su Colette Kress döneminde hisse ve kripto korelasyonlu satış baskısı sürecek mi",
+    "Fed yetkililerinden Aralık toplantısı öncesi yeni faiz sinyalleri gelecek mi"
   ],
   "sources": [
     {
-      "url": "https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html",
-      "title": "Nvidia CEO Jensen Huang resigns: Live updates",
+      "url": "https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html",
+      "title": "Nvidia stock closes down over 4% after CEO Jensen Huang announces resignation",
       "publisher": "CNBC"
     },
     {
-      "url": "https://www.newsbtc.com/bitcoin-news/bitcoin-etf-outflows-november-11-2026-five-sessions",
-      "title": "Bitcoin ETFs Lose $299.8M as Five-Session Outflow Streak Reaches $1.44B",
-      "publisher": "NewsBTC"
+      "url": "https://www.kucoin.com/news/flash/bitcoin-etfs-record-sixth-consecutive-day-of-outflows-as-btc-drops-nearly-5",
+      "title": "Bitcoin ETFs Record Sixth Consecutive Day of Outflows as BTC Drops Nearly 5%",
+      "publisher": "KuCoin News"
     },
     {
-      "url": "https://crypto.news/binance-blocks-mexc-transfers-after-fincens-16b-crackdown/",
-      "title": "Binance blocks MEXC transfers after FinCEN's $16B crackdown",
-      "publisher": "crypto.news"
+      "url": "https://www.riotimesonline.com/fed-hike-odds-90-hold-bets-fade-2026/",
+      "title": "Fed Hike Odds Reach 90.5% as Hold Fades",
+      "publisher": "Rio Times"
     },
     {
-      "url": "https://www.aa.com.tr/en/economy/us-weekly-jobless-claims-rise-to-200-000-above-expectations/4122947",
-      "title": "US weekly jobless claims rise to 200,000, above expectations",
-      "publisher": "Anadolu Ajansı"
+      "url": "https://decrypt.co/382926/binance-halts-mexc-transfers-as-fincen-cuts-exchange-off-from-us-financial-system",
+      "title": "Binance Halts MEXC Transfers as FinCEN Cuts Exchange Off From US Financial System",
+      "publisher": "Decrypt"
     },
     {
-      "url": "https://www.tokenpost.com/news/regulation/56031",
-      "title": "White House Sends Four SEC and CFTC Nominees to the Senate",
-      "publisher": "TokenPost"
-    },
-    {
-      "url": "https://coin-turk.com/fsbden-turkiyeye-stablecoin-cagrisi-yeni-kurallar-mi-geliyor",
-      "title": "FSB'den Türkiye'ye stablecoin çağrısı: Yeni kurallar mı geliyor?",
-      "publisher": "CoinTurk"
+      "url": "https://fintechtime.com/2026/11/tcmb-kripto-varliklari-odemeler-dengesi-istatistiklerine-dahil-etti/",
+      "title": "TCMB Kripto Varlıkları Ödemeler Dengesi İstatistiklerine Dahil Etti",
+      "publisher": "FinTech Time"
     }
   ],
   "assets": {
