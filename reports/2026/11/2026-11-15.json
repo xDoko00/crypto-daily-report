@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-15",
+  "language": "tr",
+  "title": "15 Kasım 2026, Pazar",
+  "publishedAt": "2026-11-15T07:51:49+03:00",
+  "updatedAt": "2026-11-15T07:51:49+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-15T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 64800,
+        "change24h": -3.411389024763208
+      },
+      "ETH": {
+        "priceUsd": 1814.28,
+        "change24h": -4.495332448784802
+      },
+      "SOL": {
+        "priceUsd": 71.02,
+        "change24h": -5.960299703105647
+      },
+      "BNB": {
+        "priceUsd": 594.25,
+        "change24h": -3.646509872599668
+      },
+      "XRP": {
+        "priceUsd": 0.972724,
+        "change24h": -2.10201334632049
+      }
+    },
+    "btcDominance": 58.60265468961094,
+    "ethDominance": 9.974877949756944,
+    "totalMarketCapUsd": 2218714375659.1133,
+    "volume24hUsd": 116266276501.90373,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 10,
+      "label": "Aşırı Korku",
+      "previousValue": 13,
+      "weekAgoValue": 28
+    }
+  },
+  "brief": {
+    "mood": "Riskli",
+    "why": "Fed yetkilileri (Williams, Waller, Logan, Goolsbee) Aralık toplantısı için faiz artış sinyalini güçlendirirken, BTC spot ETF'lerinden yedi gündür süren çıkışlar ve kaldıraçlı pozisyonlardaki zorunlu satışlar düşüşü hızlandırdı.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Fed'in Aralık faiz artış sinyali"
+      },
+      {
+        "timeTr": null,
+        "title": "BTC ETF çıkış serisi yedinci güne ulaştı"
+      },
+      {
+        "timeTr": null,
+        "title": "Kaldıraçlı pozisyonlarda likidasyon dalgası"
+      }
+    ],
+    "mainRisk": "Fed'in şahin sinyalleri ve aşırı korku bölgesindeki kaldıraçlı pozisyonlar yeni bir satış dalgasını tetikleyebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "BTC ETF çıkış serisi Pazartesi yedinci güne taşınacak mı",
+        "outcome": "Seri Pazartesi'yi beklemeden Cuma itibarıyla yedinci işlem gününe ulaştı, BlackRock'ın IBIT'inde çıkış on bir seansa çıktı; isabet kaydedildi."
+      },
+      {
+        "item": "BTC 67.000 dolar bandını destek olarak koruyabilecek mi",
+        "outcome": "Destek tutmadı; BTC dört ayın dibine inerek güncel seviyesine kadar geriledi, ıska kaydedildi."
+      },
+      {
+        "item": "Nvidia'nın geçici CEO'su Colette Kress döneminde hisse ve kripto korelasyonlu satış baskısı sürecek mi",
+        "outcome": "Evet; Kress döneminde Nvidia hisseleri haftayı sert düşüşle kapattı ve kripto ile korelasyonlu satış baskısı sürdü, isabet kaydedildi."
+      },
+      {
+        "item": "Fed yetkililerinden Aralık toplantısı öncesi yeni faiz sinyalleri gelecek mi",
+        "outcome": "Evet; Waller, Williams, Logan ve Goolsbee Aralık'ta faiz artışına işaret etti, piyasa beklentisi indirimden artışa döndü; isabet kaydedildi."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Fed'den Aralık'ta faiz artışı sinyali",
+        "summary": "New York Fed Başkanı Williams enflasyonun yüksek kaldığını söyledi, Guvernör Waller yarım puanlık artış ihtimalini gündeme getirdi; piyasa Aralık toplantısında çeyrek puanlık artışa yüksek olasılık veriyor.",
+        "source": {
+          "url": "https://www.forbes.com/sites/simonmoore/2026/11/13/waller-floats-prospect-of-larger-december-interest-rate-hike/",
+          "title": "Waller Floats Prospect Of Larger December Interest Rate Hike",
+          "publisher": "Forbes"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Likidasyon dalgasıyla BTC dört ayın dibine indi",
+        "summary": "Kaldıraçlı long pozisyonlardaki zorunlu satışlar BTC'yi dört ayın en düşük seviyesine çekti, yirmi dört saatte yüz milyonlarca dolarlık pozisyon tasfiye edildi.",
+        "source": {
+          "url": "https://www.bloomberg.com/news/articles/2026-11-14/bitcoin-tumbles-to-three-month-low-as-liquidations-accelerate",
+          "title": "Bitcoin Tumbles to Four-Month Low as Liquidations Accelerate",
+          "publisher": "Bloomberg"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "BTC ETF'lerinde çıkış serisi yedinci güne çıktı",
+        "summary": "ABD spot bitcoin ETF'leri art arda yedinci işlem gününde net çıkış kaydetti, BlackRock'ın IBIT'inde seri on bir seansa ulaştı.",
+        "source": {
+          "url": "https://cointelegraph.com/markets/bitcoin-etf-outflows-2-35-billion-blackrock-11-session-streak",
+          "title": "Bitcoin ETFs Lose $2.35B as BlackRock Outflows Hit 11 Sessions",
+          "publisher": "Cointelegraph"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Starknet ve Sei token kilit açılışları"
+      },
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likiditede oynaklık riski"
+      },
+      {
+        "timeTr": "13:00",
+        "title": "Fed'den Barr konuşması"
+      },
+      {
+        "timeTr": "17:05",
+        "title": "Fed'den Williams konuşması"
+      },
+      {
+        "timeTr": "20:00",
+        "title": "Fed Başkanı Warsh konuşması"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Fed'in şahin sinyalleri risk varlıklarından çıkışı hızlandırabilir.",
+      "Aşırı korku bölgesinde ek kaldıraçlı likidasyon riski sürüyor."
+    ]
+  },
+  "followUps": [
+    "BTC güncel destek bandını koruyabilecek mi",
+    "Fed'in Pazartesi konuşmaları faiz artış beklentisini daha da güçlendirecek mi",
+    "ETF çıkış serisi yeni haftada devam edecek mi",
+    "Nvidia'da kalıcı CEO ataması kripto korelasyonlu satışı durdurabilecek mi"
+  ],
+  "sources": [
+    {
+      "url": "https://www.forbes.com/sites/simonmoore/2026/11/13/waller-floats-prospect-of-larger-december-interest-rate-hike/",
+      "title": "Waller Floats Prospect Of Larger December Interest Rate Hike",
+      "publisher": "Forbes"
+    },
+    {
+      "url": "https://www.bloomberg.com/news/articles/2026-11-14/bitcoin-tumbles-to-three-month-low-as-liquidations-accelerate",
+      "title": "Bitcoin Tumbles to Four-Month Low as Liquidations Accelerate",
+      "publisher": "Bloomberg"
+    },
+    {
+      "url": "https://cointelegraph.com/markets/bitcoin-etf-outflows-2-35-billion-blackrock-11-session-streak",
+      "title": "Bitcoin ETFs Lose $2.35B as BlackRock Outflows Hit 11 Sessions",
+      "publisher": "Cointelegraph"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
