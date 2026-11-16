@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-16",
+  "language": "tr",
+  "title": "16 Kasım 2026, Pazartesi",
+  "publishedAt": "2026-11-16T07:50:43+03:00",
+  "updatedAt": "2026-11-16T07:50:43+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-16T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 64818,
+        "change24h": 0.06661976454334434
+      },
+      "ETH": {
+        "priceUsd": 1817.77,
+        "change24h": 0.20218891791142948
+      },
+      "SOL": {
+        "priceUsd": 71.53,
+        "change24h": 0.7803134274679606
+      },
+      "BNB": {
+        "priceUsd": 589.93,
+        "change24h": -0.7275552873034369
+      },
+      "XRP": {
+        "priceUsd": 0.958898,
+        "change24h": -1.3668399674955427
+      }
+    },
+    "btcDominance": 59.395603969100044,
+    "ethDominance": 10.12611419452442,
+    "totalMarketCapUsd": 2193345797197.6047,
+    "volume24hUsd": 71473327083.29419,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 10,
+      "label": "Aşırı Korku",
+      "previousValue": 10,
+      "weekAgoValue": 29
+    }
+  },
+  "brief": {
+    "mood": "Kararsız",
+    "why": "Bitcoin hafta sonu 62.000 dolara kadar gerileyip ardından toparlanınca piyasa son 24 saatte büyük ölçüde yatay seyretti; yatırımcılar yarın açıklanacak Nvidia bilançosunu ve çarşamba yayımlanacak Fed tutanaklarını bekliyor.",
+    "criticalEvents": [
+      {
+        "timeTr": "20:00",
+        "title": "Fed Başkanı Warsh'ın konuşması"
+      },
+      {
+        "timeTr": null,
+        "title": "New York Fed Başkanı Williams'ın açıklamaları"
+      }
+    ],
+    "mainRisk": "Aralık ayı faiz artışı beklentisinin güçlenmesi ve spot ETF çıkışlarının sürmesi risk varlıklarında yeni bir satış dalgasını tetikleyebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "BTC güncel destek bandını koruyabilecek mi",
+        "outcome": "Hayır, destek kısa süreli kırıldı: BTC hafta sonu Temmuz'dan beri en düşük seviyesi olan 62.000 dolara geriledi, ardından 65.000 dolar bandına toparlandı."
+      },
+      {
+        "item": "Fed'in Pazartesi konuşmaları faiz artış beklentisini daha da güçlendirecek mi",
+        "outcome": "Henüz belli değil, konuşmalar bugün gerçekleşecek; piyasa Aralık ayı faiz artışını zaten yaklaşık yüzde 88 ihtimalle fiyatlıyor."
+      },
+      {
+        "item": "ETF çıkış serisi yeni haftada devam edecek mi",
+        "outcome": "Evet, devam etti: art arda ikinci haftada 1 milyar doların üzerinde çıkışla Kasım toplamı 2,35 milyar dolara ulaştı."
+      },
+      {
+        "item": "Nvidia'da kalıcı CEO ataması kripto korelasyonlu satışı durdurabilecek mi",
+        "outcome": "Hayır, kalıcı atama yapılmadı: Colette Kress geçici CEO olarak görev yapıyor, Jensen Huang ise geri dönüş için ittifak kurmaya çalışıyor."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "BTC hafta sonu 62.000 dolara geriledi",
+        "summary": "Bitcoin, güçlenen Fed faiz artışı beklentisi ve tasfiyelerle Temmuz'dan beri en düşük seviyesi olan 62.000 dolara indi, ardından 65.000 dolar bandına toparlandı.",
+        "source": {
+          "url": "https://crypto.news/bitcoin-price-falls-62000-etf-outflows-liquidations/",
+          "title": "Bitcoin price falls to three-month low: Is $60K the next stop?",
+          "publisher": "crypto.news"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Spot BTC ETF'lerinde ikinci haftada 1 milyar dolar çıkış",
+        "summary": "ABD spot Bitcoin ETF'leri art arda ikinci haftada 1 milyar doların üzerinde net çıkış kaydetti; Kasım ayı toplam çıkışı 2,35 milyar dolara ulaştı.",
+        "source": {
+          "url": "https://www.theblock.co/news/markets/2026-11-14-bitcoin-etfs-lose-1-billion-for-the-second-week-in-a-row-as-crypto-funds-except-one-continue-bleeding-440337",
+          "title": "Bitcoin ETFs lose $1 billion for the second week in a row",
+          "publisher": "The Block"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Kava Lend saldırısı, KAVA yüzde 40 düştü",
+        "summary": "Saldırgan, Kava Lend üzerinde borçlanma limitini aşmak için 127 krediyle 55,2 milyon KAVA borçlandı ve sattı; token tek günde yaklaşık yüzde 40 değer kaybetti.",
+        "source": {
+          "url": "https://www.tokenpost.com/news/technology/58024",
+          "title": "Kava Lend Exploit Drains $3.8 Million as KAVA Falls Nearly 40%",
+          "publisher": "TokenPost"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Huang'sız ilk Nvidia bilançosu öncesi gerginlik",
+        "summary": "Jensen Huang'ın istifasının ardından Nvidia yarın ilk çeyrek sonuçlarını Huang'sız açıklayacak; Huang ise görevine geri dönmek için destek aramaya başladı.",
+        "source": {
+          "url": "https://www.bloomberg.com/news/articles/2026-11-15/huang-discusses-comeback-as-nvidia-chief-with-allies-ft-says",
+          "title": "Nvidia's Jensen Huang in Talks With Allies Over CEO Comeback",
+          "publisher": "Bloomberg"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "20:00",
+        "title": "Fed Başkanı Warsh'ın San Francisco Fed konferansı açılış konuşması"
+      },
+      {
+        "timeTr": null,
+        "title": "New York Fed Başkanı Williams'ın faiz patikasına ilişkin açıklamaları"
+      },
+      {
+        "timeTr": null,
+        "title": "Günlük spot BTC ETF giriş çıkış verileri"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Aralık ayı Fed faiz artışı ihtimalinin güçlenmesi risk varlıklarından çıkışı hızlandırabilir.",
+      "Spot BTC ETF çıkış serisinin sürmesi satış baskısını derinleştirebilir."
+    ]
+  },
+  "followUps": [
+    "Nvidia'nın yarın açıklayacağı ilk Huang sonrası çeyrek sonuçları piyasa güvenini destekleyecek mi",
+    "Fed yetkililerinin bugünkü konuşmaları Aralık faiz artışı beklentisini daha da güçlendirecek mi",
+    "BTC 65.000 dolar bandını koruyabilecek mi",
+    "Spot BTC ETF'lerinde çıkış serisi sona erecek mi"
+  ],
+  "sources": [
+    {
+      "url": "https://crypto.news/bitcoin-price-falls-62000-etf-outflows-liquidations/",
+      "title": "Bitcoin price falls to three-month low: Is $60K the next stop?",
+      "publisher": "crypto.news"
+    },
+    {
+      "url": "https://www.theblock.co/news/markets/2026-11-14-bitcoin-etfs-lose-1-billion-for-the-second-week-in-a-row-as-crypto-funds-except-one-continue-bleeding-440337",
+      "title": "Bitcoin ETFs lose $1 billion for the second week in a row",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://www.tokenpost.com/news/technology/58024",
+      "title": "Kava Lend Exploit Drains $3.8 Million as KAVA Falls Nearly 40%",
+      "publisher": "TokenPost"
+    },
+    {
+      "url": "https://www.bloomberg.com/news/articles/2026-11-15/huang-discusses-comeback-as-nvidia-chief-with-allies-ft-says",
+      "title": "Nvidia's Jensen Huang in Talks With Allies Over CEO Comeback",
+      "publisher": "Bloomberg"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
