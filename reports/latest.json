@@ -1,139 +1,165 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-16",
+  "id": "2026-11-17",
   "language": "tr",
-  "title": "16 Kasım 2026, Pazartesi",
-  "publishedAt": "2026-11-16T07:50:43+03:00",
-  "updatedAt": "2026-11-16T07:50:43+03:00",
+  "title": "17 Kasım 2026, Salı",
+  "publishedAt": "2026-11-17T07:52:06+03:00",
+  "updatedAt": "2026-11-17T07:52:06+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-16T07:48:00+03:00",
+    "asOf": "2026-11-17T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 64818,
-        "change24h": 0.06661976454334434
+        "priceUsd": 64986,
+        "change24h": 0.2794535160406988
       },
       "ETH": {
-        "priceUsd": 1817.77,
-        "change24h": 0.20218891791142948
+        "priceUsd": 1831.6,
+        "change24h": 0.8202991149228539
       },
       "SOL": {
-        "priceUsd": 71.53,
-        "change24h": 0.7803134274679606
+        "priceUsd": 72.9,
+        "change24h": 1.953174370485575
       },
       "BNB": {
-        "priceUsd": 589.93,
-        "change24h": -0.7275552873034369
+        "priceUsd": 594.52,
+        "change24h": 0.7906644635153204
       },
       "XRP": {
-        "priceUsd": 0.958898,
-        "change24h": -1.3668399674955427
+        "priceUsd": 0.964223,
+        "change24h": 0.5676376261866521
       }
     },
-    "btcDominance": 59.395603969100044,
-    "ethDominance": 10.12611419452442,
-    "totalMarketCapUsd": 2193345797197.6047,
-    "volume24hUsd": 71473327083.29419,
+    "btcDominance": 58.53319735789747,
+    "ethDominance": 10.0220726183283,
+    "totalMarketCapUsd": 2231541122251.214,
+    "volume24hUsd": 76588436764.78448,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 10,
+      "value": 12,
       "label": "Aşırı Korku",
       "previousValue": 10,
-      "weekAgoValue": 29
+      "weekAgoValue": 32
     }
   },
   "brief": {
-    "mood": "Kararsız",
-    "why": "Bitcoin hafta sonu 62.000 dolara kadar gerileyip ardından toparlanınca piyasa son 24 saatte büyük ölçüde yatay seyretti; yatırımcılar yarın açıklanacak Nvidia bilançosunu ve çarşamba yayımlanacak Fed tutanaklarını bekliyor.",
+    "mood": "Temkinli",
+    "why": "BTC hafta sonu gördüğü 62.000 dolar dibinden toparlanmaya çalışıyor; yatırımcılar Nvidia'nın bu akşamki ilk Huang sonrası bilançosunu ve Fed'in Aralık'ta faiz artırımını tamamen fiyatlamasını izleyerek temkinli kalıyor.",
     "criticalEvents": [
       {
-        "timeTr": "20:00",
-        "title": "Fed Başkanı Warsh'ın konuşması"
+        "timeTr": "16:30",
+        "title": "ABD perakende satışları"
       },
       {
-        "timeTr": null,
-        "title": "New York Fed Başkanı Williams'ın açıklamaları"
+        "timeTr": "17:10",
+        "title": "Fed'den Waller konuşması"
+      },
+      {
+        "timeTr": "00:20",
+        "title": "Nvidia çeyrek bilançosu"
       }
     ],
-    "mainRisk": "Aralık ayı faiz artışı beklentisinin güçlenmesi ve spot ETF çıkışlarının sürmesi risk varlıklarında yeni bir satış dalgasını tetikleyebilir."
+    "mainRisk": "Nvidia'nın bilançosu beklentiyi karşılamaz veya Fed şahin tonunu sürdürürse risk iştahı daha da bozulup BTC 60.000 doların altına sarkabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "BTC güncel destek bandını koruyabilecek mi",
-        "outcome": "Hayır, destek kısa süreli kırıldı: BTC hafta sonu Temmuz'dan beri en düşük seviyesi olan 62.000 dolara geriledi, ardından 65.000 dolar bandına toparlandı."
+        "item": "Nvidia'nın yarın açıklayacağı ilk Huang sonrası çeyrek sonuçları piyasa güvenini destekleyecek mi",
+        "outcome": "Henüz belli değil, bilanço bu akşam piyasa kapanışı sonrasında açıklanacak; zayıf gelirse BTC'nin 60.000 doların altına inebileceği uyarısı var."
       },
       {
-        "item": "Fed'in Pazartesi konuşmaları faiz artış beklentisini daha da güçlendirecek mi",
-        "outcome": "Henüz belli değil, konuşmalar bugün gerçekleşecek; piyasa Aralık ayı faiz artışını zaten yaklaşık yüzde 88 ihtimalle fiyatlıyor."
+        "item": "Fed yetkililerinin bugünkü konuşmaları Aralık faiz artışı beklentisini daha da güçlendirecek mi",
+        "outcome": "Doğru çıktı, Williams enflasyonun hala çok yüksek olduğunu söyledi ve CME FedWatch verilerine göre Aralık faiz artırımı olasılığı yüzde 100'e yükseldi."
       },
       {
-        "item": "ETF çıkış serisi yeni haftada devam edecek mi",
-        "outcome": "Evet, devam etti: art arda ikinci haftada 1 milyar doların üzerinde çıkışla Kasım toplamı 2,35 milyar dolara ulaştı."
+        "item": "BTC 65.000 dolar bandını koruyabilecek mi",
+        "outcome": "Hayır, BTC hafta sonu 62.000 dolara kadar indi; şu anki toparlanmayla birlikte yine 65.000 doların hemen altında seyrediyor, bandın üzerine kalıcı dönemedi."
       },
       {
-        "item": "Nvidia'da kalıcı CEO ataması kripto korelasyonlu satışı durdurabilecek mi",
-        "outcome": "Hayır, kalıcı atama yapılmadı: Colette Kress geçici CEO olarak görev yapıyor, Jensen Huang ise geri dönüş için ittifak kurmaya çalışıyor."
+        "item": "Spot BTC ETF'lerinde çıkış serisi sona erecek mi",
+        "outcome": "Hayır, çıkış serisi yedinci güne uzadı; Kasım ayı toplam net çıkış 2,1 milyar dolara yaklaştı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "BTC hafta sonu 62.000 dolara geriledi",
-        "summary": "Bitcoin, güçlenen Fed faiz artışı beklentisi ve tasfiyelerle Temmuz'dan beri en düşük seviyesi olan 62.000 dolara indi, ardından 65.000 dolar bandına toparlandı.",
+        "title": "Nvidia'nın ilk Huang sonrası bilançosu bu akşam açıklanacak",
+        "summary": "Jensen Huang'ın istifasından sonraki ilk çeyrek bilançosu piyasa kapanışı sonrasında açıklanacak; analistler zayıf gelirse kripto satışının BTC'yi 60.000 doların altına çekebileceğini söylüyor.",
         "source": {
-          "url": "https://crypto.news/bitcoin-price-falls-62000-etf-outflows-liquidations/",
-          "title": "Bitcoin price falls to three-month low: Is $60K the next stop?",
-          "publisher": "crypto.news"
+          "url": "https://www.coindesk.com/markets/2026/11/16/bitcoin-risks-falling-below-usd60-000-as-nvidia-earnings-threaten-to-deepen-crypto-sell-off",
+          "title": "Bitcoin risks falling below $60,000 as Nvidia earnings threaten to deepen crypto sell-off",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "kritik",
-        "title": "Spot BTC ETF'lerinde ikinci haftada 1 milyar dolar çıkış",
-        "summary": "ABD spot Bitcoin ETF'leri art arda ikinci haftada 1 milyar doların üzerinde net çıkış kaydetti; Kasım ayı toplam çıkışı 2,35 milyar dolara ulaştı.",
+        "title": "Fed'in Aralık faiz artırımı olasılığı yüzde 100'e çıktı",
+        "summary": "CME FedWatch verilerine göre Aralık'ta faiz artırımı olasılığı yüzde 100'e yükseldi; New York Fed Başkanı Williams enflasyonun hala çok yüksek olduğunu söyledi, Fed üyesi Waller ise 50 baz puanlık artış seçeneğini masada tutuyor.",
         "source": {
-          "url": "https://www.theblock.co/news/markets/2026-11-14-bitcoin-etfs-lose-1-billion-for-the-second-week-in-a-row-as-crypto-funds-except-one-continue-bleeding-440337",
-          "title": "Bitcoin ETFs lose $1 billion for the second week in a row",
-          "publisher": "The Block"
+          "url": "https://www.fool.com/investing/2026/11/16/theres-now-100-chance-fed-rate-hike-in-december-thats-not-worst-news-for-wall-street",
+          "title": "There's Now a 100% Chance of a Fed Rate Hike in December",
+          "publisher": "The Motley Fool"
         }
       },
       {
         "importance": "onemli",
-        "title": "Kava Lend saldırısı, KAVA yüzde 40 düştü",
-        "summary": "Saldırgan, Kava Lend üzerinde borçlanma limitini aşmak için 127 krediyle 55,2 milyon KAVA borçlandı ve sattı; token tek günde yaklaşık yüzde 40 değer kaybetti.",
+        "title": "Spot BTC ETF çıkış serisi yedinci güne uzadı",
+        "summary": "Spot BTC ETF'lerinde net çıkış serisi yedinci güne ulaştı, Kasım ayı toplam çıkışı 2,1 milyar dolara yaklaştı; cuma günkü 696 milyon dolarlık çıkış Ocak'tan beri en büyük günlük rakam oldu.",
         "source": {
-          "url": "https://www.tokenpost.com/news/technology/58024",
-          "title": "Kava Lend Exploit Drains $3.8 Million as KAVA Falls Nearly 40%",
-          "publisher": "TokenPost"
+          "url": "https://bitcoinworld.co.in/bitcoin-etfs-outflow-streak-seven-days-november-2026/",
+          "title": "Bitcoin ETFs Lose $2.1 Billion in November as Outflow Streak Hits Seven Days",
+          "publisher": "Bitcoin World"
         }
       },
       {
         "importance": "onemli",
-        "title": "Huang'sız ilk Nvidia bilançosu öncesi gerginlik",
-        "summary": "Jensen Huang'ın istifasının ardından Nvidia yarın ilk çeyrek sonuçlarını Huang'sız açıklayacak; Huang ise görevine geri dönmek için destek aramaya başladı.",
+        "title": "Rusya perakende yatırımcıya kripto alım satımını açtı",
+        "summary": "Rusya Merkez Bankası bugünden itibaren nitelikli olmayan perakende yatırımcıların düzenlenmiş aracılar üzerinden yıllık limit dahilinde bitcoin, ether ve USDT alıp satabilmesine izin verdi.",
         "source": {
-          "url": "https://www.bloomberg.com/news/articles/2026-11-15/huang-discusses-comeback-as-nvidia-chief-with-allies-ft-says",
-          "title": "Nvidia's Jensen Huang in Talks With Allies Over CEO Comeback",
-          "publisher": "Bloomberg"
+          "url": "https://www.coindesk.com/markets/2026/11/16/fomc-minutes-nvidia-earnings-russia-s-retail-crypto-rules-crypto-week-ahead",
+          "title": "FOMC minutes, Nvidia earnings, Russia's retail crypto rules: Crypto Week Ahead",
+          "publisher": "CoinDesk"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Anthropic'in Nasdaq IPO'su risk sermayesini kriptodan çekiyor",
+        "summary": "Anthropic'in Nasdaq'ta işlem görecek halka arzı 1,4 trilyon dolarlık değerlemeyle altı kat fazla talep topladı; büyük IPO'nun riskli varlıklardaki sermayeyi kriptodan çektiği belirtiliyor.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/bitcoin-falls-below-65-000-amid-macroeconomic-pressures-and-anthropic-ipo",
+          "title": "Bitcoin Falls Below $65,000 Amid Macroeconomic Pressures and Anthropic IPO",
+          "publisher": "KuCoin News"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "20:00",
-        "title": "Fed Başkanı Warsh'ın San Francisco Fed konferansı açılış konuşması"
+        "timeTr": "14:30",
+        "title": "Fed'den Musalem konuşması"
       },
       {
-        "timeTr": null,
-        "title": "New York Fed Başkanı Williams'ın faiz patikasına ilişkin açıklamaları"
+        "timeTr": "16:30",
+        "title": "ABD perakende satışları (Ekim)"
       },
       {
-        "timeTr": null,
-        "title": "Günlük spot BTC ETF giriş çıkış verileri"
+        "timeTr": "16:30",
+        "title": "Fed'den Hammack konuşması"
+      },
+      {
+        "timeTr": "17:10",
+        "title": "Fed'den Waller konuşması"
+      },
+      {
+        "timeTr": "22:25",
+        "title": "Fed'den Williams konuşması"
+      },
+      {
+        "timeTr": "00:20",
+        "title": "Nvidia çeyrek bilançosu"
       }
     ],
     "turkey": {
@@ -141,36 +167,42 @@
       "items": []
     },
     "risks": [
-      "Aralık ayı Fed faiz artışı ihtimalinin güçlenmesi risk varlıklarından çıkışı hızlandırabilir.",
-      "Spot BTC ETF çıkış serisinin sürmesi satış baskısını derinleştirebilir."
+      "Nvidia'nın zayıf gelmesi halinde risk varlıklarında satış dalgası büyüyebilir, kripto da bundan payını alabilir.",
+      "Fed'in Aralık'ta faiz artırımını tamamen fiyatlaması tahvil getirilerini yukarı itip kripto üzerindeki baskıyı sürdürebilir.",
+      "Spot BTC ETF'lerinde yedi gündür süren net çıkışlar kurumsal talebin zayıfladığına işaret ediyor."
     ]
   },
   "followUps": [
-    "Nvidia'nın yarın açıklayacağı ilk Huang sonrası çeyrek sonuçları piyasa güvenini destekleyecek mi",
-    "Fed yetkililerinin bugünkü konuşmaları Aralık faiz artışı beklentisini daha da güçlendirecek mi",
-    "BTC 65.000 dolar bandını koruyabilecek mi",
-    "Spot BTC ETF'lerinde çıkış serisi sona erecek mi"
+    "Nvidia'nın çeyrek bilançosu analist beklentisini aştı mı, yoksa hayal kırıklığı mı yarattı.",
+    "FOMC tutanakları Aralık'ta 25 mi yoksa 50 baz puanlık bir artış mı tartışıldığını netleştirecek.",
+    "Spot BTC ETF'lerindeki yedi günlük çıkış serisi sona erecek mi.",
+    "BTC yeniden 65.000 dolar bandının üzerine kalıcı olarak çıkabilecek mi."
   ],
   "sources": [
     {
-      "url": "https://crypto.news/bitcoin-price-falls-62000-etf-outflows-liquidations/",
-      "title": "Bitcoin price falls to three-month low: Is $60K the next stop?",
-      "publisher": "crypto.news"
+      "url": "https://www.coindesk.com/markets/2026/11/16/bitcoin-risks-falling-below-usd60-000-as-nvidia-earnings-threaten-to-deepen-crypto-sell-off",
+      "title": "Bitcoin risks falling below $60,000 as Nvidia earnings threaten to deepen crypto sell-off",
+      "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.theblock.co/news/markets/2026-11-14-bitcoin-etfs-lose-1-billion-for-the-second-week-in-a-row-as-crypto-funds-except-one-continue-bleeding-440337",
-      "title": "Bitcoin ETFs lose $1 billion for the second week in a row",
-      "publisher": "The Block"
+      "url": "https://www.fool.com/investing/2026/11/16/theres-now-100-chance-fed-rate-hike-in-december-thats-not-worst-news-for-wall-street",
+      "title": "There's Now a 100% Chance of a Fed Rate Hike in December",
+      "publisher": "The Motley Fool"
     },
     {
-      "url": "https://www.tokenpost.com/news/technology/58024",
-      "title": "Kava Lend Exploit Drains $3.8 Million as KAVA Falls Nearly 40%",
-      "publisher": "TokenPost"
+      "url": "https://bitcoinworld.co.in/bitcoin-etfs-outflow-streak-seven-days-november-2026/",
+      "title": "Bitcoin ETFs Lose $2.1 Billion in November as Outflow Streak Hits Seven Days",
+      "publisher": "Bitcoin World"
     },
     {
-      "url": "https://www.bloomberg.com/news/articles/2026-11-15/huang-discusses-comeback-as-nvidia-chief-with-allies-ft-says",
-      "title": "Nvidia's Jensen Huang in Talks With Allies Over CEO Comeback",
-      "publisher": "Bloomberg"
+      "url": "https://www.coindesk.com/markets/2026/11/16/fomc-minutes-nvidia-earnings-russia-s-retail-crypto-rules-crypto-week-ahead",
+      "title": "FOMC minutes, Nvidia earnings, Russia's retail crypto rules: Crypto Week Ahead",
+      "publisher": "CoinDesk"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/bitcoin-falls-below-65-000-amid-macroeconomic-pressures-and-anthropic-ipo",
+      "title": "Bitcoin Falls Below $65,000 Amid Macroeconomic Pressures and Anthropic IPO",
+      "publisher": "KuCoin News"
     }
   ],
   "assets": {
