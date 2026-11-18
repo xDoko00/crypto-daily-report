@@ -1,208 +1,186 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-17",
+  "id": "2026-11-18",
   "language": "tr",
-  "title": "17 Kasım 2026, Salı",
-  "publishedAt": "2026-11-17T07:52:06+03:00",
-  "updatedAt": "2026-11-17T07:52:06+03:00",
+  "title": "18 Kasım 2026, Çarşamba",
+  "publishedAt": "2026-11-18T07:52:46+03:00",
+  "updatedAt": "2026-11-18T07:52:46+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-17T07:48:00+03:00",
+    "asOf": "2026-11-18T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 64986,
-        "change24h": 0.2794535160406988
+        "priceUsd": 64297,
+        "change24h": -1.051402027836841
       },
       "ETH": {
-        "priceUsd": 1831.6,
-        "change24h": 0.8202991149228539
+        "priceUsd": 1798.79,
+        "change24h": -1.7845257945959738
       },
       "SOL": {
-        "priceUsd": 72.9,
-        "change24h": 1.953174370485575
+        "priceUsd": 74.73,
+        "change24h": 2.5068000817064995
       },
       "BNB": {
-        "priceUsd": 594.52,
-        "change24h": 0.7906644635153204
+        "priceUsd": 590.48,
+        "change24h": -0.6802262151463224
       },
       "XRP": {
-        "priceUsd": 0.964223,
-        "change24h": 0.5676376261866521
+        "priceUsd": 0.977139,
+        "change24h": 1.3491934873976843
       }
     },
-    "btcDominance": 58.53319735789747,
-    "ethDominance": 10.0220726183283,
-    "totalMarketCapUsd": 2231541122251.214,
-    "volume24hUsd": 76588436764.78448,
+    "btcDominance": 58.40141665983395,
+    "ethDominance": 9.932249416857315,
+    "totalMarketCapUsd": 2211263409692.0522,
+    "volume24hUsd": 77648846976.70276,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 12,
+      "value": 11,
       "label": "Aşırı Korku",
-      "previousValue": 10,
-      "weekAgoValue": 32
+      "previousValue": 12,
+      "weekAgoValue": 29
     }
   },
   "brief": {
     "mood": "Temkinli",
-    "why": "BTC hafta sonu gördüğü 62.000 dolar dibinden toparlanmaya çalışıyor; yatırımcılar Nvidia'nın bu akşamki ilk Huang sonrası bilançosunu ve Fed'in Aralık'ta faiz artırımını tamamen fiyatlamasını izleyerek temkinli kalıyor.",
+    "why": "BTC ve ETH güçlü dolar ile yüksek tahvil faizlerinin baskısı altında kalırken Nvidia'nın beklentileri aşan bilançosu risk iştahını kısmen destekledi; piyasa ise bugün açıklanacak FOMC tutanaklarını bekleyerek net yön almadı.",
     "criticalEvents": [
       {
         "timeTr": "16:30",
-        "title": "ABD perakende satışları"
+        "title": "ABD yeni konut başlangıçları verisi"
       },
       {
-        "timeTr": "17:10",
-        "title": "Fed'den Waller konuşması"
-      },
-      {
-        "timeTr": "00:20",
-        "title": "Nvidia çeyrek bilançosu"
+        "timeTr": "22:00",
+        "title": "FOMC tutanakları (Ekim ayı)"
       }
     ],
-    "mainRisk": "Nvidia'nın bilançosu beklentiyi karşılamaz veya Fed şahin tonunu sürdürürse risk iştahı daha da bozulup BTC 60.000 doların altına sarkabilir."
+    "mainRisk": "Bugün açıklanacak FOMC tutanaklarının şahin bir ton taşıması, zayıflayan ETF talebi ve düşen stabil coin arzıyla birleşince satışları hızlandırabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Nvidia'nın yarın açıklayacağı ilk Huang sonrası çeyrek sonuçları piyasa güvenini destekleyecek mi",
-        "outcome": "Henüz belli değil, bilanço bu akşam piyasa kapanışı sonrasında açıklanacak; zayıf gelirse BTC'nin 60.000 doların altına inebileceği uyarısı var."
+        "item": "Nvidia'nın çeyrek bilançosu analist beklentisini aştı mı, yoksa hayal kırıklığı mı yarattı.",
+        "outcome": "Beklentiyi aştı: gelir 115,8 milyar dolara ulaştı (tahmin 109,1 milyar), hisse başı kâr 2,68 dolar oldu ve dördüncü çeyrek gelir öngörüsü de piyasa tahminlerinin üzerinde geldi."
       },
       {
-        "item": "Fed yetkililerinin bugünkü konuşmaları Aralık faiz artışı beklentisini daha da güçlendirecek mi",
-        "outcome": "Doğru çıktı, Williams enflasyonun hala çok yüksek olduğunu söyledi ve CME FedWatch verilerine göre Aralık faiz artırımı olasılığı yüzde 100'e yükseldi."
+        "item": "FOMC tutanakları Aralık'ta 25 mi yoksa 50 baz puanlık bir değişim mi tartışıldığını netleştirecek.",
+        "outcome": "Henüz belli olmadı; Ekim ayı toplantısına ait tutanaklar bugün TSİ 22:00'de yayımlanacak."
       },
       {
-        "item": "BTC 65.000 dolar bandını koruyabilecek mi",
-        "outcome": "Hayır, BTC hafta sonu 62.000 dolara kadar indi; şu anki toparlanmayla birlikte yine 65.000 doların hemen altında seyrediyor, bandın üzerine kalıcı dönemedi."
+        "item": "Spot BTC ETF'lerindeki yedi günlük çıkış serisi sona erecek mi.",
+        "outcome": "Kısmen: seri 16 Kasım'da BlackRock'un girişiyle sona erdi, fakat 17 Kasım'da fonlar yeniden net 30 milyon dolarlık çıkışa döndü, toparlanma kırılgan kaldı."
       },
       {
-        "item": "Spot BTC ETF'lerinde çıkış serisi sona erecek mi",
-        "outcome": "Hayır, çıkış serisi yedinci güne uzadı; Kasım ayı toplam net çıkış 2,1 milyar dolara yaklaştı."
+        "item": "BTC yeniden 65.000 dolar bandının üzerine kalıcı olarak çıkabilecek mi.",
+        "outcome": "Hayır, BTC 64.300 dolar seviyesinde kaldı ve 65.000 doların üzerine kalıcı geçiş sağlayamadı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Nvidia'nın ilk Huang sonrası bilançosu bu akşam açıklanacak",
-        "summary": "Jensen Huang'ın istifasından sonraki ilk çeyrek bilançosu piyasa kapanışı sonrasında açıklanacak; analistler zayıf gelirse kripto satışının BTC'yi 60.000 doların altına çekebileceğini söylüyor.",
+        "title": "Nvidia bilançosu beklentileri açık farkla aştı",
+        "summary": "Nvidia çeyreklik gelirini 115,8 milyar dolara taşıyarak tahminleri aştı ve güçlü bir dördüncü çeyrek öngörüsü verdi; bu küresel risk iştahını kısmen destekledi.",
         "source": {
-          "url": "https://www.coindesk.com/markets/2026/11/16/bitcoin-risks-falling-below-usd60-000-as-nvidia-earnings-threaten-to-deepen-crypto-sell-off",
-          "title": "Bitcoin risks falling below $60,000 as Nvidia earnings threaten to deepen crypto sell-off",
-          "publisher": "CoinDesk"
-        }
-      },
-      {
-        "importance": "kritik",
-        "title": "Fed'in Aralık faiz artırımı olasılığı yüzde 100'e çıktı",
-        "summary": "CME FedWatch verilerine göre Aralık'ta faiz artırımı olasılığı yüzde 100'e yükseldi; New York Fed Başkanı Williams enflasyonun hala çok yüksek olduğunu söyledi, Fed üyesi Waller ise 50 baz puanlık artış seçeneğini masada tutuyor.",
-        "source": {
-          "url": "https://www.fool.com/investing/2026/11/16/theres-now-100-chance-fed-rate-hike-in-december-thats-not-worst-news-for-wall-street",
-          "title": "There's Now a 100% Chance of a Fed Rate Hike in December",
-          "publisher": "The Motley Fool"
+          "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-beat-estimates-attention-turns-to-call-5034180",
+          "title": "Nvidia earnings beat estimates; attention turns to call",
+          "publisher": "Reuters"
         }
       },
       {
         "importance": "onemli",
-        "title": "Spot BTC ETF çıkış serisi yedinci güne uzadı",
-        "summary": "Spot BTC ETF'lerinde net çıkış serisi yedinci güne ulaştı, Kasım ayı toplam çıkışı 2,1 milyar dolara yaklaştı; cuma günkü 696 milyon dolarlık çıkış Ocak'tan beri en büyük günlük rakam oldu.",
+        "title": "BTC ETF çıkış serisi bir gün sonra geri döndü",
+        "summary": "Spot Bitcoin ETF'lerindeki yedi günlük net çıkış serisi 16 Kasım'da BlackRock'un girişiyle sona erdi, fakat 17 Kasım'da fonlar yeniden net çıkışa döndü.",
         "source": {
-          "url": "https://bitcoinworld.co.in/bitcoin-etfs-outflow-streak-seven-days-november-2026/",
-          "title": "Bitcoin ETFs Lose $2.1 Billion in November as Outflow Streak Hits Seven Days",
-          "publisher": "Bitcoin World"
+          "url": "https://www.tradingandinvestmentnews.co.uk/bitcoin-etf-outflows-streak-ends/",
+          "title": "Bitcoin ETF Outflows End After 7 Days as BTC Holds $64,800",
+          "publisher": "Trading and Investment News"
         }
       },
       {
         "importance": "onemli",
-        "title": "Rusya perakende yatırımcıya kripto alım satımını açtı",
-        "summary": "Rusya Merkez Bankası bugünden itibaren nitelikli olmayan perakende yatırımcıların düzenlenmiş aracılar üzerinden yıllık limit dahilinde bitcoin, ether ve USDT alıp satabilmesine izin verdi.",
+        "title": "Solana Foundation CoinGecko'da çoğunluk hissesi aldı",
+        "summary": "Solana Foundation, Londra'daki Breakpoint 2026 etkinliğinde CoinGecko'nun çoğunluk hissesini aldığını açıkladı; platformda Solana altyapılı işlem özellikleri planlanıyor.",
         "source": {
-          "url": "https://www.coindesk.com/markets/2026/11/16/fomc-minutes-nvidia-earnings-russia-s-retail-crypto-rules-crypto-week-ahead",
-          "title": "FOMC minutes, Nvidia earnings, Russia's retail crypto rules: Crypto Week Ahead",
+          "url": "https://www.coindesk.com/business/2026/11/17/solana-foundation-takes-majority-stake-in-crypto-data-provider-coingecko",
+          "title": "Solana Foundation takes majority stake in crypto data provider CoinGecko",
           "publisher": "CoinDesk"
-        }
-      },
-      {
-        "importance": "bilgi",
-        "title": "Anthropic'in Nasdaq IPO'su risk sermayesini kriptodan çekiyor",
-        "summary": "Anthropic'in Nasdaq'ta işlem görecek halka arzı 1,4 trilyon dolarlık değerlemeyle altı kat fazla talep topladı; büyük IPO'nun riskli varlıklardaki sermayeyi kriptodan çektiği belirtiliyor.",
-        "source": {
-          "url": "https://www.kucoin.com/news/flash/bitcoin-falls-below-65-000-amid-macroeconomic-pressures-and-anthropic-ipo",
-          "title": "Bitcoin Falls Below $65,000 Amid Macroeconomic Pressures and Anthropic IPO",
-          "publisher": "KuCoin News"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "14:30",
-        "title": "Fed'den Musalem konuşması"
-      },
-      {
         "timeTr": "16:30",
-        "title": "ABD perakende satışları (Ekim)"
+        "title": "ABD yeni konut başlangıçları verisi"
       },
       {
-        "timeTr": "16:30",
-        "title": "Fed'den Hammack konuşması"
-      },
-      {
-        "timeTr": "17:10",
-        "title": "Fed'den Waller konuşması"
-      },
-      {
-        "timeTr": "22:25",
-        "title": "Fed'den Williams konuşması"
-      },
-      {
-        "timeTr": "00:20",
-        "title": "Nvidia çeyrek bilançosu"
+        "timeTr": "22:00",
+        "title": "FOMC Ekim ayı toplantı tutanakları"
       }
     ],
     "turkey": {
-      "hasNews": false,
-      "items": []
+      "hasNews": true,
+      "items": [
+        {
+          "title": "TCMB kripto varlıkları ödemeler dengesine dahil etti",
+          "summary": "TCMB, Eylül verileriyle birlikte Bitcoin ve Ether gibi ihraççısı olmayan kripto varlıkları Sermaye Hesabı'nda, stabil coin'leri ise Finans Hesabı'nda izlemeye başladı.",
+          "source": {
+            "url": "https://fintechistanbul.org/2026/11/17/kripto-varliklar-tcmb-tarafindan-odemeler-dengesi-istatistiklerine-dahil-edildi/",
+            "title": "Kripto varlıklar TCMB tarafından ödemeler dengesi istatistiklerine dahil edildi",
+            "publisher": "FinTech İstanbul"
+          }
+        },
+        {
+          "title": "SPK kripto varlık hizmet sağlayıcıları düzenlemesinde sona yaklaşıldı",
+          "summary": "SPK'nin kripto varlık hizmet sağlayıcılarına yönelik ikincil düzenlemesi tamamlanma aşamasına geldi; borsalar ve saklama kuruluşları doğrudan SPK izninin kapsamına alınacak.",
+          "source": {
+            "url": "https://bigpara.hurriyet.com.tr/haberler/ekonomi-haberleri/spkdan-kripto-varliklari-duzenlemesi-bakan-simsek-piyasalara-yeni-bir-arac-kazandirdik_ID1606609/",
+            "title": "SPK'dan kripto varlıkları düzenlemesi... Bakan Şimşek: Piyasalara yeni bir araç kazandırdık",
+            "publisher": "Hürriyet Bigpara"
+          }
+        }
+      ]
     },
     "risks": [
-      "Nvidia'nın zayıf gelmesi halinde risk varlıklarında satış dalgası büyüyebilir, kripto da bundan payını alabilir.",
-      "Fed'in Aralık'ta faiz artırımını tamamen fiyatlaması tahvil getirilerini yukarı itip kripto üzerindeki baskıyı sürdürebilir.",
-      "Spot BTC ETF'lerinde yedi gündür süren net çıkışlar kurumsal talebin zayıfladığına işaret ediyor."
+      "FOMC tutanaklarının şahin yorumlanması, zaten zayıf olan likidite ortamında ek satış baskısı yaratabilir.",
+      "Spot BTC ETF akışlarındaki kararsızlık ve düşen stabil coin arzı kurumsal talebin henüz kalıcı dönmediğini gösteriyor."
     ]
   },
   "followUps": [
-    "Nvidia'nın çeyrek bilançosu analist beklentisini aştı mı, yoksa hayal kırıklığı mı yarattı.",
-    "FOMC tutanakları Aralık'ta 25 mi yoksa 50 baz puanlık bir artış mı tartışıldığını netleştirecek.",
-    "Spot BTC ETF'lerindeki yedi günlük çıkış serisi sona erecek mi.",
-    "BTC yeniden 65.000 dolar bandının üzerine kalıcı olarak çıkabilecek mi."
+    "FOMC tutanaklarının Aralık toplantısı için şahin mi güvercin mi sinyal verdiği netleşecek",
+    "Spot BTC ETF'lerinde net çıkışın sürüp sürmediği görülecek",
+    "BTC'nin 65.000 dolar bandının üzerinde kalıcı olup olamayacağı",
+    "Solana'nın CoinGecko hamlesinin SOL fiyatına yansıyıp yansımadığı"
   ],
   "sources": [
     {
-      "url": "https://www.coindesk.com/markets/2026/11/16/bitcoin-risks-falling-below-usd60-000-as-nvidia-earnings-threaten-to-deepen-crypto-sell-off",
-      "title": "Bitcoin risks falling below $60,000 as Nvidia earnings threaten to deepen crypto sell-off",
+      "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-beat-estimates-attention-turns-to-call-5034180",
+      "title": "Nvidia earnings beat estimates; attention turns to call",
+      "publisher": "Reuters"
+    },
+    {
+      "url": "https://www.tradingandinvestmentnews.co.uk/bitcoin-etf-outflows-streak-ends/",
+      "title": "Bitcoin ETF Outflows End After 7 Days as BTC Holds $64,800",
+      "publisher": "Trading and Investment News"
+    },
+    {
+      "url": "https://www.coindesk.com/business/2026/11/17/solana-foundation-takes-majority-stake-in-crypto-data-provider-coingecko",
+      "title": "Solana Foundation takes majority stake in crypto data provider CoinGecko",
       "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.fool.com/investing/2026/11/16/theres-now-100-chance-fed-rate-hike-in-december-thats-not-worst-news-for-wall-street",
-      "title": "There's Now a 100% Chance of a Fed Rate Hike in December",
-      "publisher": "The Motley Fool"
+      "url": "https://fintechistanbul.org/2026/11/17/kripto-varliklar-tcmb-tarafindan-odemeler-dengesi-istatistiklerine-dahil-edildi/",
+      "title": "Kripto varlıklar TCMB tarafından ödemeler dengesi istatistiklerine dahil edildi",
+      "publisher": "FinTech İstanbul"
     },
     {
-      "url": "https://bitcoinworld.co.in/bitcoin-etfs-outflow-streak-seven-days-november-2026/",
-      "title": "Bitcoin ETFs Lose $2.1 Billion in November as Outflow Streak Hits Seven Days",
-      "publisher": "Bitcoin World"
-    },
-    {
-      "url": "https://www.coindesk.com/markets/2026/11/16/fomc-minutes-nvidia-earnings-russia-s-retail-crypto-rules-crypto-week-ahead",
-      "title": "FOMC minutes, Nvidia earnings, Russia's retail crypto rules: Crypto Week Ahead",
-      "publisher": "CoinDesk"
-    },
-    {
-      "url": "https://www.kucoin.com/news/flash/bitcoin-falls-below-65-000-amid-macroeconomic-pressures-and-anthropic-ipo",
-      "title": "Bitcoin Falls Below $65,000 Amid Macroeconomic Pressures and Anthropic IPO",
-      "publisher": "KuCoin News"
+      "url": "https://bigpara.hurriyet.com.tr/haberler/ekonomi-haberleri/spkdan-kripto-varliklari-duzenlemesi-bakan-simsek-piyasalara-yeni-bir-arac-kazandirdik_ID1606609/",
+      "title": "SPK'dan kripto varlıkları düzenlemesi... Bakan Şimşek: Piyasalara yeni bir araç kazandırdık",
+      "publisher": "Hürriyet Bigpara"
     }
   ],
   "assets": {
