@@ -1,186 +1,184 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-18",
+  "id": "2026-11-19",
   "language": "tr",
-  "title": "18 Kasım 2026, Çarşamba",
-  "publishedAt": "2026-11-18T07:52:46+03:00",
-  "updatedAt": "2026-11-18T07:52:46+03:00",
+  "title": "19 Kasım 2026, Perşembe",
+  "publishedAt": "2026-11-19T07:50:35+03:00",
+  "updatedAt": "2026-11-19T07:50:35+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-18T07:48:00+03:00",
+    "asOf": "2026-11-19T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 64297,
-        "change24h": -1.051402027836841
+        "priceUsd": 63460,
+        "change24h": -1.3324401503732652
       },
       "ETH": {
-        "priceUsd": 1798.79,
-        "change24h": -1.7845257945959738
+        "priceUsd": 1799.1,
+        "change24h": -0.011570045999949137
       },
       "SOL": {
-        "priceUsd": 74.73,
-        "change24h": 2.5068000817064995
+        "priceUsd": 74.61,
+        "change24h": -0.28357184909131933
       },
       "BNB": {
-        "priceUsd": 590.48,
-        "change24h": -0.6802262151463224
+        "priceUsd": 586.59,
+        "change24h": -0.6798599898030837
       },
       "XRP": {
-        "priceUsd": 0.977139,
-        "change24h": 1.3491934873976843
+        "priceUsd": 0.973684,
+        "change24h": -0.3828214604421706
       }
     },
-    "btcDominance": 58.40141665983395,
-    "ethDominance": 9.932249416857315,
-    "totalMarketCapUsd": 2211263409692.0522,
-    "volume24hUsd": 77648846976.70276,
+    "btcDominance": 58.11409110129326,
+    "ethDominance": 10.010231227518297,
+    "totalMarketCapUsd": 2194806486972.7112,
+    "volume24hUsd": 73700675870.31776,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 11,
+      "value": 10,
       "label": "Aşırı Korku",
-      "previousValue": 12,
-      "weekAgoValue": 29
+      "previousValue": 11,
+      "weekAgoValue": 28
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "BTC ve ETH güçlü dolar ile yüksek tahvil faizlerinin baskısı altında kalırken Nvidia'nın beklentileri aşan bilançosu risk iştahını kısmen destekledi; piyasa ise bugün açıklanacak FOMC tutanaklarını bekleyerek net yön almadı.",
+    "mood": "Riskli",
+    "why": "Fed'in şahin çıkan Ekim toplantısı tutanakları ve Waller'ın Aralık'ta 50 baz puanlık artış çağrısı, spot BTC ETF'lerinden süren çıkışlarla birleşince kaldıraçlı pozisyonlarda yaygın tasfiyelere yol açtı.",
     "criticalEvents": [
       {
         "timeTr": "16:30",
-        "title": "ABD yeni konut başlangıçları verisi"
+        "title": "ABD işsizlik başvuruları ve Philly Fed endeksi"
       },
       {
-        "timeTr": "22:00",
-        "title": "FOMC tutanakları (Ekim ayı)"
+        "timeTr": "12:00",
+        "title": "Çin kredi faiz oranı kararı"
+      },
+      {
+        "timeTr": null,
+        "title": "Fed yetkilileri açıklamaları"
       }
     ],
-    "mainRisk": "Bugün açıklanacak FOMC tutanaklarının şahin bir ton taşıması, zayıflayan ETF talebi ve düşen stabil coin arzıyla birleşince satışları hızlandırabilir."
+    "mainRisk": "Fed'in Aralık'ta faiz artırımı ihtimalinin güçlenmesi, ETF çıkışları ve kaldıraçlı tasfiyelerle beslenen satış dalgasını derinleştirebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Nvidia'nın çeyrek bilançosu analist beklentisini aştı mı, yoksa hayal kırıklığı mı yarattı.",
-        "outcome": "Beklentiyi aştı: gelir 115,8 milyar dolara ulaştı (tahmin 109,1 milyar), hisse başı kâr 2,68 dolar oldu ve dördüncü çeyrek gelir öngörüsü de piyasa tahminlerinin üzerinde geldi."
+        "item": "FOMC tutanaklarının Aralık toplantısı için şahin mi güvercin mi sinyal verdiği netleşecek",
+        "outcome": "Şahin çıktı: tutanaklarda katılımcıların büyük çoğunluğu ek faiz artışının gerekli olduğunu belirtti, Waller ise 50 baz puanlık bir artışın gündeme gelebileceğini söyledi"
       },
       {
-        "item": "FOMC tutanakları Aralık'ta 25 mi yoksa 50 baz puanlık bir değişim mi tartışıldığını netleştirecek.",
-        "outcome": "Henüz belli olmadı; Ekim ayı toplantısına ait tutanaklar bugün TSİ 22:00'de yayımlanacak."
+        "item": "Spot BTC ETF'lerinde net çıkışın sürüp sürmediği görülecek",
+        "outcome": "Sürdü: ABD spot BTC ETF'leri 17 Kasım'da yaklaşık 240 milyon dolar net çıkış kaydetti, IBIT öncülüğünde"
       },
       {
-        "item": "Spot BTC ETF'lerindeki yedi günlük çıkış serisi sona erecek mi.",
-        "outcome": "Kısmen: seri 16 Kasım'da BlackRock'un girişiyle sona erdi, fakat 17 Kasım'da fonlar yeniden net 30 milyon dolarlık çıkışa döndü, toparlanma kırılgan kaldı."
+        "item": "BTC'nin 65.000 dolar bandının üzerinde kalıcı olup olamayacağı",
+        "outcome": "Iska: BTC 65.000 doların altına sarktı, kısa süreliğine 62.000 dolara kadar geriledi"
       },
       {
-        "item": "BTC yeniden 65.000 dolar bandının üzerine kalıcı olarak çıkabilecek mi.",
-        "outcome": "Hayır, BTC 64.300 dolar seviyesinde kaldı ve 65.000 doların üzerine kalıcı geçiş sağlayamadı."
+        "item": "Solana'nın CoinGecko hamlesinin SOL fiyatına yansıyıp yansımadığı",
+        "outcome": "Yansıdı: Solana Vakfı'nın CoinGecko'da çoğunluk hissesi alma haberinin ardından SOL yaklaşık yüzde 5 yükseldi"
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Nvidia bilançosu beklentileri açık farkla aştı",
-        "summary": "Nvidia çeyreklik gelirini 115,8 milyar dolara taşıyarak tahminleri aştı ve güçlü bir dördüncü çeyrek öngörüsü verdi; bu küresel risk iştahını kısmen destekledi.",
+        "title": "Fed tutanakları şahin, Aralık'ta 50 baz puan tartışması",
+        "summary": "Ekim ayı FOMC tutanakları ek faiz artışlarının gerekli olabileceğini gösterdi, Waller Aralık'ta 50 baz puanlık bir hamle önerdi ve bu risk iştahını baskıladı.",
         "source": {
-          "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-beat-estimates-attention-turns-to-call-5034180",
-          "title": "Nvidia earnings beat estimates; attention turns to call",
-          "publisher": "Reuters"
+          "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-further-clues-on-the-central-banks-hiking-pace-202611181500",
+          "title": "Breaking: Fed Minutes keep further rate hikes firmly on the table",
+          "publisher": "FXStreet"
         }
       },
       {
         "importance": "onemli",
-        "title": "BTC ETF çıkış serisi bir gün sonra geri döndü",
-        "summary": "Spot Bitcoin ETF'lerindeki yedi günlük net çıkış serisi 16 Kasım'da BlackRock'un girişiyle sona erdi, fakat 17 Kasım'da fonlar yeniden net çıkışa döndü.",
+        "title": "Spot BTC ETF'lerinden çıkış sürüyor",
+        "summary": "ABD'li spot Bitcoin ETF'leri 17 Kasım'da 240 milyon dolar net çıkış kaydederek birkaç günlük çıkış serisini sürdürdü.",
         "source": {
-          "url": "https://www.tradingandinvestmentnews.co.uk/bitcoin-etf-outflows-streak-ends/",
-          "title": "Bitcoin ETF Outflows End After 7 Days as BTC Holds $64,800",
-          "publisher": "Trading and Investment News"
+          "url": "https://cointelegraph.com/markets/bitcoin-etf-240-million-outflow-bearish-phase",
+          "title": "Bitcoin ETFs Lose $240M as CryptoQuant Flags Bearish Phase",
+          "publisher": "Cointelegraph"
         }
       },
       {
         "importance": "onemli",
-        "title": "Solana Foundation CoinGecko'da çoğunluk hissesi aldı",
-        "summary": "Solana Foundation, Londra'daki Breakpoint 2026 etkinliğinde CoinGecko'nun çoğunluk hissesini aldığını açıkladı; platformda Solana altyapılı işlem özellikleri planlanıyor.",
+        "title": "Hyperliquid'de whale tasfiyeleri",
+        "summary": "Fiyatların hızlı düşüşü sırasında Hyperliquid'de altı büyük yatırımcının pozisyonu zorla kapatıldı, toplam yaklaşık 39 milyon dolarlık BTC tasfiye edildi.",
         "source": {
-          "url": "https://www.coindesk.com/business/2026/11/17/solana-foundation-takes-majority-stake-in-crypto-data-provider-coingecko",
-          "title": "Solana Foundation takes majority stake in crypto data provider CoinGecko",
-          "publisher": "CoinDesk"
+          "url": "https://phemex.com/news/article/six-whales-liquidated-30-times-on-hyperliquid-losing-387m-in-btc-104139",
+          "title": "Hyperliquid Whales Liquidated: $38.7M BTC Forced Out",
+          "publisher": "Phemex"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Solana Vakfı CoinGecko'nun çoğunluk hissesini aldı",
+        "summary": "Solana Vakfı, Breakpoint konferansında kripto veri platformu CoinGecko'da çoğunluk hissesi edindiğini açıkladı; ortaklık zincir üstü veri ve işlem entegrasyonuna odaklanacak.",
+        "source": {
+          "url": "https://cointelegraph.com/news/coingecko-solana-foundation-majority-stake",
+          "title": "Solana Foundation Takes 'Majority Interest' in CoinGecko to Back Data Expansion",
+          "publisher": "Cointelegraph"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "16:30",
-        "title": "ABD yeni konut başlangıçları verisi"
+        "timeTr": "12:00",
+        "title": "Çin kredi faiz oranı (LPR) kararı"
       },
       {
-        "timeTr": "22:00",
-        "title": "FOMC Ekim ayı toplantı tutanakları"
+        "timeTr": "16:30",
+        "title": "ABD haftalık işsizlik başvuruları"
+      },
+      {
+        "timeTr": "16:30",
+        "title": "Philadelphia Fed imalat endeksi"
+      },
+      {
+        "timeTr": null,
+        "title": "Fed yetkililerinden yeni açıklamalar"
       }
     ],
     "turkey": {
-      "hasNews": true,
-      "items": [
-        {
-          "title": "TCMB kripto varlıkları ödemeler dengesine dahil etti",
-          "summary": "TCMB, Eylül verileriyle birlikte Bitcoin ve Ether gibi ihraççısı olmayan kripto varlıkları Sermaye Hesabı'nda, stabil coin'leri ise Finans Hesabı'nda izlemeye başladı.",
-          "source": {
-            "url": "https://fintechistanbul.org/2026/11/17/kripto-varliklar-tcmb-tarafindan-odemeler-dengesi-istatistiklerine-dahil-edildi/",
-            "title": "Kripto varlıklar TCMB tarafından ödemeler dengesi istatistiklerine dahil edildi",
-            "publisher": "FinTech İstanbul"
-          }
-        },
-        {
-          "title": "SPK kripto varlık hizmet sağlayıcıları düzenlemesinde sona yaklaşıldı",
-          "summary": "SPK'nin kripto varlık hizmet sağlayıcılarına yönelik ikincil düzenlemesi tamamlanma aşamasına geldi; borsalar ve saklama kuruluşları doğrudan SPK izninin kapsamına alınacak.",
-          "source": {
-            "url": "https://bigpara.hurriyet.com.tr/haberler/ekonomi-haberleri/spkdan-kripto-varliklari-duzenlemesi-bakan-simsek-piyasalara-yeni-bir-arac-kazandirdik_ID1606609/",
-            "title": "SPK'dan kripto varlıkları düzenlemesi... Bakan Şimşek: Piyasalara yeni bir araç kazandırdık",
-            "publisher": "Hürriyet Bigpara"
-          }
-        }
-      ]
+      "hasNews": false,
+      "items": []
     },
     "risks": [
-      "FOMC tutanaklarının şahin yorumlanması, zaten zayıf olan likidite ortamında ek satış baskısı yaratabilir.",
-      "Spot BTC ETF akışlarındaki kararsızlık ve düşen stabil coin arzı kurumsal talebin henüz kalıcı dönmediğini gösteriyor."
+      "Fed'in Aralık toplantısında büyük adım atma ihtimali risk iştahını daha da bastırabilir",
+      "ETF çıkışları ve kaldıraçlı tasfiyelerin sürmesi fiyatlarda ek sarsıntı yaratabilir"
     ]
   },
   "followUps": [
-    "FOMC tutanaklarının Aralık toplantısı için şahin mi güvercin mi sinyal verdiği netleşecek",
-    "Spot BTC ETF'lerinde net çıkışın sürüp sürmediği görülecek",
-    "BTC'nin 65.000 dolar bandının üzerinde kalıcı olup olamayacağı",
-    "Solana'nın CoinGecko hamlesinin SOL fiyatına yansıyıp yansımadığı"
+    "BTC'nin 62.000 dolar destek bandını koruyup koruyamayacağı",
+    "Spot BTC ETF çıkışlarının üçüncü haftaya taşınıp taşınmayacağı",
+    "Waller'ın 50 baz puanlık artış çağrısına diğer Fed üyelerinden destek gelip gelmeyeceği",
+    "SOL'un CoinGecko ortaklığından gelen kazancı koruyup koruyamayacağı"
   ],
   "sources": [
     {
-      "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-beat-estimates-attention-turns-to-call-5034180",
-      "title": "Nvidia earnings beat estimates; attention turns to call",
-      "publisher": "Reuters"
+      "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-further-clues-on-the-central-banks-hiking-pace-202611181500",
+      "title": "Breaking: Fed Minutes keep further rate hikes firmly on the table",
+      "publisher": "FXStreet"
     },
     {
-      "url": "https://www.tradingandinvestmentnews.co.uk/bitcoin-etf-outflows-streak-ends/",
-      "title": "Bitcoin ETF Outflows End After 7 Days as BTC Holds $64,800",
-      "publisher": "Trading and Investment News"
+      "url": "https://cointelegraph.com/markets/bitcoin-etf-240-million-outflow-bearish-phase",
+      "title": "Bitcoin ETFs Lose $240M as CryptoQuant Flags Bearish Phase",
+      "publisher": "Cointelegraph"
     },
     {
-      "url": "https://www.coindesk.com/business/2026/11/17/solana-foundation-takes-majority-stake-in-crypto-data-provider-coingecko",
-      "title": "Solana Foundation takes majority stake in crypto data provider CoinGecko",
-      "publisher": "CoinDesk"
+      "url": "https://phemex.com/news/article/six-whales-liquidated-30-times-on-hyperliquid-losing-387m-in-btc-104139",
+      "title": "Hyperliquid Whales Liquidated: $38.7M BTC Forced Out",
+      "publisher": "Phemex"
     },
     {
-      "url": "https://fintechistanbul.org/2026/11/17/kripto-varliklar-tcmb-tarafindan-odemeler-dengesi-istatistiklerine-dahil-edildi/",
-      "title": "Kripto varlıklar TCMB tarafından ödemeler dengesi istatistiklerine dahil edildi",
-      "publisher": "FinTech İstanbul"
-    },
-    {
-      "url": "https://bigpara.hurriyet.com.tr/haberler/ekonomi-haberleri/spkdan-kripto-varliklari-duzenlemesi-bakan-simsek-piyasalara-yeni-bir-arac-kazandirdik_ID1606609/",
-      "title": "SPK'dan kripto varlıkları düzenlemesi... Bakan Şimşek: Piyasalara yeni bir araç kazandırdık",
-      "publisher": "Hürriyet Bigpara"
+      "url": "https://cointelegraph.com/news/coingecko-solana-foundation-majority-stake",
+      "title": "Solana Foundation Takes 'Majority Interest' in CoinGecko to Back Data Expansion",
+      "publisher": "Cointelegraph"
     }
   ],
   "assets": {
