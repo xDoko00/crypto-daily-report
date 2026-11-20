@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-20",
+  "language": "tr",
+  "title": "20 Kasım 2026, Cuma",
+  "publishedAt": "2026-11-20T07:51:22+03:00",
+  "updatedAt": "2026-11-20T07:51:22+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-20T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 61433,
+        "change24h": -3.4543194918391458
+      },
+      "ETH": {
+        "priceUsd": 1721.35,
+        "change24h": -4.537051292180803
+      },
+      "SOL": {
+        "priceUsd": 71.98,
+        "change24h": -3.665450787692612
+      },
+      "BNB": {
+        "priceUsd": 566.35,
+        "change24h": -3.6240472426744503
+      },
+      "XRP": {
+        "priceUsd": 0.957363,
+        "change24h": -1.908274964579148
+      }
+    },
+    "btcDominance": 57.998661456081834,
+    "ethDominance": 9.876114151556374,
+    "totalMarketCapUsd": 2125649419855.563,
+    "volume24hUsd": 79742498911.20766,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 12,
+      "label": "Aşırı Korku",
+      "previousValue": 10,
+      "weekAgoValue": 20
+    }
+  },
+  "brief": {
+    "mood": "Riskli",
+    "why": "Fed Guvernörü Waller'ın Aralık'ta 50 baz puanlık faiz artışı olabileceğini söylemesi, spot BTC ETF'lerinden çıkışların sürmesi ve Sky protokolündeki likidite krizi risk iştahını birlikte bastırdı; Anthropic'in dev halka arzı da sermayenin bir kısmını kriptodan çekti.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:25",
+        "title": "Fed'den Waller konuşması"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "Michigan tüketici güveni verisi"
+      },
+      {
+        "timeTr": "20:15",
+        "title": "Fed'den Cook konuşması"
+      }
+    ],
+    "mainRisk": "Fed'in Aralık toplantısında beklenenden agresif bir faiz artışına gitmesi risk varlıklarında satışı derinleştirebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "BTC'nin 62.000 dolar destek bandını koruyup koruyamayacağı",
+        "outcome": "Destek tutmadı; BTC 62.000 doların altına sarktı, şu an 61.000 dolar bandında ve grafikte ölüm çaprazı oluştu."
+      },
+      {
+        "item": "Spot BTC ETF çıkışlarının üçüncü haftaya taşınıp taşınmayacağı",
+        "outcome": "Çıkışlar sürdü; kasım ayı toplam net çıkışı yaklaşık 2,9 milyar dolara ulaştı, son bir haftada çıkış 1 milyar doları geçti."
+      },
+      {
+        "item": "Waller'ın 50 baz puanlık artış çağrısına diğer Fed üyelerinden destek gelip gelmeyeceği",
+        "outcome": "Kısmi destek geldi; bazı yetkililer faiz artışı yönünü onayladı ama Hammack ve Logan 50 baz puan yerine daha küçük, kademeli artışları tercih ettiğini yineledi."
+      },
+      {
+        "item": "SOL'un CoinGecko ortaklığından gelen kazancı koruyup koruyamayacağı",
+        "outcome": "Kazanç kalıcı olmadı; SOL kısa süreli yükseldikten sonra geri çekildi ve genel piyasa satışıyla birlikte yeniden düşüşe geçti."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Sky protokolünde likidite krizi",
+        "summary": "Kurucu Rune Christensen'e bağlı bir cüzdanın stUSDS havuzundan 77 milyon dolar borçlanıp geri ödememesi havuzu tamamen kilitledi; SKY token'ı sert düştü, kurucu USDS'nin hâlâ aşırı teminatlı olduğunu söyledi.",
+        "source": {
+          "url": "https://cryptobriefing.com/rune-christensen-wallet-sky-stusds-pool/",
+          "title": "Wallet tied to Rune Christensen owes roughly half of Sky's stUSDS lending pool",
+          "publisher": "Crypto Briefing"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Spot BTC ETF'lerinden çıkışlar hızlandı",
+        "summary": "Kasım ayında spot Bitcoin ETF'lerinden net çıkışlar 2,9 milyar dolara yaklaştı; BTC 62.000 doların altına sarkarken grafikte ölüm çaprazı oluştu.",
+        "source": {
+          "url": "https://www.fool.com/coverage/stock-market-today/2026/11/19/crypto-market-today-nov-19-bitcoin-approaches-usd60-000-as-etf-outflows-surpass-usd2-5-billion-in-2026/",
+          "title": "Crypto Market Today, Nov. 19: Bitcoin Approaches $60,000 as ETF Outflows Surpass $2.5 Billion in 2026",
+          "publisher": "The Motley Fool"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Fed'den 50 baz puanlık artış sinyali",
+        "summary": "Fed Guvernörü Waller, enflasyonun kötüleştiğini belirterek Aralık toplantısında 50 baz puanlık faiz artışının gerekebileceğini söyledi; bu açıklama risk varlıklarında satışı güçlendirdi.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
+          "title": "Fed's Waller says central bank may need to 'shock people' with half-point rate hike",
+          "publisher": "CNBC"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Anthropic'in dev halka arzı sermayeyi çekti",
+        "summary": "Anthropic'in 81 milyar dolarlık halka arzı ABD borsa tarihinin en büyüğü oldu; yatırımcı ilgisinin yapay zeka hissesine kayması kripto piyasasındaki satış baskısını artırdı.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html",
+          "title": "Anthropic IPO live updates: ANT stock price and Nasdaq debut",
+          "publisher": "CNBC"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:25",
+        "title": "Fed Guvernörü Waller'ın konuşması"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD Michigan tüketici güveni nihai verisi"
+      },
+      {
+        "timeTr": "20:15",
+        "title": "Fed Guvernörü Cook'un konuşması"
+      },
+      {
+        "timeTr": null,
+        "title": "Anthropic hissesinin Nasdaq'ta ikinci işlem günü"
+      },
+      {
+        "timeTr": null,
+        "title": "Sky protokolünde stUSDS likidite krizinin seyri"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Fed'in Aralık toplantısında beklenenden agresif faiz artışına gitmesi risk varlıklarında satışı derinleştirebilir.",
+      "Sky protokolündeki likidite sıkışıklığının diğer DeFi kredi piyasalarına sıçraması olası."
+    ]
+  },
+  "followUps": [
+    "BTC'nin 60.000 dolar destek seviyesini koruyup koruyamayacağı",
+    "Sky protokolünün stUSDS havuzundaki likidite krizini çözüp çözemeyeceği",
+    "Fed'in bugünkü Waller ve Cook konuşmalarının Aralık faiz beklentilerini nasıl etkileyeceği",
+    "Anthropic hissesinin ikinci işlem gününde ilk gün kazancını koruyup koruyamayacağı"
+  ],
+  "sources": [
+    {
+      "url": "https://cryptobriefing.com/rune-christensen-wallet-sky-stusds-pool/",
+      "title": "Wallet tied to Rune Christensen owes roughly half of Sky's stUSDS lending pool",
+      "publisher": "Crypto Briefing"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/19/crypto-market-today-nov-19-bitcoin-approaches-usd60-000-as-etf-outflows-surpass-usd2-5-billion-in-2026/",
+      "title": "Crypto Market Today, Nov. 19: Bitcoin Approaches $60,000 as ETF Outflows Surpass $2.5 Billion in 2026",
+      "publisher": "The Motley Fool"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
+      "title": "Fed's Waller says central bank may need to 'shock people' with half-point rate hike",
+      "publisher": "CNBC"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html",
+      "title": "Anthropic IPO live updates: ANT stock price and Nasdaq debut",
+      "publisher": "CNBC"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

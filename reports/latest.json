@@ -1,147 +1,151 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-19",
+  "id": "2026-11-20",
   "language": "tr",
-  "title": "19 Kasım 2026, Perşembe",
-  "publishedAt": "2026-11-19T07:50:35+03:00",
-  "updatedAt": "2026-11-19T07:50:35+03:00",
+  "title": "20 Kasım 2026, Cuma",
+  "publishedAt": "2026-11-20T07:51:22+03:00",
+  "updatedAt": "2026-11-20T07:51:22+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-19T07:48:00+03:00",
+    "asOf": "2026-11-20T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 63460,
-        "change24h": -1.3324401503732652
+        "priceUsd": 61433,
+        "change24h": -3.4543194918391458
       },
       "ETH": {
-        "priceUsd": 1799.1,
-        "change24h": -0.011570045999949137
+        "priceUsd": 1721.35,
+        "change24h": -4.537051292180803
       },
       "SOL": {
-        "priceUsd": 74.61,
-        "change24h": -0.28357184909131933
+        "priceUsd": 71.98,
+        "change24h": -3.665450787692612
       },
       "BNB": {
-        "priceUsd": 586.59,
-        "change24h": -0.6798599898030837
+        "priceUsd": 566.35,
+        "change24h": -3.6240472426744503
       },
       "XRP": {
-        "priceUsd": 0.973684,
-        "change24h": -0.3828214604421706
+        "priceUsd": 0.957363,
+        "change24h": -1.908274964579148
       }
     },
-    "btcDominance": 58.11409110129326,
-    "ethDominance": 10.010231227518297,
-    "totalMarketCapUsd": 2194806486972.7112,
-    "volume24hUsd": 73700675870.31776,
+    "btcDominance": 57.998661456081834,
+    "ethDominance": 9.876114151556374,
+    "totalMarketCapUsd": 2125649419855.563,
+    "volume24hUsd": 79742498911.20766,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 10,
+      "value": 12,
       "label": "Aşırı Korku",
-      "previousValue": 11,
-      "weekAgoValue": 28
+      "previousValue": 10,
+      "weekAgoValue": 20
     }
   },
   "brief": {
     "mood": "Riskli",
-    "why": "Fed'in şahin çıkan Ekim toplantısı tutanakları ve Waller'ın Aralık'ta 50 baz puanlık artış çağrısı, spot BTC ETF'lerinden süren çıkışlarla birleşince kaldıraçlı pozisyonlarda yaygın tasfiyelere yol açtı.",
+    "why": "Fed Guvernörü Waller'ın Aralık'ta 50 baz puanlık faiz artışı olabileceğini söylemesi, spot BTC ETF'lerinden çıkışların sürmesi ve Sky protokolündeki likidite krizi risk iştahını birlikte bastırdı; Anthropic'in dev halka arzı da sermayenin bir kısmını kriptodan çekti.",
     "criticalEvents": [
       {
-        "timeTr": "16:30",
-        "title": "ABD işsizlik başvuruları ve Philly Fed endeksi"
+        "timeTr": "16:25",
+        "title": "Fed'den Waller konuşması"
       },
       {
-        "timeTr": "12:00",
-        "title": "Çin kredi faiz oranı kararı"
+        "timeTr": "18:00",
+        "title": "Michigan tüketici güveni verisi"
       },
       {
-        "timeTr": null,
-        "title": "Fed yetkilileri açıklamaları"
+        "timeTr": "20:15",
+        "title": "Fed'den Cook konuşması"
       }
     ],
-    "mainRisk": "Fed'in Aralık'ta faiz artırımı ihtimalinin güçlenmesi, ETF çıkışları ve kaldıraçlı tasfiyelerle beslenen satış dalgasını derinleştirebilir."
+    "mainRisk": "Fed'in Aralık toplantısında beklenenden agresif bir faiz artışına gitmesi risk varlıklarında satışı derinleştirebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "FOMC tutanaklarının Aralık toplantısı için şahin mi güvercin mi sinyal verdiği netleşecek",
-        "outcome": "Şahin çıktı: tutanaklarda katılımcıların büyük çoğunluğu ek faiz artışının gerekli olduğunu belirtti, Waller ise 50 baz puanlık bir artışın gündeme gelebileceğini söyledi"
+        "item": "BTC'nin 62.000 dolar destek bandını koruyup koruyamayacağı",
+        "outcome": "Destek tutmadı; BTC 62.000 doların altına sarktı, şu an 61.000 dolar bandında ve grafikte ölüm çaprazı oluştu."
       },
       {
-        "item": "Spot BTC ETF'lerinde net çıkışın sürüp sürmediği görülecek",
-        "outcome": "Sürdü: ABD spot BTC ETF'leri 17 Kasım'da yaklaşık 240 milyon dolar net çıkış kaydetti, IBIT öncülüğünde"
+        "item": "Spot BTC ETF çıkışlarının üçüncü haftaya taşınıp taşınmayacağı",
+        "outcome": "Çıkışlar sürdü; kasım ayı toplam net çıkışı yaklaşık 2,9 milyar dolara ulaştı, son bir haftada çıkış 1 milyar doları geçti."
       },
       {
-        "item": "BTC'nin 65.000 dolar bandının üzerinde kalıcı olup olamayacağı",
-        "outcome": "Iska: BTC 65.000 doların altına sarktı, kısa süreliğine 62.000 dolara kadar geriledi"
+        "item": "Waller'ın 50 baz puanlık artış çağrısına diğer Fed üyelerinden destek gelip gelmeyeceği",
+        "outcome": "Kısmi destek geldi; bazı yetkililer faiz artışı yönünü onayladı ama Hammack ve Logan 50 baz puan yerine daha küçük, kademeli artışları tercih ettiğini yineledi."
       },
       {
-        "item": "Solana'nın CoinGecko hamlesinin SOL fiyatına yansıyıp yansımadığı",
-        "outcome": "Yansıdı: Solana Vakfı'nın CoinGecko'da çoğunluk hissesi alma haberinin ardından SOL yaklaşık yüzde 5 yükseldi"
+        "item": "SOL'un CoinGecko ortaklığından gelen kazancı koruyup koruyamayacağı",
+        "outcome": "Kazanç kalıcı olmadı; SOL kısa süreli yükseldikten sonra geri çekildi ve genel piyasa satışıyla birlikte yeniden düşüşe geçti."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Fed tutanakları şahin, Aralık'ta 50 baz puan tartışması",
-        "summary": "Ekim ayı FOMC tutanakları ek faiz artışlarının gerekli olabileceğini gösterdi, Waller Aralık'ta 50 baz puanlık bir hamle önerdi ve bu risk iştahını baskıladı.",
+        "title": "Sky protokolünde likidite krizi",
+        "summary": "Kurucu Rune Christensen'e bağlı bir cüzdanın stUSDS havuzundan 77 milyon dolar borçlanıp geri ödememesi havuzu tamamen kilitledi; SKY token'ı sert düştü, kurucu USDS'nin hâlâ aşırı teminatlı olduğunu söyledi.",
         "source": {
-          "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-further-clues-on-the-central-banks-hiking-pace-202611181500",
-          "title": "Breaking: Fed Minutes keep further rate hikes firmly on the table",
-          "publisher": "FXStreet"
+          "url": "https://cryptobriefing.com/rune-christensen-wallet-sky-stusds-pool/",
+          "title": "Wallet tied to Rune Christensen owes roughly half of Sky's stUSDS lending pool",
+          "publisher": "Crypto Briefing"
+        }
+      },
+      {
+        "importance": "kritik",
+        "title": "Spot BTC ETF'lerinden çıkışlar hızlandı",
+        "summary": "Kasım ayında spot Bitcoin ETF'lerinden net çıkışlar 2,9 milyar dolara yaklaştı; BTC 62.000 doların altına sarkarken grafikte ölüm çaprazı oluştu.",
+        "source": {
+          "url": "https://www.fool.com/coverage/stock-market-today/2026/11/19/crypto-market-today-nov-19-bitcoin-approaches-usd60-000-as-etf-outflows-surpass-usd2-5-billion-in-2026/",
+          "title": "Crypto Market Today, Nov. 19: Bitcoin Approaches $60,000 as ETF Outflows Surpass $2.5 Billion in 2026",
+          "publisher": "The Motley Fool"
         }
       },
       {
         "importance": "onemli",
-        "title": "Spot BTC ETF'lerinden çıkış sürüyor",
-        "summary": "ABD'li spot Bitcoin ETF'leri 17 Kasım'da 240 milyon dolar net çıkış kaydederek birkaç günlük çıkış serisini sürdürdü.",
+        "title": "Fed'den 50 baz puanlık artış sinyali",
+        "summary": "Fed Guvernörü Waller, enflasyonun kötüleştiğini belirterek Aralık toplantısında 50 baz puanlık faiz artışının gerekebileceğini söyledi; bu açıklama risk varlıklarında satışı güçlendirdi.",
         "source": {
-          "url": "https://cointelegraph.com/markets/bitcoin-etf-240-million-outflow-bearish-phase",
-          "title": "Bitcoin ETFs Lose $240M as CryptoQuant Flags Bearish Phase",
-          "publisher": "Cointelegraph"
+          "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
+          "title": "Fed's Waller says central bank may need to 'shock people' with half-point rate hike",
+          "publisher": "CNBC"
         }
       },
       {
         "importance": "onemli",
-        "title": "Hyperliquid'de whale tasfiyeleri",
-        "summary": "Fiyatların hızlı düşüşü sırasında Hyperliquid'de altı büyük yatırımcının pozisyonu zorla kapatıldı, toplam yaklaşık 39 milyon dolarlık BTC tasfiye edildi.",
+        "title": "Anthropic'in dev halka arzı sermayeyi çekti",
+        "summary": "Anthropic'in 81 milyar dolarlık halka arzı ABD borsa tarihinin en büyüğü oldu; yatırımcı ilgisinin yapay zeka hissesine kayması kripto piyasasındaki satış baskısını artırdı.",
         "source": {
-          "url": "https://phemex.com/news/article/six-whales-liquidated-30-times-on-hyperliquid-losing-387m-in-btc-104139",
-          "title": "Hyperliquid Whales Liquidated: $38.7M BTC Forced Out",
-          "publisher": "Phemex"
-        }
-      },
-      {
-        "importance": "bilgi",
-        "title": "Solana Vakfı CoinGecko'nun çoğunluk hissesini aldı",
-        "summary": "Solana Vakfı, Breakpoint konferansında kripto veri platformu CoinGecko'da çoğunluk hissesi edindiğini açıkladı; ortaklık zincir üstü veri ve işlem entegrasyonuna odaklanacak.",
-        "source": {
-          "url": "https://cointelegraph.com/news/coingecko-solana-foundation-majority-stake",
-          "title": "Solana Foundation Takes 'Majority Interest' in CoinGecko to Back Data Expansion",
-          "publisher": "Cointelegraph"
+          "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html",
+          "title": "Anthropic IPO live updates: ANT stock price and Nasdaq debut",
+          "publisher": "CNBC"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "12:00",
-        "title": "Çin kredi faiz oranı (LPR) kararı"
+        "timeTr": "16:25",
+        "title": "Fed Guvernörü Waller'ın konuşması"
       },
       {
-        "timeTr": "16:30",
-        "title": "ABD haftalık işsizlik başvuruları"
+        "timeTr": "18:00",
+        "title": "ABD Michigan tüketici güveni nihai verisi"
       },
       {
-        "timeTr": "16:30",
-        "title": "Philadelphia Fed imalat endeksi"
+        "timeTr": "20:15",
+        "title": "Fed Guvernörü Cook'un konuşması"
       },
       {
         "timeTr": null,
-        "title": "Fed yetkililerinden yeni açıklamalar"
+        "title": "Anthropic hissesinin Nasdaq'ta ikinci işlem günü"
+      },
+      {
+        "timeTr": null,
+        "title": "Sky protokolünde stUSDS likidite krizinin seyri"
       }
     ],
     "turkey": {
@@ -149,36 +153,36 @@
       "items": []
     },
     "risks": [
-      "Fed'in Aralık toplantısında büyük adım atma ihtimali risk iştahını daha da bastırabilir",
-      "ETF çıkışları ve kaldıraçlı tasfiyelerin sürmesi fiyatlarda ek sarsıntı yaratabilir"
+      "Fed'in Aralık toplantısında beklenenden agresif faiz artışına gitmesi risk varlıklarında satışı derinleştirebilir.",
+      "Sky protokolündeki likidite sıkışıklığının diğer DeFi kredi piyasalarına sıçraması olası."
     ]
   },
   "followUps": [
-    "BTC'nin 62.000 dolar destek bandını koruyup koruyamayacağı",
-    "Spot BTC ETF çıkışlarının üçüncü haftaya taşınıp taşınmayacağı",
-    "Waller'ın 50 baz puanlık artış çağrısına diğer Fed üyelerinden destek gelip gelmeyeceği",
-    "SOL'un CoinGecko ortaklığından gelen kazancı koruyup koruyamayacağı"
+    "BTC'nin 60.000 dolar destek seviyesini koruyup koruyamayacağı",
+    "Sky protokolünün stUSDS havuzundaki likidite krizini çözüp çözemeyeceği",
+    "Fed'in bugünkü Waller ve Cook konuşmalarının Aralık faiz beklentilerini nasıl etkileyeceği",
+    "Anthropic hissesinin ikinci işlem gününde ilk gün kazancını koruyup koruyamayacağı"
   ],
   "sources": [
     {
-      "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-further-clues-on-the-central-banks-hiking-pace-202611181500",
-      "title": "Breaking: Fed Minutes keep further rate hikes firmly on the table",
-      "publisher": "FXStreet"
+      "url": "https://cryptobriefing.com/rune-christensen-wallet-sky-stusds-pool/",
+      "title": "Wallet tied to Rune Christensen owes roughly half of Sky's stUSDS lending pool",
+      "publisher": "Crypto Briefing"
     },
     {
-      "url": "https://cointelegraph.com/markets/bitcoin-etf-240-million-outflow-bearish-phase",
-      "title": "Bitcoin ETFs Lose $240M as CryptoQuant Flags Bearish Phase",
-      "publisher": "Cointelegraph"
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/19/crypto-market-today-nov-19-bitcoin-approaches-usd60-000-as-etf-outflows-surpass-usd2-5-billion-in-2026/",
+      "title": "Crypto Market Today, Nov. 19: Bitcoin Approaches $60,000 as ETF Outflows Surpass $2.5 Billion in 2026",
+      "publisher": "The Motley Fool"
     },
     {
-      "url": "https://phemex.com/news/article/six-whales-liquidated-30-times-on-hyperliquid-losing-387m-in-btc-104139",
-      "title": "Hyperliquid Whales Liquidated: $38.7M BTC Forced Out",
-      "publisher": "Phemex"
+      "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
+      "title": "Fed's Waller says central bank may need to 'shock people' with half-point rate hike",
+      "publisher": "CNBC"
     },
     {
-      "url": "https://cointelegraph.com/news/coingecko-solana-foundation-majority-stake",
-      "title": "Solana Foundation Takes 'Majority Interest' in CoinGecko to Back Data Expansion",
-      "publisher": "Cointelegraph"
+      "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html",
+      "title": "Anthropic IPO live updates: ANT stock price and Nasdaq debut",
+      "publisher": "CNBC"
     }
   ],
   "assets": {
