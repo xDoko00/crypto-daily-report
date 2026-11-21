@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-21",
+  "language": "tr",
+  "title": "21 Kasım 2026, Cumartesi",
+  "publishedAt": "2026-11-21T07:51:06+03:00",
+  "updatedAt": "2026-11-21T07:51:06+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-21T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 55917,
+        "change24h": -8.924487684152519
+      },
+      "ETH": {
+        "priceUsd": 1550.52,
+        "change24h": -9.901475881747773
+      },
+      "SOL": {
+        "priceUsd": 65.53,
+        "change24h": -8.956454850121567
+      },
+      "BNB": {
+        "priceUsd": 511.1,
+        "change24h": -9.70911051880392
+      },
+      "XRP": {
+        "priceUsd": 0.876406,
+        "change24h": -8.43101426857363
+      }
+    },
+    "btcDominance": 57.25590330295462,
+    "ethDominance": 9.635017556931775,
+    "totalMarketCapUsd": 1963491945541.9224,
+    "volume24hUsd": 126557602093.56929,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 12,
+      "label": "Aşırı Korku",
+      "previousValue": 12,
+      "weekAgoValue": 13
+    }
+  },
+  "brief": {
+    "mood": "Riskli",
+    "why": "Fed yöneticileri Waller ve Cook'un dün beklenenin tersine Aralık ayında faiz artırımı gerekebileceğini söylemesi, Anthropic başta olmak üzere teknoloji ve yapay zeka hisselerindeki çöküşle birleşince risk iştahını kırdı ve kripto piyasasında yoğun ETF çıkışı ile likidasyon dalgası yaşandı.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite, oynaklık riski"
+      },
+      {
+        "timeTr": null,
+        "title": "Pazartesi ETF akışları takibi"
+      }
+    ],
+    "mainRisk": "Fed'in Aralık toplantısında beklenenin üstünde bir faiz artırımına gitme ihtimali risk iştahını baskılıyor."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "BTC'nin 60.000 dolar destek seviyesini koruyup koruyamayacağı",
+        "outcome": "Iska: destek kırıldı, Bitcoin 58.700-59.400 dolar bandına, Temmuz'dan beri en düşük seviyelere indi."
+      },
+      {
+        "item": "Sky protokolünün stUSDS havuzundaki likidite krizini çözüp çözemeyeceği",
+        "outcome": "Kısmen: kurucu USDS'in fazla teminatlı olduğunu doğruladı ama stUSDS havuzu hâlâ yüzde yüz kullanımda, sorun tam çözülmedi."
+      },
+      {
+        "item": "Fed'in Waller ve Cook konuşmalarının Aralık faiz beklentilerini nasıl etkileyeceği",
+        "outcome": "Beklentinin tersine: ikisi de indirim değil yeni faiz artırımı gerektiğini söyledi, bu piyasayı olumsuz şaşırttı."
+      },
+      {
+        "item": "Anthropic hissesinin ikinci işlem gününde ilk gün kazancını koruyup koruyamayacağı",
+        "outcome": "Iska: hisse ikinci günde yaklaşık yüzde 9 düştü, halka arz fiyatına yakın seviyeye geri geldi."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Bitcoin 60.000 dolar sınırını kırdı",
+        "summary": "Fed'in faiz artırım sinyali ve teknoloji hisselerindeki satışla Bitcoin Temmuz'dan beri en düşük seviyelerine indi, 24 saatte 1,5 milyar doları aşan pozisyon likide oldu.",
+        "source": {
+          "url": "https://www.cryptotimes.io/2026/11/21/crypto-market-falls-5-to-2-12t-as-traders-face-1-53b-in-liquidations/",
+          "title": "Crypto Market Falls 5% to $2.12T as Traders Face $1.53B in Liquidations",
+          "publisher": "Crypto Times"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Fed'den faiz artırım sinyali",
+        "summary": "Fed Guvernörü Cook, enflasyonun hâlâ yüksek olduğunu belirterek faiz artırımına ihtiyaç olduğunu söyledi; Waller da Aralık'ta artırım ihtimalini güçlendirdi.",
+        "source": {
+          "url": "https://www.kitco.com/news/off-the-wire/2026-11-20/feds-cook-says-rate-hikes-needed-lower-high-inflation",
+          "title": "Fed's Cook says rate hikes needed to lower high inflation",
+          "publisher": "Kitco"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Anthropic hissesi ikinci günde geri çekildi",
+        "summary": "Halka arzın ardından ilk gün yükselen Anthropic hissesi ikinci işlem gününde yaklaşık yüzde 9 düşerek halka arz fiyatına yaklaştı.",
+        "source": {
+          "url": "https://fortune.com/2026/11/20/anthropic-stock-teeters-close-to-ipo-price-in-second-day-of-trading/",
+          "title": "Anthropic stock teeters close to IPO price in second day of trading",
+          "publisher": "Fortune"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Sky protokolünde likidite sıkışıklığı sürüyor",
+        "summary": "Kurucu Rune Christensen'e bağlı bir cüzdanın stUSDS havuzunun yaklaşık yarısına borçlu olduğu ortaya çıktı, havuz hâlâ tam kapasite kullanımda.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/sky-founder-confirms-usds-overcollateralized-amid-market-concerns",
+          "title": "Sky Founder Confirms USDS Is Overcollateralized Amid Market Concerns",
+          "publisher": "KuCoin"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Bitcoin ETF'lerinden kayıt kıran çıkış",
+        "summary": "Spot Bitcoin ETF'lerinden bir günde 582 milyon dolar çıkış oldu, BlackRock'ın IBIT fonu kendi tarihindeki en büyük günlük çıkışını yaşadı.",
+        "source": {
+          "url": "https://news.bitcoin.com/market-updates/bitcoin-price-crashes-below-59k-crypto-liquidations-top-1-5b/",
+          "title": "Bitcoin Price Crashes Below $59K as Crypto Liquidations Top $1.5B",
+          "publisher": "Bitcoin.com"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Hafta sonu düşük hacimli, oynak işlem koşulları"
+      },
+      {
+        "timeTr": null,
+        "title": "Sky protokolü stUSDS havuzunda likidite takibi"
+      },
+      {
+        "timeTr": null,
+        "title": "Pazartesi Asya seansında tepki hareketi ihtimali"
+      },
+      {
+        "timeTr": null,
+        "title": "27 Kasım'daki büyük opsiyon vadesi öncesi pozisyonlanma"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Fed'in Aralık'ta beklenenden sert faiz artırımına gitme riski",
+      "Hafta sonu düşük likiditenin ani fiyat hareketlerini büyütmesi"
+    ]
+  },
+  "followUps": [
+    "Bitcoin'in 55.000-58.000 dolar bandında tutunup tutunamayacağı",
+    "Spot Bitcoin ETF'lerine Pazartesi günü giriş mi çıkış mı olacağı",
+    "Sky protokolünün stUSDS havuzunda likiditenin normalleşip normalleşmeyeceği",
+    "Anthropic hissesinin 83 dolarlık halka arz fiyatının altına inip inmeyeceği"
+  ],
+  "sources": [
+    {
+      "url": "https://www.cryptotimes.io/2026/11/21/crypto-market-falls-5-to-2-12t-as-traders-face-1-53b-in-liquidations/",
+      "title": "Crypto Market Falls 5% to $2.12T as Traders Face $1.53B in Liquidations",
+      "publisher": "Crypto Times"
+    },
+    {
+      "url": "https://www.kitco.com/news/off-the-wire/2026-11-20/feds-cook-says-rate-hikes-needed-lower-high-inflation",
+      "title": "Fed's Cook says rate hikes needed to lower high inflation",
+      "publisher": "Kitco"
+    },
+    {
+      "url": "https://fortune.com/2026/11/20/anthropic-stock-teeters-close-to-ipo-price-in-second-day-of-trading/",
+      "title": "Anthropic stock teeters close to IPO price in second day of trading",
+      "publisher": "Fortune"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/sky-founder-confirms-usds-overcollateralized-amid-market-concerns",
+      "title": "Sky Founder Confirms USDS Is Overcollateralized Amid Market Concerns",
+      "publisher": "KuCoin"
+    },
+    {
+      "url": "https://news.bitcoin.com/market-updates/bitcoin-price-crashes-below-59k-crypto-liquidations-top-1-5b/",
+      "title": "Bitcoin Price Crashes Below $59K as Crypto Liquidations Top $1.5B",
+      "publisher": "Bitcoin.com"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}

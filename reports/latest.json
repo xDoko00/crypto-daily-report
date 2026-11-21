@@ -1,151 +1,153 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-20",
+  "id": "2026-11-21",
   "language": "tr",
-  "title": "20 Kasım 2026, Cuma",
-  "publishedAt": "2026-11-20T07:51:22+03:00",
-  "updatedAt": "2026-11-20T07:51:22+03:00",
+  "title": "21 Kasım 2026, Cumartesi",
+  "publishedAt": "2026-11-21T07:51:06+03:00",
+  "updatedAt": "2026-11-21T07:51:06+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-20T07:48:00+03:00",
+    "asOf": "2026-11-21T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 61433,
-        "change24h": -3.4543194918391458
+        "priceUsd": 55917,
+        "change24h": -8.924487684152519
       },
       "ETH": {
-        "priceUsd": 1721.35,
-        "change24h": -4.537051292180803
+        "priceUsd": 1550.52,
+        "change24h": -9.901475881747773
       },
       "SOL": {
-        "priceUsd": 71.98,
-        "change24h": -3.665450787692612
+        "priceUsd": 65.53,
+        "change24h": -8.956454850121567
       },
       "BNB": {
-        "priceUsd": 566.35,
-        "change24h": -3.6240472426744503
+        "priceUsd": 511.1,
+        "change24h": -9.70911051880392
       },
       "XRP": {
-        "priceUsd": 0.957363,
-        "change24h": -1.908274964579148
+        "priceUsd": 0.876406,
+        "change24h": -8.43101426857363
       }
     },
-    "btcDominance": 57.998661456081834,
-    "ethDominance": 9.876114151556374,
-    "totalMarketCapUsd": 2125649419855.563,
-    "volume24hUsd": 79742498911.20766,
+    "btcDominance": 57.25590330295462,
+    "ethDominance": 9.635017556931775,
+    "totalMarketCapUsd": 1963491945541.9224,
+    "volume24hUsd": 126557602093.56929,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
       "value": 12,
       "label": "Aşırı Korku",
-      "previousValue": 10,
-      "weekAgoValue": 20
+      "previousValue": 12,
+      "weekAgoValue": 13
     }
   },
   "brief": {
     "mood": "Riskli",
-    "why": "Fed Guvernörü Waller'ın Aralık'ta 50 baz puanlık faiz artışı olabileceğini söylemesi, spot BTC ETF'lerinden çıkışların sürmesi ve Sky protokolündeki likidite krizi risk iştahını birlikte bastırdı; Anthropic'in dev halka arzı da sermayenin bir kısmını kriptodan çekti.",
+    "why": "Fed yöneticileri Waller ve Cook'un dün beklenenin tersine Aralık ayında faiz artırımı gerekebileceğini söylemesi, Anthropic başta olmak üzere teknoloji ve yapay zeka hisselerindeki çöküşle birleşince risk iştahını kırdı ve kripto piyasasında yoğun ETF çıkışı ile likidasyon dalgası yaşandı.",
     "criticalEvents": [
       {
-        "timeTr": "16:25",
-        "title": "Fed'den Waller konuşması"
+        "timeTr": null,
+        "title": "Hafta sonu düşük likidite, oynaklık riski"
       },
       {
-        "timeTr": "18:00",
-        "title": "Michigan tüketici güveni verisi"
-      },
-      {
-        "timeTr": "20:15",
-        "title": "Fed'den Cook konuşması"
+        "timeTr": null,
+        "title": "Pazartesi ETF akışları takibi"
       }
     ],
-    "mainRisk": "Fed'in Aralık toplantısında beklenenden agresif bir faiz artışına gitmesi risk varlıklarında satışı derinleştirebilir."
+    "mainRisk": "Fed'in Aralık toplantısında beklenenin üstünde bir faiz artırımına gitme ihtimali risk iştahını baskılıyor."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "BTC'nin 62.000 dolar destek bandını koruyup koruyamayacağı",
-        "outcome": "Destek tutmadı; BTC 62.000 doların altına sarktı, şu an 61.000 dolar bandında ve grafikte ölüm çaprazı oluştu."
+        "item": "BTC'nin 60.000 dolar destek seviyesini koruyup koruyamayacağı",
+        "outcome": "Iska: destek kırıldı, Bitcoin 58.700-59.400 dolar bandına, Temmuz'dan beri en düşük seviyelere indi."
       },
       {
-        "item": "Spot BTC ETF çıkışlarının üçüncü haftaya taşınıp taşınmayacağı",
-        "outcome": "Çıkışlar sürdü; kasım ayı toplam net çıkışı yaklaşık 2,9 milyar dolara ulaştı, son bir haftada çıkış 1 milyar doları geçti."
+        "item": "Sky protokolünün stUSDS havuzundaki likidite krizini çözüp çözemeyeceği",
+        "outcome": "Kısmen: kurucu USDS'in fazla teminatlı olduğunu doğruladı ama stUSDS havuzu hâlâ yüzde yüz kullanımda, sorun tam çözülmedi."
       },
       {
-        "item": "Waller'ın 50 baz puanlık artış çağrısına diğer Fed üyelerinden destek gelip gelmeyeceği",
-        "outcome": "Kısmi destek geldi; bazı yetkililer faiz artışı yönünü onayladı ama Hammack ve Logan 50 baz puan yerine daha küçük, kademeli artışları tercih ettiğini yineledi."
+        "item": "Fed'in Waller ve Cook konuşmalarının Aralık faiz beklentilerini nasıl etkileyeceği",
+        "outcome": "Beklentinin tersine: ikisi de indirim değil yeni faiz artırımı gerektiğini söyledi, bu piyasayı olumsuz şaşırttı."
       },
       {
-        "item": "SOL'un CoinGecko ortaklığından gelen kazancı koruyup koruyamayacağı",
-        "outcome": "Kazanç kalıcı olmadı; SOL kısa süreli yükseldikten sonra geri çekildi ve genel piyasa satışıyla birlikte yeniden düşüşe geçti."
+        "item": "Anthropic hissesinin ikinci işlem gününde ilk gün kazancını koruyup koruyamayacağı",
+        "outcome": "Iska: hisse ikinci günde yaklaşık yüzde 9 düştü, halka arz fiyatına yakın seviyeye geri geldi."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Sky protokolünde likidite krizi",
-        "summary": "Kurucu Rune Christensen'e bağlı bir cüzdanın stUSDS havuzundan 77 milyon dolar borçlanıp geri ödememesi havuzu tamamen kilitledi; SKY token'ı sert düştü, kurucu USDS'nin hâlâ aşırı teminatlı olduğunu söyledi.",
+        "title": "Bitcoin 60.000 dolar sınırını kırdı",
+        "summary": "Fed'in faiz artırım sinyali ve teknoloji hisselerindeki satışla Bitcoin Temmuz'dan beri en düşük seviyelerine indi, 24 saatte 1,5 milyar doları aşan pozisyon likide oldu.",
         "source": {
-          "url": "https://cryptobriefing.com/rune-christensen-wallet-sky-stusds-pool/",
-          "title": "Wallet tied to Rune Christensen owes roughly half of Sky's stUSDS lending pool",
-          "publisher": "Crypto Briefing"
-        }
-      },
-      {
-        "importance": "kritik",
-        "title": "Spot BTC ETF'lerinden çıkışlar hızlandı",
-        "summary": "Kasım ayında spot Bitcoin ETF'lerinden net çıkışlar 2,9 milyar dolara yaklaştı; BTC 62.000 doların altına sarkarken grafikte ölüm çaprazı oluştu.",
-        "source": {
-          "url": "https://www.fool.com/coverage/stock-market-today/2026/11/19/crypto-market-today-nov-19-bitcoin-approaches-usd60-000-as-etf-outflows-surpass-usd2-5-billion-in-2026/",
-          "title": "Crypto Market Today, Nov. 19: Bitcoin Approaches $60,000 as ETF Outflows Surpass $2.5 Billion in 2026",
-          "publisher": "The Motley Fool"
+          "url": "https://www.cryptotimes.io/2026/11/21/crypto-market-falls-5-to-2-12t-as-traders-face-1-53b-in-liquidations/",
+          "title": "Crypto Market Falls 5% to $2.12T as Traders Face $1.53B in Liquidations",
+          "publisher": "Crypto Times"
         }
       },
       {
         "importance": "onemli",
-        "title": "Fed'den 50 baz puanlık artış sinyali",
-        "summary": "Fed Guvernörü Waller, enflasyonun kötüleştiğini belirterek Aralık toplantısında 50 baz puanlık faiz artışının gerekebileceğini söyledi; bu açıklama risk varlıklarında satışı güçlendirdi.",
+        "title": "Fed'den faiz artırım sinyali",
+        "summary": "Fed Guvernörü Cook, enflasyonun hâlâ yüksek olduğunu belirterek faiz artırımına ihtiyaç olduğunu söyledi; Waller da Aralık'ta artırım ihtimalini güçlendirdi.",
         "source": {
-          "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
-          "title": "Fed's Waller says central bank may need to 'shock people' with half-point rate hike",
-          "publisher": "CNBC"
+          "url": "https://www.kitco.com/news/off-the-wire/2026-11-20/feds-cook-says-rate-hikes-needed-lower-high-inflation",
+          "title": "Fed's Cook says rate hikes needed to lower high inflation",
+          "publisher": "Kitco"
         }
       },
       {
         "importance": "onemli",
-        "title": "Anthropic'in dev halka arzı sermayeyi çekti",
-        "summary": "Anthropic'in 81 milyar dolarlık halka arzı ABD borsa tarihinin en büyüğü oldu; yatırımcı ilgisinin yapay zeka hissesine kayması kripto piyasasındaki satış baskısını artırdı.",
+        "title": "Anthropic hissesi ikinci günde geri çekildi",
+        "summary": "Halka arzın ardından ilk gün yükselen Anthropic hissesi ikinci işlem gününde yaklaşık yüzde 9 düşerek halka arz fiyatına yaklaştı.",
         "source": {
-          "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html",
-          "title": "Anthropic IPO live updates: ANT stock price and Nasdaq debut",
-          "publisher": "CNBC"
+          "url": "https://fortune.com/2026/11/20/anthropic-stock-teeters-close-to-ipo-price-in-second-day-of-trading/",
+          "title": "Anthropic stock teeters close to IPO price in second day of trading",
+          "publisher": "Fortune"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Sky protokolünde likidite sıkışıklığı sürüyor",
+        "summary": "Kurucu Rune Christensen'e bağlı bir cüzdanın stUSDS havuzunun yaklaşık yarısına borçlu olduğu ortaya çıktı, havuz hâlâ tam kapasite kullanımda.",
+        "source": {
+          "url": "https://www.kucoin.com/news/flash/sky-founder-confirms-usds-overcollateralized-amid-market-concerns",
+          "title": "Sky Founder Confirms USDS Is Overcollateralized Amid Market Concerns",
+          "publisher": "KuCoin"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Bitcoin ETF'lerinden kayıt kıran çıkış",
+        "summary": "Spot Bitcoin ETF'lerinden bir günde 582 milyon dolar çıkış oldu, BlackRock'ın IBIT fonu kendi tarihindeki en büyük günlük çıkışını yaşadı.",
+        "source": {
+          "url": "https://news.bitcoin.com/market-updates/bitcoin-price-crashes-below-59k-crypto-liquidations-top-1-5b/",
+          "title": "Bitcoin Price Crashes Below $59K as Crypto Liquidations Top $1.5B",
+          "publisher": "Bitcoin.com"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "16:25",
-        "title": "Fed Guvernörü Waller'ın konuşması"
-      },
-      {
-        "timeTr": "18:00",
-        "title": "ABD Michigan tüketici güveni nihai verisi"
-      },
-      {
-        "timeTr": "20:15",
-        "title": "Fed Guvernörü Cook'un konuşması"
+        "timeTr": null,
+        "title": "Hafta sonu düşük hacimli, oynak işlem koşulları"
       },
       {
         "timeTr": null,
-        "title": "Anthropic hissesinin Nasdaq'ta ikinci işlem günü"
+        "title": "Sky protokolü stUSDS havuzunda likidite takibi"
       },
       {
         "timeTr": null,
-        "title": "Sky protokolünde stUSDS likidite krizinin seyri"
+        "title": "Pazartesi Asya seansında tepki hareketi ihtimali"
+      },
+      {
+        "timeTr": null,
+        "title": "27 Kasım'daki büyük opsiyon vadesi öncesi pozisyonlanma"
       }
     ],
     "turkey": {
@@ -153,36 +155,41 @@
       "items": []
     },
     "risks": [
-      "Fed'in Aralık toplantısında beklenenden agresif faiz artışına gitmesi risk varlıklarında satışı derinleştirebilir.",
-      "Sky protokolündeki likidite sıkışıklığının diğer DeFi kredi piyasalarına sıçraması olası."
+      "Fed'in Aralık'ta beklenenden sert faiz artırımına gitme riski",
+      "Hafta sonu düşük likiditenin ani fiyat hareketlerini büyütmesi"
     ]
   },
   "followUps": [
-    "BTC'nin 60.000 dolar destek seviyesini koruyup koruyamayacağı",
-    "Sky protokolünün stUSDS havuzundaki likidite krizini çözüp çözemeyeceği",
-    "Fed'in bugünkü Waller ve Cook konuşmalarının Aralık faiz beklentilerini nasıl etkileyeceği",
-    "Anthropic hissesinin ikinci işlem gününde ilk gün kazancını koruyup koruyamayacağı"
+    "Bitcoin'in 55.000-58.000 dolar bandında tutunup tutunamayacağı",
+    "Spot Bitcoin ETF'lerine Pazartesi günü giriş mi çıkış mı olacağı",
+    "Sky protokolünün stUSDS havuzunda likiditenin normalleşip normalleşmeyeceği",
+    "Anthropic hissesinin 83 dolarlık halka arz fiyatının altına inip inmeyeceği"
   ],
   "sources": [
     {
-      "url": "https://cryptobriefing.com/rune-christensen-wallet-sky-stusds-pool/",
-      "title": "Wallet tied to Rune Christensen owes roughly half of Sky's stUSDS lending pool",
-      "publisher": "Crypto Briefing"
+      "url": "https://www.cryptotimes.io/2026/11/21/crypto-market-falls-5-to-2-12t-as-traders-face-1-53b-in-liquidations/",
+      "title": "Crypto Market Falls 5% to $2.12T as Traders Face $1.53B in Liquidations",
+      "publisher": "Crypto Times"
     },
     {
-      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/19/crypto-market-today-nov-19-bitcoin-approaches-usd60-000-as-etf-outflows-surpass-usd2-5-billion-in-2026/",
-      "title": "Crypto Market Today, Nov. 19: Bitcoin Approaches $60,000 as ETF Outflows Surpass $2.5 Billion in 2026",
-      "publisher": "The Motley Fool"
+      "url": "https://www.kitco.com/news/off-the-wire/2026-11-20/feds-cook-says-rate-hikes-needed-lower-high-inflation",
+      "title": "Fed's Cook says rate hikes needed to lower high inflation",
+      "publisher": "Kitco"
     },
     {
-      "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
-      "title": "Fed's Waller says central bank may need to 'shock people' with half-point rate hike",
-      "publisher": "CNBC"
+      "url": "https://fortune.com/2026/11/20/anthropic-stock-teeters-close-to-ipo-price-in-second-day-of-trading/",
+      "title": "Anthropic stock teeters close to IPO price in second day of trading",
+      "publisher": "Fortune"
     },
     {
-      "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html",
-      "title": "Anthropic IPO live updates: ANT stock price and Nasdaq debut",
-      "publisher": "CNBC"
+      "url": "https://www.kucoin.com/news/flash/sky-founder-confirms-usds-overcollateralized-amid-market-concerns",
+      "title": "Sky Founder Confirms USDS Is Overcollateralized Amid Market Concerns",
+      "publisher": "KuCoin"
+    },
+    {
+      "url": "https://news.bitcoin.com/market-updates/bitcoin-price-crashes-below-59k-crypto-liquidations-top-1-5b/",
+      "title": "Bitcoin Price Crashes Below $59K as Crypto Liquidations Top $1.5B",
+      "publisher": "Bitcoin.com"
     }
   ],
   "assets": {
