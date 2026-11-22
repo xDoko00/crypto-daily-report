@@ -1,18 +1,16 @@
 {
  "kanca-sabah": {
-  "gun": "2026-11-21",
-  "onceki": "istanbul-sabah/istanbul-sabah-01.mp4",
+  "gun": "2026-11-22",
+  "onceki": "sabah-sehir/sabah-sehir-02.mp4",
   "secilen": [
-   "sabah-sehir/sabah-sehir-02.mp4"
+   "istanbul-sabah/istanbul-sabah-02.mp4"
   ]
  },
  "piyasa-dusus": {
-  "gun": "2026-11-21",
+  "gun": "2026-11-22",
   "onceki": "piyasa-dusus/piyasa-dusus-01.mp4",
   "secilen": [
-   "piyasa-dusus/piyasa-dusus-02.mp4",
-   "piyasa-dusus/piyasa-dusus-03.mp4",
-   "piyasa-dusus/piyasa-dusus-01.mp4"
+   "piyasa-dusus/piyasa-dusus-02.mp4"
   ]
  },
  "hack-guvenlik": {
@@ -23,32 +21,32 @@
   ]
  },
  "borsa-islem-masasi": {
-  "gun": "2026-11-15",
-  "onceki": "borsa-islem-masasi/borsa-islem-masasi-01.mp4",
+  "gun": "2026-11-22",
+  "onceki": "borsa-islem-masasi/borsa-islem-masasi-02.mp4",
   "secilen": [
-   "borsa-islem-masasi/borsa-islem-masasi-02.mp4"
+   "borsa-islem-masasi/borsa-islem-masasi-01.mp4"
   ]
  },
  "takvim-veri": {
-  "gun": "2026-11-21",
-  "onceki": "takvim-veri/takvim-veri-01.mp4",
+  "gun": "2026-11-22",
+  "onceki": "takvim-veri/takvim-veri-02.mp4",
   "secilen": [
-   "takvim-veri/takvim-veri-02.mp4"
+   "takvim-veri/takvim-veri-04.mp4"
   ]
  },
  "kapanis": {
-  "gun": "2026-11-21",
-  "onceki": "kapanis/kapanis-01.mp4",
+  "gun": "2026-11-22",
+  "onceki": "kapanis/kapanis-03.mp4",
   "secilen": [
-   "kapanis/kapanis-03.mp4"
+   "kapanis/kapanis-04.mp4"
   ]
  },
  "piyasa-yukselis": {
-  "gun": "2026-11-05",
-  "onceki": "piyasa-yukselis/piyasa-yukselis-04.mp4",
+  "gun": "2026-11-22",
+  "onceki": "piyasa-yukselis/piyasa-yukselis-02.mp4",
   "secilen": [
-   "piyasa-yukselis/piyasa-yukselis-01.mp4",
-   "piyasa-yukselis/piyasa-yukselis-02.mp4"
+   "piyasa-yukselis/piyasa-yukselis-03.mp4",
+   "piyasa-yukselis/piyasa-yukselis-04.mp4"
   ]
  },
  "fed-makro": {
@@ -89,7 +87,7 @@
   ]
  },
  "yapay-zeka-teknoloji": {
-  "gun": "2026-11-18",
+  "gun": "2026-11-22",
   "onceki": "yapay-zeka-teknoloji/yapay-zeka-teknoloji-01.mp4",
   "secilen": [
    "yapay-zeka-teknoloji/yapay-zeka-teknoloji-01.mp4"
