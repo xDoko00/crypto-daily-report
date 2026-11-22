@@ -1,153 +1,143 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-21",
+  "id": "2026-11-22",
   "language": "tr",
-  "title": "21 Kasım 2026, Cumartesi",
-  "publishedAt": "2026-11-21T07:51:06+03:00",
-  "updatedAt": "2026-11-21T07:51:06+03:00",
+  "title": "22 Kasım 2026, Pazar",
+  "publishedAt": "2026-11-22T07:53:55+03:00",
+  "updatedAt": "2026-11-22T07:53:55+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-21T07:48:00+03:00",
+    "asOf": "2026-11-22T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 55917,
-        "change24h": -8.924487684152519
+        "priceUsd": 59211,
+        "change24h": 5.4090023589781
       },
       "ETH": {
-        "priceUsd": 1550.52,
-        "change24h": -9.901475881747773
+        "priceUsd": 1660.76,
+        "change24h": 6.472648026817438
       },
       "SOL": {
-        "priceUsd": 65.53,
-        "change24h": -8.956454850121567
+        "priceUsd": 69.39,
+        "change24h": 5.38295993409649
       },
       "BNB": {
-        "priceUsd": 511.1,
-        "change24h": -9.70911051880392
+        "priceUsd": 540.4,
+        "change24h": 5.265812345799958
       },
       "XRP": {
-        "priceUsd": 0.876406,
-        "change24h": -8.43101426857363
+        "priceUsd": 0.919874,
+        "change24h": 4.530811605892969
       }
     },
-    "btcDominance": 57.25590330295462,
-    "ethDominance": 9.635017556931775,
-    "totalMarketCapUsd": 1963491945541.9224,
-    "volume24hUsd": 126557602093.56929,
+    "btcDominance": 57.72213607096326,
+    "ethDominance": 9.836561668817925,
+    "totalMarketCapUsd": 2056380728329.8914,
+    "volume24hUsd": 89810199562.0625,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 12,
+      "value": 11,
       "label": "Aşırı Korku",
       "previousValue": 12,
-      "weekAgoValue": 13
+      "weekAgoValue": 10
     }
   },
   "brief": {
-    "mood": "Riskli",
-    "why": "Fed yöneticileri Waller ve Cook'un dün beklenenin tersine Aralık ayında faiz artırımı gerekebileceğini söylemesi, Anthropic başta olmak üzere teknoloji ve yapay zeka hisselerindeki çöküşle birleşince risk iştahını kırdı ve kripto piyasasında yoğun ETF çıkışı ile likidasyon dalgası yaşandı.",
+    "mood": "Kararsız",
+    "why": "Cumartesi sabahı iki yılın en düşük seviyesi olan 55.130 dolara inen Bitcoin, kaldıraçlı pozisyonların tasfiye olması ve zorunlu satışların azalmasıyla hızla toparlanıp yeniden 60.000 doların üzerine çıktı.",
     "criticalEvents": [
       {
         "timeTr": null,
-        "title": "Hafta sonu düşük likidite, oynaklık riski"
+        "title": "Rusya'da kripto borsası işlemleri başladı"
       },
       {
-        "timeTr": null,
-        "title": "Pazartesi ETF akışları takibi"
+        "timeTr": "17:30",
+        "title": "ABD borsalarının Pazartesi açılışı"
       }
     ],
-    "mainRisk": "Fed'in Aralık toplantısında beklenenin üstünde bir faiz artırımına gitme ihtimali risk iştahını baskılıyor."
+    "mainRisk": "Nasdaq'taki zayıflık ve Pazartesi borsa açılışında olası yeni bir satış dalgası, mevcut toparlanmayı tersine çevirebilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "BTC'nin 60.000 dolar destek seviyesini koruyup koruyamayacağı",
-        "outcome": "Iska: destek kırıldı, Bitcoin 58.700-59.400 dolar bandına, Temmuz'dan beri en düşük seviyelere indi."
+        "item": "Bitcoin'in 55.000-58.000 dolar bandında tutunup tutunamayacağı",
+        "outcome": "Tutunamadı; Cumartesi sabahı 55.130 dolara kadar sarktı, ancak kısa pozisyon tasfiyeleriyle hızla toparlanıp 60.000 doların üzerine çıktı."
       },
       {
-        "item": "Sky protokolünün stUSDS havuzundaki likidite krizini çözüp çözemeyeceği",
-        "outcome": "Kısmen: kurucu USDS'in fazla teminatlı olduğunu doğruladı ama stUSDS havuzu hâlâ yüzde yüz kullanımda, sorun tam çözülmedi."
+        "item": "Spot Bitcoin ETF'lerine Pazartesi günü giriş mi çıkış mı olacağı",
+        "outcome": "Çıkış oldu; hafta boyunca süren tasfiyeler Cuma günü 582 milyon dolarla devam etti, Kasım toplam net çıkışı 3,47 milyar dolara ulaştı."
       },
       {
-        "item": "Fed'in Waller ve Cook konuşmalarının Aralık faiz beklentilerini nasıl etkileyeceği",
-        "outcome": "Beklentinin tersine: ikisi de indirim değil yeni faiz artırımı gerektiğini söyledi, bu piyasayı olumsuz şaşırttı."
+        "item": "Sky protokolünün stUSDS havuzunda likiditenin normalleşip normalleşmeyeceği",
+        "outcome": "Normalleşmedi, tersine kötüleşti; yasa dışı fon transferlerine ilişkin rapor sonrası bir günde 1,5 milyar dolardan fazla çekilişle USDS arzı yüzde 30'dan fazla eridi."
       },
       {
-        "item": "Anthropic hissesinin ikinci işlem gününde ilk gün kazancını koruyup koruyamayacağı",
-        "outcome": "Iska: hisse ikinci günde yaklaşık yüzde 9 düştü, halka arz fiyatına yakın seviyeye geri geldi."
+        "item": "Anthropic hissesinin 83 dolarlık halka arz fiyatının altına inip inmeyeceği",
+        "outcome": "Kapanışta inmedi ama çok yaklaştı; Cuma günü gün içinde 83,05 dolara kadar geriledi, günü 88,91 dolardan kapattı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
-        "title": "Bitcoin 60.000 dolar sınırını kırdı",
-        "summary": "Fed'in faiz artırım sinyali ve teknoloji hisselerindeki satışla Bitcoin Temmuz'dan beri en düşük seviyelerine indi, 24 saatte 1,5 milyar doları aşan pozisyon likide oldu.",
+        "title": "Bitcoin 55.000 dolardan 60.000 doların üzerine sıçradı",
+        "summary": "Cumartesi sabahı iki yılın en düşük seviyesi olan 55.130 dolara inen Bitcoin, kaldıraçlı pozisyonların tasfiye olup zorunlu satışların azalmasıyla yüzde dokuz yükselerek yeniden 60.000 doların üzerine çıktı.",
         "source": {
-          "url": "https://www.cryptotimes.io/2026/11/21/crypto-market-falls-5-to-2-12t-as-traders-face-1-53b-in-liquidations/",
-          "title": "Crypto Market Falls 5% to $2.12T as Traders Face $1.53B in Liquidations",
-          "publisher": "Crypto Times"
+          "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-bounces-9-from-two-year-low-to-retake-usd60-000-as-traders-eye-monday-s-stock-open",
+          "title": "Bitcoin Bounces 9% From Two-Year Low to Retake $60,000 as Traders Eye Monday's Stock Open",
+          "publisher": "CoinDesk"
         }
       },
       {
         "importance": "onemli",
-        "title": "Fed'den faiz artırım sinyali",
-        "summary": "Fed Guvernörü Cook, enflasyonun hâlâ yüksek olduğunu belirterek faiz artırımına ihtiyaç olduğunu söyledi; Waller da Aralık'ta artırım ihtimalini güçlendirdi.",
+        "title": "Kasım ayında Bitcoin ETF'lerinden çıkışlar sürüyor",
+        "summary": "ABD'deki spot Bitcoin ETF'leri 19 Kasım'da 582 milyon dolarlık çıkışla Kasım ayı toplam net çıkışını 3,47 milyar dolara taşıdı; ayın 14 işlem gününün 12'sinde net çıkış görüldü.",
         "source": {
-          "url": "https://www.kitco.com/news/off-the-wire/2026-11-20/feds-cook-says-rate-hikes-needed-lower-high-inflation",
-          "title": "Fed's Cook says rate hikes needed to lower high inflation",
-          "publisher": "Kitco"
-        }
-      },
-      {
-        "importance": "onemli",
-        "title": "Anthropic hissesi ikinci günde geri çekildi",
-        "summary": "Halka arzın ardından ilk gün yükselen Anthropic hissesi ikinci işlem gününde yaklaşık yüzde 9 düşerek halka arz fiyatına yaklaştı.",
-        "source": {
-          "url": "https://fortune.com/2026/11/20/anthropic-stock-teeters-close-to-ipo-price-in-second-day-of-trading/",
-          "title": "Anthropic stock teeters close to IPO price in second day of trading",
-          "publisher": "Fortune"
+          "url": "https://financefeeds.com/bitcoin-etfs-shed-582-million-as-november-outflows-reach-3-47-billion/",
+          "title": "Bitcoin ETFs Shed $582 Million as November Outflows Reach $3.47 Billion",
+          "publisher": "FinanceFeeds"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Sky protokolünde likidite sıkışıklığı sürüyor",
-        "summary": "Kurucu Rune Christensen'e bağlı bir cüzdanın stUSDS havuzunun yaklaşık yarısına borçlu olduğu ortaya çıktı, havuz hâlâ tam kapasite kullanımda.",
+        "title": "Anthropic hissesi halka arz fiyatına yaklaştı",
+        "summary": "19 Kasım'da Nasdaq'ta işlem görmeye başlayan Anthropic hissesi, yapay zeka hisselerindeki satış dalgasında Cuma günü gün içinde 83,05 dolara kadar geriledi ve 83 dolarlık halka arz fiyatının hemen üzerinde, 88,91 dolardan kapandı.",
         "source": {
-          "url": "https://www.kucoin.com/news/flash/sky-founder-confirms-usds-overcollateralized-amid-market-concerns",
-          "title": "Sky Founder Confirms USDS Is Overcollateralized Amid Market Concerns",
-          "publisher": "KuCoin"
+          "url": "https://financefeeds.com/anthropic-ant-stock-88-91-saturday-week-ahead-after-friday-low-tested-83-ipo-price-bull-97-bear-80/",
+          "title": "ANT Stock $88.91: Friday Low Came 5 Cents Above IPO Price",
+          "publisher": "FinanceFeeds"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Bitcoin ETF'lerinden kayıt kıran çıkış",
-        "summary": "Spot Bitcoin ETF'lerinden bir günde 582 milyon dolar çıkış oldu, BlackRock'ın IBIT fonu kendi tarihindeki en büyük günlük çıkışını yaşadı.",
+        "title": "Rusya'da kripto borsası dönemi fiilen başlayamadı",
+        "summary": "Rusya'da borsalarda düzenlenmiş kripto alım satımı 22 Kasım'dan itibaren yasal olarak serbest, ancak merkez bankası henüz hiçbir borsanın işlem kurallarını onaylamadığı için ilk gün fiilen işlem yapan bir platform bulunmuyor.",
         "source": {
-          "url": "https://news.bitcoin.com/market-updates/bitcoin-price-crashes-below-59k-crypto-liquidations-top-1-5b/",
-          "title": "Bitcoin Price Crashes Below $59K as Crypto Liquidations Top $1.5B",
-          "publisher": "Bitcoin.com"
+          "url": "https://cryptonews.net/news/market/33790450/",
+          "title": "Russia's Crypto Trading Window Opens With No Venue Cleared",
+          "publisher": "Cryptonews"
         }
       }
     ],
     "today": [
       {
         "timeTr": null,
-        "title": "Hafta sonu düşük hacimli, oynak işlem koşulları"
+        "title": "Rusya'da lisanslı borsaların ilk işlem günü"
       },
       {
-        "timeTr": null,
-        "title": "Sky protokolü stUSDS havuzunda likidite takibi"
+        "timeTr": "11:00",
+        "title": "Avrupa öncü PMI verileri"
       },
       {
-        "timeTr": null,
-        "title": "Pazartesi Asya seansında tepki hareketi ihtimali"
+        "timeTr": "17:30",
+        "title": "ABD borsalarının Pazartesi açılışı"
       },
       {
-        "timeTr": null,
-        "title": "27 Kasım'daki büyük opsiyon vadesi öncesi pozisyonlanma"
+        "timeTr": "17:45",
+        "title": "ABD öncü PMI verileri"
       }
     ],
     "turkey": {
@@ -155,41 +145,36 @@
       "items": []
     },
     "risks": [
-      "Fed'in Aralık'ta beklenenden sert faiz artırımına gitme riski",
-      "Hafta sonu düşük likiditenin ani fiyat hareketlerini büyütmesi"
+      "Nasdaq'taki zayıflık ve Pazartesi borsa açılışındaki olası yeni satış dalgası mevcut toparlanmayı tersine çevirebilir.",
+      "Sky protokolündeki likidite ve itibar sorunları stabilcoin piyasasında güveni sarsmayı sürdürebilir."
     ]
   },
   "followUps": [
-    "Bitcoin'in 55.000-58.000 dolar bandında tutunup tutunamayacağı",
-    "Spot Bitcoin ETF'lerine Pazartesi günü giriş mi çıkış mı olacağı",
-    "Sky protokolünün stUSDS havuzunda likiditenin normalleşip normalleşmeyeceği",
-    "Anthropic hissesinin 83 dolarlık halka arz fiyatının altına inip inmeyeceği"
+    "Bitcoin'in 60.000 dolar üzerindeki toparlanmasının Pazartesi ABD borsa açılışında sürüp sürmeyeceği",
+    "Spot Bitcoin ETF'lerinde Pazartesi günü net giriş mi net çıkış mı görüleceği",
+    "Sky'ın USDS arzındaki erimenin durup durmayacağı",
+    "Rusya'da onaylanmış ilk kripto borsasının fiilen işlem açıp açmayacağı"
   ],
   "sources": [
     {
-      "url": "https://www.cryptotimes.io/2026/11/21/crypto-market-falls-5-to-2-12t-as-traders-face-1-53b-in-liquidations/",
-      "title": "Crypto Market Falls 5% to $2.12T as Traders Face $1.53B in Liquidations",
-      "publisher": "Crypto Times"
+      "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-bounces-9-from-two-year-low-to-retake-usd60-000-as-traders-eye-monday-s-stock-open",
+      "title": "Bitcoin Bounces 9% From Two-Year Low to Retake $60,000 as Traders Eye Monday's Stock Open",
+      "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.kitco.com/news/off-the-wire/2026-11-20/feds-cook-says-rate-hikes-needed-lower-high-inflation",
-      "title": "Fed's Cook says rate hikes needed to lower high inflation",
-      "publisher": "Kitco"
+      "url": "https://financefeeds.com/bitcoin-etfs-shed-582-million-as-november-outflows-reach-3-47-billion/",
+      "title": "Bitcoin ETFs Shed $582 Million as November Outflows Reach $3.47 Billion",
+      "publisher": "FinanceFeeds"
     },
     {
-      "url": "https://fortune.com/2026/11/20/anthropic-stock-teeters-close-to-ipo-price-in-second-day-of-trading/",
-      "title": "Anthropic stock teeters close to IPO price in second day of trading",
-      "publisher": "Fortune"
+      "url": "https://financefeeds.com/anthropic-ant-stock-88-91-saturday-week-ahead-after-friday-low-tested-83-ipo-price-bull-97-bear-80/",
+      "title": "ANT Stock $88.91: Friday Low Came 5 Cents Above IPO Price",
+      "publisher": "FinanceFeeds"
     },
     {
-      "url": "https://www.kucoin.com/news/flash/sky-founder-confirms-usds-overcollateralized-amid-market-concerns",
-      "title": "Sky Founder Confirms USDS Is Overcollateralized Amid Market Concerns",
-      "publisher": "KuCoin"
-    },
-    {
-      "url": "https://news.bitcoin.com/market-updates/bitcoin-price-crashes-below-59k-crypto-liquidations-top-1-5b/",
-      "title": "Bitcoin Price Crashes Below $59K as Crypto Liquidations Top $1.5B",
-      "publisher": "Bitcoin.com"
+      "url": "https://cryptonews.net/news/market/33790450/",
+      "title": "Russia's Crypto Trading Window Opens With No Venue Cleared",
+      "publisher": "Cryptonews"
     }
   ],
   "assets": {

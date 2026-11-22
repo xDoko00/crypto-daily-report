@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-22",
+  "language": "tr",
+  "title": "22 Kasım 2026, Pazar",
+  "publishedAt": "2026-11-22T07:53:55+03:00",
+  "updatedAt": "2026-11-22T07:53:55+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-22T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 59211,
+        "change24h": 5.4090023589781
+      },
+      "ETH": {
+        "priceUsd": 1660.76,
+        "change24h": 6.472648026817438
+      },
+      "SOL": {
+        "priceUsd": 69.39,
+        "change24h": 5.38295993409649
+      },
+      "BNB": {
+        "priceUsd": 540.4,
+        "change24h": 5.265812345799958
+      },
+      "XRP": {
+        "priceUsd": 0.919874,
+        "change24h": 4.530811605892969
+      }
+    },
+    "btcDominance": 57.72213607096326,
+    "ethDominance": 9.836561668817925,
+    "totalMarketCapUsd": 2056380728329.8914,
+    "volume24hUsd": 89810199562.0625,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 11,
+      "label": "Aşırı Korku",
+      "previousValue": 12,
+      "weekAgoValue": 10
+    }
+  },
+  "brief": {
+    "mood": "Kararsız",
+    "why": "Cumartesi sabahı iki yılın en düşük seviyesi olan 55.130 dolara inen Bitcoin, kaldıraçlı pozisyonların tasfiye olması ve zorunlu satışların azalmasıyla hızla toparlanıp yeniden 60.000 doların üzerine çıktı.",
+    "criticalEvents": [
+      {
+        "timeTr": null,
+        "title": "Rusya'da kripto borsası işlemleri başladı"
+      },
+      {
+        "timeTr": "17:30",
+        "title": "ABD borsalarının Pazartesi açılışı"
+      }
+    ],
+    "mainRisk": "Nasdaq'taki zayıflık ve Pazartesi borsa açılışında olası yeni bir satış dalgası, mevcut toparlanmayı tersine çevirebilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Bitcoin'in 55.000-58.000 dolar bandında tutunup tutunamayacağı",
+        "outcome": "Tutunamadı; Cumartesi sabahı 55.130 dolara kadar sarktı, ancak kısa pozisyon tasfiyeleriyle hızla toparlanıp 60.000 doların üzerine çıktı."
+      },
+      {
+        "item": "Spot Bitcoin ETF'lerine Pazartesi günü giriş mi çıkış mı olacağı",
+        "outcome": "Çıkış oldu; hafta boyunca süren tasfiyeler Cuma günü 582 milyon dolarla devam etti, Kasım toplam net çıkışı 3,47 milyar dolara ulaştı."
+      },
+      {
+        "item": "Sky protokolünün stUSDS havuzunda likiditenin normalleşip normalleşmeyeceği",
+        "outcome": "Normalleşmedi, tersine kötüleşti; yasa dışı fon transferlerine ilişkin rapor sonrası bir günde 1,5 milyar dolardan fazla çekilişle USDS arzı yüzde 30'dan fazla eridi."
+      },
+      {
+        "item": "Anthropic hissesinin 83 dolarlık halka arz fiyatının altına inip inmeyeceği",
+        "outcome": "Kapanışta inmedi ama çok yaklaştı; Cuma günü gün içinde 83,05 dolara kadar geriledi, günü 88,91 dolardan kapattı."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Bitcoin 55.000 dolardan 60.000 doların üzerine sıçradı",
+        "summary": "Cumartesi sabahı iki yılın en düşük seviyesi olan 55.130 dolara inen Bitcoin, kaldıraçlı pozisyonların tasfiye olup zorunlu satışların azalmasıyla yüzde dokuz yükselerek yeniden 60.000 doların üzerine çıktı.",
+        "source": {
+          "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-bounces-9-from-two-year-low-to-retake-usd60-000-as-traders-eye-monday-s-stock-open",
+          "title": "Bitcoin Bounces 9% From Two-Year Low to Retake $60,000 as Traders Eye Monday's Stock Open",
+          "publisher": "CoinDesk"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Kasım ayında Bitcoin ETF'lerinden çıkışlar sürüyor",
+        "summary": "ABD'deki spot Bitcoin ETF'leri 19 Kasım'da 582 milyon dolarlık çıkışla Kasım ayı toplam net çıkışını 3,47 milyar dolara taşıdı; ayın 14 işlem gününün 12'sinde net çıkış görüldü.",
+        "source": {
+          "url": "https://financefeeds.com/bitcoin-etfs-shed-582-million-as-november-outflows-reach-3-47-billion/",
+          "title": "Bitcoin ETFs Shed $582 Million as November Outflows Reach $3.47 Billion",
+          "publisher": "FinanceFeeds"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Anthropic hissesi halka arz fiyatına yaklaştı",
+        "summary": "19 Kasım'da Nasdaq'ta işlem görmeye başlayan Anthropic hissesi, yapay zeka hisselerindeki satış dalgasında Cuma günü gün içinde 83,05 dolara kadar geriledi ve 83 dolarlık halka arz fiyatının hemen üzerinde, 88,91 dolardan kapandı.",
+        "source": {
+          "url": "https://financefeeds.com/anthropic-ant-stock-88-91-saturday-week-ahead-after-friday-low-tested-83-ipo-price-bull-97-bear-80/",
+          "title": "ANT Stock $88.91: Friday Low Came 5 Cents Above IPO Price",
+          "publisher": "FinanceFeeds"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Rusya'da kripto borsası dönemi fiilen başlayamadı",
+        "summary": "Rusya'da borsalarda düzenlenmiş kripto alım satımı 22 Kasım'dan itibaren yasal olarak serbest, ancak merkez bankası henüz hiçbir borsanın işlem kurallarını onaylamadığı için ilk gün fiilen işlem yapan bir platform bulunmuyor.",
+        "source": {
+          "url": "https://cryptonews.net/news/market/33790450/",
+          "title": "Russia's Crypto Trading Window Opens With No Venue Cleared",
+          "publisher": "Cryptonews"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": null,
+        "title": "Rusya'da lisanslı borsaların ilk işlem günü"
+      },
+      {
+        "timeTr": "11:00",
+        "title": "Avrupa öncü PMI verileri"
+      },
+      {
+        "timeTr": "17:30",
+        "title": "ABD borsalarının Pazartesi açılışı"
+      },
+      {
+        "timeTr": "17:45",
+        "title": "ABD öncü PMI verileri"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Nasdaq'taki zayıflık ve Pazartesi borsa açılışındaki olası yeni satış dalgası mevcut toparlanmayı tersine çevirebilir.",
+      "Sky protokolündeki likidite ve itibar sorunları stabilcoin piyasasında güveni sarsmayı sürdürebilir."
+    ]
+  },
+  "followUps": [
+    "Bitcoin'in 60.000 dolar üzerindeki toparlanmasının Pazartesi ABD borsa açılışında sürüp sürmeyeceği",
+    "Spot Bitcoin ETF'lerinde Pazartesi günü net giriş mi net çıkış mı görüleceği",
+    "Sky'ın USDS arzındaki erimenin durup durmayacağı",
+    "Rusya'da onaylanmış ilk kripto borsasının fiilen işlem açıp açmayacağı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-bounces-9-from-two-year-low-to-retake-usd60-000-as-traders-eye-monday-s-stock-open",
+      "title": "Bitcoin Bounces 9% From Two-Year Low to Retake $60,000 as Traders Eye Monday's Stock Open",
+      "publisher": "CoinDesk"
+    },
+    {
+      "url": "https://financefeeds.com/bitcoin-etfs-shed-582-million-as-november-outflows-reach-3-47-billion/",
+      "title": "Bitcoin ETFs Shed $582 Million as November Outflows Reach $3.47 Billion",
+      "publisher": "FinanceFeeds"
+    },
+    {
+      "url": "https://financefeeds.com/anthropic-ant-stock-88-91-saturday-week-ahead-after-friday-low-tested-83-ipo-price-bull-97-bear-80/",
+      "title": "ANT Stock $88.91: Friday Low Came 5 Cents Above IPO Price",
+      "publisher": "FinanceFeeds"
+    },
+    {
+      "url": "https://cryptonews.net/news/market/33790450/",
+      "title": "Russia's Crypto Trading Window Opens With No Venue Cleared",
+      "publisher": "Cryptonews"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
