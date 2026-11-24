@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-24",
+  "language": "tr",
+  "title": "24 Kasım 2026, Salı",
+  "publishedAt": "2026-11-24T07:52:02+03:00",
+  "updatedAt": "2026-11-24T07:52:02+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-24T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 60499,
+        "change24h": -0.9382604965929977
+      },
+      "ETH": {
+        "priceUsd": 1703.32,
+        "change24h": -1.1888441951971518
+      },
+      "SOL": {
+        "priceUsd": 71.8,
+        "change24h": 0.7665225346676199
+      },
+      "BNB": {
+        "priceUsd": 554.28,
+        "change24h": -0.4717043337184439
+      },
+      "XRP": {
+        "priceUsd": 0.954175,
+        "change24h": 2.3607766312243017
+      }
+    },
+    "btcDominance": 57.793321617556,
+    "ethDominance": 9.880730203852256,
+    "totalMarketCapUsd": 2104845085503.4163,
+    "volume24hUsd": 95041732829.19211,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 11,
+      "label": "Aşırı Korku",
+      "previousValue": 11,
+      "weekAgoValue": 12
+    }
+  },
+  "brief": {
+    "mood": "Temkinli",
+    "why": "Majör coinlerdeki hafif gerileme, Bitcoin spot ETF'lerinden kesintisiz süren net çıkışlarla (Kasım toplamı 4,14 milyar dolar) ve Sky'ın USDS stabilcoin'indeki güven kaybının risk iştahını bastırmasından besleniyor; XRP ve SOL'daki görece güç ise alt tarafta kısmi pozisyon kapanışlarına işaret ediyor.",
+    "criticalEvents": [
+      {
+        "timeTr": "09:00",
+        "title": "Güney Kore dijital varlık yasası görüşmesi"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD Bitcoin ETF günlük akış verisi"
+      },
+      {
+        "timeTr": null,
+        "title": "CFTC tahmin piyasası kuralı Beyaz Saray'da"
+      }
+    ],
+    "mainRisk": "Sky'ın USDS'indeki güven kaybının borsa ve DeFi genelinde yeni likidite şoklarına yayılma riski."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "ETF akışının Salı günü de net girişle sürüp sürmeyeceği",
+        "outcome": "Hayır, akış negatif kaldı: haftalık 1,79 milyar dolarlık üçüncü en büyük çıkışla Kasım toplamı 4,14 milyar dolara ulaştı."
+      },
+      {
+        "item": "Bitcoin'in 61.000 doların üzerinde tutunup tutunamayacağı",
+        "outcome": "Hayır, tutunamadı; BTC 60.500 dolar seviyesine geri çekildi."
+      },
+      {
+        "item": "Sky'ın USDS arzındaki toparlanmanın Salı günü de sürüp sürmeyeceği",
+        "outcome": "Evet, sürdü; PSM'deki USDC likiditesi 1,77 milyar dolara çıkarak arzın yüzde 28,4'üne ulaştı, ancak Upbit ve Bithumb SKY ile USDS'i dikkat listesine aldı."
+      },
+      {
+        "item": "Fed Bej Kitap raporunun Aralık faiz beklentilerini değiştirip değiştirmeyeceği",
+        "outcome": "Henüz belli olmadı; rapor 25 Kasım'da yayımlanacak, bugün için sonuç yok."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Güney Kore'de kapsamlı kripto yasası masada",
+        "summary": "Güney Kore Finansal Hizmetler Kurulu, borsalar, saklama hizmetleri ve won destekli stabilcoin ihracını kapsayan Dijital Varlık Temel Yasası taslağını bugün Sanal Varlık Komitesi'nde görüşüyor; düzenleme borsalara faaliyet türüne göre lisans ya da kayıt zorunluluğu getirecek.",
+        "source": {
+          "url": "https://crypto.news/south-korea-crypto-law-draft-november-24-stablecoins",
+          "title": "South Korea to reveal major crypto law covering exchanges, stablecoins on November 24",
+          "publisher": "crypto.news"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Bitcoin ETF'lerinden çıkış hız kesmiyor",
+        "summary": "ABD spot Bitcoin ETF'leri geçen hafta 1,79 milyar dolarlık net çıkışla Ocak 2024'ten beri üçüncü en büyük haftalık çıkışı yaşadı; Kasım ayı toplam çıkışı 4,14 milyar dolara ulaştı ve bunun yüzde 76'sını BlackRock'ın IBIT'i oluşturdu.",
+        "source": {
+          "url": "https://cointelegraph.com/markets/bitcoin-etfs-third-largest-weekly-outflows-1-8-billion",
+          "title": "Bitcoin ETFs Shed $1.8b in Third-Largest Weekly Outflow",
+          "publisher": "Cointelegraph"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Sky'ın USDS'inde güven krizi sürüyor",
+        "summary": "19 Kasım'daki 2 milyar dolarlık redemption dalgasının ardından Sky Protokolü'nün PSM'indeki USDC likiditesi 1,77 milyar dolara toparlandı, ancak Upbit ve Bithumb kullanıcı riskine karşı SKY ve USDS'i dikkat listesine aldı.",
+        "source": {
+          "url": "https://panews.io/articles/01a2083a-7231-738b-8505-b11d71b00e9b",
+          "title": "Sky Protocol PSM's USDC Liquidity Rebounds to $1.77 Billion After Single-Day Outflow of Over $2 Billion",
+          "publisher": "PANews"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "CFTC kripto varlıkları rezervlere dahil etti",
+        "summary": "CFTC, türev borsalarının bitcoin, ether ve stabilcoinleri belirli iskontolarla operasyonel rezerv gereksinimlerinde kullanabileceğine dair personel rehberi yayımladı; kurumun tahmin piyasası nihai kuralı ise incelenmek üzere Beyaz Saray'a gönderildi.",
+        "source": {
+          "url": "https://www.investing.com/news/stock-market-news/cftc-staff-advisory-says-crypto-can-count-toward-reserves-not-liquidity-rule-5046749",
+          "title": "CFTC staff advisory says crypto can count toward reserves, not liquidity rule",
+          "publisher": "Reuters via Investing.com"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "ARK Invest iki kripto ETF başvurusunu geri çekti",
+        "summary": "ARK Invest, CoinDesk 20 endeksini takip eden iki planlı kripto ETF'i için SEC'e verdiği kayıt başvurusunu geri çekti; Roundhill gibi başka yöneticilerin de benzer altcoin ETF planlarından çekilmesi zayıf talebe işaret ediyor.",
+        "source": {
+          "url": "https://www.sec.gov/Archives/edgar/data/0002106116/000121390026122577/ea0313104-01_rw.htm",
+          "title": "ARK CoinDesk 20 Crypto ETF - Form RW",
+          "publisher": "SEC EDGAR"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "09:00",
+        "title": "Güney Kore FSC Dijital Varlık Yasası'nı görüşüyor"
+      },
+      {
+        "timeTr": null,
+        "title": "ABD spot Bitcoin ETF günlük akış verileri açıklanacak"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "Sky'ın USDS'indeki güven kaybının diğer stabilcoinlere ve DeFi protokollerine yayılma riski.",
+      "ETF çıkışlarının hız kesmeden sürmesi halinde likidite baskısının artması."
+    ]
+  },
+  "followUps": [
+    "Güney Kore'nin Dijital Varlık Yasası taslağının bugünkü komite görüşmesinden nasıl çıktığı",
+    "Bitcoin spot ETF'lerinde net akışın yarın pozitife çevrilip çevrilmediği",
+    "Sky'ın USDS PSM likiditesinin 1,77 milyar dolar seviyesinin üzerinde kalıp kalmadığı",
+    "Fed Bej Kitap raporunun (25 Kasım) Aralık faiz indirimi beklentisini nasıl etkilediği"
+  ],
+  "sources": [
+    {
+      "url": "https://crypto.news/south-korea-crypto-law-draft-november-24-stablecoins",
+      "title": "South Korea to reveal major crypto law covering exchanges, stablecoins on November 24",
+      "publisher": "crypto.news"
+    },
+    {
+      "url": "https://cointelegraph.com/markets/bitcoin-etfs-third-largest-weekly-outflows-1-8-billion",
+      "title": "Bitcoin ETFs Shed $1.8b in Third-Largest Weekly Outflow",
+      "publisher": "Cointelegraph"
+    },
+    {
+      "url": "https://panews.io/articles/01a2083a-7231-738b-8505-b11d71b00e9b",
+      "title": "Sky Protocol PSM's USDC Liquidity Rebounds to $1.77 Billion After Single-Day Outflow of Over $2 Billion",
+      "publisher": "PANews"
+    },
+    {
+      "url": "https://www.investing.com/news/stock-market-news/cftc-staff-advisory-says-crypto-can-count-toward-reserves-not-liquidity-rule-5046749",
+      "title": "CFTC staff advisory says crypto can count toward reserves, not liquidity rule",
+      "publisher": "Reuters via Investing.com"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0002106116/000121390026122577/ea0313104-01_rw.htm",
+      "title": "ARK CoinDesk 20 Crypto ETF - Form RW",
+      "publisher": "SEC EDGAR"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
