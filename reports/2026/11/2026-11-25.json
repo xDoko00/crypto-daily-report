@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-11-25",
+  "language": "tr",
+  "title": "25 Kasım 2026, Çarşamba",
+  "publishedAt": "2026-11-25T07:52:50+03:00",
+  "updatedAt": "2026-11-25T07:52:50+03:00",
+  "status": "published",
+  "author": {
+    "name": "Doğukan Doğan",
+    "url": "https://dogukanlive.com/hakkimda"
+  },
+  "market": {
+    "asOf": "2026-11-25T07:48:00+03:00",
+    "coins": {
+      "BTC": {
+        "priceUsd": 58959,
+        "change24h": -2.5879832180333686
+      },
+      "ETH": {
+        "priceUsd": 1653.23,
+        "change24h": -3.0050475337452256
+      },
+      "SOL": {
+        "priceUsd": 68.53,
+        "change24h": -4.575214095863467
+      },
+      "BNB": {
+        "priceUsd": 540.05,
+        "change24h": -2.5808474177293728
+      },
+      "XRP": {
+        "priceUsd": 0.916206,
+        "change24h": -4.052182854556827
+      }
+    },
+    "btcDominance": 57.67562512699664,
+    "ethDominance": 9.828259299308804,
+    "totalMarketCapUsd": 2050973583699.2654,
+    "volume24hUsd": 68279225444.181175,
+    "dataSource": "CoinGecko + Alternative.me",
+    "fearGreed": {
+      "value": 13,
+      "label": "Aşırı Korku",
+      "previousValue": 11,
+      "weekAgoValue": 11
+    }
+  },
+  "brief": {
+    "mood": "Riskli",
+    "why": "Son 24 saatteki düşüşte iki şey öne çıkıyor: ABD Ticaret Temsilciliği'nin 16 ekonomiye yönelik, yaklaşık 2,4 trilyon dolarlık ithalatı kapsayan yeni tarife bulgularını bu hafta açıklayabileceği haberi risk iştahını bozdu ve bu, kasımda rekor seviyeye çıkan bitcoin ETF çıkışlarıyla birleşti.",
+    "criticalEvents": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD GSYH ve PCE verisi"
+      },
+      {
+        "timeTr": "22:00",
+        "title": "Fed Bej Kitap raporu"
+      },
+      {
+        "timeTr": null,
+        "title": "Olası ABD tarife açıklaması"
+      }
+    ],
+    "mainRisk": "ABD'nin 16 ekonomiye yönelik tarife kararının bu hafta resmen açıklanması risk iştahını daha da bozabilir."
+  },
+  "sections": {
+    "yesterday": [
+      {
+        "item": "Güney Kore'nin Dijital Varlık Yasası taslağının komite görüşmesinden çıkışı",
+        "outcome": "Taslak 24 Kasım'da FSC Sanal Varlık Komitesi'nde görüşülüp kamuoyuna açıklandı: borsa sahipliğine yüzde 20, onaylı kurumlara yüzde 34 tavan, banka kontrollü won stabilcoin ve ICO'ların yeniden serbestleşmesi var; yasa henüz çıkmadı, sırada Ulusal Meclis var."
+      },
+      {
+        "item": "Bitcoin spot ETF'lerinde net akışın yarın pozitife çevrilip çevrilmediği",
+        "outcome": "Isabetsiz: çıkışlar sürdü, 24 Kasım'da yaklaşık 570 milyon dolar daha çıktı ve kasım ayı toplam net çıkışı rekor 4,71 milyar dolara ulaştı."
+      },
+      {
+        "item": "Sky'ın USDS PSM likiditesinin 1,77 milyar dolar seviyesinin üzerinde kalması",
+        "outcome": "Isabetli: 19 Kasım'daki 2 milyar dolarlık tek günlük çıkışın ardından likidite toparlandı, 1,77 milyar dolara ve USDS ile DAI arzının yüzde 28,4'üne ulaştı."
+      },
+      {
+        "item": "Fed Bej Kitap raporunun Aralık faiz indirimi beklentisine etkisi",
+        "outcome": "Rapor bu sabah itibarıyla henüz yayımlanmadı; ABD saatiyle 14:00'te, TSİ 22:00'de çıkması ve Fed'in iletişim sessizliği öncesi son bölgesel veri seti olması bekleniyor."
+      }
+    ],
+    "agenda": [
+      {
+        "importance": "kritik",
+        "title": "Bitcoin ETF çıkışları kasımda rekor kırdı",
+        "summary": "ABD spot bitcoin ETF'lerinden 24 Kasım'da 570 milyon dolar daha çıktı, kasım ayı net çıkışı 4,71 milyar dolara ulaşarak Ocak 2024 lansmanından beri en kötü ay oldu.",
+        "source": {
+          "url": "https://www.theblock.co/news/markets/2026-11-24-bitcoin-etfs-another-570-million-net-outflows-november-total-nears-5-billion-btc-dips-below-60k-445548",
+          "title": "Bitcoin ETFs see another $570 million in net outflows as November total nears $5 billion and BTC dips below $60K",
+          "publisher": "The Block"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "ABD'den 16 ekonomiye yeni tarife sinyali",
+        "summary": "ABD Ticaret Temsilcisi Jamieson Greer'in, aralarında Çin, AB, Japonya ve Güney Kore'nin bulunduğu 16 ekonomiye yönelik Bölüm 301 tarife bulgularını bu hafta açıklayabileceği haberi risk iştahını bozdu.",
+        "source": {
+          "url": "https://finance.biggo.com/news/17b472b9-9764-4e7c-a05d-2b938bbab74a",
+          "title": "Trump Administration Weighs New Tariffs Targeting 16 Countries, Announcement as Early as the 25th",
+          "publisher": "BigGo Finance"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Güney Kore'de Dijital Varlık Yasası taslağı açıklandı",
+        "summary": "FSC'nin 24 Kasım'da açıkladığı taslakta borsa sahipliğine yüzde 20 tavan, banka kontrollü won stabilcoin ve ICO'ların yeniden serbestleşmesi var; yasa henüz Meclis'ten geçmedi.",
+        "source": {
+          "url": "https://www.digitaltoday.co.kr/en/view/130228/digital-asset-basic-law-stake-ownership-cap-corporate-market-access-left-out",
+          "title": "Digital asset bill caps exchange stakes, leaves corporate market access out",
+          "publisher": "Digital Today"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Sky'ın USDS PSM likiditesi 1,77 milyar dolara toparlandı",
+        "summary": "19 Kasım'daki 2 milyar dolarlık tek günlük USDS-USDC çıkışının ardından Sky Protokolü'nün PSM likiditesi 1,77 milyar dolara, USDS ve DAI arzının yüzde 28,4'üne yükseldi.",
+        "source": {
+          "url": "https://panews.io/articles/01a2083a-7231-738b-8505-b11d71b00e9b",
+          "title": "Sky Protocol PSM's USDC Liquidity Rebounds to $1.77 Billion After Single-Day Outflow of Over $2 Billion",
+          "publisher": "PANews"
+        }
+      }
+    ],
+    "today": [
+      {
+        "timeTr": "16:30",
+        "title": "ABD 3. çeyrek GSYH ikinci tahmini ve ekim PCE verisi"
+      },
+      {
+        "timeTr": "18:00",
+        "title": "ABD ekim yeni konut satışları"
+      },
+      {
+        "timeTr": null,
+        "title": "Olası ABD tarife açıklaması (Jamieson Greer)"
+      },
+      {
+        "timeTr": "22:00",
+        "title": "Fed Bej Kitap raporu"
+      }
+    ],
+    "turkey": {
+      "hasNews": false,
+      "items": []
+    },
+    "risks": [
+      "ABD'nin 16 ekonomiye yönelik tarife kararının bu hafta resmen açıklanması risk iştahını daha da bozabilir.",
+      "Bitcoin ETF'lerinden çıkışların sürmesi ve kasım ayı rekor seviyesi zayıf kurumsal talebe işaret ediyor.",
+      "Şükran Günü tatili öncesi düşük işlem hacmi ani fiyat oynaklığını büyütebilir."
+    ]
+  },
+  "followUps": [
+    "ABD'nin 16 ekonomiye yönelik tarife bulgularının resmen açıklanıp açıklanmadığı",
+    "Fed Bej Kitap raporunun Aralık faiz indirimi beklentisini güçlendirip güçlendirmediği",
+    "Bitcoin ETF'lerinde kasım net çıkışının 5 milyar doları aşıp aşmadığı",
+    "Güney Kore Dijital Varlık Yasası taslağının Ulusal Meclis'teki ilk görüşmesinin ne zaman yapılacağı"
+  ],
+  "sources": [
+    {
+      "url": "https://www.theblock.co/news/markets/2026-11-24-bitcoin-etfs-another-570-million-net-outflows-november-total-nears-5-billion-btc-dips-below-60k-445548",
+      "title": "Bitcoin ETFs see another $570 million in net outflows as November total nears $5 billion and BTC dips below $60K",
+      "publisher": "The Block"
+    },
+    {
+      "url": "https://finance.biggo.com/news/17b472b9-9764-4e7c-a05d-2b938bbab74a",
+      "title": "Trump Administration Weighs New Tariffs Targeting 16 Countries, Announcement as Early as the 25th",
+      "publisher": "BigGo Finance"
+    },
+    {
+      "url": "https://www.digitaltoday.co.kr/en/view/130228/digital-asset-basic-law-stake-ownership-cap-corporate-market-access-left-out",
+      "title": "Digital asset bill caps exchange stakes, leaves corporate market access out",
+      "publisher": "Digital Today"
+    },
+    {
+      "url": "https://panews.io/articles/01a2083a-7231-738b-8505-b11d71b00e9b",
+      "title": "Sky Protocol PSM's USDC Liquidity Rebounds to $1.77 Billion After Single-Day Outflow of Over $2 Billion",
+      "publisher": "PANews"
+    }
+  ],
+  "assets": {
+    "cardUrl": null,
+    "audioUrl": null
+  },
+  "disclaimer": "Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir."
+}
