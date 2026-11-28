@@ -1,135 +1,149 @@
 {
   "schemaVersion": 1,
-  "id": "2026-11-27",
+  "id": "2026-11-28",
   "language": "tr",
-  "title": "27 Kasım 2026, Cuma",
-  "publishedAt": "2026-11-27T07:50:14+03:00",
-  "updatedAt": "2026-11-27T07:50:14+03:00",
+  "title": "28 Kasım 2026, Cumartesi",
+  "publishedAt": "2026-11-28T07:53:43+03:00",
+  "updatedAt": "2026-11-28T07:53:43+03:00",
   "status": "published",
   "author": {
     "name": "Doğukan Doğan",
     "url": "https://dogukanlive.com/hakkimda"
   },
   "market": {
-    "asOf": "2026-11-27T07:48:00+03:00",
+    "asOf": "2026-11-28T07:48:00+03:00",
     "coins": {
       "BTC": {
-        "priceUsd": 61447,
-        "change24h": 0.8372490282268333
+        "priceUsd": 59969,
+        "change24h": -2.428838284436907
       },
       "ETH": {
-        "priceUsd": 1734.3,
-        "change24h": 1.896824690152691
+        "priceUsd": 1662.08,
+        "change24h": -4.168998694373537
       },
       "SOL": {
-        "priceUsd": 72.82,
-        "change24h": 2.3849037244464473
+        "priceUsd": 71.54,
+        "change24h": -1.794094709723367
       },
       "BNB": {
-        "priceUsd": 563.54,
-        "change24h": 0.6833141381310099
+        "priceUsd": 554.63,
+        "change24h": -1.6056450483587188
       },
       "XRP": {
-        "priceUsd": 0.960918,
-        "change24h": 0.40796193347703463
+        "priceUsd": 0.947058,
+        "change24h": -1.4588948294519313
       }
     },
-    "btcDominance": 57.95319144184411,
-    "ethDominance": 9.941360412294399,
-    "totalMarketCapUsd": 2132891450133.2327,
-    "volume24hUsd": 54226974062.36328,
+    "btcDominance": 57.82795014851876,
+    "ethDominance": 9.740153352801055,
+    "totalMarketCapUsd": 2084944305022.2014,
+    "volume24hUsd": 67398064286.259155,
     "dataSource": "CoinGecko + Alternative.me",
     "fearGreed": {
-      "value": 12,
+      "value": 10,
       "label": "Aşırı Korku",
-      "previousValue": 11,
+      "previousValue": 12,
       "weekAgoValue": 12
     }
   },
   "brief": {
-    "mood": "Temkinli",
-    "why": "BTC, Şükran Günü tatilinde düşük hacimli bir kısa pozisyon kapanışıyla 57 bin dolar civarından 60 bin doların üzerine toparlandı, ancak yapışkan enflasyon ve güçlü büyüme verisi Fed'in Aralık toplantısında faiz artırımı ihtimalini güçlendirdiği için risk iştahı kırılgan kalıyor.",
+    "mood": "Riskli",
+    "why": "Son 24 saatteki düşüş, kasım ayında rekor seviyeye çıkan 5,39 milyar dolarlık Bitcoin ETF çıkışları ile 27 Kasım'da Deribit'te vadesi dolan 6,8 milyar dolarlık opsiyon pozisyonlarının piyasada yarattığı sert fiyat dalgalanmasının birleşik etkisiyle açıklanıyor.",
     "criticalEvents": [
       {
-        "timeTr": "11:00",
-        "title": "BTC ve ETH'de 7,6 milyar dolarlık opsiyon vadesi"
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda tanker saldırıları sürüyor"
       },
       {
         "timeTr": null,
-        "title": "Fed'den Aralık toplantısı öncesi şahin sinyaller"
+        "title": "Fed'in Aralık'ta faiz artışı ihtimali %91'e çıktı"
+      },
+      {
+        "timeTr": null,
+        "title": "Bitcoin ETF'lerinde rekor kasım çıkışı"
       }
     ],
-    "mainRisk": "Fed'in 8-9 Aralık toplantısında beklenenden sert bir faiz artışı sinyali vermesi, risk varlıklarında yeni bir satış dalgasını tetikleyebilir."
+    "mainRisk": "Hürmüz Boğazı'ndaki saldırıların tırmanması ve Fed'in Aralık toplantısında faiz artırımı ihtimalinin güçlenmesi risk iştahını daha da bozabilir."
   },
   "sections": {
     "yesterday": [
       {
-        "item": "Bitcoin ETF'lerinde kasım net çıkışının 5 milyar doları aşıp aşmadığı",
-        "outcome": "Aştı: kasım çıkışları rekor kırarak 5,39 milyar dolara ulaştı, bu tarihteki en kötü aylık performans oldu."
+        "item": "Fed'in 8-9 Aralık toplantısında 25 baz puanlık artış yapıp yapmayacağı",
+        "outcome": "Toplantı henüz gerçekleşmedi; ancak piyasa fiyatlaması artış ihtimalini %91'e yükseltti, beklenti daha da güçlendi."
       },
       {
-        "item": "Stratejik Bitcoin Rezervi yasasının Temsilciler Meclisi genel kurulunda oylamaya alınıp alınmadığı",
-        "outcome": "Henüz alınmadı: yasa 24 Kasım'da komiteden 28-21 oyla geçip genel kurula sevk edildi ama oylama tarihi hâlâ belirsiz."
+        "item": "Stratejik Bitcoin Rezervi yasasının yıl sonu öncesi genel kurulda oylamaya alınıp alınmayacağı",
+        "outcome": "Hayır, genel kurul takvimine henüz resmi bir tarih girmedi; bu Kongre döneminde oylamaya alınma ihtimali düşük görülüyor."
       },
       {
-        "item": "ABD Şükran Günü sonrası düşük likiditenin toparlanmayı güçlendirip güçlendirmediği",
-        "outcome": "Kısmen: BTC kısa pozisyon kapanışlarıyla toparlandı ama analistler bunun yeni para girişi değil, ince işlem hacminde kırılgan bir hareket olduğunu belirtiyor."
+        "item": "Bitcoin ETF çıkışlarının aralıkta devam edip etmeyeceği yoksa yavaşlayıp yavaşlamayacağı",
+        "outcome": "Çıkışlar yavaşlamadı, hızlandı; kasım ayı toplamı 5,39 milyar dolara ulaşarak rekor kırdı."
       },
       {
-        "item": "Fed yetkililerinin Aralık toplantısı öncesi şahin ya da güvercin sinyal verip vermediği",
-        "outcome": "Şahin sinyal verdi: yapışkan enflasyon ve yukarı revize büyüme verisiyle piyasa Aralık'ta çeyrek puanlık faiz artışına yüzde 97-98 ihtimal veriyor."
+        "item": "Bugünkü büyük opsiyon vadesinin piyasada ek volatilite yaratıp yaratmadığı",
+        "outcome": "Evet; 6,8 milyar dolarlık vade, bitcoin'i bir günde 62 bin dolardan 58,7 bin dolara kadar sert şekilde salladı."
       }
     ],
     "agenda": [
       {
         "importance": "kritik",
         "title": "Bitcoin ETF'lerinde rekor kasım çıkışı",
-        "summary": "Spot bitcoin ETF'lerinden kasımda net 5,39 milyar dolar çıkış oldu, bu kayıt başlangıcından beri en kötü ay; IBIT tek başına çıkışların büyük kısmını oluşturdu.",
+        "summary": "Kasım ayında ABD'li spot Bitcoin ETF'lerinden toplam 5,39 milyar dolar çıkış oldu; bu, haziran ayındaki önceki rekoru aşarak kurumsal yatırımcıların riskten kaçışını gösteriyor.",
         "source": {
-          "url": "https://www.theblock.co/news/markets/2026-11-24-bitcoin-etfs-another-570-million-net-outflows-november-total-nears-5-billion-btc-dips-below-60k-445548",
-          "title": "Bitcoin ETFs see another $570 million in net outflows as November total nears $5 billion",
-          "publisher": "The Block"
-        }
-      },
-      {
-        "importance": "kritik",
-        "title": "Fed'de Aralık için faiz artışı beklentisi yükseldi",
-        "summary": "Yapışkan ve genişleyen enflasyon ile yukarı revize edilen üçüncü çeyrek büyüme verisi, Fed'in 8-9 Aralık toplantısında çeyrek puanlık faiz artışı ihtimalini piyasada yüzde 97-98'e taşıdı.",
-        "source": {
-          "url": "https://cointelegraph.com/markets/crypto-hawkish-fed-risks-december-meltdown",
-          "title": "Fed Must Turn Dovish to Avoid Risk-Asset Meltdown, Analysis Says",
-          "publisher": "Cointelegraph"
+          "url": "https://finscans.com/news/2026/11/27/us-bitcoin-etfs-record-539b-november-outflows-as-morgan",
+          "title": "US Bitcoin ETFs Record $5.39B November Outflows as Morgan Stanley Fund Gains",
+          "publisher": "FinScans"
         }
       },
       {
         "importance": "onemli",
-        "title": "Stratejik Bitcoin Rezervi yasası genel kurula sevk edildi",
-        "summary": "Temsilciler Meclisi Finansal Hizmetler Komitesi, hükümetin elindeki bitcoini en az 20 yıl satılamaz kılan American Reserve Modernization Act'i 28-21 oyla genel kurula gönderdi, ancak oylama tarihi belirsizliğini koruyor.",
+        "title": "6,8 milyar dolarlık opsiyon vadesi oynaklığı artırdı",
+        "summary": "27 Kasım'da Deribit'te 110 binden fazla bitcoin opsiyon sözleşmesinin vadesi doldu; bitcoin gün içinde 62 bin dolardan 58,7 bin dolara kadar sert şekilde geriledi.",
         "source": {
-          "url": "https://www.coindesk.com/policy/2026/11/26/strategic-bitcoin-reserve-bill-to-lock-up-u-s-government-held-bitcoin-for-20-years-goes-to-full-house",
-          "title": "Bill to lock up U.S. government bitcoin for 20 years advances to full House",
+          "url": "https://ambcrypto.com/bitcoins-60k-bottom-faces-a-reality-check-as-6-8b-options-expire/",
+          "title": "Bitcoin's $60K bottom faces a reality check as $6.8B Options expire",
+          "publisher": "AMBCrypto"
+        }
+      },
+      {
+        "importance": "onemli",
+        "title": "Fed'in Aralık'ta faiz artırımı ihtimali %91'e yükseldi",
+        "summary": "Piyasa fiyatlamaları, Fed'in 8-9 Aralık toplantısında 25 baz puanlık faiz artırımı yapma olasılığını %91'e taşıdı; bu beklenti riskli varlıklar üzerinde baskı oluşturuyor.",
+        "source": {
+          "url": "https://www.coindesk.com/daybook-us/2026/11/25/fed-s-preferred-inflation-gauge-lands-with-a-december-rate-increase-already-priced-in",
+          "title": "Fed's preferred inflation gauge lands with a December rate increase already priced in",
           "publisher": "CoinDesk"
         }
       },
       {
         "importance": "bilgi",
-        "title": "Ethlabs, Glamsterdam yükseltmesinde ilerleme tavsiye etti",
-        "summary": "Ethlabs, gaz fiyatlandırma değişikliklerinin bazı yayındaki akıllı sözleşmeleri etkileyebileceğine dair denetim bulgularına rağmen Ethereum'un Glamsterdam yükseltmesiyle ilerlenmesini önerdi.",
+        "title": "Stratejik Bitcoin Rezervi yasası Meclis'te bekliyor",
+        "summary": "Yasa tasarısı komite onayından geçerek genel kurul takvimine girdi, ancak 24 Kasım itibarıyla henüz görüşme tarihi belirlenmedi ve bu Kongre döneminde geçme ihtimali düşük görülüyor.",
         "source": {
-          "url": "https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-ethlabs-recommends-proceeding-with-glamsterdam-202611270301",
-          "title": "Ethereum Price Forecast: Ethlabs recommends proceeding with Glamsterdam",
-          "publisher": "FXStreet"
+          "url": "https://financefeeds.com/us-strategic-bitcoin-reserve-bill-advances-toward-house-vote-with-20-year-holding-requirement/",
+          "title": "US Strategic Bitcoin Reserve Bill Advances Toward House Vote With 20-Year Holding Requirement",
+          "publisher": "FinanceFeeds"
+        }
+      },
+      {
+        "importance": "bilgi",
+        "title": "Hürmüz Boğazı'ndaki saldırılar petrolü yükseltiyor",
+        "summary": "Boğaz çevresinde tankerlere yönelik saldırılar sürüyor; Brent petrol varil başına 97 dolara yaklaştı ve bu durum küresel risk iştahını olumsuz etkiliyor.",
+        "source": {
+          "url": "https://www.cnbc.com/2026/11/24/oil-wti-brent-hormuz-supply.html",
+          "title": "Oil settles up $2 as traders weigh continued Hormuz ship attacks",
+          "publisher": "CNBC"
         }
       }
     ],
     "today": [
       {
-        "timeTr": "11:00",
-        "title": "BTC ve ETH'de 7,6 milyar dolarlık opsiyon vadesi"
+        "timeTr": null,
+        "title": "Hürmüz Boğazı'nda yeni saldırı haberleri takip edilecek"
       },
       {
         "timeTr": null,
-        "title": "Fed yetkililerinden sessizlik dönemi öncesi son açıklamalar"
+        "title": "Hafta sonu düşük likiditede ani fiyat hareketleri riski"
       }
     ],
     "turkey": {
@@ -137,36 +151,41 @@
       "items": []
     },
     "risks": [
-      "Fed'in beklenenden sert bir faiz artışı sinyali vermesi risk varlıklarında satışı hızlandırabilir.",
-      "Düşük işlem hacmiyle desteklenen toparlanma, herhangi bir olumsuz haberle hızla tersine dönebilir."
+      "Hafta sonu düşük işlem hacminde ani ve sert fiyat hareketleri riski",
+      "Hürmüz Boğazı'ndaki saldırıların tırmanması halinde petrol ve risk iştahı üzerinden kripto piyasasına ek baskı"
     ]
   },
   "followUps": [
-    "Fed'in 8-9 Aralık toplantısında gerçekten 25 baz puanlık artış yapıp yapmayacağı",
-    "Stratejik Bitcoin Rezervi yasasının yıl sonu öncesi genel kurulda oylamaya alınıp alınmayacağı",
-    "Bitcoin ETF çıkışlarının aralıkta devam edip etmeyeceği yoksa yavaşlayıp yavaşlamayacağı",
-    "Bugünkü büyük opsiyon vadesinin piyasada ek volatilite yaratıp yaratmadığı"
+    "Fed'in Aralık toplantısı öncesi faiz artış ihtimalinin %91'den değişip değişmeyeceği",
+    "Bitcoin ETF'lerinde kasım ayı çıkışlarının ay sonunda 5,39 milyar doları aşıp aşmayacağı",
+    "Hürmüz Boğazı'ndaki tanker saldırılarının tırmanıp tırmanmayacağı ve petrol fiyatlarına etkisi",
+    "Bitcoin'in hafta sonu düşük likiditede 58.000-60.000 dolar bandını koruyup korumayacağı"
   ],
   "sources": [
     {
-      "url": "https://www.theblock.co/news/markets/2026-11-24-bitcoin-etfs-another-570-million-net-outflows-november-total-nears-5-billion-btc-dips-below-60k-445548",
-      "title": "Bitcoin ETFs see another $570 million in net outflows as November total nears $5 billion",
-      "publisher": "The Block"
+      "url": "https://finscans.com/news/2026/11/27/us-bitcoin-etfs-record-539b-november-outflows-as-morgan",
+      "title": "US Bitcoin ETFs Record $5.39B November Outflows as Morgan Stanley Fund Gains",
+      "publisher": "FinScans"
     },
     {
-      "url": "https://cointelegraph.com/markets/crypto-hawkish-fed-risks-december-meltdown",
-      "title": "Fed Must Turn Dovish to Avoid Risk-Asset Meltdown, Analysis Says",
-      "publisher": "Cointelegraph"
+      "url": "https://ambcrypto.com/bitcoins-60k-bottom-faces-a-reality-check-as-6-8b-options-expire/",
+      "title": "Bitcoin's $60K bottom faces a reality check as $6.8B Options expire",
+      "publisher": "AMBCrypto"
     },
     {
-      "url": "https://www.coindesk.com/policy/2026/11/26/strategic-bitcoin-reserve-bill-to-lock-up-u-s-government-held-bitcoin-for-20-years-goes-to-full-house",
-      "title": "Bill to lock up U.S. government bitcoin for 20 years advances to full House",
+      "url": "https://www.coindesk.com/daybook-us/2026/11/25/fed-s-preferred-inflation-gauge-lands-with-a-december-rate-increase-already-priced-in",
+      "title": "Fed's preferred inflation gauge lands with a December rate increase already priced in",
       "publisher": "CoinDesk"
     },
     {
-      "url": "https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-ethlabs-recommends-proceeding-with-glamsterdam-202611270301",
-      "title": "Ethereum Price Forecast: Ethlabs recommends proceeding with Glamsterdam",
-      "publisher": "FXStreet"
+      "url": "https://financefeeds.com/us-strategic-bitcoin-reserve-bill-advances-toward-house-vote-with-20-year-holding-requirement/",
+      "title": "US Strategic Bitcoin Reserve Bill Advances Toward House Vote With 20-Year Holding Requirement",
+      "publisher": "FinanceFeeds"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/24/oil-wti-brent-hormuz-supply.html",
+      "title": "Oil settles up $2 as traders weigh continued Hormuz ship attacks",
+      "publisher": "CNBC"
     }
   ],
   "assets": {
